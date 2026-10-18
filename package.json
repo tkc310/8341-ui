@@ -10,6 +10,7 @@
     "dev": "pnpm build:tokens && pnpm --filter tkc310-ui-storybook dev",
     "build": "pnpm build:tokens && pnpm --filter tkc310-ui build",
     "build:storybook": "pnpm build:tokens && pnpm --filter tkc310-ui-storybook build",
+    "storybook:preview": "pnpm build:storybook && pnpm --filter tkc310-ui-storybook preview:publish",
     "check": "pnpm build:tokens && vp check && vp run -r check && depcruise packages apps",
     "test": "pnpm build:tokens && vp run -r test",
     "test:vrt": "pnpm build:tokens && pnpm --filter tkc310-ui test:vrt",

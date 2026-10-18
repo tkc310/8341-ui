@@ -72,15 +72,17 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+  # main の Storybook とレジストリ（/r/*.json）を gh-pages ブランチの直下に置く。
+  # PR のプレビュー（pr-preview/）は storybook-preview.yml が同じブランチに置くので、消さない・強制 push しない
   storybook:
     if: github.ref == 'refs/heads/main'
     needs: [check, test]
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
+      contents: write
+    concurrency:
+      group: gh-pages
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -91,9 +93,10 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      # Storybook とレジストリ（/r/*.json）を同じ Pages に置く
       - run: pnpm build:storybook
-      - uses: actions/upload-pages-artifact@v3
+      - uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: apps/storybook/storybook-static
-      - uses: actions/deploy-pages@v4
+          folder: apps/storybook/storybook-static
+          branch: gh-pages
+          clean-exclude: pr-preview
+          force: false

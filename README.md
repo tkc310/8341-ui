@@ -99,6 +99,15 @@ pnpm --filter tkc310-ui-tokens tw-merge    # クラス統合の設定
 pnpm check
 ```
 
+## 見た目の変わる PR にプレビューを添える
+
+```bash
+pnpm storybook:preview   # ビルドして https://tkc310.github.io/design-system-myself/pr-preview/pr-<番号>/ に公開
+```
+
+PR を作って push した後に実行します。変わったストーリーへのリンクを PR 本文の「Storybook プレビュー」節に書きます（手順: `.claude/skills/ds-storybook-preview/SKILL.md`、ADR-0011）。
+PR を閉じるとプレビューは自動で消えます。初回は、リポジトリの Settings > Pages で配信元を `gh-pages` ブランチにしてください。
+
 ## リリース
 
 公開パッケージ（`tkc310-ui`・`tkc310-ui-tokens`）を変えたら `pnpm changeset` で変更内容を記録します。

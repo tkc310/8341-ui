@@ -47,6 +47,7 @@
 ## 3. 直す
 
 - 修正は PR で行い、PR テンプレートのチェックリスト（完了の定義）を満たす
+- 見た目を変えたら、ローカルで `pnpm storybook:preview` を実行して PR ごとの Storybook を GitHub Pages に公開し、変わったストーリーへのリンクを PR に添える（`.claude/skills/ds-storybook-preview/SKILL.md`）
 - 値や方針を変えたら ADR を追加する（`docs/decisions/NNNN-*.md`）
 - トークンを変えたら `pnpm --filter tkc310-ui-tokens build` と `design-md` で CSS と DESIGN.md を更新する（CI がずれを検出する）
 
@@ -76,3 +77,4 @@
 2. `docs/improvement/backlog.md` と未解決の Issue を読み、優先度の高いものを 1 つ選ぶ
 3. 修正し、上の「再発を防ぐ」に従ってチェックを追加する
 4. `pnpm check && pnpm test` が通ることを確認し、changeset と log.md を追加して PR を出す
+5. 見た目を変えたら `ds-storybook-preview` スキルでプレビューを公開し、PR 本文にリンクを書く
