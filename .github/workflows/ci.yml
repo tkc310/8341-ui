@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
       # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
       - run: pnpm install
       # 生成物の鮮度・コントラスト・DESIGN.md 同期・レジストリ・fmt・lint（型情報つき）・型検査・アーキテクチャ
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
       # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
       - run: pnpm install
       - run: pnpm --filter tkc310-ui-storybook exec playwright install --with-deps chromium
@@ -60,7 +60,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
           registry-url: https://registry.npmjs.org
       # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
       - run: pnpm install
@@ -90,7 +90,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
       # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
       - run: pnpm install
       # Storybook とレジストリ（/r/*.json）を同じ Pages に置く
