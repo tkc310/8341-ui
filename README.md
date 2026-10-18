@@ -102,7 +102,8 @@ pnpm check
 ## リリース
 
 公開パッケージ（`tkc310-ui`・`tkc310-ui-tokens`）を変えたら `pnpm changeset` で変更内容を記録します。
-main にマージされると Changesets がバージョン更新の PR を作り、それをマージすると npm に公開されます。
+main にマージされると Changesets がバージョン更新の PR を作ります。
+npm への公開は、リポジトリの Settings > Secrets and variables > Actions で変数 `ENABLE_NPM_PUBLISH` を `true` にし、シークレット `NPM_TOKEN` を登録したときだけ行われます（意図しない公開を防ぐため、既定では公開しません）。
 
 ## ライセンス
 

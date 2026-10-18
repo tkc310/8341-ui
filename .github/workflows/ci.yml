@@ -61,10 +61,12 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
       - run: pnpm install --frozen-lockfile
-      # changeset があればバージョン更新 PR を作り、マージ後に公開する
+      # changeset があればバージョン更新 PR を作る。
+      # npm への公開は、リポジトリ変数 ENABLE_NPM_PUBLISH を true にしたときだけ行う
+      # （changeset が無いと changeset publish は現在の版をそのまま公開するため、意図しない初回公開を防ぐ）
       - uses: changesets/action@v2
         with:
-          publish: pnpm release
+          publish: ${{ vars.ENABLE_NPM_PUBLISH == 'true' && 'pnpm release' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
