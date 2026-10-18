@@ -57,8 +57,9 @@ export default defineConfig({
       'packages/ui/src/lib/tw-merge-config.ts',
       // 生成物（生成スクリプトの --check と整形結果が食い違わないよう、整形の対象から外す）
       'packages/ui/registry.json',
-      // 表を生成スクリプトが書く（sync-design-md の --check と食い違わないよう、整形の対象から外す）
-      'DESIGN.md',
+      // Markdown は整形しない。oxfmt は表の列幅をそろえるため、ログやバックログに 1 行足すたびに表全体が書き換わり、
+      // 生成スクリプト（DESIGN.md の表）の --check とも食い違う
+      '**/*.md',
       'packages/tokens/src/primitive/color.tokens.json',
       'apps/storybook/public/r/**',
     ],

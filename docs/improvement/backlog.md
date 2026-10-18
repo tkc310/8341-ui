@@ -29,7 +29,6 @@
 ## 仕組み
 
 - [ ] VRT の対象を全ストーリーに広げる（現在は代表のギャラリーだけ）
-- [ ] 依存パッケージを入れた環境で初回の `pnpm check` / `pnpm test` / `pnpm build` を通し、出た問題を直す（構築時はネットワーク制限で未実行）
 - [ ] shadcn CLI で `registry:base` の書き方（config の入れ子かトップレベルか）を確かめる
 - [ ] Code Connect を残りのコンポーネントにも書き、Figma のノード ID を埋める
 - [ ] Style Dictionary が DTCG の Resolver に対応したら、自前の読み込み処理を置き換える

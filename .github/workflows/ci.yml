@@ -20,9 +20,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
-      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
-      - run: pnpm install
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       # 生成物の鮮度・コントラスト・DESIGN.md 同期・レジストリ・fmt・lint（型情報つき）・型検査・アーキテクチャ
       - run: pnpm check
 
@@ -36,9 +35,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
-      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
-      - run: pnpm install
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - run: pnpm --filter tkc310-ui-storybook exec playwright install --with-deps chromium
       # unit（happy-dom）+ storybook（全ストーリーを実ブラウザで描画し a11y 検査）
       # VRT と e2e は手動・都度実行のため CI では回さない
@@ -60,10 +58,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
+          cache: pnpm
           registry-url: https://registry.npmjs.org
-      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
       # changeset があればバージョン更新 PR を作り、マージ後に公開する
       - uses: changesets/action@v2
         with:
@@ -90,9 +87,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          # pnpm-lock.yaml をコミットするまでは cache: pnpm を使えない（ロックファイルが必須）
-      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
-      - run: pnpm install
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       # Storybook とレジストリ（/r/*.json）を同じ Pages に置く
       - run: pnpm build:storybook
       - uses: actions/upload-pages-artifact@v3
