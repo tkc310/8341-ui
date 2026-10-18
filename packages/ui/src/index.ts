@@ -1,26 +1,23 @@
-import './styles/tokens.css';
-import './styles/typography.css';
-import './styles/base.css';
-
-export { Accordion, type AccordionProps } from './components/Accordion/Accordion';
-export { Breadcrumb, type BreadcrumbItem, type BreadcrumbProps } from './components/Breadcrumb/Breadcrumb';
-export { Button, type ButtonProps } from './components/Button/Button';
-export { Card, type CardProps } from './components/Card/Card';
-export { Checkbox, type CheckboxProps } from './components/Checkbox/Checkbox';
-export { Divider, type DividerProps } from './components/Divider/Divider';
-export { FormField, type FormFieldProps, useFormField } from './components/FormField/FormField';
-export { Heading, type HeadingProps } from './components/Heading/Heading';
-export { Icon, type IconName, type IconProps, iconNames } from './components/Icon/Icon';
-export { Link, type LinkProps } from './components/Link/Link';
-export {
-  NotificationBanner,
-  type NotificationBannerProps,
-} from './components/NotificationBanner/NotificationBanner';
-export { Radio, RadioGroup, type RadioGroupProps, type RadioProps } from './components/Radio/RadioGroup';
-export { Select, type SelectProps } from './components/Select/Select';
-export { Stack, type StackProps } from './components/Stack/Stack';
-export { Tag, type TagProps } from './components/Tag/Tag';
-export { Text, type TextProps } from './components/Text/Text';
-export { Textarea, type TextareaProps } from './components/Textarea/Textarea';
-export { TextField, type TextFieldProps } from './components/TextField/TextField';
-export { cssVar, tokenPrefix, tokens, type SemanticToken } from './tokens/tokens';
+/**
+ * tkc310-ui のエントリ。コンポーネントごとのエントリ（tkc310-ui/button など）もある。
+ * スタイルは別エントリ: Tailwind を使うなら tkc310-ui/theme.css、使わないなら tkc310-ui/styles.css。
+ */
+export * from './components/accordion';
+export * from './components/breadcrumb';
+export * from './components/button';
+export * from './components/card';
+export * from './components/checkbox';
+export * from './components/divider';
+export * from './components/form-field';
+export * from './components/heading';
+export * from './components/icon';
+export * from './components/link';
+export * from './components/notification-banner';
+export * from './components/radio-group';
+export * from './components/select';
+export * from './components/stack';
+export * from './components/tag';
+export * from './components/text';
+export * from './components/text-field';
+export * from './components/textarea';
+export { cn, tv, type VariantProps } from './lib/tv';

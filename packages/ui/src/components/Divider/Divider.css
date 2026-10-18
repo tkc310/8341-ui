@@ -1,9 +1,0 @@
-.tkc-divider {
-  margin: 0;
-  border: 0;
-  border-block-start: var(--tkc-border-width-default) solid var(--tkc-color-border-subtle);
-}
-
-.tkc-divider[data-tone='default'] {
-  border-block-start-color: var(--tkc-color-border-default);
-}

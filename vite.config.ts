@@ -49,7 +49,7 @@ export default defineConfig({
   },
 
   fmt: {
-    ignorePatterns: ['**/dist/**', '**/storybook-static/**', 'pnpm-lock.yaml', 'packages/tokens/dist/**', 'packages/ui/src/styles/generated/**'],
+    ignorePatterns: ['**/dist/**', '**/storybook-static/**', 'pnpm-lock.yaml', 'packages/tokens/dist/**', 'packages/ui/src/lib/tw-merge-config.ts'],
     singleQuote: true,
     semi: true,
     printWidth: 120,

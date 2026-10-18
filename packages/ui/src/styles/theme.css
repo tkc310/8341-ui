@@ -1,0 +1,93 @@
+/*
+ * tkc310-ui のテーマ。Tailwind v4 を使うプロジェクトは、tailwindcss の後にこのファイルを読み込む。
+ *
+ *   @import "tailwindcss";
+ *   @import "tkc310-ui/theme.css";
+ *   @source "../node_modules/tkc310-ui/dist";   // npm パッケージとして使う場合のみ
+ *
+ * Tailwind を使わないプロジェクトは、ビルド済みの tkc310-ui/styles.css を読み込む。
+ * ダークモードは <html class="dark"> または <html data-theme="dark">。指定が無ければ OS の設定に従う。
+ */
+@import "tkc310-ui-tokens/tokens.css";
+@import "tkc310-ui-tokens/tailwind.css";
+
+/* フォーカス表示: どの背景でも内側（黄）か外側（濃色）のどちらかが 3:1 以上になる二重リング */
+@utility focus-ring {
+  &:focus-visible {
+    outline: var(--tkc-focus-outline-width) solid var(--tkc-color-focus-outline);
+    outline-offset: var(--tkc-focus-offset);
+    box-shadow: 0 0 0 var(--tkc-focus-ring-width) var(--tkc-color-focus-ring);
+  }
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline-color: Highlight;
+      box-shadow: none;
+    }
+  }
+}
+
+@utility focus-ring-within {
+  &:has(:focus-visible) {
+    outline: var(--tkc-focus-outline-width) solid var(--tkc-color-focus-outline);
+    outline-offset: var(--tkc-focus-offset);
+    box-shadow: 0 0 0 var(--tkc-focus-ring-width) var(--tkc-color-focus-ring);
+  }
+  @media (forced-colors: active) {
+    &:has(:focus-visible) {
+      outline-color: Highlight;
+      box-shadow: none;
+    }
+  }
+}
+
+/* 見た目が小さい操作対象に、44px のタップ領域を擬似要素で足す */
+@utility tap-target {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, var(--tkc-size-target-min));
+    height: max(100%, var(--tkc-size-target-min));
+    transform: translate(-50%, -50%);
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--tkc-color-bg-canvas);
+    color: var(--tkc-color-text-default);
+    font-family: var(--tkc-font-family-sans);
+    font-size: var(--tkc-text-body-md-font-size);
+    line-height: var(--tkc-text-body-md-line-height);
+    letter-spacing: var(--tkc-text-body-md-letter-spacing);
+    font-feature-settings: normal;
+    /* 和文の禁則を厳格に、単語途中の改行を避ける */
+    line-break: strict;
+    overflow-wrap: anywhere;
+    /* iOS 26 以降の Safari で Base UI のポップアップ位置がずれないようにする */
+    position: relative;
+  }
+
+  /* Base UI のポップアップがページの内容より前面に出るよう、アプリのルートで重なりの文脈を作る */
+  #root,
+  #__next,
+  [data-tkc-root] {
+    isolation: isolate;
+  }
+
+  :where(code, kbd, samp, pre) {
+    font-family: var(--tkc-font-family-mono);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

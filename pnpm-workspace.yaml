@@ -7,14 +7,15 @@ catalog:
   # 実行時
   react: ^19.2.0
   react-dom: ^19.2.0
-  '@base-ui/react': ^1.0.0
-  tailwind-variants: ^3.0.0
-  tailwind-merge: ^3.3.0
+  '@base-ui/react': ^1.9.0
+  # 3.3 以降はクラス統合を内蔵（tailwind-merge は不要）
+  tailwind-variants: ^3.3.0
   # スタイル
-  tailwindcss: ^4.1.0
-  '@tailwindcss/vite': ^4.1.0
+  tailwindcss: ^4.3.0
+  '@tailwindcss/vite': ^4.3.0
+  '@tailwindcss/cli': ^4.3.0
   # トークン
-  style-dictionary: ^5.0.0
+  style-dictionary: ^5.7.0   # 5.7 で duration オブジェクトと $root に対応
   # ツールチェーン
   vite-plus: ^1.3.0
   typescript: ^5.9.0

@@ -117,7 +117,10 @@ StyleDictionary.registerFormat({
     const lines = dictionary.allTokens
       .map((t) => {
         const name = tailwindName(t.path);
-        return name ? `  ${name}: var(--${t.name});` : null;
+        if (!name) return null;
+        // メディアクエリでは var() が使えないため、ブレークポイントだけは値をそのまま書く
+        if (t.path[0] === 'breakpoint') return `  ${name}: ${String(t.$value ?? t.value)};`;
+        return `  ${name}: var(--${t.name});`;
       })
       .filter(Boolean);
     return `${header}/*
