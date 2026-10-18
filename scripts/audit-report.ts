@@ -39,7 +39,7 @@ const tight = contrast
 // 2. CSS
 const cssFindings = auditCss();
 
-// 3. 未使用トークン（semantic のみ。typography は .dsm-text-* クラス経由の利用も数える）
+// 3. 未使用トークン（semantic のみ。typography は .tkc-text-* クラス経由の利用も数える）
 const { tokens } = JSON.parse(readFileSync(resolve(ROOT, 'src/tokens/tokens.json'), 'utf8')) as {
   tokens: { name: string; cssVar: string; layer: string; type: string }[];
 };

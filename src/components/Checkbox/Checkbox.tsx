@@ -24,19 +24,19 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   }, [indeterminate]);
 
   return (
-    <label className={cx('dsm-choice', className)} data-size={size}>
+    <label className={cx('tkc-choice', className)} data-size={size}>
       <input
         ref={inner}
         type="checkbox"
         id={id}
-        className="dsm-choice__input dsm-focusable"
+        className="tkc-choice__input tkc-focusable"
         data-kind="checkbox"
         aria-invalid={invalid || undefined}
         {...rest}
       />
-      <span className="dsm-choice__text">
-        <span className="dsm-choice__label">{label}</span>
-        {description && <span className="dsm-choice__description">{description}</span>}
+      <span className="tkc-choice__text">
+        <span className="tkc-choice__label">{label}</span>
+        {description && <span className="tkc-choice__description">{description}</span>}
       </span>
     </label>
   );

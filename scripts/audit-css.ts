@@ -4,9 +4,9 @@
  *
  * error（CI を落とす）
  *   raw-color        … #hex / rgb() / hsl() の直書き（トークンを使う）
- *   primitive-color  … --dsm-color-primitive-* の直接参照（semantic を使う）
+ *   primitive-color  … --tkc-color-primitive-* の直接参照（semantic を使う）
  *   raw-length       … 3px を超える px の直書き（トークンを使う）
- *   unknown-token    … 定義されていない --dsm-* の参照
+ *   unknown-token    … 定義されていない --tkc-* の参照
  * warning（改善候補として記録）
  *   hover-outside-media … @media (hover: hover) の外の :hover
  *   primitive-other     … 色以外の primitive（dimension / font など）の直接参照
@@ -25,7 +25,7 @@ export interface Finding {
 
 const COMPONENT_DIR = resolve(ROOT, 'src/components');
 const defined = new Set(
-  [...readFileSync(resolve(ROOT, 'src/styles/tokens.css'), 'utf8').matchAll(/(--dsm-[\w-]+):/g)].map((m) => m[1]),
+  [...readFileSync(resolve(ROOT, 'src/styles/tokens.css'), 'utf8').matchAll(/(--tkc-[\w-]+):/g)].map((m) => m[1]),
 );
 
 function walk(dir: string): string[] {
@@ -70,11 +70,11 @@ export function auditCss(): Finding[] {
       for (const m of line.matchAll(/(?<![\w-])(\d*\.?\d+)px\b/g)) {
         if (Number(m[1]) > 3) add('raw-length', 'error', `${m[0]} を直書きしています。space / size / radius トークンを使ってください`);
       }
-      for (const m of line.matchAll(/var\((--dsm-[\w-]+)/g)) {
+      for (const m of line.matchAll(/var\((--tkc-[\w-]+)/g)) {
         const v = m[1];
         if (!defined.has(v)) add('unknown-token', 'error', `未定義のトークン ${v}`);
-        else if (v.startsWith('--dsm-color-primitive-')) add('primitive-color', 'error', `${v} は primitive です。semantic カラーを使ってください`);
-        else if (/^--dsm-(dimension|font-size|font-line-height|font-letter-spacing|duration|easing)-/.test(v))
+        else if (v.startsWith('--tkc-color-primitive-')) add('primitive-color', 'error', `${v} は primitive です。semantic カラーを使ってください`);
+        else if (/^--tkc-(dimension|font-size|font-line-height|font-letter-spacing|duration|easing)-/.test(v))
           add('primitive-other', 'warning', `${v} は primitive です。対応する semantic トークンの追加を検討してください`);
       }
       if (/:hover/.test(line) && hoverMediaDepth === -1) {

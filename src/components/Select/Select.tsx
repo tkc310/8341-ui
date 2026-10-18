@@ -19,10 +19,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
 ) {
   const { invalid: _invalid, ...field } = useFieldProps(rest, invalid);
   return (
-    <div className="dsm-select" data-size={size}>
+    <div className="tkc-select" data-size={size}>
       <select
         ref={ref}
-        className={cx('dsm-control', 'dsm-focusable', 'dsm-select__input', className)}
+        className={cx('tkc-control', 'tkc-focusable', 'tkc-select__input', className)}
         data-size={size}
         {...rest}
         {...field}
@@ -30,7 +30,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
         {placeholder !== undefined && <option value="">{placeholder}</option>}
         {children}
       </select>
-      <Icon name="chevron-down" className="dsm-select__icon" />
+      <Icon name="chevron-down" className="tkc-select__icon" />
     </div>
   );
 });

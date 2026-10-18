@@ -22,7 +22,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
     <input
       ref={ref}
       type={type}
-      className={cx('dsm-control', 'dsm-focusable', className)}
+      className={cx('tkc-control', 'tkc-focusable', className)}
       data-size={size}
       {...rest}
       {...field}

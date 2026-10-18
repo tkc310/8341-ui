@@ -25,10 +25,10 @@ src/components/Button/
 
 ### CSS
 
-- クラス名は `dsm-{block}__{element}`。状態・バリエーションは `data-*` 属性で表す（`data-variant="secondary"`）
+- クラス名は `tkc-{block}__{element}`。状態・バリエーションは `data-*` 属性で表す（`data-variant="secondary"`）
 - ARIA で表せる状態は ARIA 属性をそのままセレクタにする（`[aria-invalid='true']`、`[aria-busy='true']`）
 - コンポーネント内の可変値は `--_` で始まるローカル変数にまとめ、バリエーションではその変数だけを差し替える
-- フォーカスは `.dsm-focusable` クラスを付けて共通の二重リングを使う。独自のフォーカス表示を作らない
+- フォーカスは `.tkc-focusable` クラスを付けて共通の二重リングを使う。独自のフォーカス表示を作らない
 - `:hover` は `@media (hover: hover)` の中に。`:hover` / `:active` は `:not(:disabled)` を付けて無効状態に効かないようにする
 - 論理プロパティ（`margin-inline-start`、`padding-block`）を使う
 - 必要なら `@media (forced-colors: active)` で境界を補う

@@ -72,7 +72,7 @@ export function Icon({ name, size = 'md', label, className, ...rest }: IconProps
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={cx('dsm-icon', className)}
+      className={cx('tkc-icon', className)}
       data-size={size}
       focusable="false"
       {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}

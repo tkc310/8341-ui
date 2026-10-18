@@ -1,23 +1,23 @@
-.dsm-select {
+.tkc-select {
   position: relative;
   display: block;
 }
 
-.dsm-select__input {
+.tkc-select__input {
   appearance: none;
-  padding-inline-end: calc(var(--dsm-space-inset-md) * 2 + var(--dsm-size-icon-md));
+  padding-inline-end: calc(var(--tkc-space-inset-md) * 2 + var(--tkc-size-icon-md));
   cursor: pointer;
 }
 
-.dsm-select__icon {
+.tkc-select__icon {
   position: absolute;
   inset-block-start: 50%;
-  inset-inline-end: var(--dsm-space-inset-md);
+  inset-inline-end: var(--tkc-space-inset-md);
   transform: translateY(-50%);
-  color: var(--dsm-color-icon-default);
+  color: var(--tkc-color-icon-default);
   pointer-events: none;
 }
 
-.dsm-select__input:disabled + .dsm-select__icon {
-  color: var(--dsm-color-text-disabled);
+.tkc-select__input:disabled + .tkc-select__icon {
+  color: var(--tkc-color-text-disabled);
 }

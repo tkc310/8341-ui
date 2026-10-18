@@ -1,5 +1,5 @@
 {
-  "name": "design-system-myself",
+  "name": "tkc310-ui",
   "version": "0.1.0",
   "description": "プロジェクトで使い回す自分用のデザインシステム（React + TypeScript / アクセシビリティ優先）",
   "type": "module",
@@ -13,7 +13,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/design-system-myself.css",
+    "./styles.css": "./dist/tkc310-ui.css",
     "./tokens.css": "./src/styles/tokens.css",
     "./tokens.json": "./src/tokens/tokens.json"
   },

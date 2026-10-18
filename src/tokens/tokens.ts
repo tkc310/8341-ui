@@ -1,7 +1,7 @@
 /** このファイルは scripts/build-tokens.ts が生成します。直接編集しないでください。
  */
 
-export const tokenPrefix = 'dsm' as const;
+export const tokenPrefix = 'tkc' as const;
 
 /** semantic トークン名 */
 export type SemanticToken =
@@ -125,7 +125,7 @@ export type SemanticToken =
   | 'shadow.2'
   | 'shadow.3';
 
-/** トークン名から CSS 変数参照を返す。例: cssVar('color.text.default') → 'var(--dsm-color-text-default)' */
+/** トークン名から CSS 変数参照を返す。例: cssVar('color.text.default') → 'var(--tkc-color-text-default)' */
 export const cssVar = (name: SemanticToken): string =>
   `var(--${tokenPrefix}-${name.replace(/\./g, '-')})`;
 

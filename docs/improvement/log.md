@@ -4,6 +4,9 @@
 
 | 日付 | 種別 | 内容 | 再発防止 |
 | --- | --- | --- | --- |
+| 2026-10-18 | ルール | 画面設計のルールを上流の design-principles に一本化し、01 章を対応表に変更。プロダクト用 DESIGN.md の雛形を追加 | ADR-0007。上流のギャップは上流へ PR する方針を 01 章に明記 |
+| 2026-10-18 | 上流 | 基盤 DS の作り方、テーマ別コントラストなど 7 件のギャップを上流へ提案 | tkc310/agents-playground#27 |
+| 2026-10-18 | 命名 | パッケージ名を `tkc310-ui`、接頭辞を `tkc-` に変更 | 接頭辞は `scripts/lib/tokens.ts` の 1 か所で管理 |
 | 2026-10-18 | a11y | リンクのフォーカス時の文字色に primitive を直接参照していたため semantic `color.focus.text` を新設 | `contrast.rules.json` に `text-on-focus-ring` を追加、`check:css` の primitive-color で検出 |
 | 2026-10-18 | 不具合 | チェックボックスの印が描画されない（grid の中で % 指定の幅が 0 になる） | 寸法を `--_box` からの計算に変更。描画確認を VRT 候補としてバックログへ |
 | 2026-10-18 | 一貫性 | 下線の太さ・ずらし量に px の直書きがあった | `border-width.underline*` トークンを新設、`check:css` の raw-length で検出 |

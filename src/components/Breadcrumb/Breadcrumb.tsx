@@ -19,21 +19,21 @@ export interface BreadcrumbProps {
 
 export function Breadcrumb({ items, label = 'パンくずリスト', className }: BreadcrumbProps) {
   return (
-    <nav aria-label={label} className={cx('dsm-breadcrumb', className)}>
-      <ol className="dsm-breadcrumb__list">
+    <nav aria-label={label} className={cx('tkc-breadcrumb', className)}>
+      <ol className="tkc-breadcrumb__list">
         {items.map((item, i) => {
           const current = i === items.length - 1;
           return (
             // biome-ignore lint/suspicious/noArrayIndexKey: 順序が意味を持つ静的リスト
-            <li key={i} className="dsm-breadcrumb__item">
+            <li key={i} className="tkc-breadcrumb__item">
               {current || !item.href ? (
                 <span aria-current={current ? 'page' : undefined}>{item.label}</span>
               ) : (
-                <a href={item.href} className="dsm-link dsm-focusable">
+                <a href={item.href} className="tkc-link tkc-focusable">
                   {item.label}
                 </a>
               )}
-              {!current && <Icon name="chevron-right" size="sm" className="dsm-breadcrumb__separator" />}
+              {!current && <Icon name="chevron-right" size="sm" className="tkc-breadcrumb__separator" />}
             </li>
           );
         })}

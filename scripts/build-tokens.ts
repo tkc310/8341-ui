@@ -168,7 +168,7 @@ export const tokenPrefix = '${PREFIX}' as const;
 export type SemanticToken =
 ${semanticNames.map((n) => `  | '${n}'`).join('\n')};
 
-/** トークン名から CSS 変数参照を返す。例: cssVar('color.text.default') → 'var(--dsm-color-text-default)' */
+/** トークン名から CSS 変数参照を返す。例: cssVar('color.text.default') → 'var(--tkc-color-text-default)' */
 export const cssVar = (name: SemanticToken): string =>
   \`var(--\${tokenPrefix}-\${name.replace(/\\./g, '-')})\`;
 

@@ -29,18 +29,18 @@ export const Card = forwardRef<HTMLElement, CardProps>(function Card(
     <Tag
       // biome-ignore lint/suspicious/noExplicitAny: 要素の種類が可変のため
       ref={ref as any}
-      className={cx('dsm-card', className)}
+      className={cx('tkc-card', className)}
       data-variant={variant}
       data-interactive={href ? '' : undefined}
       {...rest}
     >
-      {media && <div className="dsm-card__media">{media}</div>}
-      <div className="dsm-card__body">
-        {eyebrow && <p className="dsm-card__eyebrow">{eyebrow}</p>}
+      {media && <div className="tkc-card__media">{media}</div>}
+      <div className="tkc-card__body">
+        {eyebrow && <p className="tkc-card__eyebrow">{eyebrow}</p>}
         {title && (
-          <H className="dsm-card__title">
+          <H className="tkc-card__title">
             {href ? (
-              <a href={href} className="dsm-card__link dsm-focusable">
+              <a href={href} className="tkc-card__link tkc-focusable">
                 {title}
               </a>
             ) : (
@@ -48,12 +48,12 @@ export const Card = forwardRef<HTMLElement, CardProps>(function Card(
             )}
           </H>
         )}
-        {children && <div className="dsm-card__content">{children}</div>}
+        {children && <div className="tkc-card__content">{children}</div>}
       </div>
       {(footer || href) && (
-        <div className="dsm-card__footer">
+        <div className="tkc-card__footer">
           {footer}
-          {href && <Icon name="arrow-right" className="dsm-card__arrow" />}
+          {href && <Icon name="arrow-right" className="tkc-card__arrow" />}
         </div>
       )}
     </Tag>

@@ -55,7 +55,7 @@ const blocks: Record<string, () => string> = {
       .map((t) => {
         const v = t.value as Record<string, unknown>;
         const name = t.name.replace('text.', '');
-        return `| ${name} | \`.dsm-text-${name}\` | ${v.fontSize} | ${v.lineHeight} | ${v.fontWeight} | ${v.letterSpacing} | ${esc(t.description)} |`;
+        return `| ${name} | \`.tkc-text-${name}\` | ${v.fontSize} | ${v.lineHeight} | ${v.fontWeight} | ${v.letterSpacing} | ${esc(t.description)} |`;
       });
     return [head, ...rows].join('\n');
   },

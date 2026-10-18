@@ -1,36 +1,36 @@
-.dsm-radio-group {
+.tkc-radio-group {
   display: flex;
   flex-direction: column;
-  gap: var(--dsm-space-stack-sm);
+  gap: var(--tkc-space-stack-sm);
   min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.dsm-radio-group__legend {
+.tkc-radio-group__legend {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--dsm-space-gap-sm);
+  gap: var(--tkc-space-gap-sm);
   /* legend は fieldset の gap が効かないため余白を明示する */
-  margin-block-end: var(--dsm-space-stack-sm);
+  margin-block-end: var(--tkc-space-stack-sm);
   padding: 0;
-  color: var(--dsm-color-text-default);
-  font-weight: var(--dsm-font-weight-bold);
+  color: var(--tkc-color-text-default);
+  font-weight: var(--tkc-font-weight-bold);
 }
 
-.dsm-radio-group__options {
+.tkc-radio-group__options {
   display: flex;
   flex-direction: column;
 }
 
-.dsm-radio-group__options[data-orientation='horizontal'] {
+.tkc-radio-group__options[data-orientation='horizontal'] {
   flex-direction: row;
   flex-wrap: wrap;
-  column-gap: var(--dsm-space-stack-md);
+  column-gap: var(--tkc-space-stack-md);
 }
 
-.dsm-radio-group:disabled .dsm-radio-group__legend {
-  color: var(--dsm-color-text-disabled);
+.tkc-radio-group:disabled .tkc-radio-group__legend {
+  color: var(--tkc-color-text-disabled);
 }

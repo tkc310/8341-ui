@@ -19,7 +19,7 @@ export const Cards: Story = {
     <ul
       style={{
         display: 'grid',
-        gap: 'var(--dsm-space-gutter)',
+        gap: 'var(--tkc-space-gutter)',
         gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
         padding: 0,
         margin: 0,

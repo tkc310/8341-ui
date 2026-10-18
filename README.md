@@ -1,8 +1,11 @@
-# design-system-myself
+# tkc310-ui
 
 プロジェクトで使い回す、自分用のデザインシステムです。
 [デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) のアクセシビリティ基準と構造を土台に、
 キーカラー「藍」・ダークテーマ・自己改善の仕組みを加えて再設計しています。
+画面設計のルールは [design-principles](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) を採用しています。
+
+リポジトリ名は `design-system-myself`、パッケージ名は `tkc310-ui`、CSS の接頭辞は `tkc-` です。
 
 ![ライト / ダークのプレビュー](./docs/assets/preview.png)
 
@@ -14,6 +17,7 @@
 | Storybook | `npm run dev` |
 | AI エージェント向け仕様 | [`DESIGN.md`](./DESIGN.md)、[`AGENTS.md`](./AGENTS.md) |
 | 自己改善の仕組み | [`docs/rulebook/06-improvement-loop.md`](./docs/rulebook/06-improvement-loop.md) |
+| プロダクト用 DESIGN.md の雛形 | [`templates/PRODUCT-DESIGN.md`](./templates/PRODUCT-DESIGN.md) |
 
 ## はじめる
 
@@ -27,8 +31,8 @@ npm test           # 単体テスト + 全ストーリーの a11y テスト
 ## 使う
 
 ```tsx
-import { Button, FormField, TextField } from 'design-system-myself';
-import 'design-system-myself/styles.css';
+import { Button, FormField, TextField } from 'tkc310-ui';
+import 'tkc310-ui/styles.css';
 
 export function SignUp() {
   return (
@@ -43,7 +47,7 @@ export function SignUp() {
 ```
 
 テーマは `<html data-theme="dark">` で切り替えます。属性が無ければ OS の設定に従います。
-React 以外の環境では `tokens.css` の CSS 変数と `dsm-` クラスの規約だけを使うこともできます。
+React 以外の環境では `tokens.css` の CSS 変数と `tkc-` クラスの規約だけを使うこともできます。
 
 ## コンポーネント
 

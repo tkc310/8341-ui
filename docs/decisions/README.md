@@ -10,6 +10,7 @@
 | [0004](./0004-palt-for-headings.md) | 見出しのみ palt | 採用 |
 | [0005](./0005-focus-double-ring.md) | フォーカスの二重リング | 採用 |
 | [0006](./0006-control-height-44.md) | 標準コントロール高さ 44px | 採用 |
+| [0007](./0007-adopt-design-principles.md) | 画面設計のルールに design-principles を採用 | 採用 |
 
 ## テンプレート
 

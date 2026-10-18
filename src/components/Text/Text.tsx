@@ -17,7 +17,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(function Text(
   return (
     <Tag
       ref={ref}
-      className={cx('dsm-text', `dsm-text-${variant}`, className)}
+      className={cx('tkc-text', `tkc-text-${variant}`, className)}
       data-tone={tone === 'default' ? undefined : tone}
       data-weight={weight}
       {...rest}

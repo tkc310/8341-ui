@@ -21,7 +21,7 @@ tokens/semantic/color.*.json┘                          src/styles/typography.c
 
 ## 命名
 
-- CSS 変数は `--dsm-{トークンのパスをハイフンでつないだもの}`。例: `color.text.subtle` → `--dsm-color-text-subtle`
+- CSS 変数は `--tkc-{トークンのパスをハイフンでつないだもの}`。例: `color.text.subtle` → `--tkc-color-text-subtle`
 - semantic カラーは `color.{役割}.{意味}[-{状態}]`。役割は `bg` / `text` / `icon` / `border` / `focus`
 - 状態の接尾辞は `-hover` / `-active` / `-subtle`（薄い面）に限る
 - テキストスタイルは `text.{用途}-{サイズ}`。用途は `display` / `heading` / `body` / `dense` / `label` / `mono`

@@ -2,481 +2,481 @@
 
 /* Primitive — コンポーネントから直接参照しないこと */
 :root {
-  --dsm-color-primitive-white: #ffffff;
-  --dsm-color-primitive-black: #000000;
-  --dsm-color-primitive-indigo-50: #f3f7fe; /* 白背景 1.07:1 */
-  --dsm-color-primitive-indigo-100: #e4edff; /* 白背景 1.18:1 */
-  --dsm-color-primitive-indigo-200: #cadbfe; /* 白背景 1.39:1 */
-  --dsm-color-primitive-indigo-300: #a8c4fe; /* 白背景 1.75:1 */
-  --dsm-color-primitive-indigo-400: #82a8fd; /* 白背景 2.34:1 */
-  --dsm-color-primitive-indigo-500: #628bea; /* 白背景 3.28:1 */
-  --dsm-color-primitive-indigo-600: #4971d2; /* 白背景 4.59:1 */
-  --dsm-color-primitive-indigo-700: #385db8; /* 白背景 6.13:1 */
-  --dsm-color-primitive-indigo-800: #2d4c9c; /* 白背景 8.00:1 */
-  --dsm-color-primitive-indigo-900: #223d81; /* 白背景 10.23:1 */
-  --dsm-color-primitive-indigo-1000: #192f65; /* 白背景 12.84:1 */
-  --dsm-color-primitive-indigo-1100: #11234f; /* 白背景 15.25:1 */
-  --dsm-color-primitive-indigo-1200: #0a183b; /* 白背景 17.40:1 */
-  --dsm-color-primitive-teal-50: #eafbfa; /* 白背景 1.07:1 */
-  --dsm-color-primitive-teal-100: #d4f4f4; /* 白背景 1.16:1 */
-  --dsm-color-primitive-teal-200: #ade8e7; /* 白背景 1.36:1 */
-  --dsm-color-primitive-teal-300: #7ed6d5; /* 白背景 1.68:1 */
-  --dsm-color-primitive-teal-400: #3ec0c0; /* 白背景 2.21:1 */
-  --dsm-color-primitive-teal-500: #0ba3a4; /* 白背景 3.09:1 */
-  --dsm-color-primitive-teal-600: #098989; /* 白背景 4.24:1 */
-  --dsm-color-primitive-teal-700: #087272; /* 白背景 5.74:1 */
-  --dsm-color-primitive-teal-800: #015f5f; /* 白背景 7.49:1 */
-  --dsm-color-primitive-teal-900: #024d4d; /* 白背景 9.67:1 */
-  --dsm-color-primitive-teal-1000: #033b3b; /* 白背景 12.41:1 */
-  --dsm-color-primitive-teal-1100: #002d2d; /* 白背景 14.86:1 */
-  --dsm-color-primitive-teal-1200: #002020; /* 白背景 17.11:1 */
-  --dsm-color-primitive-purple-50: #f8f5fe; /* 白背景 1.08:1 */
-  --dsm-color-primitive-purple-100: #f0e9ff; /* 白背景 1.18:1 */
-  --dsm-color-primitive-purple-200: #e1d2fe; /* 白背景 1.41:1 */
-  --dsm-color-primitive-purple-300: #ceb6fc; /* 白背景 1.79:1 */
-  --dsm-color-primitive-purple-400: #b897f0; /* 白背景 2.41:1 */
-  --dsm-color-primitive-purple-500: #9e77dc; /* 白背景 3.43:1 */
-  --dsm-color-primitive-purple-600: #875ec4; /* 白背景 4.74:1 */
-  --dsm-color-primitive-purple-700: #724aab; /* 白背景 6.40:1 */
-  --dsm-color-primitive-purple-800: #5f3c91; /* 白背景 8.26:1 */
-  --dsm-color-primitive-purple-900: #4d2f77; /* 白背景 10.56:1 */
-  --dsm-color-primitive-purple-1000: #3b235d; /* 白背景 13.25:1 */
-  --dsm-color-primitive-purple-1100: #2d1a49; /* 白背景 15.49:1 */
-  --dsm-color-primitive-purple-1200: #201136; /* 白背景 17.58:1 */
-  --dsm-color-primitive-red-50: #fef4f3; /* 白背景 1.08:1 */
-  --dsm-color-primitive-red-100: #fee7e4; /* 白背景 1.18:1 */
-  --dsm-color-primitive-red-200: #ffcdc8; /* 白背景 1.42:1 */
-  --dsm-color-primitive-red-300: #feaba4; /* 白背景 1.81:1 */
-  --dsm-color-primitive-red-400: #fe7f77; /* 白背景 2.47:1 */
-  --dsm-color-primitive-red-500: #eb5451; /* 白背景 3.55:1 */
-  --dsm-color-primitive-red-600: #d13437; /* 白背景 4.93:1 */
-  --dsm-color-primitive-red-700: #b61b25; /* 白背景 6.62:1 */
-  --dsm-color-primitive-red-800: #9a101c; /* 白背景 8.52:1 */
-  --dsm-color-primitive-red-900: #800613; /* 白背景 10.75:1 */
-  --dsm-color-primitive-red-1000: #64050d; /* 白背景 13.38:1 */
-  --dsm-color-primitive-red-1100: #4e0208; /* 白背景 15.72:1 */
-  --dsm-color-primitive-red-1200: #3a0104; /* 白背景 17.71:1 */
-  --dsm-color-primitive-orange-50: #fff4ef; /* 白背景 1.08:1 */
-  --dsm-color-primitive-orange-100: #fee8db; /* 白背景 1.18:1 */
-  --dsm-color-primitive-orange-200: #ffcfb5; /* 白背景 1.41:1 */
-  --dsm-color-primitive-orange-300: #feaf82; /* 白背景 1.80:1 */
-  --dsm-color-primitive-orange-400: #f48c4c; /* 白背景 2.41:1 */
-  --dsm-color-primitive-orange-500: #de6905; /* 白背景 3.43:1 */
-  --dsm-color-primitive-orange-600: #ba5601; /* 白背景 4.75:1 */
-  --dsm-color-primitive-orange-700: #9c4804; /* 白背景 6.28:1 */
-  --dsm-color-primitive-orange-800: #833b02; /* 白背景 8.10:1 */
-  --dsm-color-primitive-orange-900: #6b2f01; /* 白背景 10.33:1 */
-  --dsm-color-primitive-orange-1000: #532301; /* 白背景 13.05:1 */
-  --dsm-color-primitive-orange-1100: #411900; /* 白背景 15.40:1 */
-  --dsm-color-primitive-orange-1200: #2f1000; /* 白背景 17.57:1 */
-  --dsm-color-primitive-yellow-50: #fffcf3; /* 白背景 1.03:1 */
-  --dsm-color-primitive-yellow-100: #fef1ce; /* 白背景 1.12:1 */
-  --dsm-color-primitive-yellow-200: #f5de9f; /* 白背景 1.33:1 */
-  --dsm-color-primitive-yellow-300: #e7c567; /* 白背景 1.67:1 */
-  --dsm-color-primitive-yellow-400: #d5aa02; /* 白背景 2.19:1 */
-  --dsm-color-primitive-yellow-500: #b48f0a; /* 白背景 3.05:1 */
-  --dsm-color-primitive-yellow-600: #977806; /* 白背景 4.20:1 */
-  --dsm-color-primitive-yellow-700: #7f6404; /* 白背景 5.63:1 */
-  --dsm-color-primitive-yellow-800: #6b5402; /* 白背景 7.26:1 */
-  --dsm-color-primitive-yellow-900: #574401; /* 白背景 9.41:1 */
-  --dsm-color-primitive-yellow-1000: #443401; /* 白背景 12.09:1 */
-  --dsm-color-primitive-yellow-1100: #352800; /* 白背景 14.43:1 */
-  --dsm-color-primitive-yellow-1200: #271d00; /* 白背景 16.64:1 */
-  --dsm-color-primitive-green-50: #edfbf1; /* 白背景 1.07:1 */
-  --dsm-color-primitive-green-100: #daf5e2; /* 白背景 1.16:1 */
-  --dsm-color-primitive-green-200: #b9e8c8; /* 白背景 1.36:1 */
-  --dsm-color-primitive-green-300: #91d7a9; /* 白背景 1.68:1 */
-  --dsm-color-primitive-green-400: #64c288; /* 白背景 2.18:1 */
-  --dsm-color-primitive-green-500: #30a867; /* 白背景 3.03:1 */
-  --dsm-color-primitive-green-600: #078e51; /* 白背景 4.20:1 */
-  --dsm-color-primitive-green-700: #037743; /* 白背景 5.64:1 */
-  --dsm-color-primitive-green-800: #016337; /* 白背景 7.39:1 */
-  --dsm-color-primitive-green-900: #00502b; /* 白背景 9.62:1 */
-  --dsm-color-primitive-green-1000: #003e20; /* 白背景 12.28:1 */
-  --dsm-color-primitive-green-1100: #003017; /* 白背景 14.63:1 */
-  --dsm-color-primitive-green-1200: #00220f; /* 白背景 16.99:1 */
-  --dsm-color-primitive-gray-50: #f6f7f7; /* 白背景 1.07:1 */
-  --dsm-color-primitive-gray-100: #ecedee; /* 白背景 1.17:1 */
-  --dsm-color-primitive-gray-200: #d9dbdd; /* 白背景 1.39:1 */
-  --dsm-color-primitive-gray-300: #c2c4c8; /* 白背景 1.75:1 */
-  --dsm-color-primitive-gray-400: #a8abb0; /* 白背景 2.30:1 */
-  --dsm-color-primitive-gray-500: #8c8f95; /* 白背景 3.24:1 */
-  --dsm-color-primitive-gray-600: #75777d; /* 白背景 4.48:1 */
-  --dsm-color-primitive-gray-700: #616369; /* 白背景 6.01:1 */
-  --dsm-color-primitive-gray-800: #505257; /* 白背景 7.82:1 */
-  --dsm-color-primitive-gray-900: #404246; /* 白背景 10.07:1 */
-  --dsm-color-primitive-gray-1000: #313336; /* 白背景 12.67:1 */
-  --dsm-color-primitive-gray-1100: #252629; /* 白背景 15.13:1 */
-  --dsm-color-primitive-gray-1200: #1a1b1d; /* 白背景 17.24:1 */
-  --dsm-font-family-sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif; /* Web フォントが読めなくても情報が伝わるよう OS 標準の和文ゴシックへフォールバックする */
-  --dsm-font-family-mono: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --dsm-font-size-14: 0.875rem;
-  --dsm-font-size-16: 1rem;
-  --dsm-font-size-18: 1.125rem;
-  --dsm-font-size-20: 1.25rem;
-  --dsm-font-size-24: 1.5rem;
-  --dsm-font-size-28: 1.75rem;
-  --dsm-font-size-32: 2rem;
-  --dsm-font-size-36: 2.25rem;
-  --dsm-font-size-44: 2.75rem;
-  --dsm-font-size-56: 3.5rem;
-  --dsm-font-weight-regular: 400;
-  --dsm-font-weight-bold: 700;
-  --dsm-font-line-height-100: 1;
-  --dsm-font-line-height-120: 1.2;
-  --dsm-font-line-height-130: 1.3;
-  --dsm-font-line-height-140: 1.4;
-  --dsm-font-line-height-150: 1.5;
-  --dsm-font-line-height-160: 1.6;
-  --dsm-font-line-height-170: 1.7;
-  --dsm-font-line-height-180: 1.8;
-  --dsm-font-letter-spacing-none: 0em;
-  --dsm-font-letter-spacing-tight: 0.01em;
-  --dsm-font-letter-spacing-normal: 0.02em;
-  --dsm-font-letter-spacing-wide: 0.04em;
-  --dsm-dimension-0: 0px;
-  --dsm-dimension-1: 1px;
-  --dsm-dimension-2: 2px;
-  --dsm-dimension-3: 3px;
-  --dsm-dimension-4: 0.25rem;
-  --dsm-dimension-6: 0.375rem;
-  --dsm-dimension-8: 0.5rem;
-  --dsm-dimension-12: 0.75rem;
-  --dsm-dimension-16: 1rem;
-  --dsm-dimension-20: 1.25rem;
-  --dsm-dimension-24: 1.5rem;
-  --dsm-dimension-32: 2rem;
-  --dsm-dimension-36: 2.25rem;
-  --dsm-dimension-40: 2.5rem;
-  --dsm-dimension-44: 2.75rem;
-  --dsm-dimension-48: 3rem;
-  --dsm-dimension-52: 3.25rem;
-  --dsm-dimension-64: 4rem;
-  --dsm-dimension-96: 6rem;
-  --dsm-dimension-full: 9999px;
-  --dsm-breakpoint-md: 768px;
-  --dsm-duration-instant: 0ms;
-  --dsm-duration-fast: 120ms;
-  --dsm-duration-base: 200ms;
-  --dsm-duration-slow: 320ms;
-  --dsm-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-  --dsm-easing-enter: cubic-bezier(0, 0, 0, 1);
-  --dsm-easing-exit: cubic-bezier(0.3, 0, 1, 1);
+  --tkc-color-primitive-white: #ffffff;
+  --tkc-color-primitive-black: #000000;
+  --tkc-color-primitive-indigo-50: #f3f7fe; /* 白背景 1.07:1 */
+  --tkc-color-primitive-indigo-100: #e4edff; /* 白背景 1.18:1 */
+  --tkc-color-primitive-indigo-200: #cadbfe; /* 白背景 1.39:1 */
+  --tkc-color-primitive-indigo-300: #a8c4fe; /* 白背景 1.75:1 */
+  --tkc-color-primitive-indigo-400: #82a8fd; /* 白背景 2.34:1 */
+  --tkc-color-primitive-indigo-500: #628bea; /* 白背景 3.28:1 */
+  --tkc-color-primitive-indigo-600: #4971d2; /* 白背景 4.59:1 */
+  --tkc-color-primitive-indigo-700: #385db8; /* 白背景 6.13:1 */
+  --tkc-color-primitive-indigo-800: #2d4c9c; /* 白背景 8.00:1 */
+  --tkc-color-primitive-indigo-900: #223d81; /* 白背景 10.23:1 */
+  --tkc-color-primitive-indigo-1000: #192f65; /* 白背景 12.84:1 */
+  --tkc-color-primitive-indigo-1100: #11234f; /* 白背景 15.25:1 */
+  --tkc-color-primitive-indigo-1200: #0a183b; /* 白背景 17.40:1 */
+  --tkc-color-primitive-teal-50: #eafbfa; /* 白背景 1.07:1 */
+  --tkc-color-primitive-teal-100: #d4f4f4; /* 白背景 1.16:1 */
+  --tkc-color-primitive-teal-200: #ade8e7; /* 白背景 1.36:1 */
+  --tkc-color-primitive-teal-300: #7ed6d5; /* 白背景 1.68:1 */
+  --tkc-color-primitive-teal-400: #3ec0c0; /* 白背景 2.21:1 */
+  --tkc-color-primitive-teal-500: #0ba3a4; /* 白背景 3.09:1 */
+  --tkc-color-primitive-teal-600: #098989; /* 白背景 4.24:1 */
+  --tkc-color-primitive-teal-700: #087272; /* 白背景 5.74:1 */
+  --tkc-color-primitive-teal-800: #015f5f; /* 白背景 7.49:1 */
+  --tkc-color-primitive-teal-900: #024d4d; /* 白背景 9.67:1 */
+  --tkc-color-primitive-teal-1000: #033b3b; /* 白背景 12.41:1 */
+  --tkc-color-primitive-teal-1100: #002d2d; /* 白背景 14.86:1 */
+  --tkc-color-primitive-teal-1200: #002020; /* 白背景 17.11:1 */
+  --tkc-color-primitive-purple-50: #f8f5fe; /* 白背景 1.08:1 */
+  --tkc-color-primitive-purple-100: #f0e9ff; /* 白背景 1.18:1 */
+  --tkc-color-primitive-purple-200: #e1d2fe; /* 白背景 1.41:1 */
+  --tkc-color-primitive-purple-300: #ceb6fc; /* 白背景 1.79:1 */
+  --tkc-color-primitive-purple-400: #b897f0; /* 白背景 2.41:1 */
+  --tkc-color-primitive-purple-500: #9e77dc; /* 白背景 3.43:1 */
+  --tkc-color-primitive-purple-600: #875ec4; /* 白背景 4.74:1 */
+  --tkc-color-primitive-purple-700: #724aab; /* 白背景 6.40:1 */
+  --tkc-color-primitive-purple-800: #5f3c91; /* 白背景 8.26:1 */
+  --tkc-color-primitive-purple-900: #4d2f77; /* 白背景 10.56:1 */
+  --tkc-color-primitive-purple-1000: #3b235d; /* 白背景 13.25:1 */
+  --tkc-color-primitive-purple-1100: #2d1a49; /* 白背景 15.49:1 */
+  --tkc-color-primitive-purple-1200: #201136; /* 白背景 17.58:1 */
+  --tkc-color-primitive-red-50: #fef4f3; /* 白背景 1.08:1 */
+  --tkc-color-primitive-red-100: #fee7e4; /* 白背景 1.18:1 */
+  --tkc-color-primitive-red-200: #ffcdc8; /* 白背景 1.42:1 */
+  --tkc-color-primitive-red-300: #feaba4; /* 白背景 1.81:1 */
+  --tkc-color-primitive-red-400: #fe7f77; /* 白背景 2.47:1 */
+  --tkc-color-primitive-red-500: #eb5451; /* 白背景 3.55:1 */
+  --tkc-color-primitive-red-600: #d13437; /* 白背景 4.93:1 */
+  --tkc-color-primitive-red-700: #b61b25; /* 白背景 6.62:1 */
+  --tkc-color-primitive-red-800: #9a101c; /* 白背景 8.52:1 */
+  --tkc-color-primitive-red-900: #800613; /* 白背景 10.75:1 */
+  --tkc-color-primitive-red-1000: #64050d; /* 白背景 13.38:1 */
+  --tkc-color-primitive-red-1100: #4e0208; /* 白背景 15.72:1 */
+  --tkc-color-primitive-red-1200: #3a0104; /* 白背景 17.71:1 */
+  --tkc-color-primitive-orange-50: #fff4ef; /* 白背景 1.08:1 */
+  --tkc-color-primitive-orange-100: #fee8db; /* 白背景 1.18:1 */
+  --tkc-color-primitive-orange-200: #ffcfb5; /* 白背景 1.41:1 */
+  --tkc-color-primitive-orange-300: #feaf82; /* 白背景 1.80:1 */
+  --tkc-color-primitive-orange-400: #f48c4c; /* 白背景 2.41:1 */
+  --tkc-color-primitive-orange-500: #de6905; /* 白背景 3.43:1 */
+  --tkc-color-primitive-orange-600: #ba5601; /* 白背景 4.75:1 */
+  --tkc-color-primitive-orange-700: #9c4804; /* 白背景 6.28:1 */
+  --tkc-color-primitive-orange-800: #833b02; /* 白背景 8.10:1 */
+  --tkc-color-primitive-orange-900: #6b2f01; /* 白背景 10.33:1 */
+  --tkc-color-primitive-orange-1000: #532301; /* 白背景 13.05:1 */
+  --tkc-color-primitive-orange-1100: #411900; /* 白背景 15.40:1 */
+  --tkc-color-primitive-orange-1200: #2f1000; /* 白背景 17.57:1 */
+  --tkc-color-primitive-yellow-50: #fffcf3; /* 白背景 1.03:1 */
+  --tkc-color-primitive-yellow-100: #fef1ce; /* 白背景 1.12:1 */
+  --tkc-color-primitive-yellow-200: #f5de9f; /* 白背景 1.33:1 */
+  --tkc-color-primitive-yellow-300: #e7c567; /* 白背景 1.67:1 */
+  --tkc-color-primitive-yellow-400: #d5aa02; /* 白背景 2.19:1 */
+  --tkc-color-primitive-yellow-500: #b48f0a; /* 白背景 3.05:1 */
+  --tkc-color-primitive-yellow-600: #977806; /* 白背景 4.20:1 */
+  --tkc-color-primitive-yellow-700: #7f6404; /* 白背景 5.63:1 */
+  --tkc-color-primitive-yellow-800: #6b5402; /* 白背景 7.26:1 */
+  --tkc-color-primitive-yellow-900: #574401; /* 白背景 9.41:1 */
+  --tkc-color-primitive-yellow-1000: #443401; /* 白背景 12.09:1 */
+  --tkc-color-primitive-yellow-1100: #352800; /* 白背景 14.43:1 */
+  --tkc-color-primitive-yellow-1200: #271d00; /* 白背景 16.64:1 */
+  --tkc-color-primitive-green-50: #edfbf1; /* 白背景 1.07:1 */
+  --tkc-color-primitive-green-100: #daf5e2; /* 白背景 1.16:1 */
+  --tkc-color-primitive-green-200: #b9e8c8; /* 白背景 1.36:1 */
+  --tkc-color-primitive-green-300: #91d7a9; /* 白背景 1.68:1 */
+  --tkc-color-primitive-green-400: #64c288; /* 白背景 2.18:1 */
+  --tkc-color-primitive-green-500: #30a867; /* 白背景 3.03:1 */
+  --tkc-color-primitive-green-600: #078e51; /* 白背景 4.20:1 */
+  --tkc-color-primitive-green-700: #037743; /* 白背景 5.64:1 */
+  --tkc-color-primitive-green-800: #016337; /* 白背景 7.39:1 */
+  --tkc-color-primitive-green-900: #00502b; /* 白背景 9.62:1 */
+  --tkc-color-primitive-green-1000: #003e20; /* 白背景 12.28:1 */
+  --tkc-color-primitive-green-1100: #003017; /* 白背景 14.63:1 */
+  --tkc-color-primitive-green-1200: #00220f; /* 白背景 16.99:1 */
+  --tkc-color-primitive-gray-50: #f6f7f7; /* 白背景 1.07:1 */
+  --tkc-color-primitive-gray-100: #ecedee; /* 白背景 1.17:1 */
+  --tkc-color-primitive-gray-200: #d9dbdd; /* 白背景 1.39:1 */
+  --tkc-color-primitive-gray-300: #c2c4c8; /* 白背景 1.75:1 */
+  --tkc-color-primitive-gray-400: #a8abb0; /* 白背景 2.30:1 */
+  --tkc-color-primitive-gray-500: #8c8f95; /* 白背景 3.24:1 */
+  --tkc-color-primitive-gray-600: #75777d; /* 白背景 4.48:1 */
+  --tkc-color-primitive-gray-700: #616369; /* 白背景 6.01:1 */
+  --tkc-color-primitive-gray-800: #505257; /* 白背景 7.82:1 */
+  --tkc-color-primitive-gray-900: #404246; /* 白背景 10.07:1 */
+  --tkc-color-primitive-gray-1000: #313336; /* 白背景 12.67:1 */
+  --tkc-color-primitive-gray-1100: #252629; /* 白背景 15.13:1 */
+  --tkc-color-primitive-gray-1200: #1a1b1d; /* 白背景 17.24:1 */
+  --tkc-font-family-sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif; /* Web フォントが読めなくても情報が伝わるよう OS 標準の和文ゴシックへフォールバックする */
+  --tkc-font-family-mono: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --tkc-font-size-14: 0.875rem;
+  --tkc-font-size-16: 1rem;
+  --tkc-font-size-18: 1.125rem;
+  --tkc-font-size-20: 1.25rem;
+  --tkc-font-size-24: 1.5rem;
+  --tkc-font-size-28: 1.75rem;
+  --tkc-font-size-32: 2rem;
+  --tkc-font-size-36: 2.25rem;
+  --tkc-font-size-44: 2.75rem;
+  --tkc-font-size-56: 3.5rem;
+  --tkc-font-weight-regular: 400;
+  --tkc-font-weight-bold: 700;
+  --tkc-font-line-height-100: 1;
+  --tkc-font-line-height-120: 1.2;
+  --tkc-font-line-height-130: 1.3;
+  --tkc-font-line-height-140: 1.4;
+  --tkc-font-line-height-150: 1.5;
+  --tkc-font-line-height-160: 1.6;
+  --tkc-font-line-height-170: 1.7;
+  --tkc-font-line-height-180: 1.8;
+  --tkc-font-letter-spacing-none: 0em;
+  --tkc-font-letter-spacing-tight: 0.01em;
+  --tkc-font-letter-spacing-normal: 0.02em;
+  --tkc-font-letter-spacing-wide: 0.04em;
+  --tkc-dimension-0: 0px;
+  --tkc-dimension-1: 1px;
+  --tkc-dimension-2: 2px;
+  --tkc-dimension-3: 3px;
+  --tkc-dimension-4: 0.25rem;
+  --tkc-dimension-6: 0.375rem;
+  --tkc-dimension-8: 0.5rem;
+  --tkc-dimension-12: 0.75rem;
+  --tkc-dimension-16: 1rem;
+  --tkc-dimension-20: 1.25rem;
+  --tkc-dimension-24: 1.5rem;
+  --tkc-dimension-32: 2rem;
+  --tkc-dimension-36: 2.25rem;
+  --tkc-dimension-40: 2.5rem;
+  --tkc-dimension-44: 2.75rem;
+  --tkc-dimension-48: 3rem;
+  --tkc-dimension-52: 3.25rem;
+  --tkc-dimension-64: 4rem;
+  --tkc-dimension-96: 6rem;
+  --tkc-dimension-full: 9999px;
+  --tkc-breakpoint-md: 768px;
+  --tkc-duration-instant: 0ms;
+  --tkc-duration-fast: 120ms;
+  --tkc-duration-base: 200ms;
+  --tkc-duration-slow: 320ms;
+  --tkc-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --tkc-easing-enter: cubic-bezier(0, 0, 0, 1);
+  --tkc-easing-exit: cubic-bezier(0.3, 0, 1, 1);
 }
 
 /* Semantic — テーマ非依存 */
 :root {
-  --dsm-text-display-lg-font-family: var(--dsm-font-family-sans);
-  --dsm-text-display-lg-font-size: var(--dsm-font-size-56);
-  --dsm-text-display-lg-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-display-lg-line-height: var(--dsm-font-line-height-140);
-  --dsm-text-display-lg-letter-spacing: var(--dsm-font-letter-spacing-none);
-  --dsm-text-display-md-font-family: var(--dsm-font-family-sans);
-  --dsm-text-display-md-font-size: var(--dsm-font-size-44);
-  --dsm-text-display-md-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-display-md-line-height: var(--dsm-font-line-height-140);
-  --dsm-text-display-md-letter-spacing: var(--dsm-font-letter-spacing-none);
-  --dsm-text-heading-xl-font-family: var(--dsm-font-family-sans);
-  --dsm-text-heading-xl-font-size: var(--dsm-font-size-36);
-  --dsm-text-heading-xl-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-heading-xl-line-height: var(--dsm-font-line-height-140);
-  --dsm-text-heading-xl-letter-spacing: var(--dsm-font-letter-spacing-tight);
-  --dsm-text-heading-lg-font-family: var(--dsm-font-family-sans);
-  --dsm-text-heading-lg-font-size: var(--dsm-font-size-32);
-  --dsm-text-heading-lg-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-heading-lg-line-height: var(--dsm-font-line-height-150);
-  --dsm-text-heading-lg-letter-spacing: var(--dsm-font-letter-spacing-tight);
-  --dsm-text-heading-md-font-family: var(--dsm-font-family-sans);
-  --dsm-text-heading-md-font-size: var(--dsm-font-size-28);
-  --dsm-text-heading-md-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-heading-md-line-height: var(--dsm-font-line-height-150);
-  --dsm-text-heading-md-letter-spacing: var(--dsm-font-letter-spacing-tight);
-  --dsm-text-heading-sm-font-family: var(--dsm-font-family-sans);
-  --dsm-text-heading-sm-font-size: var(--dsm-font-size-24);
-  --dsm-text-heading-sm-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-heading-sm-line-height: var(--dsm-font-line-height-150);
-  --dsm-text-heading-sm-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-heading-xs-font-family: var(--dsm-font-family-sans);
-  --dsm-text-heading-xs-font-size: var(--dsm-font-size-20);
-  --dsm-text-heading-xs-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-heading-xs-line-height: var(--dsm-font-line-height-150);
-  --dsm-text-heading-xs-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-heading-xxs-font-family: var(--dsm-font-family-sans);
-  --dsm-text-heading-xxs-font-size: var(--dsm-font-size-18);
-  --dsm-text-heading-xxs-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-heading-xxs-line-height: var(--dsm-font-line-height-160);
-  --dsm-text-heading-xxs-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-body-lg-font-family: var(--dsm-font-family-sans);
-  --dsm-text-body-lg-font-size: var(--dsm-font-size-18);
-  --dsm-text-body-lg-font-weight: var(--dsm-font-weight-regular);
-  --dsm-text-body-lg-line-height: var(--dsm-font-line-height-170);
-  --dsm-text-body-lg-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-body-md-font-family: var(--dsm-font-family-sans);
-  --dsm-text-body-md-font-size: var(--dsm-font-size-16);
-  --dsm-text-body-md-font-weight: var(--dsm-font-weight-regular);
-  --dsm-text-body-md-line-height: var(--dsm-font-line-height-170);
-  --dsm-text-body-md-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-body-sm-font-family: var(--dsm-font-family-sans);
-  --dsm-text-body-sm-font-size: var(--dsm-font-size-14);
-  --dsm-text-body-sm-font-weight: var(--dsm-font-weight-regular);
-  --dsm-text-body-sm-line-height: var(--dsm-font-line-height-170);
-  --dsm-text-body-sm-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-dense-md-font-family: var(--dsm-font-family-sans);
-  --dsm-text-dense-md-font-size: var(--dsm-font-size-16);
-  --dsm-text-dense-md-font-weight: var(--dsm-font-weight-regular);
-  --dsm-text-dense-md-line-height: var(--dsm-font-line-height-130);
-  --dsm-text-dense-md-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-dense-sm-font-family: var(--dsm-font-family-sans);
-  --dsm-text-dense-sm-font-size: var(--dsm-font-size-14);
-  --dsm-text-dense-sm-font-weight: var(--dsm-font-weight-regular);
-  --dsm-text-dense-sm-line-height: var(--dsm-font-line-height-130);
-  --dsm-text-dense-sm-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-label-md-font-family: var(--dsm-font-family-sans);
-  --dsm-text-label-md-font-size: var(--dsm-font-size-16);
-  --dsm-text-label-md-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-label-md-line-height: var(--dsm-font-line-height-100);
-  --dsm-text-label-md-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-label-sm-font-family: var(--dsm-font-family-sans);
-  --dsm-text-label-sm-font-size: var(--dsm-font-size-14);
-  --dsm-text-label-sm-font-weight: var(--dsm-font-weight-bold);
-  --dsm-text-label-sm-line-height: var(--dsm-font-line-height-100);
-  --dsm-text-label-sm-letter-spacing: var(--dsm-font-letter-spacing-normal);
-  --dsm-text-mono-md-font-family: var(--dsm-font-family-mono);
-  --dsm-text-mono-md-font-size: var(--dsm-font-size-16);
-  --dsm-text-mono-md-font-weight: var(--dsm-font-weight-regular);
-  --dsm-text-mono-md-line-height: var(--dsm-font-line-height-150);
-  --dsm-text-mono-md-letter-spacing: var(--dsm-font-letter-spacing-none);
-  --dsm-text-mono-sm-font-family: var(--dsm-font-family-mono);
-  --dsm-text-mono-sm-font-size: var(--dsm-font-size-14);
-  --dsm-text-mono-sm-font-weight: var(--dsm-font-weight-regular);
-  --dsm-text-mono-sm-line-height: var(--dsm-font-line-height-150);
-  --dsm-text-mono-sm-letter-spacing: var(--dsm-font-letter-spacing-none);
-  --dsm-space-inset-xs: var(--dsm-dimension-4);
-  --dsm-space-inset-sm: var(--dsm-dimension-8);
-  --dsm-space-inset-md: var(--dsm-dimension-12);
-  --dsm-space-inset-lg: var(--dsm-dimension-16);
-  --dsm-space-inset-xl: var(--dsm-dimension-24);
-  --dsm-space-gap-xs: var(--dsm-dimension-4);
-  --dsm-space-gap-sm: var(--dsm-dimension-8);
-  --dsm-space-gap-md: var(--dsm-dimension-16);
-  --dsm-space-stack-sm: var(--dsm-dimension-8); /* 密接に関係する要素（ラベルと入力欄） */
-  --dsm-space-stack-md: var(--dsm-dimension-24); /* 同じグループ内の要素（フォーム項目同士） */
-  --dsm-space-stack-lg: var(--dsm-dimension-64); /* セクション間 */
-  --dsm-space-gutter: var(--dsm-dimension-32); /* グリッドのガター（本文サイズ × 2） */
-  --dsm-space-page-inline: var(--dsm-dimension-16); /* モバイル時の左右余白。md 以上は 32px */
-  --dsm-radius-none: var(--dsm-dimension-0);
-  --dsm-radius-xs: var(--dsm-dimension-4); /* チェックボックス・タグ */
-  --dsm-radius-sm: var(--dsm-dimension-6); /* 小さいボタン */
-  --dsm-radius-md: var(--dsm-dimension-8); /* ボタン・入力欄 */
-  --dsm-radius-lg: var(--dsm-dimension-12); /* バナー・横長カード */
-  --dsm-radius-xl: var(--dsm-dimension-16); /* カード・ダイアログ */
-  --dsm-radius-full: var(--dsm-dimension-full); /* ピル形・円 */
-  --dsm-size-control-sm: var(--dsm-dimension-36); /* 小さいコントロールの見た目の高さ（タップ領域は 44px を別途確保） */
-  --dsm-size-control-md: var(--dsm-dimension-44); /* 標準。見た目の高さ＝最小タップ領域 */
-  --dsm-size-control-lg: var(--dsm-dimension-52);
-  --dsm-size-target-min: var(--dsm-dimension-44); /* WCAG 2.5.5 のタップ領域 */
-  --dsm-size-icon-sm: var(--dsm-dimension-16);
-  --dsm-size-icon-md: var(--dsm-dimension-20);
-  --dsm-size-icon-lg: var(--dsm-dimension-24);
-  --dsm-size-content-max: 75rem; /* コンテンツ最大幅 */
-  --dsm-size-prose-max: 45rem; /* 本文の最大幅（和文で 1 行 40〜45 字） */
-  --dsm-border-width-default: var(--dsm-dimension-1);
-  --dsm-border-width-strong: var(--dsm-dimension-2);
-  --dsm-border-width-accent: var(--dsm-dimension-4); /* 見出しのバー・バナーの左線 */
-  --dsm-border-width-underline: var(--dsm-dimension-1); /* リンクの下線 */
-  --dsm-border-width-underline-hover: var(--dsm-dimension-3); /* ホバー時のリンク下線（太さで状態変化を示す） */
-  --dsm-focus-outline-width: var(--dsm-dimension-2);
-  --dsm-focus-ring-width: var(--dsm-dimension-4); /* outline-offset 分を含む box-shadow の広がり */
-  --dsm-focus-offset: var(--dsm-dimension-2);
-  --dsm-motion-duration-fast: var(--dsm-duration-fast);
-  --dsm-motion-duration-base: var(--dsm-duration-base);
-  --dsm-motion-duration-slow: var(--dsm-duration-slow);
-  --dsm-motion-easing-standard: var(--dsm-easing-standard);
-  --dsm-motion-easing-enter: var(--dsm-easing-enter);
-  --dsm-motion-easing-exit: var(--dsm-easing-exit);
-  --dsm-z-dropdown: 100;
-  --dsm-z-sticky: 200;
-  --dsm-z-overlay: 300;
-  --dsm-z-modal: 400;
-  --dsm-z-toast: 500;
+  --tkc-text-display-lg-font-family: var(--tkc-font-family-sans);
+  --tkc-text-display-lg-font-size: var(--tkc-font-size-56);
+  --tkc-text-display-lg-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-display-lg-line-height: var(--tkc-font-line-height-140);
+  --tkc-text-display-lg-letter-spacing: var(--tkc-font-letter-spacing-none);
+  --tkc-text-display-md-font-family: var(--tkc-font-family-sans);
+  --tkc-text-display-md-font-size: var(--tkc-font-size-44);
+  --tkc-text-display-md-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-display-md-line-height: var(--tkc-font-line-height-140);
+  --tkc-text-display-md-letter-spacing: var(--tkc-font-letter-spacing-none);
+  --tkc-text-heading-xl-font-family: var(--tkc-font-family-sans);
+  --tkc-text-heading-xl-font-size: var(--tkc-font-size-36);
+  --tkc-text-heading-xl-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-heading-xl-line-height: var(--tkc-font-line-height-140);
+  --tkc-text-heading-xl-letter-spacing: var(--tkc-font-letter-spacing-tight);
+  --tkc-text-heading-lg-font-family: var(--tkc-font-family-sans);
+  --tkc-text-heading-lg-font-size: var(--tkc-font-size-32);
+  --tkc-text-heading-lg-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-heading-lg-line-height: var(--tkc-font-line-height-150);
+  --tkc-text-heading-lg-letter-spacing: var(--tkc-font-letter-spacing-tight);
+  --tkc-text-heading-md-font-family: var(--tkc-font-family-sans);
+  --tkc-text-heading-md-font-size: var(--tkc-font-size-28);
+  --tkc-text-heading-md-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-heading-md-line-height: var(--tkc-font-line-height-150);
+  --tkc-text-heading-md-letter-spacing: var(--tkc-font-letter-spacing-tight);
+  --tkc-text-heading-sm-font-family: var(--tkc-font-family-sans);
+  --tkc-text-heading-sm-font-size: var(--tkc-font-size-24);
+  --tkc-text-heading-sm-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-heading-sm-line-height: var(--tkc-font-line-height-150);
+  --tkc-text-heading-sm-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-heading-xs-font-family: var(--tkc-font-family-sans);
+  --tkc-text-heading-xs-font-size: var(--tkc-font-size-20);
+  --tkc-text-heading-xs-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-heading-xs-line-height: var(--tkc-font-line-height-150);
+  --tkc-text-heading-xs-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-heading-xxs-font-family: var(--tkc-font-family-sans);
+  --tkc-text-heading-xxs-font-size: var(--tkc-font-size-18);
+  --tkc-text-heading-xxs-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-heading-xxs-line-height: var(--tkc-font-line-height-160);
+  --tkc-text-heading-xxs-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-body-lg-font-family: var(--tkc-font-family-sans);
+  --tkc-text-body-lg-font-size: var(--tkc-font-size-18);
+  --tkc-text-body-lg-font-weight: var(--tkc-font-weight-regular);
+  --tkc-text-body-lg-line-height: var(--tkc-font-line-height-170);
+  --tkc-text-body-lg-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-body-md-font-family: var(--tkc-font-family-sans);
+  --tkc-text-body-md-font-size: var(--tkc-font-size-16);
+  --tkc-text-body-md-font-weight: var(--tkc-font-weight-regular);
+  --tkc-text-body-md-line-height: var(--tkc-font-line-height-170);
+  --tkc-text-body-md-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-body-sm-font-family: var(--tkc-font-family-sans);
+  --tkc-text-body-sm-font-size: var(--tkc-font-size-14);
+  --tkc-text-body-sm-font-weight: var(--tkc-font-weight-regular);
+  --tkc-text-body-sm-line-height: var(--tkc-font-line-height-170);
+  --tkc-text-body-sm-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-dense-md-font-family: var(--tkc-font-family-sans);
+  --tkc-text-dense-md-font-size: var(--tkc-font-size-16);
+  --tkc-text-dense-md-font-weight: var(--tkc-font-weight-regular);
+  --tkc-text-dense-md-line-height: var(--tkc-font-line-height-130);
+  --tkc-text-dense-md-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-dense-sm-font-family: var(--tkc-font-family-sans);
+  --tkc-text-dense-sm-font-size: var(--tkc-font-size-14);
+  --tkc-text-dense-sm-font-weight: var(--tkc-font-weight-regular);
+  --tkc-text-dense-sm-line-height: var(--tkc-font-line-height-130);
+  --tkc-text-dense-sm-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-label-md-font-family: var(--tkc-font-family-sans);
+  --tkc-text-label-md-font-size: var(--tkc-font-size-16);
+  --tkc-text-label-md-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-label-md-line-height: var(--tkc-font-line-height-100);
+  --tkc-text-label-md-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-label-sm-font-family: var(--tkc-font-family-sans);
+  --tkc-text-label-sm-font-size: var(--tkc-font-size-14);
+  --tkc-text-label-sm-font-weight: var(--tkc-font-weight-bold);
+  --tkc-text-label-sm-line-height: var(--tkc-font-line-height-100);
+  --tkc-text-label-sm-letter-spacing: var(--tkc-font-letter-spacing-normal);
+  --tkc-text-mono-md-font-family: var(--tkc-font-family-mono);
+  --tkc-text-mono-md-font-size: var(--tkc-font-size-16);
+  --tkc-text-mono-md-font-weight: var(--tkc-font-weight-regular);
+  --tkc-text-mono-md-line-height: var(--tkc-font-line-height-150);
+  --tkc-text-mono-md-letter-spacing: var(--tkc-font-letter-spacing-none);
+  --tkc-text-mono-sm-font-family: var(--tkc-font-family-mono);
+  --tkc-text-mono-sm-font-size: var(--tkc-font-size-14);
+  --tkc-text-mono-sm-font-weight: var(--tkc-font-weight-regular);
+  --tkc-text-mono-sm-line-height: var(--tkc-font-line-height-150);
+  --tkc-text-mono-sm-letter-spacing: var(--tkc-font-letter-spacing-none);
+  --tkc-space-inset-xs: var(--tkc-dimension-4);
+  --tkc-space-inset-sm: var(--tkc-dimension-8);
+  --tkc-space-inset-md: var(--tkc-dimension-12);
+  --tkc-space-inset-lg: var(--tkc-dimension-16);
+  --tkc-space-inset-xl: var(--tkc-dimension-24);
+  --tkc-space-gap-xs: var(--tkc-dimension-4);
+  --tkc-space-gap-sm: var(--tkc-dimension-8);
+  --tkc-space-gap-md: var(--tkc-dimension-16);
+  --tkc-space-stack-sm: var(--tkc-dimension-8); /* 密接に関係する要素（ラベルと入力欄） */
+  --tkc-space-stack-md: var(--tkc-dimension-24); /* 同じグループ内の要素（フォーム項目同士） */
+  --tkc-space-stack-lg: var(--tkc-dimension-64); /* セクション間 */
+  --tkc-space-gutter: var(--tkc-dimension-32); /* グリッドのガター（本文サイズ × 2） */
+  --tkc-space-page-inline: var(--tkc-dimension-16); /* モバイル時の左右余白。md 以上は 32px */
+  --tkc-radius-none: var(--tkc-dimension-0);
+  --tkc-radius-xs: var(--tkc-dimension-4); /* チェックボックス・タグ */
+  --tkc-radius-sm: var(--tkc-dimension-6); /* 小さいボタン */
+  --tkc-radius-md: var(--tkc-dimension-8); /* ボタン・入力欄 */
+  --tkc-radius-lg: var(--tkc-dimension-12); /* バナー・横長カード */
+  --tkc-radius-xl: var(--tkc-dimension-16); /* カード・ダイアログ */
+  --tkc-radius-full: var(--tkc-dimension-full); /* ピル形・円 */
+  --tkc-size-control-sm: var(--tkc-dimension-36); /* 小さいコントロールの見た目の高さ（タップ領域は 44px を別途確保） */
+  --tkc-size-control-md: var(--tkc-dimension-44); /* 標準。見た目の高さ＝最小タップ領域 */
+  --tkc-size-control-lg: var(--tkc-dimension-52);
+  --tkc-size-target-min: var(--tkc-dimension-44); /* WCAG 2.5.5 のタップ領域 */
+  --tkc-size-icon-sm: var(--tkc-dimension-16);
+  --tkc-size-icon-md: var(--tkc-dimension-20);
+  --tkc-size-icon-lg: var(--tkc-dimension-24);
+  --tkc-size-content-max: 75rem; /* コンテンツ最大幅 */
+  --tkc-size-prose-max: 45rem; /* 本文の最大幅（和文で 1 行 40〜45 字） */
+  --tkc-border-width-default: var(--tkc-dimension-1);
+  --tkc-border-width-strong: var(--tkc-dimension-2);
+  --tkc-border-width-accent: var(--tkc-dimension-4); /* 見出しのバー・バナーの左線 */
+  --tkc-border-width-underline: var(--tkc-dimension-1); /* リンクの下線 */
+  --tkc-border-width-underline-hover: var(--tkc-dimension-3); /* ホバー時のリンク下線（太さで状態変化を示す） */
+  --tkc-focus-outline-width: var(--tkc-dimension-2);
+  --tkc-focus-ring-width: var(--tkc-dimension-4); /* outline-offset 分を含む box-shadow の広がり */
+  --tkc-focus-offset: var(--tkc-dimension-2);
+  --tkc-motion-duration-fast: var(--tkc-duration-fast);
+  --tkc-motion-duration-base: var(--tkc-duration-base);
+  --tkc-motion-duration-slow: var(--tkc-duration-slow);
+  --tkc-motion-easing-standard: var(--tkc-easing-standard);
+  --tkc-motion-easing-enter: var(--tkc-easing-enter);
+  --tkc-motion-easing-exit: var(--tkc-easing-exit);
+  --tkc-z-dropdown: 100;
+  --tkc-z-sticky: 200;
+  --tkc-z-overlay: 300;
+  --tkc-z-modal: 400;
+  --tkc-z-toast: 500;
 }
 
 /* Semantic — Light（既定） */
 :root,
 [data-theme="light"] {
   color-scheme: light;
-  --dsm-color-bg-canvas: var(--dsm-color-primitive-white); /* ページ全体の背景 */
-  --dsm-color-bg-surface: var(--dsm-color-primitive-white); /* カード・入力欄など面の背景 */
-  --dsm-color-bg-subtle: var(--dsm-color-primitive-gray-50); /* 区切りたい帯・コードブロック */
-  --dsm-color-bg-muted: var(--dsm-color-primitive-gray-100); /* ホバー時の面・テーブル見出し */
-  --dsm-color-bg-inverse: var(--dsm-color-primitive-gray-1100);
-  --dsm-color-bg-disabled: var(--dsm-color-primitive-gray-100);
-  --dsm-color-bg-key: var(--dsm-color-primitive-indigo-700); /* 主要アクション（Primary ボタン） */
-  --dsm-color-bg-key-hover: var(--dsm-color-primitive-indigo-800);
-  --dsm-color-bg-key-active: var(--dsm-color-primitive-indigo-900);
-  --dsm-color-bg-key-subtle: var(--dsm-color-primitive-indigo-100); /* 選択中の項目・Secondary ボタンの hover */
-  --dsm-color-bg-key-subtle-hover: var(--dsm-color-primitive-indigo-200);
-  --dsm-color-bg-danger: var(--dsm-color-primitive-red-700);
-  --dsm-color-bg-danger-hover: var(--dsm-color-primitive-red-800);
-  --dsm-color-bg-danger-active: var(--dsm-color-primitive-red-900);
-  --dsm-color-bg-danger-subtle: var(--dsm-color-primitive-red-50);
-  --dsm-color-bg-success-subtle: var(--dsm-color-primitive-green-50);
-  --dsm-color-bg-warning-subtle: var(--dsm-color-primitive-yellow-50);
-  --dsm-color-bg-info-subtle: var(--dsm-color-primitive-indigo-50);
-  --dsm-color-bg-overlay: rgba(10, 12, 20, 0.48); /* モーダル背面 */
-  --dsm-color-text-default: var(--dsm-color-primitive-gray-1100); /* 本文。純黒は使わない */
-  --dsm-color-text-subtle: var(--dsm-color-primitive-gray-700); /* 補足・説明文（4.5:1 以上） */
-  --dsm-color-text-disabled: var(--dsm-color-primitive-gray-500); /* 無効状態（WCAG のコントラスト要件対象外だが 3:1 を目安） */
-  --dsm-color-text-inverse: var(--dsm-color-primitive-gray-50);
-  --dsm-color-text-key: var(--dsm-color-primitive-indigo-800); /* キーカラーの文字（Secondary ボタン等） */
-  --dsm-color-text-on-key: var(--dsm-color-primitive-white); /* bg.key / bg.danger の上の文字 */
-  --dsm-color-text-danger: var(--dsm-color-primitive-red-800);
-  --dsm-color-text-success: var(--dsm-color-primitive-green-800);
-  --dsm-color-text-warning: var(--dsm-color-primitive-orange-800);
-  --dsm-color-text-link: var(--dsm-color-primitive-indigo-800);
-  --dsm-color-text-link-hover: var(--dsm-color-primitive-indigo-1000);
-  --dsm-color-text-link-visited: var(--dsm-color-primitive-purple-800);
-  --dsm-color-text-link-active: var(--dsm-color-primitive-orange-800);
-  --dsm-color-icon-default: var(--dsm-color-primitive-gray-1000);
-  --dsm-color-icon-subtle: var(--dsm-color-primitive-gray-700);
-  --dsm-color-icon-key: var(--dsm-color-primitive-indigo-700);
-  --dsm-color-icon-danger: var(--dsm-color-primitive-red-700);
-  --dsm-color-icon-success: var(--dsm-color-primitive-green-700);
-  --dsm-color-icon-warning: var(--dsm-color-primitive-yellow-700);
-  --dsm-color-icon-info: var(--dsm-color-primitive-indigo-700);
-  --dsm-color-border-subtle: var(--dsm-color-primitive-gray-200); /* 装飾的な区切り線（情報を担わないもの限定） */
-  --dsm-color-border-default: var(--dsm-color-primitive-gray-500); /* カードなど意味のある境界（3:1 以上） */
-  --dsm-color-border-input: var(--dsm-color-primitive-gray-600); /* 入力欄・チェックボックスの枠 */
-  --dsm-color-border-strong: var(--dsm-color-primitive-gray-900); /* 入力欄 hover */
-  --dsm-color-border-key: var(--dsm-color-primitive-indigo-700);
-  --dsm-color-border-danger: var(--dsm-color-primitive-red-700);
-  --dsm-color-border-success: var(--dsm-color-primitive-green-700);
-  --dsm-color-border-warning: var(--dsm-color-primitive-yellow-600);
-  --dsm-color-border-disabled: var(--dsm-color-primitive-gray-300);
-  --dsm-color-focus-ring: var(--dsm-color-primitive-yellow-300); /* フォーカスの内側リング */
-  --dsm-color-focus-outline: var(--dsm-color-primitive-gray-1200); /* フォーカスの外側アウトライン */
-  --dsm-color-focus-text: var(--dsm-color-primitive-gray-1200); /* フォーカスリング色の背景に乗る文字（リンクのフォーカス時） */
-  --dsm-shadow-1: 0 1px 2px 0 rgba(16, 24, 48, 0.12), 0 1px 3px 1px rgba(16, 24, 48, 0.08); /* カード hover・ドロップダウン */
-  --dsm-shadow-2: 0 2px 6px 0 rgba(16, 24, 48, 0.14), 0 4px 12px 2px rgba(16, 24, 48, 0.08); /* ポップオーバー・メニュー */
-  --dsm-shadow-3: 0 6px 16px 0 rgba(16, 24, 48, 0.16), 0 12px 32px 4px rgba(16, 24, 48, 0.10); /* ドロワー・モーダル */
+  --tkc-color-bg-canvas: var(--tkc-color-primitive-white); /* ページ全体の背景 */
+  --tkc-color-bg-surface: var(--tkc-color-primitive-white); /* カード・入力欄など面の背景 */
+  --tkc-color-bg-subtle: var(--tkc-color-primitive-gray-50); /* 区切りたい帯・コードブロック */
+  --tkc-color-bg-muted: var(--tkc-color-primitive-gray-100); /* ホバー時の面・テーブル見出し */
+  --tkc-color-bg-inverse: var(--tkc-color-primitive-gray-1100);
+  --tkc-color-bg-disabled: var(--tkc-color-primitive-gray-100);
+  --tkc-color-bg-key: var(--tkc-color-primitive-indigo-700); /* 主要アクション（Primary ボタン） */
+  --tkc-color-bg-key-hover: var(--tkc-color-primitive-indigo-800);
+  --tkc-color-bg-key-active: var(--tkc-color-primitive-indigo-900);
+  --tkc-color-bg-key-subtle: var(--tkc-color-primitive-indigo-100); /* 選択中の項目・Secondary ボタンの hover */
+  --tkc-color-bg-key-subtle-hover: var(--tkc-color-primitive-indigo-200);
+  --tkc-color-bg-danger: var(--tkc-color-primitive-red-700);
+  --tkc-color-bg-danger-hover: var(--tkc-color-primitive-red-800);
+  --tkc-color-bg-danger-active: var(--tkc-color-primitive-red-900);
+  --tkc-color-bg-danger-subtle: var(--tkc-color-primitive-red-50);
+  --tkc-color-bg-success-subtle: var(--tkc-color-primitive-green-50);
+  --tkc-color-bg-warning-subtle: var(--tkc-color-primitive-yellow-50);
+  --tkc-color-bg-info-subtle: var(--tkc-color-primitive-indigo-50);
+  --tkc-color-bg-overlay: rgba(10, 12, 20, 0.48); /* モーダル背面 */
+  --tkc-color-text-default: var(--tkc-color-primitive-gray-1100); /* 本文。純黒は使わない */
+  --tkc-color-text-subtle: var(--tkc-color-primitive-gray-700); /* 補足・説明文（4.5:1 以上） */
+  --tkc-color-text-disabled: var(--tkc-color-primitive-gray-500); /* 無効状態（WCAG のコントラスト要件対象外だが 3:1 を目安） */
+  --tkc-color-text-inverse: var(--tkc-color-primitive-gray-50);
+  --tkc-color-text-key: var(--tkc-color-primitive-indigo-800); /* キーカラーの文字（Secondary ボタン等） */
+  --tkc-color-text-on-key: var(--tkc-color-primitive-white); /* bg.key / bg.danger の上の文字 */
+  --tkc-color-text-danger: var(--tkc-color-primitive-red-800);
+  --tkc-color-text-success: var(--tkc-color-primitive-green-800);
+  --tkc-color-text-warning: var(--tkc-color-primitive-orange-800);
+  --tkc-color-text-link: var(--tkc-color-primitive-indigo-800);
+  --tkc-color-text-link-hover: var(--tkc-color-primitive-indigo-1000);
+  --tkc-color-text-link-visited: var(--tkc-color-primitive-purple-800);
+  --tkc-color-text-link-active: var(--tkc-color-primitive-orange-800);
+  --tkc-color-icon-default: var(--tkc-color-primitive-gray-1000);
+  --tkc-color-icon-subtle: var(--tkc-color-primitive-gray-700);
+  --tkc-color-icon-key: var(--tkc-color-primitive-indigo-700);
+  --tkc-color-icon-danger: var(--tkc-color-primitive-red-700);
+  --tkc-color-icon-success: var(--tkc-color-primitive-green-700);
+  --tkc-color-icon-warning: var(--tkc-color-primitive-yellow-700);
+  --tkc-color-icon-info: var(--tkc-color-primitive-indigo-700);
+  --tkc-color-border-subtle: var(--tkc-color-primitive-gray-200); /* 装飾的な区切り線（情報を担わないもの限定） */
+  --tkc-color-border-default: var(--tkc-color-primitive-gray-500); /* カードなど意味のある境界（3:1 以上） */
+  --tkc-color-border-input: var(--tkc-color-primitive-gray-600); /* 入力欄・チェックボックスの枠 */
+  --tkc-color-border-strong: var(--tkc-color-primitive-gray-900); /* 入力欄 hover */
+  --tkc-color-border-key: var(--tkc-color-primitive-indigo-700);
+  --tkc-color-border-danger: var(--tkc-color-primitive-red-700);
+  --tkc-color-border-success: var(--tkc-color-primitive-green-700);
+  --tkc-color-border-warning: var(--tkc-color-primitive-yellow-600);
+  --tkc-color-border-disabled: var(--tkc-color-primitive-gray-300);
+  --tkc-color-focus-ring: var(--tkc-color-primitive-yellow-300); /* フォーカスの内側リング */
+  --tkc-color-focus-outline: var(--tkc-color-primitive-gray-1200); /* フォーカスの外側アウトライン */
+  --tkc-color-focus-text: var(--tkc-color-primitive-gray-1200); /* フォーカスリング色の背景に乗る文字（リンクのフォーカス時） */
+  --tkc-shadow-1: 0 1px 2px 0 rgba(16, 24, 48, 0.12), 0 1px 3px 1px rgba(16, 24, 48, 0.08); /* カード hover・ドロップダウン */
+  --tkc-shadow-2: 0 2px 6px 0 rgba(16, 24, 48, 0.14), 0 4px 12px 2px rgba(16, 24, 48, 0.08); /* ポップオーバー・メニュー */
+  --tkc-shadow-3: 0 6px 16px 0 rgba(16, 24, 48, 0.16), 0 12px 32px 4px rgba(16, 24, 48, 0.10); /* ドロワー・モーダル */
 }
 
 /* Semantic — Dark（明示指定） */
 [data-theme="dark"] {
   color-scheme: dark;
-  --dsm-color-bg-canvas: var(--dsm-color-primitive-gray-1200);
-  --dsm-color-bg-surface: var(--dsm-color-primitive-gray-1100);
-  --dsm-color-bg-subtle: var(--dsm-color-primitive-gray-1100);
-  --dsm-color-bg-muted: var(--dsm-color-primitive-gray-1000);
-  --dsm-color-bg-inverse: var(--dsm-color-primitive-gray-50);
-  --dsm-color-bg-disabled: var(--dsm-color-primitive-gray-1000);
-  --dsm-color-bg-key: var(--dsm-color-primitive-indigo-300);
-  --dsm-color-bg-key-hover: var(--dsm-color-primitive-indigo-200);
-  --dsm-color-bg-key-active: var(--dsm-color-primitive-indigo-100);
-  --dsm-color-bg-key-subtle: var(--dsm-color-primitive-indigo-1100);
-  --dsm-color-bg-key-subtle-hover: var(--dsm-color-primitive-indigo-1000);
-  --dsm-color-bg-danger: var(--dsm-color-primitive-red-300);
-  --dsm-color-bg-danger-hover: var(--dsm-color-primitive-red-200);
-  --dsm-color-bg-danger-active: var(--dsm-color-primitive-red-100);
-  --dsm-color-bg-danger-subtle: var(--dsm-color-primitive-red-1200);
-  --dsm-color-bg-success-subtle: var(--dsm-color-primitive-green-1200);
-  --dsm-color-bg-warning-subtle: var(--dsm-color-primitive-yellow-1200);
-  --dsm-color-bg-info-subtle: var(--dsm-color-primitive-indigo-1200);
-  --dsm-color-bg-overlay: rgba(0, 0, 0, 0.64);
-  --dsm-color-text-default: var(--dsm-color-primitive-gray-50);
-  --dsm-color-text-subtle: var(--dsm-color-primitive-gray-300);
-  --dsm-color-text-disabled: var(--dsm-color-primitive-gray-600);
-  --dsm-color-text-inverse: var(--dsm-color-primitive-gray-1100);
-  --dsm-color-text-key: var(--dsm-color-primitive-indigo-300);
-  --dsm-color-text-on-key: var(--dsm-color-primitive-indigo-1200);
-  --dsm-color-text-danger: var(--dsm-color-primitive-red-300);
-  --dsm-color-text-success: var(--dsm-color-primitive-green-300);
-  --dsm-color-text-warning: var(--dsm-color-primitive-yellow-300);
-  --dsm-color-text-link: var(--dsm-color-primitive-indigo-300);
-  --dsm-color-text-link-hover: var(--dsm-color-primitive-indigo-200);
-  --dsm-color-text-link-visited: var(--dsm-color-primitive-purple-300);
-  --dsm-color-text-link-active: var(--dsm-color-primitive-orange-300);
-  --dsm-color-icon-default: var(--dsm-color-primitive-gray-100);
-  --dsm-color-icon-subtle: var(--dsm-color-primitive-gray-300);
-  --dsm-color-icon-key: var(--dsm-color-primitive-indigo-300);
-  --dsm-color-icon-danger: var(--dsm-color-primitive-red-300);
-  --dsm-color-icon-success: var(--dsm-color-primitive-green-300);
-  --dsm-color-icon-warning: var(--dsm-color-primitive-yellow-300);
-  --dsm-color-icon-info: var(--dsm-color-primitive-indigo-300);
-  --dsm-color-border-subtle: var(--dsm-color-primitive-gray-1000);
-  --dsm-color-border-default: var(--dsm-color-primitive-gray-600);
-  --dsm-color-border-input: var(--dsm-color-primitive-gray-500);
-  --dsm-color-border-strong: var(--dsm-color-primitive-gray-200);
-  --dsm-color-border-key: var(--dsm-color-primitive-indigo-300);
-  --dsm-color-border-danger: var(--dsm-color-primitive-red-400);
-  --dsm-color-border-success: var(--dsm-color-primitive-green-400);
-  --dsm-color-border-warning: var(--dsm-color-primitive-yellow-400);
-  --dsm-color-border-disabled: var(--dsm-color-primitive-gray-900);
-  --dsm-color-focus-ring: var(--dsm-color-primitive-yellow-300);
-  --dsm-color-focus-outline: var(--dsm-color-primitive-gray-50);
-  --dsm-color-focus-text: var(--dsm-color-primitive-gray-1200); /* フォーカスリング色の背景に乗る文字（リンクのフォーカス時） */
-  --dsm-shadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.48), 0 1px 3px 1px rgba(0, 0, 0, 0.32);
-  --dsm-shadow-2: 0 2px 6px 0 rgba(0, 0, 0, 0.52), 0 4px 12px 2px rgba(0, 0, 0, 0.36);
-  --dsm-shadow-3: 0 6px 16px 0 rgba(0, 0, 0, 0.56), 0 12px 32px 4px rgba(0, 0, 0, 0.40);
+  --tkc-color-bg-canvas: var(--tkc-color-primitive-gray-1200);
+  --tkc-color-bg-surface: var(--tkc-color-primitive-gray-1100);
+  --tkc-color-bg-subtle: var(--tkc-color-primitive-gray-1100);
+  --tkc-color-bg-muted: var(--tkc-color-primitive-gray-1000);
+  --tkc-color-bg-inverse: var(--tkc-color-primitive-gray-50);
+  --tkc-color-bg-disabled: var(--tkc-color-primitive-gray-1000);
+  --tkc-color-bg-key: var(--tkc-color-primitive-indigo-300);
+  --tkc-color-bg-key-hover: var(--tkc-color-primitive-indigo-200);
+  --tkc-color-bg-key-active: var(--tkc-color-primitive-indigo-100);
+  --tkc-color-bg-key-subtle: var(--tkc-color-primitive-indigo-1100);
+  --tkc-color-bg-key-subtle-hover: var(--tkc-color-primitive-indigo-1000);
+  --tkc-color-bg-danger: var(--tkc-color-primitive-red-300);
+  --tkc-color-bg-danger-hover: var(--tkc-color-primitive-red-200);
+  --tkc-color-bg-danger-active: var(--tkc-color-primitive-red-100);
+  --tkc-color-bg-danger-subtle: var(--tkc-color-primitive-red-1200);
+  --tkc-color-bg-success-subtle: var(--tkc-color-primitive-green-1200);
+  --tkc-color-bg-warning-subtle: var(--tkc-color-primitive-yellow-1200);
+  --tkc-color-bg-info-subtle: var(--tkc-color-primitive-indigo-1200);
+  --tkc-color-bg-overlay: rgba(0, 0, 0, 0.64);
+  --tkc-color-text-default: var(--tkc-color-primitive-gray-50);
+  --tkc-color-text-subtle: var(--tkc-color-primitive-gray-300);
+  --tkc-color-text-disabled: var(--tkc-color-primitive-gray-600);
+  --tkc-color-text-inverse: var(--tkc-color-primitive-gray-1100);
+  --tkc-color-text-key: var(--tkc-color-primitive-indigo-300);
+  --tkc-color-text-on-key: var(--tkc-color-primitive-indigo-1200);
+  --tkc-color-text-danger: var(--tkc-color-primitive-red-300);
+  --tkc-color-text-success: var(--tkc-color-primitive-green-300);
+  --tkc-color-text-warning: var(--tkc-color-primitive-yellow-300);
+  --tkc-color-text-link: var(--tkc-color-primitive-indigo-300);
+  --tkc-color-text-link-hover: var(--tkc-color-primitive-indigo-200);
+  --tkc-color-text-link-visited: var(--tkc-color-primitive-purple-300);
+  --tkc-color-text-link-active: var(--tkc-color-primitive-orange-300);
+  --tkc-color-icon-default: var(--tkc-color-primitive-gray-100);
+  --tkc-color-icon-subtle: var(--tkc-color-primitive-gray-300);
+  --tkc-color-icon-key: var(--tkc-color-primitive-indigo-300);
+  --tkc-color-icon-danger: var(--tkc-color-primitive-red-300);
+  --tkc-color-icon-success: var(--tkc-color-primitive-green-300);
+  --tkc-color-icon-warning: var(--tkc-color-primitive-yellow-300);
+  --tkc-color-icon-info: var(--tkc-color-primitive-indigo-300);
+  --tkc-color-border-subtle: var(--tkc-color-primitive-gray-1000);
+  --tkc-color-border-default: var(--tkc-color-primitive-gray-600);
+  --tkc-color-border-input: var(--tkc-color-primitive-gray-500);
+  --tkc-color-border-strong: var(--tkc-color-primitive-gray-200);
+  --tkc-color-border-key: var(--tkc-color-primitive-indigo-300);
+  --tkc-color-border-danger: var(--tkc-color-primitive-red-400);
+  --tkc-color-border-success: var(--tkc-color-primitive-green-400);
+  --tkc-color-border-warning: var(--tkc-color-primitive-yellow-400);
+  --tkc-color-border-disabled: var(--tkc-color-primitive-gray-900);
+  --tkc-color-focus-ring: var(--tkc-color-primitive-yellow-300);
+  --tkc-color-focus-outline: var(--tkc-color-primitive-gray-50);
+  --tkc-color-focus-text: var(--tkc-color-primitive-gray-1200); /* フォーカスリング色の背景に乗る文字（リンクのフォーカス時） */
+  --tkc-shadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.48), 0 1px 3px 1px rgba(0, 0, 0, 0.32);
+  --tkc-shadow-2: 0 2px 6px 0 rgba(0, 0, 0, 0.52), 0 4px 12px 2px rgba(0, 0, 0, 0.36);
+  --tkc-shadow-3: 0 6px 16px 0 rgba(0, 0, 0, 0.56), 0 12px 32px 4px rgba(0, 0, 0, 0.40);
 }
 
 /* Semantic — Dark（OS 設定に追従。data-theme="light" で明示的に解除できる） */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --dsm-color-bg-canvas: var(--dsm-color-primitive-gray-1200);
-    --dsm-color-bg-surface: var(--dsm-color-primitive-gray-1100);
-    --dsm-color-bg-subtle: var(--dsm-color-primitive-gray-1100);
-    --dsm-color-bg-muted: var(--dsm-color-primitive-gray-1000);
-    --dsm-color-bg-inverse: var(--dsm-color-primitive-gray-50);
-    --dsm-color-bg-disabled: var(--dsm-color-primitive-gray-1000);
-    --dsm-color-bg-key: var(--dsm-color-primitive-indigo-300);
-    --dsm-color-bg-key-hover: var(--dsm-color-primitive-indigo-200);
-    --dsm-color-bg-key-active: var(--dsm-color-primitive-indigo-100);
-    --dsm-color-bg-key-subtle: var(--dsm-color-primitive-indigo-1100);
-    --dsm-color-bg-key-subtle-hover: var(--dsm-color-primitive-indigo-1000);
-    --dsm-color-bg-danger: var(--dsm-color-primitive-red-300);
-    --dsm-color-bg-danger-hover: var(--dsm-color-primitive-red-200);
-    --dsm-color-bg-danger-active: var(--dsm-color-primitive-red-100);
-    --dsm-color-bg-danger-subtle: var(--dsm-color-primitive-red-1200);
-    --dsm-color-bg-success-subtle: var(--dsm-color-primitive-green-1200);
-    --dsm-color-bg-warning-subtle: var(--dsm-color-primitive-yellow-1200);
-    --dsm-color-bg-info-subtle: var(--dsm-color-primitive-indigo-1200);
-    --dsm-color-bg-overlay: rgba(0, 0, 0, 0.64);
-    --dsm-color-text-default: var(--dsm-color-primitive-gray-50);
-    --dsm-color-text-subtle: var(--dsm-color-primitive-gray-300);
-    --dsm-color-text-disabled: var(--dsm-color-primitive-gray-600);
-    --dsm-color-text-inverse: var(--dsm-color-primitive-gray-1100);
-    --dsm-color-text-key: var(--dsm-color-primitive-indigo-300);
-    --dsm-color-text-on-key: var(--dsm-color-primitive-indigo-1200);
-    --dsm-color-text-danger: var(--dsm-color-primitive-red-300);
-    --dsm-color-text-success: var(--dsm-color-primitive-green-300);
-    --dsm-color-text-warning: var(--dsm-color-primitive-yellow-300);
-    --dsm-color-text-link: var(--dsm-color-primitive-indigo-300);
-    --dsm-color-text-link-hover: var(--dsm-color-primitive-indigo-200);
-    --dsm-color-text-link-visited: var(--dsm-color-primitive-purple-300);
-    --dsm-color-text-link-active: var(--dsm-color-primitive-orange-300);
-    --dsm-color-icon-default: var(--dsm-color-primitive-gray-100);
-    --dsm-color-icon-subtle: var(--dsm-color-primitive-gray-300);
-    --dsm-color-icon-key: var(--dsm-color-primitive-indigo-300);
-    --dsm-color-icon-danger: var(--dsm-color-primitive-red-300);
-    --dsm-color-icon-success: var(--dsm-color-primitive-green-300);
-    --dsm-color-icon-warning: var(--dsm-color-primitive-yellow-300);
-    --dsm-color-icon-info: var(--dsm-color-primitive-indigo-300);
-    --dsm-color-border-subtle: var(--dsm-color-primitive-gray-1000);
-    --dsm-color-border-default: var(--dsm-color-primitive-gray-600);
-    --dsm-color-border-input: var(--dsm-color-primitive-gray-500);
-    --dsm-color-border-strong: var(--dsm-color-primitive-gray-200);
-    --dsm-color-border-key: var(--dsm-color-primitive-indigo-300);
-    --dsm-color-border-danger: var(--dsm-color-primitive-red-400);
-    --dsm-color-border-success: var(--dsm-color-primitive-green-400);
-    --dsm-color-border-warning: var(--dsm-color-primitive-yellow-400);
-    --dsm-color-border-disabled: var(--dsm-color-primitive-gray-900);
-    --dsm-color-focus-ring: var(--dsm-color-primitive-yellow-300);
-    --dsm-color-focus-outline: var(--dsm-color-primitive-gray-50);
-    --dsm-color-focus-text: var(--dsm-color-primitive-gray-1200); /* フォーカスリング色の背景に乗る文字（リンクのフォーカス時） */
-    --dsm-shadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.48), 0 1px 3px 1px rgba(0, 0, 0, 0.32);
-    --dsm-shadow-2: 0 2px 6px 0 rgba(0, 0, 0, 0.52), 0 4px 12px 2px rgba(0, 0, 0, 0.36);
-    --dsm-shadow-3: 0 6px 16px 0 rgba(0, 0, 0, 0.56), 0 12px 32px 4px rgba(0, 0, 0, 0.40);
+    --tkc-color-bg-canvas: var(--tkc-color-primitive-gray-1200);
+    --tkc-color-bg-surface: var(--tkc-color-primitive-gray-1100);
+    --tkc-color-bg-subtle: var(--tkc-color-primitive-gray-1100);
+    --tkc-color-bg-muted: var(--tkc-color-primitive-gray-1000);
+    --tkc-color-bg-inverse: var(--tkc-color-primitive-gray-50);
+    --tkc-color-bg-disabled: var(--tkc-color-primitive-gray-1000);
+    --tkc-color-bg-key: var(--tkc-color-primitive-indigo-300);
+    --tkc-color-bg-key-hover: var(--tkc-color-primitive-indigo-200);
+    --tkc-color-bg-key-active: var(--tkc-color-primitive-indigo-100);
+    --tkc-color-bg-key-subtle: var(--tkc-color-primitive-indigo-1100);
+    --tkc-color-bg-key-subtle-hover: var(--tkc-color-primitive-indigo-1000);
+    --tkc-color-bg-danger: var(--tkc-color-primitive-red-300);
+    --tkc-color-bg-danger-hover: var(--tkc-color-primitive-red-200);
+    --tkc-color-bg-danger-active: var(--tkc-color-primitive-red-100);
+    --tkc-color-bg-danger-subtle: var(--tkc-color-primitive-red-1200);
+    --tkc-color-bg-success-subtle: var(--tkc-color-primitive-green-1200);
+    --tkc-color-bg-warning-subtle: var(--tkc-color-primitive-yellow-1200);
+    --tkc-color-bg-info-subtle: var(--tkc-color-primitive-indigo-1200);
+    --tkc-color-bg-overlay: rgba(0, 0, 0, 0.64);
+    --tkc-color-text-default: var(--tkc-color-primitive-gray-50);
+    --tkc-color-text-subtle: var(--tkc-color-primitive-gray-300);
+    --tkc-color-text-disabled: var(--tkc-color-primitive-gray-600);
+    --tkc-color-text-inverse: var(--tkc-color-primitive-gray-1100);
+    --tkc-color-text-key: var(--tkc-color-primitive-indigo-300);
+    --tkc-color-text-on-key: var(--tkc-color-primitive-indigo-1200);
+    --tkc-color-text-danger: var(--tkc-color-primitive-red-300);
+    --tkc-color-text-success: var(--tkc-color-primitive-green-300);
+    --tkc-color-text-warning: var(--tkc-color-primitive-yellow-300);
+    --tkc-color-text-link: var(--tkc-color-primitive-indigo-300);
+    --tkc-color-text-link-hover: var(--tkc-color-primitive-indigo-200);
+    --tkc-color-text-link-visited: var(--tkc-color-primitive-purple-300);
+    --tkc-color-text-link-active: var(--tkc-color-primitive-orange-300);
+    --tkc-color-icon-default: var(--tkc-color-primitive-gray-100);
+    --tkc-color-icon-subtle: var(--tkc-color-primitive-gray-300);
+    --tkc-color-icon-key: var(--tkc-color-primitive-indigo-300);
+    --tkc-color-icon-danger: var(--tkc-color-primitive-red-300);
+    --tkc-color-icon-success: var(--tkc-color-primitive-green-300);
+    --tkc-color-icon-warning: var(--tkc-color-primitive-yellow-300);
+    --tkc-color-icon-info: var(--tkc-color-primitive-indigo-300);
+    --tkc-color-border-subtle: var(--tkc-color-primitive-gray-1000);
+    --tkc-color-border-default: var(--tkc-color-primitive-gray-600);
+    --tkc-color-border-input: var(--tkc-color-primitive-gray-500);
+    --tkc-color-border-strong: var(--tkc-color-primitive-gray-200);
+    --tkc-color-border-key: var(--tkc-color-primitive-indigo-300);
+    --tkc-color-border-danger: var(--tkc-color-primitive-red-400);
+    --tkc-color-border-success: var(--tkc-color-primitive-green-400);
+    --tkc-color-border-warning: var(--tkc-color-primitive-yellow-400);
+    --tkc-color-border-disabled: var(--tkc-color-primitive-gray-900);
+    --tkc-color-focus-ring: var(--tkc-color-primitive-yellow-300);
+    --tkc-color-focus-outline: var(--tkc-color-primitive-gray-50);
+    --tkc-color-focus-text: var(--tkc-color-primitive-gray-1200); /* フォーカスリング色の背景に乗る文字（リンクのフォーカス時） */
+    --tkc-shadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.48), 0 1px 3px 1px rgba(0, 0, 0, 0.32);
+    --tkc-shadow-2: 0 2px 6px 0 rgba(0, 0, 0, 0.52), 0 4px 12px 2px rgba(0, 0, 0, 0.36);
+    --tkc-shadow-3: 0 6px 16px 0 rgba(0, 0, 0, 0.56), 0 12px 32px 4px rgba(0, 0, 0, 0.40);
   }
 }

@@ -25,7 +25,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(function Stack(
   return (
     <Tag
       ref={ref}
-      className={cx('dsm-stack', className)}
+      className={cx('tkc-stack', className)}
       data-gap={gap}
       data-direction={direction}
       data-align={align}

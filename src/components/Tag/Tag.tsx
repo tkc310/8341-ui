@@ -14,7 +14,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
   ref,
 ) {
   return (
-    <span ref={ref} className={cx('dsm-tag', className)} data-tone={tone} {...rest}>
+    <span ref={ref} className={cx('tkc-tag', className)} data-tone={tone} {...rest}>
       {icon}
       {children}
     </span>

@@ -11,5 +11,5 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(function Divider(
   { tone = 'subtle', className, ...rest },
   ref,
 ) {
-  return <hr ref={ref} className={cx('dsm-divider', className)} data-tone={tone} {...rest} />;
+  return <hr ref={ref} className={cx('tkc-divider', className)} data-tone={tone} {...rest} />;
 });

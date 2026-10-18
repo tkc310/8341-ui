@@ -37,23 +37,23 @@ export const NotificationBanner = forwardRef<HTMLDivElement, NotificationBannerP
   return (
     <div
       ref={ref}
-      className={cx('dsm-banner', className)}
+      className={cx('tkc-banner', className)}
       data-tone={tone}
       role={live ? (tone === 'danger' ? 'alert' : 'status') : undefined}
       {...rest}
     >
-      <Icon name={tone} size="lg" className="dsm-banner__icon" />
-      <div className="dsm-banner__body">
-        <H className="dsm-banner__title">
+      <Icon name={tone} size="lg" className="tkc-banner__icon" />
+      <div className="tkc-banner__body">
+        <H className="tkc-banner__title">
           {/* 色とアイコンだけに頼らず、種別を文字でも伝える */}
-          <span className="dsm-visually-hidden">{toneLabel[tone]}: </span>
+          <span className="tkc-visually-hidden">{toneLabel[tone]}: </span>
           {title}
         </H>
-        {children && <div className="dsm-banner__content">{children}</div>}
-        {actions && <div className="dsm-banner__actions">{actions}</div>}
+        {children && <div className="tkc-banner__content">{children}</div>}
+        {actions && <div className="tkc-banner__actions">{actions}</div>}
       </div>
       {onClose && (
-        <button type="button" className="dsm-banner__close dsm-focusable" onClick={onClose} aria-label="閉じる">
+        <button type="button" className="tkc-banner__close tkc-focusable" onClick={onClose} aria-label="閉じる">
           <Icon name="close" />
         </button>
       )}

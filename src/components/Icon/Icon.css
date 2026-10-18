@@ -1,17 +1,17 @@
-.dsm-icon {
+.tkc-icon {
   display: inline-block;
   flex-shrink: 0;
   vertical-align: middle;
-  width: var(--dsm-size-icon-md);
-  height: var(--dsm-size-icon-md);
+  width: var(--tkc-size-icon-md);
+  height: var(--tkc-size-icon-md);
 }
 
-.dsm-icon[data-size='sm'] {
-  width: var(--dsm-size-icon-sm);
-  height: var(--dsm-size-icon-sm);
+.tkc-icon[data-size='sm'] {
+  width: var(--tkc-size-icon-sm);
+  height: var(--tkc-size-icon-sm);
 }
 
-.dsm-icon[data-size='lg'] {
-  width: var(--dsm-size-icon-lg);
-  height: var(--dsm-size-icon-lg);
+.tkc-icon[data-size='lg'] {
+  width: var(--tkc-size-icon-lg);
+  height: var(--tkc-size-icon-lg);
 }

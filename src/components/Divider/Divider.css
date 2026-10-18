@@ -1,9 +1,9 @@
-.dsm-divider {
+.tkc-divider {
   margin: 0;
   border: 0;
-  border-block-start: var(--dsm-border-width-default) solid var(--dsm-color-border-subtle);
+  border-block-start: var(--tkc-border-width-default) solid var(--tkc-color-border-subtle);
 }
 
-.dsm-divider[data-tone='default'] {
-  border-block-start-color: var(--dsm-color-border-default);
+.tkc-divider[data-tone='default'] {
+  border-block-start-color: var(--tkc-color-border-default);
 }

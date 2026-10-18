@@ -5,4 +5,4 @@ coverage
 .vite
 *.log
 .DS_Store
-reports/*.local.*
+reports/

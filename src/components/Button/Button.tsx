@@ -41,7 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     <button
       ref={ref}
       type={type}
-      className={cx('dsm-button', 'dsm-focusable', className)}
+      className={cx('tkc-button', 'tkc-focusable', className)}
       data-variant={variant}
       data-size={size}
       data-full-width={fullWidth || undefined}
@@ -50,11 +50,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       onClick={loading ? (e) => e.preventDefault() : onClick}
       {...rest}
     >
-      {loading && <span className="dsm-button__spinner" aria-hidden="true" />}
-      <span className="dsm-button__content">
-        {iconStart && <span className="dsm-button__icon">{iconStart}</span>}
-        <span className="dsm-button__label">{children}</span>
-        {iconEnd && <span className="dsm-button__icon">{iconEnd}</span>}
+      {loading && <span className="tkc-button__spinner" aria-hidden="true" />}
+      <span className="tkc-button__content">
+        {iconStart && <span className="tkc-button__icon">{iconStart}</span>}
+        <span className="tkc-button__label">{children}</span>
+        {iconEnd && <span className="tkc-button__icon">{iconEnd}</span>}
       </span>
     </button>
   );

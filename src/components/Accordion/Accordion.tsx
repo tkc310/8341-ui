@@ -22,17 +22,17 @@ export const Accordion = forwardRef<HTMLDetailsElement, AccordionProps>(function
 ) {
   const label = (
     <>
-      <span className="dsm-accordion__summary-text">{summary}</span>
-      <Icon name="chevron-down" className="dsm-accordion__icon" />
+      <span className="tkc-accordion__summary-text">{summary}</span>
+      <Icon name="chevron-down" className="tkc-accordion__icon" />
     </>
   );
   const H = headingLevel ? (`h${headingLevel}` as const) : null;
   return (
-    <details ref={ref} className={cx('dsm-accordion', className)} {...rest}>
-      <summary className="dsm-accordion__summary dsm-focusable">
-        {H ? <H className="dsm-accordion__heading">{label}</H> : label}
+    <details ref={ref} className={cx('tkc-accordion', className)} {...rest}>
+      <summary className="tkc-accordion__summary tkc-focusable">
+        {H ? <H className="tkc-accordion__heading">{label}</H> : label}
       </summary>
-      <div className="dsm-accordion__content">{children}</div>
+      <div className="tkc-accordion__content">{children}</div>
     </details>
   );
 });

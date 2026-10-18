@@ -125,10 +125,10 @@ export const Typography: Story = {
           return (
             <div key={t.name} className="fd-type">
               <code className="fd-type__meta">
-                .dsm-text-{style} — {String(v.fontSize)} / {String(v.lineHeight)} / {String(v.fontWeight)} /{' '}
+                .tkc-text-{style} — {String(v.fontSize)} / {String(v.lineHeight)} / {String(v.fontWeight)} /{' '}
                 {String(v.letterSpacing)}
               </code>
-              <p className={`dsm-text-${style}`} style={{ margin: 0 }}>
+              <p className={`tkc-text-${style}`} style={{ margin: 0 }}>
                 すべての人に、やさしいデジタルを。Design System 0123
               </p>
             </div>

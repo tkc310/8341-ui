@@ -1,28 +1,28 @@
-.dsm-accordion {
-  border-block-end: var(--dsm-border-width-default) solid var(--dsm-color-border-default);
+.tkc-accordion {
+  border-block-end: var(--tkc-border-width-default) solid var(--tkc-color-border-default);
 }
 
-.dsm-accordion:first-of-type {
-  border-block-start: var(--dsm-border-width-default) solid var(--dsm-color-border-default);
+.tkc-accordion:first-of-type {
+  border-block-start: var(--tkc-border-width-default) solid var(--tkc-color-border-default);
 }
 
-.dsm-accordion__summary {
+.tkc-accordion__summary {
   display: flex;
   align-items: center;
-  min-height: var(--dsm-size-target-min);
-  padding: var(--dsm-space-inset-md) var(--dsm-space-inset-sm);
-  border-radius: var(--dsm-radius-xs);
-  color: var(--dsm-color-text-default);
-  font-weight: var(--dsm-font-weight-bold);
+  min-height: var(--tkc-size-target-min);
+  padding: var(--tkc-space-inset-md) var(--tkc-space-inset-sm);
+  border-radius: var(--tkc-radius-xs);
+  color: var(--tkc-color-text-default);
+  font-weight: var(--tkc-font-weight-bold);
   cursor: pointer;
   list-style: none;
 }
 
-.dsm-accordion__summary::-webkit-details-marker {
+.tkc-accordion__summary::-webkit-details-marker {
   display: none;
 }
 
-.dsm-accordion__heading {
+.tkc-accordion__heading {
   display: flex;
   flex: 1;
   align-items: center;
@@ -30,30 +30,30 @@
   font: inherit;
 }
 
-.dsm-accordion__summary-text {
+.tkc-accordion__summary-text {
   flex: 1;
 }
 
-.dsm-accordion__icon {
-  margin-inline-start: var(--dsm-space-gap-md);
-  color: var(--dsm-color-icon-key);
-  transition: transform var(--dsm-motion-duration-base) var(--dsm-motion-easing-standard);
+.tkc-accordion__icon {
+  margin-inline-start: var(--tkc-space-gap-md);
+  color: var(--tkc-color-icon-key);
+  transition: transform var(--tkc-motion-duration-base) var(--tkc-motion-easing-standard);
 }
 
-.dsm-accordion[open] .dsm-accordion__icon {
+.tkc-accordion[open] .tkc-accordion__icon {
   transform: rotate(180deg);
 }
 
 @media (hover: hover) {
-  .dsm-accordion__summary:hover {
-    background-color: var(--dsm-color-bg-muted);
+  .tkc-accordion__summary:hover {
+    background-color: var(--tkc-color-bg-muted);
   }
 }
 
-.dsm-accordion__content {
-  padding: 0 var(--dsm-space-inset-sm) var(--dsm-space-inset-xl);
+.tkc-accordion__content {
+  padding: 0 var(--tkc-space-inset-sm) var(--tkc-space-inset-xl);
 }
 
-.dsm-accordion__content > :where(p) {
+.tkc-accordion__content > :where(p) {
   margin: 0;
 }

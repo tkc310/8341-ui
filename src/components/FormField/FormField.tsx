@@ -49,29 +49,29 @@ export function FormField({
   children,
 }: FormFieldProps) {
   const autoId = useId();
-  const id = idProp ?? `dsm-field-${autoId}`;
+  const id = idProp ?? `tkc-field-${autoId}`;
   const supportId = supportText ? `${id}-support` : undefined;
   const errorId = error ? `${id}-error` : undefined;
   const describedBy = [errorId, supportId].filter(Boolean).join(' ') || undefined;
 
   return (
     <FormFieldContext.Provider value={{ id, describedBy, invalid: Boolean(error), required, disabled }}>
-      <div className={cx('dsm-form-field', className)} data-disabled={disabled || undefined}>
-        <label className="dsm-form-field__label" htmlFor={id}>
+      <div className={cx('tkc-form-field', className)} data-disabled={disabled || undefined}>
+        <label className="tkc-form-field__label" htmlFor={id}>
           {label}
-          {required && <span className="dsm-form-field__badge" data-kind="required">必須</span>}
-          {!required && showOptional && <span className="dsm-form-field__badge">任意</span>}
+          {required && <span className="tkc-form-field__badge" data-kind="required">必須</span>}
+          {!required && showOptional && <span className="tkc-form-field__badge">任意</span>}
         </label>
         {supportText && (
-          <p className="dsm-form-field__support" id={supportId}>
+          <p className="tkc-form-field__support" id={supportId}>
             {supportText}
           </p>
         )}
         {error && (
-          <p className="dsm-form-field__error" id={errorId}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="dsm-form-field__error-icon">
+          <p className="tkc-form-field__error" id={errorId}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="tkc-form-field__error-icon">
               <path d="M8.3 3h7.4L21 8.3v7.4L15.7 21H8.3L3 15.7V8.3z" fill="currentColor" />
-              <path d="M12 7.5v5.5M12 16v.5" stroke="var(--dsm-color-bg-surface)" strokeWidth="2" strokeLinecap="round" />
+              <path d="M12 7.5v5.5M12 16v.5" stroke="var(--tkc-color-bg-surface)" strokeWidth="2" strokeLinecap="round" />
             </svg>
             {error}
           </p>

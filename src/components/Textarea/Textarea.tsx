@@ -30,11 +30,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
   };
 
   return (
-    <div className="dsm-textarea">
+    <div className="tkc-textarea">
       <textarea
         ref={ref}
         rows={rows}
-        className={cx('dsm-control', 'dsm-focusable', 'dsm-textarea__input', className)}
+        className={cx('tkc-control', 'tkc-focusable', 'tkc-textarea__input', className)}
         onChange={handleChange}
         {...rest}
         {...field}
@@ -42,7 +42,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
         aria-describedby={countLimit ? cx(field['aria-describedby'], counterId) : field['aria-describedby']}
       />
       {countLimit !== undefined && (
-        <p className="dsm-textarea__counter" id={counterId} data-over={over || undefined} aria-live="polite">
+        <p className="tkc-textarea__counter" id={counterId} data-over={over || undefined} aria-live="polite">
           {over ? `${count - countLimit}文字超過しています` : `${count}/${countLimit}文字`}
         </p>
       )}

@@ -58,7 +58,7 @@ export function RadioGroup({
   children,
 }: RadioGroupProps) {
   const autoId = useId();
-  const groupName = name ?? `dsm-radio-${autoId}`;
+  const groupName = name ?? `tkc-radio-${autoId}`;
   const supportId = supportText ? `${groupName}-support` : undefined;
   const errorId = error ? `${groupName}-error` : undefined;
   const describedBy = [errorId, supportId].filter(Boolean).join(' ') || undefined;
@@ -68,26 +68,26 @@ export function RadioGroup({
       value={{ name: groupName, value, defaultValue, onChange, invalid: Boolean(error), required, disabled, describedBy }}
     >
       <fieldset
-        className={cx('dsm-radio-group', className)}
+        className={cx('tkc-radio-group', className)}
         disabled={disabled}
         aria-describedby={describedBy}
         aria-required={required || undefined}
       >
-        <legend className="dsm-radio-group__legend">
+        <legend className="tkc-radio-group__legend">
           {legend}
-          {required && <span className="dsm-form-field__badge" data-kind="required">必須</span>}
+          {required && <span className="tkc-form-field__badge" data-kind="required">必須</span>}
         </legend>
         {supportText && (
-          <p className="dsm-form-field__support" id={supportId}>
+          <p className="tkc-form-field__support" id={supportId}>
             {supportText}
           </p>
         )}
         {error && (
-          <p className="dsm-form-field__error" id={errorId}>
+          <p className="tkc-form-field__error" id={errorId}>
             {error}
           </p>
         )}
-        <div className="dsm-radio-group__options" data-orientation={orientation}>
+        <div className="tkc-radio-group__options" data-orientation={orientation}>
           {children}
         </div>
       </fieldset>
@@ -108,13 +108,13 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
   const group = useContext(RadioGroupContext);
   const controlled = group?.value !== undefined;
   return (
-    <label className={cx('dsm-choice', className)}>
+    <label className={cx('tkc-choice', className)}>
       <input
         ref={ref}
         type="radio"
         name={group?.name}
         value={value}
-        className="dsm-choice__input dsm-focusable"
+        className="tkc-choice__input tkc-focusable"
         data-kind="radio"
         required={group?.required}
         aria-invalid={group?.invalid || undefined}
@@ -123,9 +123,9 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
           : { defaultChecked: group?.defaultValue === value, onChange: group?.onChange })}
         {...rest}
       />
-      <span className="dsm-choice__text">
-        <span className="dsm-choice__label">{label}</span>
-        {description && <span className="dsm-choice__description">{description}</span>}
+      <span className="tkc-choice__text">
+        <span className="tkc-choice__label">{label}</span>
+        {description && <span className="tkc-choice__description">{description}</span>}
       </span>
     </label>
   );

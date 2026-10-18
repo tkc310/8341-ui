@@ -1,6 +1,7 @@
 # 02 アクセシビリティ
 
 **WCAG 2.2 レベル AA** と **JIS X 8341-3:2016** を最低ラインとします。
+達成基準ごとのデザイン上の要件は上流の [wcag-for-designers.md](https://github.com/tkc310/agents-playground/blob/main/docs/design-principles/wcag-for-designers.md) を正とします。
 以下は、このシステムでの具体的な実装ルールと、どこで担保しているかの対応表です。
 
 ## 必須ルール
@@ -11,7 +12,7 @@
 | A2 | 入力欄の枠・アイコン・フォーカス表示など UI の境界は 3:1 以上 | 1.4.11 | 同上 |
 | A3 | 文字に隣接するアイコンは 4.5:1 以上（独自基準） | 1.4.11 | 同上 |
 | A4 | 色だけで情報を伝えない。リンクは常に下線、エラーはアイコン＋文言＋太い枠 | 1.4.1 | Link / FormField / control.css |
-| A5 | フォーカス表示は二重リング（内側: 黄 `color.focus.ring`、外側: `color.focus.outline`）。どの背景でもどちらかが 3:1 以上 | 2.4.7, 2.4.13 | `.dsm-focusable`（base.css） |
+| A5 | フォーカス表示は二重リング（内側: 黄 `color.focus.ring`、外側: `color.focus.outline`）。どの背景でもどちらかが 3:1 以上 | 2.4.7, 2.4.13 | `.tkc-focusable`（base.css） |
 | A6 | タップ領域は 44×44px 以上。見た目が小さい部品は擬似要素で領域を広げる | 2.5.8（AAA の 2.5.5 も満たす） | `size.target-min`、Button sm、Checkbox |
 | A7 | 文字サイズは 14px 未満を使わない。単位は rem でユーザー設定に追従 | 1.4.4 | `font.size.*` に 14 未満を定義しない |
 | A8 | すべての入力欄にラベル。補足とエラーは `aria-describedby` で関連付ける | 1.3.1, 3.3.2 | FormField |

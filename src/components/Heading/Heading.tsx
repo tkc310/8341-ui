@@ -31,12 +31,12 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(function Hea
   return (
     <Tag
       ref={ref}
-      className={cx('dsm-heading', `dsm-text-${s.startsWith('display') ? s : `heading-${s}`}`, className)}
+      className={cx('tkc-heading', `tkc-text-${s.startsWith('display') ? s : `heading-${s}`}`, className)}
       data-decoration={decoration === 'none' ? undefined : decoration}
       {...rest}
     >
-      {shoulder && <span className="dsm-heading__shoulder">{shoulder}</span>}
-      <span className="dsm-heading__text">{children}</span>
+      {shoulder && <span className="tkc-heading__shoulder">{shoulder}</span>}
+      <span className="tkc-heading__text">{children}</span>
     </Tag>
   );
 });

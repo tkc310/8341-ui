@@ -16,7 +16,7 @@ const withTheme: Decorator = (Story, context) => {
     return (
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
         {(['light', 'dark'] as const).map((t) => (
-          <div key={t} data-theme={t} style={{ padding: 24, background: 'var(--dsm-color-bg-canvas)', color: 'var(--dsm-color-text-default)' }}>
+          <div key={t} data-theme={t} style={{ padding: 24, background: 'var(--tkc-color-bg-canvas)', color: 'var(--tkc-color-text-default)' }}>
             <Story />
           </div>
         ))}

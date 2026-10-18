@@ -18,14 +18,23 @@ body:
   - type: dropdown
     id: principle
     attributes:
-      label: 関係する原則
+      label: 関係するルール
+      description: 上流の design-principles のどこに関係するか（docs/rulebook/01-principles.md の対応表）
       options:
-        - 1. 誰も取り残さない
-        - 2. 迷わせない
-        - 3. 文字で伝える
-        - 4. 少ない選択肢で組む
-        - 5. 測って、直す
+        - WCAG 2.2 の達成基準
+        - 原則「読み順と優先度」「まとまり」「文字と図の判別」「配置の秩序」
+        - 原則「操作の幾何」「一度に出す数」「一貫性」
+        - 原則「状態と応答」「誤りと撤回」「再認」「文言」
+        - 原則「削る」「助けの場所」「短い経路」「自律的な処理の範囲」
+        - サービス別の特化ルール
+        - tkc310-ui の設計方針（トークン・API・仕組み）
         - 分からない
+  - type: checkboxes
+    id: upstream
+    attributes:
+      label: 上流のルール
+      options:
+        - label: 上流（design-principles）のルール自体にギャップや曖昧さがある（上流へも PR を出す）
   - type: input
     id: where
     attributes:

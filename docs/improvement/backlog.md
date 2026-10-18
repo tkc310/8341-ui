@@ -10,15 +10,19 @@
 
 ## 原則・ルール
 
-- [ ] `tkc310/agents-playground` の `docs/design-principles` をルールブック（01 デザイン原則）に統合する（初版時はアクセス権がなく未反映）
+- [ ] 上流 PR（tkc310/agents-playground#27）の結果を 01 章の対応表に反映する
+- [ ] 上流の推奨「入力の誤りは欄を離れた時点で知らせる」を FormField の検証パターンとして提供するか決める
 
 ## コンポーネント
 
-- [ ] Table（ソート・横スクロール時の見出し固定）
-- [ ] Dialog（`dialog` 要素ベース。フォーカストラップと戻り先）
+- [ ] Table（ソート・横スクロール時の見出し固定、識別子の等幅）— 特化ルール「管理画面」
+- [ ] Dialog（`dialog` 要素ベース。フォーカストラップと戻り先）— 原則「誤りと撤回」の確認の段
+- [ ] EmptyState（「データが無い」「条件に一致しない」「権限がない」の書き分け）— 特化ルール「管理画面」
+- [ ] Progress / Toast / Skeleton — 原則「状態と応答」
+- [ ] Tooltip（1.4.13 の解除・ホバー・持続を満たす）— 原則「再認」
 - [ ] Tabs（APG のタブパターン）
-- [ ] SkipLink（本文へ移動）
-- [ ] ErrorSummary（送信時のエラー一覧。現在は NotificationBanner の組み合わせで代用）
+- [ ] SkipLink（本文へ移動）— WCAG 2.4.1
+- [ ] ErrorSummary（送信時のエラー一覧と最初の誤りへのフォーカス移動。現在は NotificationBanner の組み合わせで代用）— WCAG 3.3.1
 - [ ] Pagination
 - [ ] 日付入力（年・月・日の 3 分割入力）
 

@@ -22,14 +22,14 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   return (
     <a
       ref={ref}
-      className={cx('dsm-link', 'dsm-focusable', className)}
+      className={cx('tkc-link', 'tkc-focusable', className)}
       target={target}
       rel={opensNewTab ? cx(rel, 'noopener', 'noreferrer') : rel}
       {...rest}
     >
       {children}
-      {isExternal && <Icon name="external" size="sm" className="dsm-link__icon" />}
-      {opensNewTab && <span className="dsm-visually-hidden">{newTabLabel}</span>}
+      {isExternal && <Icon name="external" size="sm" className="tkc-link__icon" />}
+      {opensNewTab && <span className="tkc-visually-hidden">{newTabLabel}</span>}
     </a>
   );
 });

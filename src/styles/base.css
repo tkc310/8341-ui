@@ -14,13 +14,13 @@
 
 :where(body) {
   margin: 0;
-  background-color: var(--dsm-color-bg-canvas);
-  color: var(--dsm-color-text-default);
-  font-family: var(--dsm-text-body-md-font-family);
-  font-size: var(--dsm-text-body-md-font-size);
-  font-weight: var(--dsm-text-body-md-font-weight);
-  line-height: var(--dsm-text-body-md-line-height);
-  letter-spacing: var(--dsm-text-body-md-letter-spacing);
+  background-color: var(--tkc-color-bg-canvas);
+  color: var(--tkc-color-text-default);
+  font-family: var(--tkc-text-body-md-font-family);
+  font-size: var(--tkc-text-body-md-font-size);
+  font-weight: var(--tkc-text-body-md-font-weight);
+  line-height: var(--tkc-text-body-md-line-height);
+  letter-spacing: var(--tkc-text-body-md-letter-spacing);
   font-feature-settings: normal;
   /* 和文の禁則を厳格に、単語途中の改行を避ける */
   line-break: strict;
@@ -29,7 +29,7 @@
 }
 
 :where(code, kbd, samp, pre) {
-  font-family: var(--dsm-font-family-mono);
+  font-family: var(--tkc-font-family-mono);
 }
 
 /* ------------------------------------------------------------------
@@ -38,19 +38,19 @@
  * 外側: 背景と 3:1 以上のアウトライン（明るい背景の上でも見える）
  * どの背景でもどちらかが必ず見える二重リング。
  * ------------------------------------------------------------------ */
-.dsm-focusable:focus-visible {
-  outline: var(--dsm-focus-outline-width) solid var(--dsm-color-focus-outline);
-  outline-offset: var(--dsm-focus-offset);
-  box-shadow: 0 0 0 var(--dsm-focus-ring-width) var(--dsm-color-focus-ring);
+.tkc-focusable:focus-visible {
+  outline: var(--tkc-focus-outline-width) solid var(--tkc-color-focus-outline);
+  outline-offset: var(--tkc-focus-offset);
+  box-shadow: 0 0 0 var(--tkc-focus-ring-width) var(--tkc-color-focus-ring);
 }
 
 /* フォーカスが見えない状態を作らない（:focus-visible 非対応ブラウザ向けの保険は不要になったため置かない） */
-.dsm-focusable:focus:not(:focus-visible) {
+.tkc-focusable:focus:not(:focus-visible) {
   outline: none;
 }
 
 /* スクリーンリーダーにだけ読ませる */
-.dsm-visually-hidden:not(:focus):not(:active) {
+.tkc-visually-hidden:not(:focus):not(:active) {
   position: absolute !important;
   width: 1px !important;
   height: 1px !important;
@@ -74,7 +74,7 @@
 
 /* Windows ハイコントラストなど強制カラーモード */
 @media (forced-colors: active) {
-  .dsm-focusable:focus-visible {
+  .tkc-focusable:focus-visible {
     outline-color: Highlight;
     box-shadow: none;
   }
