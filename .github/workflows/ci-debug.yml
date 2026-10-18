@@ -33,11 +33,14 @@ jobs:
           step 01b-peers pnpm peers check
           cp pnpm-lock.yaml "$RUNNER_TEMP/out/" || true
           step 02-tokens pnpm build:tokens
+          step 03a-fmt pnpm exec vp fmt
+          git diff > "$RUNNER_TEMP/out/fmt.patch"
           step 03-vp-check pnpm exec vp check
           step 04-check-r pnpm exec vp run -r check
           step 05-depcruise pnpm exec depcruise packages apps
           step 06-playwright pnpm --filter tkc310-ui-storybook exec playwright install --with-deps chromium
           step 07-test pnpm exec vp run -r test
+          step 07b-test-storybook pnpm --filter tkc310-ui-storybook test
           step 08-build pnpm --filter tkc310-ui build
           step 09-storybook pnpm build:storybook
           git rev-parse HEAD > "$RUNNER_TEMP/out/SHA"

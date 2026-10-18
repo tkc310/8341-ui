@@ -80,21 +80,27 @@ export interface RadioProps extends Omit<ComponentProps<typeof BaseRadio.Root>, 
   className?: string;
 }
 
-/** ラジオボタン（Base UI の Radio）。RadioGroup の中で使う。 */
+/**
+ * ラジオボタン（Base UI の Radio）。RadioGroup の中で使う。
+ * 選択肢ごとに Field.Item で区切る。区切らないと、グループの Field.Root が持つ 1 つのラベル ID を
+ * 全選択肢が共有し、どの選択肢も先頭のラベル名で読み上げられる。
+ */
 export function Radio({ label, description, className, ...rest }: RadioProps) {
   const s = choiceVariants();
   return (
-    <label className={s.label({ className })}>
-      <BaseRadio.Root
-        className={s.control({ className: 'rounded-full data-[checked]:border-key forced-colors:data-[checked]:border-[Highlight]' })}
-        {...rest}
-      >
-        <BaseRadio.Indicator className="size-[calc(var(--choice-box)/2)] rounded-full bg-key group-data-[disabled]/control:bg-fg-disabled forced-colors:bg-[CanvasText]" />
-      </BaseRadio.Root>
-      <span className={s.text()}>
-        <span>{label}</span>
-        {description && <span className={s.description()}>{description}</span>}
-      </span>
-    </label>
+    <Field.Item>
+      <Field.Label className={s.label({ className })}>
+        <BaseRadio.Root
+          className={s.control({ className: 'rounded-full data-[checked]:border-key forced-colors:data-[checked]:border-[Highlight]' })}
+          {...rest}
+        >
+          <BaseRadio.Indicator className="size-[calc(var(--choice-box)/2)] rounded-full bg-key group-data-[disabled]/control:bg-fg-disabled forced-colors:bg-[CanvasText]" />
+        </BaseRadio.Root>
+        <span className={s.text()}>
+          <span>{label}</span>
+          {description && <span className={s.description()}>{description}</span>}
+        </span>
+      </Field.Label>
+    </Field.Item>
   );
 }
