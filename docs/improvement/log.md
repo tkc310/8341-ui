@@ -4,6 +4,8 @@
 
 | 日付 | 種別 | 内容 | 再発防止 |
 | --- | --- | --- | --- |
+| 2026-10-18 | レビュー | 独立レビューの指摘 35 件を修正（CI の pnpm 版とロックファイル、トークンの生成順、strict の型エラー、ダークの OS 追従、font-weight の既定値、tw-merge の font-weight、shadow 変換、Textarea の aria-describedby 上書き、e2e のストーリー ID、RTL の cleanup ほか） | dist に `@/` import が残ると check-dist が失敗。生成物を fmt の対象外に。依存の解決用にルート tsconfig を追加 |
+| 2026-10-18 | a11y | Textarea の文字数カウンターが aria-describedby を上書きし、FormField の補足・エラーが読まれなくなっていた | カウンターを Field.Description にして Field に関連付けを任せる |
 | 2026-10-18 | a11y | Tailwind v4 の `outline-none` がフォーカスの線種まで消し、リンクと Select の項目でアウトラインが出なかった | クラス監査に outline-none を追加（別の要素に描く場合だけ明示して許可） |
 | 2026-10-18 | 不具合 | `read-only:` が button や無効の input にも当たり、Select のトリガーに破線が付いた | 読み取り専用の装飾を編集できる欄に限定し、クラス監査に bare-read-only を追加 |
 | 2026-10-18 | スタック | Base UI + Tailwind v4 + tailwind-variants + shadcn 方式、DTCG 2025.10 + Style Dictionary v5、Vite+・pnpm 11 に移行 | ADR-0008〜0010 |

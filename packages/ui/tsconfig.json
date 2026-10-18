@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
     // shadcn 方式で配布したときと同じ import パスで書く（利用側の components.json の aliases に合わせて CLI が書き換える）
     "paths": {
       "@/components/ui/*": ["./src/components/*"],
@@ -9,5 +8,5 @@
     },
     "types": ["node", "@figma/code-connect/figma-types"]
   },
-  "include": ["src", "scripts", "vite.config.ts", "vitest.setup.ts", "vitest.browser.setup.ts"]
+  "include": ["src", "scripts", "vite.config.ts", "alias.ts", "vitest.setup.ts", "vitest.browser.setup.ts"]
 }

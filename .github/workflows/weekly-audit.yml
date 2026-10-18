@@ -19,7 +19,9 @@ jobs:
         with:
           node-version: 22
       - uses: pnpm/action-setup@v4
-      - run: pnpm install --frozen-lockfile
+        with:
+          version: 11
+      - run: pnpm install
       - run: pnpm audit:report
       - name: レポートを Issue に投稿（同じラベルの未解決 Issue があれば更新）
         env:

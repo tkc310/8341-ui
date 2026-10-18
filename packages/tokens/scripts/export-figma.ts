@@ -84,7 +84,7 @@ for (const theme of THEMES) {
       const scopes = t.path[0] === 'color' ? { 'com.figma.scopes': scopesFor(t.path) } : undefined;
       return { path: t.path, node: { ...f, ...(t.description ? { $description: t.description } : {}), ...(scopes ? { $extensions: scopes } : {}) } };
     })
-    .filter((e): e is { path: string[]; node: object } => e !== null);
+    .filter((e) => e !== null);
   writeFileSync(resolve(OUT, `${theme}.tokens.json`), `${JSON.stringify(tree(semantic), null, 2)}\n`);
 }
 

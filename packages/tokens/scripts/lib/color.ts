@@ -52,17 +52,18 @@ export function parseColor(input: string): { rgb: RGB; alpha: number } {
   const hex = input.trim().toLowerCase();
   const m = hex.match(/^#([0-9a-f]{6})([0-9a-f]{2})?$/);
   if (m) {
-    const n = m[1];
+    const n = m[1] ?? '000000';
     return {
-      rgb: [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16) / 255) as RGB,
+      rgb: [0, 2, 4].map((i) => Number.parseInt(n.slice(i, i + 2), 16) / 255) as RGB,
       alpha: m[2] ? parseInt(m[2], 16) / 255 : 1,
     };
   }
   const r = hex.match(/^rgba?\(([^)]+)\)$/);
   if (r) {
-    const parts = r[1].split(/[\s,/]+/).filter(Boolean).map(Number);
+    const parts = (r[1] ?? '').split(/[\s,/]+/).filter(Boolean).map(Number);
+    const [red = 0, green = 0, blue = 0] = parts;
     return {
-      rgb: [parts[0] / 255, parts[1] / 255, parts[2] / 255],
+      rgb: [red / 255, green / 255, blue / 255],
       alpha: parts[3] ?? 1,
     };
   }
@@ -73,14 +74,12 @@ export function parseColor(input: string): { rgb: RGB; alpha: number } {
 export function composite(fg: string, bg: string): RGB {
   const f = parseColor(fg);
   const b = parseColor(bg);
-  return f.rgb.map((v, i) => v * f.alpha + b.rgb[i] * (1 - f.alpha)) as RGB;
+  return f.rgb.map((v, i) => v * f.alpha + (b.rgb[i] ?? 0) * (1 - f.alpha)) as RGB;
 }
 
 function luminance(rgb: RGB): number {
-  const lin = rgb.map((v) =>
-    v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4,
-  );
-  return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2];
+  const [r, g, b] = rgb.map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)) as RGB;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
 /** WCAG 2.x のコントラスト比。前景が半透明なら背景に合成してから計算する。 */

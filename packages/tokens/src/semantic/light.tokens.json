@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
-  "$description": "Semantic colors — light theme. コンポーネントはこの層だけを参照する。キーは color.dark.json と完全一致させること（CI で検証）。",
+  "$description": "Semantic colors — light theme. コンポーネントはこの層だけを参照する。キーは dark.tokens.json と完全一致させること（CI で検証）。",
   "color": {
     "$type": "color",
     "bg": {

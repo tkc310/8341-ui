@@ -4,7 +4,7 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
-import { alias } from '../../packages/ui/vite.config';
+import { alias } from '../../packages/ui/alias';
 
 const dirname = import.meta.dirname;
 

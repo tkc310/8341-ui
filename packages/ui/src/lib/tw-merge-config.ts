@@ -11,6 +11,7 @@ export const twMergeConfig = {
       spacing: ['inset-xs', 'inset-sm', 'inset-md', 'inset-lg', 'inset-xl', 'gap-xs', 'gap-sm', 'gap-md', 'stack-sm', 'stack-md', 'stack-lg', 'gutter', 'page-inline', 'control-sm', 'control-md', 'control-lg', 'target-min', 'icon-sm', 'icon-md', 'icon-lg'],
       container: ['content', 'prose'],
       radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl', 'full'],
+      'font-weight': ['regular', 'bold'],
     },
   },
 } as const;

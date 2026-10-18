@@ -32,7 +32,7 @@ packages/ui/src/components/button/
 
 - Base UI の部品を包むときは、その部品の props を `ComponentProps<typeof Base.Part>` で受け取り、`...rest` で渡す
 - 別の要素にしたいときは Base UI の `render` prop を使う（`asChild` は無い）。`<button>` 以外にするなら `nativeButton={false}`
-- `'use client'` は、フック・コンテキスト・イベントハンドラを作るファイルだけに付ける（Base UI の部品自体には付いている）。付け忘れはクラス監査が error にし、出力から消えていないかは `check-dist` が確かめる
+- `'use client'` は、フック・コンテキスト・イベントハンドラを作るファイルだけに付ける（Base UI の部品自体には付いている）。React のフック（`use*`）を呼んでいるのに付いていないファイルはクラス監査が error にする（イベントハンドラだけのファイルは検出できないので、レビューで確かめる）。出力から消えていないかは `check-dist` が確かめる
 - `Button` の既定は `type="button"`
 - 見た目のバリエーションは `variant`、大きさは `size`、色調は `tone` という名前に揃える
 - アクセシブルな名前に関わる props（`label`、`legend`、`title`、`summary`）は必須にする

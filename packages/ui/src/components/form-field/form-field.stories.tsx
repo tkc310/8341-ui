@@ -83,34 +83,37 @@ export const SelectBox: Story = {
   ),
 };
 
+/** 親子のチェックボックス（「すべて」が中間状態を持つ）。フックを使うため名前付きのコンポーネントにする */
+function NotificationChannels() {
+  const [items, setItems] = useState({ mail: true, sms: false });
+  const all = items.mail && items.sms;
+  const some = items.mail || items.sms;
+  return (
+    <fieldset className="m-0 border-0 p-0">
+      <legend className="font-bold">通知の受け取り方法</legend>
+      <Checkbox
+        label="すべて"
+        checked={all}
+        indeterminate={some && !all}
+        onCheckedChange={(checked) => setItems({ mail: checked, sms: checked })}
+      />
+      <div className="ps-stack-md">
+        <Checkbox
+          label="メール"
+          description="登録済みのアドレスに送ります"
+          checked={items.mail}
+          onCheckedChange={(checked) => setItems({ ...items, mail: checked })}
+        />
+        <Checkbox label="SMS" checked={items.sms} onCheckedChange={(checked) => setItems({ ...items, sms: checked })} />
+      </div>
+      <Checkbox label="受け取らない（選択できません）" disabled />
+    </fieldset>
+  );
+}
+
 export const Checkboxes: Story = {
   args: { label: '', children: null },
-  render: () => {
-    const [items, setItems] = useState({ mail: true, sms: false });
-    const all = items.mail && items.sms;
-    const some = items.mail || items.sms;
-    return (
-      <fieldset className="m-0 border-0 p-0">
-        <legend className="font-bold">通知の受け取り方法</legend>
-        <Checkbox
-          label="すべて"
-          checked={all}
-          indeterminate={some && !all}
-          onCheckedChange={(checked) => setItems({ mail: checked, sms: checked })}
-        />
-        <div className="ps-stack-md">
-          <Checkbox
-            label="メール"
-            description="登録済みのアドレスに送ります"
-            checked={items.mail}
-            onCheckedChange={(checked) => setItems({ ...items, mail: checked })}
-          />
-          <Checkbox label="SMS" checked={items.sms} onCheckedChange={(checked) => setItems({ ...items, sms: checked })} />
-        </div>
-        <Checkbox label="受け取らない（選択できません）" disabled />
-      </fieldset>
-    );
-  },
+  render: () => <NotificationChannels />,
 };
 
 export const Radios: Story = {
@@ -130,6 +133,21 @@ export const Radios: Story = {
   ),
 };
 
+function ValidationForm() {
+  const [submitted, setSubmitted] = useState(false);
+  return (
+    <Form className="max-w-prose" onFormSubmit={() => setSubmitted(true)}>
+      <Stack>
+        {submitted && <NotificationBanner tone="success" title="送信しました" live />}
+        <FormField label="氏名" required name="name">
+          <TextField autoComplete="name" />
+        </FormField>
+        <Button type="submit">送信する</Button>
+      </Stack>
+    </Form>
+  );
+}
+
 /**
  * 送信時の検証パターン。Base UI の Form が送信時に各 Field を検証し、
  * 誤りのある項目に aria-invalid とエラー文（Field.Error）を付けて、最初の誤りへフォーカスを移す（WCAG 3.3.1）。
@@ -137,20 +155,7 @@ export const Radios: Story = {
  */
 export const ValidationPattern: Story = {
   args: { label: '', children: null },
-  render: () => {
-    const [submitted, setSubmitted] = useState(false);
-    return (
-      <Form className="max-w-prose" onFormSubmit={() => setSubmitted(true)}>
-        <Stack>
-          {submitted && <NotificationBanner tone="success" title="送信しました" live />}
-          <FormField label="氏名" required name="name">
-            <TextField autoComplete="name" />
-          </FormField>
-          <Button type="submit">送信する</Button>
-        </Stack>
-      </Form>
-    );
-  },
+  render: () => <ValidationForm />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: '送信する' }));

@@ -5,7 +5,7 @@
   "description": "tkc310-ui のドキュメント（Storybook 10）と shadcn レジストリの配信元",
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "vp run tkc310-ui#registry:build && storybook build",
+    "build": "pnpm --filter tkc310-ui registry:build && storybook build",
     "test": "vp test --project storybook",
     "test:e2e": "playwright test"
   },
@@ -16,7 +16,6 @@
     "tkc310-ui-tokens": "workspace:*"
   },
   "devDependencies": {
-    "@base-ui/react": "catalog:",
     "@playwright/test": "catalog:",
     "@storybook/addon-a11y": "catalog:",
     "@storybook/addon-docs": "catalog:",

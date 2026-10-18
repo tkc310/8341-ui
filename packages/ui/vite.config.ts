@@ -1,16 +1,8 @@
-import { resolve } from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
-
-const src = resolve(import.meta.dirname, 'src');
-
-/** shadcn 方式の import パス（@/components/ui/*, @/lib/*）をリポジトリ内の実体に向ける */
-export const alias = [
-  { find: /^@\/components\/ui\/(.*)$/, replacement: `${src}/components/$1` },
-  { find: /^@\/lib\/(.*)$/, replacement: `${src}/lib/$1` },
-];
+import { alias } from './alias';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],

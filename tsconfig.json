@@ -1,0 +1,11 @@
+{
+  // リポジトリ全体の解決用（dependency-cruiser が @/components/ui/* などを辿るため）。型検査は各パッケージの tsconfig で行う
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@/components/ui/*": ["./packages/ui/src/components/*"],
+      "@/lib/*": ["./packages/ui/src/lib/*"]
+    }
+  },
+  "files": []
+}

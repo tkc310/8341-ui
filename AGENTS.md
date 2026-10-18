@@ -20,7 +20,7 @@ W3C DTCG 2025.10 + Style Dictionary v5、Vite+（oxlint / oxfmt / Vitest 5 / tsd
 
 ```
 packages/tokens/          トークン（tkc310-ui-tokens）
-  src/*.tokens.json       DTCG 2025.10 のトークン ← 値を変えるならここ
+  src/{primitive,semantic}/*.tokens.json  DTCG 2025.10 のトークン ← 値を変えるならここ
   src/tkc310-ui.resolver.json  テーマ（light / dark）の構成
   src/palette.config.json プリミティブカラーの生成パラメータ
   src/contrast.rules.json コントラストの検証規則

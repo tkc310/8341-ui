@@ -49,7 +49,17 @@ export default defineConfig({
   },
 
   fmt: {
-    ignorePatterns: ['**/dist/**', '**/storybook-static/**', 'pnpm-lock.yaml', 'packages/tokens/dist/**', 'packages/ui/src/lib/tw-merge-config.ts'],
+    ignorePatterns: [
+      '**/dist/**',
+      '**/storybook-static/**',
+      'pnpm-lock.yaml',
+      'packages/tokens/dist/**',
+      'packages/ui/src/lib/tw-merge-config.ts',
+      // 生成物（生成スクリプトの --check と整形結果が食い違わないよう、整形の対象から外す）
+      'packages/ui/registry.json',
+      'packages/tokens/src/primitive/color.tokens.json',
+      'apps/storybook/public/r/**',
+    ],
     singleQuote: true,
     semi: true,
     printWidth: 120,

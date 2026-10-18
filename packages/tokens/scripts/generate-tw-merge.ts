@@ -15,16 +15,23 @@ import { REPO_ROOT, resolvedTokens } from './lib/tokens.ts';
 const OUT = resolve(REPO_ROOT, 'packages/ui/src/lib/tw-merge-config.ts');
 const CHECK = process.argv.includes('--check');
 
-const theme: Record<string, Set<string>> = { text: new Set(), shadow: new Set(), spacing: new Set(), container: new Set(), radius: new Set() };
+const theme: Record<string, Set<string>> = {
+  text: new Set(),
+  shadow: new Set(),
+  spacing: new Set(),
+  container: new Set(),
+  radius: new Set(),
+  'font-weight': new Set(),
+};
 for (const t of resolvedTokens('light')) {
   const name = tailwindName(t.path);
-  const m = name?.match(/^--(text|shadow|spacing|container|radius)-(.+)$/);
+  const m = name?.match(/^--(text|shadow|spacing|container|radius|font-weight)-(.+)$/);
   if (!m || m[2]?.includes('--')) continue;
   theme[m[1] as string]?.add(m[2] as string);
 }
 
 const body = Object.entries(theme)
-  .map(([k, v]) => `      ${k}: [${[...v].map((x) => `'${x}'`).join(', ')}],`)
+  .map(([k, v]) => `      ${k.includes('-') ? `'${k}'` : k}: [${[...v].map((x) => `'${x}'`).join(', ')}],`)
   .join('\n');
 
 const content = `/* このファイルは packages/tokens/scripts/generate-tw-merge.ts が生成します。直接編集しないでください。 */

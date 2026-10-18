@@ -15,7 +15,8 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile', use: { ...devices['iPhone 15'] } },
+    // Chromium だけで回せるよう Android 端末で代表させる（iPhone 15 は WebKit を要求する）
+    { name: 'mobile', use: { ...devices['Pixel 7'] } },
     { name: 'forced-colors', use: { ...devices['Desktop Chrome'], forcedColors: 'active' } },
   ],
 });

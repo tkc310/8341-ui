@@ -81,6 +81,9 @@ export function SignUp() {
 @source "../node_modules/tkc310-ui/dist";
 ```
 
+`@source` のパスは、この CSS ファイルから見た `node_modules/tkc310-ui/dist` への相対パスにします（例: `src/app.css` なら `../node_modules/...`）。
+shadcn 方式で部品をコピーした場合は、部品がプロジェクト内にあるので `@source` は不要です。
+
 Tailwind を使わない場合は、ビルド済みの `import 'tkc310-ui/styles.css'` を読み込みます。
 
 テーマは `<html class="dark">` または `<html data-theme="dark">` で切り替えます。どちらも無ければ OS の設定に従います。

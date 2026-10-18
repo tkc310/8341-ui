@@ -62,7 +62,7 @@ module.exports = {
     doNotFollow: { path: 'node_modules' },
     exclude: { path: '(dist|storybook-static|[.]vitest)/' },
     tsPreCompilationDeps: true,
-    tsConfig: { fileName: 'tsconfig.base.json' },
+    tsConfig: { fileName: 'tsconfig.json' },
     enhancedResolveOptions: {
       exportsFields: ['exports'],
       conditionNames: ['import', 'types', 'default'],

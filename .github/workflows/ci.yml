@@ -15,11 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
+      - run: pnpm install
       # 生成物の鮮度・コントラスト・DESIGN.md 同期・レジストリ・fmt・lint（型情報つき）・型検査・アーキテクチャ
       - run: pnpm check
 
@@ -28,12 +31,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium
+      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
+      - run: pnpm install
+      - run: pnpm --filter tkc310-ui-storybook exec playwright install --with-deps chromium
       # unit（happy-dom）+ storybook（全ストーリーを実ブラウザで描画し a11y 検査）
       # VRT と e2e は手動・都度実行のため CI では回さない
       - run: pnpm test
@@ -49,12 +55,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
           registry-url: https://registry.npmjs.org
-      - run: pnpm install --frozen-lockfile
+      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
+      - run: pnpm install
       # changeset があればバージョン更新 PR を作り、マージ後に公開する
       - uses: changesets/action@v2
         with:
@@ -62,6 +71,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   storybook:
     if: github.ref == 'refs/heads/main'
@@ -75,13 +85,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      # pnpm-lock.yaml をコミットしたら --frozen-lockfile を付ける
+      - run: pnpm install
       # Storybook とレジストリ（/r/*.json）を同じ Pages に置く
-      - run: vp run tkc310-ui-storybook#build
+      - run: pnpm build:storybook
       - uses: actions/upload-pages-artifact@v3
         with:
           path: apps/storybook/storybook-static

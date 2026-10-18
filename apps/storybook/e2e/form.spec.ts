@@ -37,7 +37,7 @@ test.describe('レイアウト', () => {
   });
 
   test('文字サイズ 200% でも内容が切れない（WCAG 1.4.4）', async ({ page }) => {
-    await page.goto(story('components-notification-banner--tones'));
+    await page.goto(story('components-notificationbanner--tones'));
     await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
     const clipped = await page.evaluate(() =>
       [...document.querySelectorAll('h2, p, li')].some((el) => el.scrollWidth > (el as HTMLElement).clientWidth + 1),

@@ -49,6 +49,9 @@ catalog:
 catalogMode: strict
 
 # Vite+ が同梱する Vite / Vitest に揃える（@* 指定なので catalog: の参照は壊れない）
+# - vite: Vite+ のコア（@voidzero-dev/vite-plus-core）に差し替える
+# - vitest: vite-plus 1.3 が内部で固定している Vitest 5 の版に合わせる。Storybook の addon-vitest などが別の版を引き込むと
+#   テストランナーが二重になるため。vite-plus を上げたら、この版も vite-plus の package.json に合わせて上げる
 overrides:
   vite@*: npm:@voidzero-dev/vite-plus-core@^1.3.0
   vitest@*: 5.0.5

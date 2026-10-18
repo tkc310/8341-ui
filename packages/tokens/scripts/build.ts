@@ -58,7 +58,10 @@ StyleDictionary.registerTransform({
   type: 'value',
   transitive: true,
   filter: (t) => t.path.includes('letter-spacing'),
-  transform: (t) => `${valueOf(t) as number}em`,
+  transform: (t) => {
+    const v = valueOf(t);
+    return typeof v === 'string' ? v : `${v as number}em`;
+  },
 });
 
 /** duration（{ value, unit }）を ms / s のまま CSS に */
@@ -75,6 +78,38 @@ StyleDictionary.registerTransform({
   },
 });
 
+/**
+ * 影（DTCG の shadow: 1 つまたは配列。色はオブジェクト、寸法は { value, unit }）を CSS の box-shadow に。
+ * 入れ子の値は他の transform が届かないため、ここでまとめて変換する。
+ */
+StyleDictionary.registerTransform({
+  name: 'tkc/shadow/css',
+  type: 'value',
+  transitive: true,
+  filter: (t) => typeOf(t) === 'shadow',
+  transform: (t) => {
+    const v = valueOf(t);
+    if (typeof v === 'string') return v;
+    const layers = (Array.isArray(v) ? v : [v]) as {
+      color: { hex: string; alpha?: number } | string;
+      offsetX: { value: number; unit: string };
+      offsetY: { value: number; unit: string };
+      blur: { value: number; unit: string };
+      spread: { value: number; unit: string };
+      inset?: boolean;
+    }[];
+    const len = (d: { value: number; unit: string }) => `${d.value}${d.unit}`;
+    const color = (c: { hex: string; alpha?: number } | string) => {
+      if (typeof c === 'string') return c;
+      const [r, g, b] = [1, 3, 5].map((i) => Number.parseInt(c.hex.slice(i, i + 2), 16));
+      return c.alpha === undefined || c.alpha === 1 ? c.hex : `rgb(${r} ${g} ${b} / ${c.alpha})`;
+    };
+    return layers
+      .map((l) => `${l.inset ? 'inset ' : ''}${len(l.offsetX)} ${len(l.offsetY)} ${len(l.blur)} ${len(l.spread)} ${color(l.color)}`)
+      .join(', ');
+  },
+});
+
 const transforms = [
   'attribute/cti',
   'name/kebab',
@@ -85,7 +120,7 @@ const transforms = [
   'color/oklch',
   'fontFamily/css',
   'cubicBezier/css',
-  'shadow/css/shorthand',
+  'tkc/shadow/css',
 ];
 
 // ---------------------------------------------------------------------------
@@ -125,10 +160,20 @@ StyleDictionary.registerFormat({
       .filter(Boolean);
     return `${header}/*
  * Tailwind v4 のテーマ。値はすべて tokens.css の CSS 変数を参照する（テーマ切り替えに追従させるため inline）。
- * Tailwind の既定の色・文字サイズ・角丸・影・ブレークポイントは消し、semantic トークンだけを使えるようにする。
+ * Tailwind の既定の色・文字サイズ・太さ・角丸・影・ブレークポイントは消し、semantic トークンだけを使えるようにする。
  * 余白（--spacing）は 4px の既定スケールを残しつつ、semantic な名前（p-inset-md など）を追加する。
  */
-@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+@custom-variant dark {
+  &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  /* トークンと同じく、明示が無ければ OS の設定に従う */
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not(.light):not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
 
 @theme inline {
   --color-*: initial;
@@ -136,6 +181,7 @@ StyleDictionary.registerFormat({
   --radius-*: initial;
   --shadow-*: initial;
   --breakpoint-*: initial;
+  --font-weight-*: initial;
   --color-transparent: transparent;
   --color-current: currentColor;
   --default-transition-duration: var(--${PREFIX}-motion-duration-fast);
@@ -160,7 +206,9 @@ function config(opts: {
   options?: Record<string, unknown>;
 }): Config {
   return {
-    log: { verbosity: 'default', warnings: 'error' },
+    // semantic は include した primitive を var() で参照する（意図どおり）。
+    // その「出力から外したトークンへの参照」警告をエラーにしないため warn にする
+    log: { verbosity: 'default', warnings: 'warn' },
     include: opts.include,
     source: opts.source,
     platforms: {
