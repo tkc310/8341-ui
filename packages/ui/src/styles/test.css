@@ -1,0 +1,5 @@
+/* テスト（VRT・ブラウザモード）用。アプリと同じ順で Tailwind とテーマを読み込む */
+@import 'tailwindcss';
+@import './theme.css';
+@source "../components";
+@source "../lib";

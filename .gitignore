@@ -2,7 +2,13 @@ node_modules
 dist
 storybook-static
 coverage
+.vitest
 .vite
 *.log
 .DS_Store
 reports/
+test-results/
+playwright-report/
+# VRT の基準画像はコミットする（__screenshots__/）。失敗時の差分は .vitest/ に出る
+# shadcn build の出力（Storybook と一緒に配信する）
+apps/storybook/public/r/

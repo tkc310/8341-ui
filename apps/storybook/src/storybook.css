@@ -1,0 +1,4 @@
+@import 'tailwindcss';
+@import 'tkc310-ui/theme.css';
+@source "../../../packages/ui/src";
+@source "./";

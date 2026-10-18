@@ -4,14 +4,14 @@
 人にも AI エージェントにも同じルールを適用します。
 画面設計の判断は上流の [design-principles](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) に従い、このルールブックはそれをトークンとコンポーネントに落とす方法を定めます。
 
-| 章 | 内容 |
-| --- | --- |
-| [01 デザイン原則](./01-principles.md) | 上流のルール（design-principles）との対応表と、このシステムの設計方針 |
-| [02 アクセシビリティ](./02-accessibility.md) | WCAG 2.2 AA を最低ラインとした必須要件 |
-| [03 トークン](./03-tokens.md) | primitive / semantic の使い分けと追加手順 |
-| [04 コンポーネント](./04-components.md) | API・CSS・ファイル構成の規約と完了の定義 |
-| [05 文言](./05-writing.md) | ラベル・ボタン・エラーメッセージの書き方 |
-| [06 改善ループ](./06-improvement-loop.md) | このシステムを継続的に良くする仕組み |
+| 章                                           | 内容                                                                  |
+| -------------------------------------------- | --------------------------------------------------------------------- |
+| [01 デザイン原則](./01-principles.md)        | 上流のルール（design-principles）との対応表と、このシステムの設計方針 |
+| [02 アクセシビリティ](./02-accessibility.md) | WCAG 2.2 AA を最低ラインとした必須要件                                |
+| [03 トークン](./03-tokens.md)                | primitive / semantic の使い分けと追加手順                             |
+| [04 コンポーネント](./04-components.md)      | API・CSS・ファイル構成の規約と完了の定義                              |
+| [05 文言](./05-writing.md)                   | ラベル・ボタン・エラーメッセージの書き方                              |
+| [06 改善ループ](./06-improvement-loop.md)    | このシステムを継続的に良くする仕組み                                  |
 
 設計判断の経緯は [docs/decisions](../decisions/) に ADR として残しています。
 

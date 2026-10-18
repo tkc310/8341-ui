@@ -1,0 +1,335 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "$description": "Semantic colors — dark theme. 面は明るくするほど手前に来る（影に頼らない）。",
+  "color": {
+    "$type": "color",
+    "bg": {
+      "canvas": {
+        "$value": "{color.primitive.gray.1200}"
+      },
+      "surface": {
+        "$value": "{color.primitive.gray.1100}"
+      },
+      "subtle": {
+        "$value": "{color.primitive.gray.1100}"
+      },
+      "muted": {
+        "$value": "{color.primitive.gray.1000}"
+      },
+      "inverse": {
+        "$value": "{color.primitive.gray.50}"
+      },
+      "disabled": {
+        "$value": "{color.primitive.gray.1000}"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.300}"
+      },
+      "key-hover": {
+        "$value": "{color.primitive.indigo.200}"
+      },
+      "key-active": {
+        "$value": "{color.primitive.indigo.100}"
+      },
+      "key-subtle": {
+        "$value": "{color.primitive.indigo.1100}"
+      },
+      "key-subtle-hover": {
+        "$value": "{color.primitive.indigo.1000}"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.300}"
+      },
+      "danger-hover": {
+        "$value": "{color.primitive.red.200}"
+      },
+      "danger-active": {
+        "$value": "{color.primitive.red.100}"
+      },
+      "danger-subtle": {
+        "$value": "{color.primitive.red.1200}"
+      },
+      "success-subtle": {
+        "$value": "{color.primitive.green.1200}"
+      },
+      "warning-subtle": {
+        "$value": "{color.primitive.yellow.1200}"
+      },
+      "info-subtle": {
+        "$value": "{color.primitive.indigo.1200}"
+      },
+      "overlay": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.0, 0.0, 0.0],
+          "alpha": 0.64,
+          "hex": "#000000"
+        }
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.primitive.gray.50}"
+      },
+      "subtle": {
+        "$value": "{color.primitive.gray.300}"
+      },
+      "disabled": {
+        "$value": "{color.primitive.gray.600}"
+      },
+      "inverse": {
+        "$value": "{color.primitive.gray.1100}"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.300}"
+      },
+      "on-key": {
+        "$value": "{color.primitive.indigo.1200}"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.300}"
+      },
+      "success": {
+        "$value": "{color.primitive.green.300}"
+      },
+      "warning": {
+        "$value": "{color.primitive.yellow.300}"
+      },
+      "link": {
+        "$value": "{color.primitive.indigo.300}"
+      },
+      "link-hover": {
+        "$value": "{color.primitive.indigo.200}"
+      },
+      "link-visited": {
+        "$value": "{color.primitive.purple.300}"
+      },
+      "link-active": {
+        "$value": "{color.primitive.orange.300}"
+      }
+    },
+    "icon": {
+      "default": {
+        "$value": "{color.primitive.gray.100}"
+      },
+      "subtle": {
+        "$value": "{color.primitive.gray.300}"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.300}"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.300}"
+      },
+      "success": {
+        "$value": "{color.primitive.green.300}"
+      },
+      "warning": {
+        "$value": "{color.primitive.yellow.300}"
+      },
+      "info": {
+        "$value": "{color.primitive.indigo.300}"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.primitive.gray.1000}"
+      },
+      "default": {
+        "$value": "{color.primitive.gray.600}"
+      },
+      "input": {
+        "$value": "{color.primitive.gray.500}"
+      },
+      "strong": {
+        "$value": "{color.primitive.gray.200}"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.300}"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.400}"
+      },
+      "success": {
+        "$value": "{color.primitive.green.400}"
+      },
+      "warning": {
+        "$value": "{color.primitive.yellow.400}"
+      },
+      "disabled": {
+        "$value": "{color.primitive.gray.900}"
+      }
+    },
+    "focus": {
+      "ring": {
+        "$value": "{color.primitive.yellow.300}"
+      },
+      "outline": {
+        "$value": "{color.primitive.gray.50}"
+      },
+      "text": {
+        "$value": "{color.primitive.gray.1200}",
+        "$description": "フォーカスリング色の背景に乗る文字（リンクのフォーカス時）"
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "1": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.0, 0.0, 0.0],
+            "alpha": 0.48,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.0, 0.0, 0.0],
+            "alpha": 0.32,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 3,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 1,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "2": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.0, 0.0, 0.0],
+            "alpha": 0.52,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 6,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.0, 0.0, 0.0],
+            "alpha": 0.36,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 12,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 2,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "3": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.0, 0.0, 0.0],
+            "alpha": 0.56,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 6,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 16,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.0, 0.0, 0.0],
+            "alpha": 0.4,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 12,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 32,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 4,
+            "unit": "px"
+          }
+        }
+      ]
+    }
+  }
+}

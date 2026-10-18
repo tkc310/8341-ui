@@ -22,11 +22,12 @@
 
 ### 自動
 
-| 仕組み | タイミング | 何を見つけるか |
-| --- | --- | --- |
-| `npm run check`（CI） | PR ごと | トークン生成物の古さ、コントラスト不足、CSS 規約違反、DESIGN.md のずれ、型・Lint |
-| Vitest（unit + storybook） | PR ごと | 振る舞いの退行、axe による WCAG 違反 |
-| 週次監査ワークフロー | 毎週月曜 | warning の蓄積、コントラストの余裕が 5% 未満の組み合わせ、未使用トークン。結果を Issue に起票 |
+| 仕組み                  | タイミング | 何を見つけるか                                                                                                                                                                    |
+| ----------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm check`（CI）      | PR ごと    | fmt・lint（oxlint、型情報つき）・型、コントラスト不足、テーマ間のキーずれ、DESIGN.md / tw-merge 設定 / registry.json のずれ、クラス監査、アーキテクチャ違反（dependency-cruiser） |
+| `pnpm test`（Vitest 5） | PR ごと    | 振る舞いの退行（happy-dom）、全ストーリーの play 関数と axe による WCAG 違反（実ブラウザ）                                                                                        |
+| VRT・e2e                | 手動・都度 | 見た目の退行（`pnpm test:vrt`）、320px・200%・強制カラーでの崩れ（`pnpm test:e2e`）                                                                                               |
+| 週次監査ワークフロー    | 毎週月曜   | warning の蓄積、コントラストの余裕が 5% 未満の組み合わせ、未使用トークン、ストーリー・Code Connect の欠け。結果を Issue に起票                                                    |
 
 ### 手動
 
@@ -47,18 +48,20 @@
 
 - 修正は PR で行い、PR テンプレートのチェックリスト（完了の定義）を満たす
 - 値や方針を変えたら ADR を追加する（`docs/decisions/NNNN-*.md`）
-- トークンを変えたら `npm run tokens:build` で DESIGN.md も自動更新される
+- トークンを変えたら `pnpm --filter tkc310-ui-tokens build` と `design-md` で CSS と DESIGN.md を更新する（CI がずれを検出する）
 
 ## 4. 再発を防ぐ（いちばん大事）
 
 **直しただけで終わらせない。** 同じ種類の問題が二度と起きないよう、次のどれかを必ず追加します。
 
-| 問題の種類 | 追加するもの |
-| --- | --- |
-| 色の組み合わせのコントラスト不足 | `tokens/contrast.rules.json` に組み合わせを追加 |
-| CSS の書き方の問題 | `scripts/audit-css.ts` にルールを追加 |
-| 振る舞いの不具合 | テストまたはストーリーの play 関数 |
-| 判断基準のあいまいさ | ルールブックに追記 |
+| 問題の種類                       | 追加するもの                                                 |
+| -------------------------------- | ------------------------------------------------------------ |
+| 色の組み合わせのコントラスト不足 | `packages/tokens/src/contrast.rules.json` に組み合わせを追加 |
+| クラスの書き方の問題             | `packages/ui/scripts/audit-classes.ts` にルールを追加        |
+| 依存の向きの問題                 | `.dependency-cruiser.cjs` にルールを追加                     |
+| lint で見つけられる問題          | ルートの `vite.config.ts` の `lint` ブロックにルールを追加   |
+| 振る舞いの不具合                 | テストまたはストーリーの play 関数                           |
+| 判断基準のあいまいさ             | ルールブックに追記                                           |
 
 ## 5. 振り返る
 
@@ -69,7 +72,7 @@
 
 `.claude/skills/ds-improve/SKILL.md` に手順をまとめています。エージェントは次の順で動きます。
 
-1. `npm run audit` で現状のレポート（`reports/audit.md`）を作る
+1. `pnpm audit:report` で現状のレポート（`reports/audit.md`）を作る
 2. `docs/improvement/backlog.md` と未解決の Issue を読み、優先度の高いものを 1 つ選ぶ
 3. 修正し、上の「再発を防ぐ」に従ってチェックを追加する
-4. `npm run check && npm test` が通ることを確認し、log.md に追記して PR を出す
+4. `pnpm check && pnpm test` が通ることを確認し、changeset と log.md を追加して PR を出す

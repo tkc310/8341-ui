@@ -14,29 +14,68 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install  # package-lock.json をコミットしたら npm ci に変える
-      # トークン生成物・コントラスト・CSS 規約・DESIGN.md 同期・型・Lint
-      - run: npm run check
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # 生成物の鮮度・コントラスト・DESIGN.md 同期・レジストリ・fmt・lint（型情報つき）・型検査・アーキテクチャ
+      - run: pnpm check
 
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install  # package-lock.json をコミットしたら npm ci に変える
-      - run: npx playwright install --with-deps chromium
-      # unit（jsdom + axe）と storybook（全ストーリーを実ブラウザで描画し a11y 検査）
-      - run: npm test
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter tkc310-ui-storybook exec playwright install --with-deps chromium
+      # unit（happy-dom）+ storybook（全ストーリーを実ブラウザで描画し a11y 検査）
+      # VRT と e2e は手動・都度実行のため CI では回さない
+      - run: pnpm test
+
+  release:
+    if: github.ref == 'refs/heads/main'
+    needs: [check, test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      # changeset があればバージョン更新 PR を作る。
+      # npm への公開は、リポジトリ変数 ENABLE_NPM_PUBLISH を true にしたときだけ行う
+      # （changeset が無いと changeset publish は現在の版をそのまま公開するため、意図しない初回公開を防ぐ）
+      - uses: changesets/action@v2
+        with:
+          publish: ${{ vars.ENABLE_NPM_PUBLISH == 'true' && 'pnpm release' || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   storybook:
-    runs-on: ubuntu-latest
-    needs: [check, test]
     if: github.ref == 'refs/heads/main'
+    needs: [check, test]
+    runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write
@@ -44,12 +83,17 @@ jobs:
       name: github-pages
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install  # package-lock.json をコミットしたら npm ci に変える
-      - run: npm run build-storybook
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Storybook とレジストリ（/r/*.json）を同じ Pages に置く
+      - run: pnpm build:storybook
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: storybook-static
+          path: apps/storybook/storybook-static
       - uses: actions/deploy-pages@v4
