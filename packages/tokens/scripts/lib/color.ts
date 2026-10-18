@@ -29,14 +29,23 @@ function encode(v: number): number {
   return x <= 0.0031308 ? 12.92 * x : 1.055 * x ** (1 / 2.4) - 0.055;
 }
 
-/** OKLCH を sRGB の hex に変換する。ガマット外なら彩度を 0.002 刻みで下げる。 */
-export function oklchToHex(L: number, C: number, h: number): string {
+/**
+ * sRGB の色域に収まるまで彩度を 0.002 刻みで下げた OKLCH と、その hex を返す。
+ * 返す components は oklch() で描いたときに hex と同じ色になる（色域内のため）。
+ */
+export function gamutMapOklch(L: number, C: number, h: number) {
   let c = C;
   while (c > 0 && !inGamut(oklchToLinearSrgb(L, c, h))) c -= 0.002;
-  const rgb = oklchToLinearSrgb(L, Math.max(c, 0), h).map((v) =>
-    Math.round(encode(v) * 255),
-  );
-  return `#${rgb.map((v) => v.toString(16).padStart(2, '0')).join('')}`;
+  c = Math.max(c, 0);
+  const rgb = oklchToLinearSrgb(L, c, h).map((v) => Math.round(encode(v) * 255));
+  const hex = `#${rgb.map((v) => v.toString(16).padStart(2, '0')).join('')}`;
+  const round = (n: number, d: number) => Number(n.toFixed(d));
+  return { components: [round(L, 4), round(c, 4), c === 0 ? 0 : round(h, 2)] as [number, number, number], hex };
+}
+
+/** OKLCH を sRGB の hex に変換する（色域外は彩度を下げる） */
+export function oklchToHex(L: number, C: number, h: number): string {
+  return gamutMapOklch(L, C, h).hex;
 }
 
 export function parseColor(input: string): { rgb: RGB; alpha: number } {
