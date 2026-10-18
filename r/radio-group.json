@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "RadioGroup",
+  "description": "単一選択。",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@tkc/checkbox",
+    "@tkc/form-field",
+    "@tkc/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/radio-group/radio-group.tsx",
+      "content": "import { Field } from '@base-ui/react/field';\nimport { Fieldset } from '@base-ui/react/fieldset';\nimport { Radio as BaseRadio } from '@base-ui/react/radio';\nimport { RadioGroup as BaseRadioGroup } from '@base-ui/react/radio-group';\nimport type { ComponentProps, ReactNode } from 'react';\nimport { choiceVariants } from '@/components/ui/checkbox';\nimport { ErrorIcon, RequiredBadge } from '@/components/ui/form-field';\nimport { tv } from '@/lib/tv';\n\nconst radioGroup = tv({\n  slots: {\n    root: 'm-0 flex min-w-0 flex-col gap-stack-sm border-0 p-0',\n    legend: 'inline-flex flex-wrap items-center gap-gap-sm p-0 font-bold text-fg data-[disabled]:text-fg-disabled',\n    description: 'm-0 text-body-sm text-fg-subtle',\n    error: 'm-0 flex items-start gap-gap-xs text-body-sm font-bold text-fg-danger',\n    options: 'flex flex-col',\n  },\n  variants: {\n    orientation: {\n      vertical: {},\n      horizontal: { options: 'flex-row flex-wrap gap-x-stack-md' },\n    },\n  },\n  defaultVariants: { orientation: 'vertical' },\n});\n\nexport interface RadioGroupProps extends Omit<ComponentProps<typeof BaseRadioGroup>, 'className'> {\n  /** グループの問い（fieldset の legend になる） */\n  legend: ReactNode;\n  supportText?: ReactNode;\n  error?: ReactNode;\n  required?: boolean;\n  /** 選択肢が 2〜3 個で短い場合だけ横並びにする */\n  orientation?: 'vertical' | 'horizontal';\n  className?: string;\n  children: ReactNode;\n}\n\n/** 単一選択。fieldset と legend で問いと選択肢をまとめる */\nexport function RadioGroup({\n  legend,\n  supportText,\n  error,\n  required = false,\n  orientation,\n  name,\n  disabled,\n  className,\n  children,\n  ...rest\n}: RadioGroupProps) {\n  const s = radioGroup({ orientation });\n  return (\n    <Field.Root name={name} disabled={disabled} invalid={error ? true : undefined}>\n      <Fieldset.Root\n        render={<BaseRadioGroup name={name} required={required} disabled={disabled} {...rest} />}\n        className={s.root({ className })}\n      >\n        <Fieldset.Legend className={s.legend()}>\n          {legend}\n          {required && <RequiredBadge required />}\n        </Fieldset.Legend>\n        {supportText && <Field.Description className={s.description()}>{supportText}</Field.Description>}\n        {error && (\n          <Field.Error match className={s.error()}>\n            <ErrorIcon />\n            {error}\n          </Field.Error>\n        )}\n        <div className={s.options()}>{children}</div>\n      </Fieldset.Root>\n    </Field.Root>\n  );\n}\n\nexport interface RadioProps extends Omit<ComponentProps<typeof BaseRadio.Root>, 'className'> {\n  value: string;\n  label: ReactNode;\n  description?: ReactNode;\n  className?: string;\n}\n\n/**\n * ラジオボタン（Base UI の Radio）。RadioGroup の中で使う。\n * 選択肢ごとに Field.Item で区切る。区切らないと、グループの Field.Root が持つ 1 つのラベル ID を\n * 全選択肢が共有し、どの選択肢も先頭のラベル名で読み上げられる。\n */\nexport function Radio({ label, description, className, ...rest }: RadioProps) {\n  const s = choiceVariants();\n  return (\n    <Field.Item>\n      <Field.Label className={s.label({ className })}>\n        <BaseRadio.Root\n          className={s.control({\n            className: 'rounded-full data-[checked]:border-key forced-colors:data-[checked]:border-[Highlight]',\n          })}\n          {...rest}\n        >\n          <BaseRadio.Indicator className=\"size-[calc(var(--choice-box)/2)] rounded-full bg-key group-data-[disabled]/control:bg-fg-disabled forced-colors:bg-[CanvasText]\" />\n        </BaseRadio.Root>\n        <span className={s.text()}>\n          <span>{label}</span>\n          {description && <span className={s.description()}>{description}</span>}\n        </span>\n      </Field.Label>\n    </Field.Item>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

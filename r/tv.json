@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tv",
+  "title": "tv / cn",
+  "description": "tkc310-ui のテーマ名を登録した tailwind-variants と、フォーカス表示のクラス",
+  "dependencies": [
+    "tailwind-variants@^3.3.0"
+  ],
+  "files": [
+    {
+      "path": "src/lib/tv.ts",
+      "content": "import { cnMerge, createTV } from 'tailwind-variants';\nimport { twMergeConfig } from '@/lib/tw-merge-config';\n\n/**\n * tkc310-ui のテーマ名を登録した tv。コンポーネントは必ずこちらを使う。\n * （tailwind-variants の tv をそのまま使うと `text-fg text-body-md` の文字色が消える）\n */\nexport const tv = createTV({ twMerge: true, twMergeConfig });\n\n/** クラス名を結合し、競合するユーティリティは後勝ちで 1 つにする */\nexport const cn = (...classes: Parameters<typeof cnMerge>) => cnMerge(...classes)({ twMerge: true, twMergeConfig });\n\nexport type { VariantProps } from 'tailwind-variants';\n",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/lib/tw-merge-config.ts",
+      "content": "/* このファイルは packages/tokens/scripts/generate-tw-merge.ts が生成します。直接編集しないでください。 */\n/**\n * tailwind-variants のクラス統合に登録する tkc310-ui 独自のテーマ名。\n * これが無いと `text-fg text-body-md` の文字色が消えるなど、クラスの競合判定を誤る。\n */\nexport const twMergeConfig = {\n  extend: {\n    theme: {\n      text: ['display-lg', 'display-md', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'heading-xxs', 'body-lg', 'body-md', 'body-sm', 'dense-md', 'dense-sm', 'label-md', 'label-sm', 'mono-md', 'mono-sm'],\n      shadow: ['1', '2', '3'],\n      spacing: ['inset-xs', 'inset-sm', 'inset-md', 'inset-lg', 'inset-xl', 'gap-xs', 'gap-sm', 'gap-md', 'stack-sm', 'stack-md', 'stack-lg', 'gutter', 'page-inline', 'control-sm', 'control-md', 'control-lg', 'target-min', 'icon-sm', 'icon-md', 'icon-lg'],\n      container: ['content', 'prose'],\n      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl', 'full'],\n      'font-weight': ['regular', 'bold'],\n    },\n  },\n} as const;\n",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/lib/focus.ts",
+      "content": "/**\n * フォーカス表示（二重リング: 内側が黄 color.focus.ring、外側が color.focus.outline）。\n * Base UI は data-focus-visible を付けないため、:focus-visible で描く。\n * 実体は styles/theme.css の @utility focus-ring。\n */\nexport const focusRing = 'focus-ring';\n/** 子孫にフォーカスがあるとき自分にリングを描く（カード全体をリンクにする場合など） */\nexport const focusRingWithin = 'focus-ring-within';\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

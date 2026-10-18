@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text",
+  "title": "Text",
+  "description": "本文の文字。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@tkc/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/text/text.tsx",
+      "content": "import type { ElementType, HTMLAttributes } from 'react';\nimport { type VariantProps, tv } from '@/lib/tv';\n\nexport const textVariants = tv({\n  base: 'm-0',\n  variants: {\n    variant: {\n      'body-lg': 'text-body-lg',\n      'body-md': 'text-body-md',\n      'body-sm': 'text-body-sm',\n      'dense-md': 'text-dense-md',\n      'dense-sm': 'text-dense-sm',\n      'mono-md': 'font-mono text-mono-md',\n      'mono-sm': 'font-mono text-mono-sm',\n    },\n    tone: {\n      default: 'text-fg',\n      subtle: 'text-fg-subtle',\n      key: 'text-fg-key',\n      danger: 'text-fg-danger',\n      success: 'text-fg-success',\n      warning: 'text-fg-warning',\n    },\n    weight: { regular: 'font-regular', bold: 'font-bold' },\n  },\n  defaultVariants: { variant: 'body-md', tone: 'default' },\n});\n\nexport interface TextProps extends HTMLAttributes<HTMLElement>, VariantProps<typeof textVariants> {\n  as?: 'p' | 'span' | 'div' | 'small' | 'strong' | 'em' | 'code';\n}\n\n/** 本文の文字。テキストスタイルと色調（tone）を semantic トークンから選ぶ。 */\nexport function Text({ as = 'p', variant, tone, weight, className, ...rest }: TextProps) {\n  const Tag = as as ElementType;\n  return <Tag className={textVariants({ variant, tone, weight, className })} {...rest} />;\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

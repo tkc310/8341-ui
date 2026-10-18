@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon",
+  "title": "Icon",
+  "description": "線で描くアイコン。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@tkc/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/icon/icon.tsx",
+      "content": "import type { SVGProps } from 'react';\nimport { tv } from '@/lib/tv';\n\n/** 24×24 グリッド・線幅 2 の最小アイコンセット。追加するときも同じ規格に揃える（線で描き、塗らない） */\nconst paths = {\n  'chevron-down': <path d=\"M6 9l6 6 6-6\" />,\n  'chevron-right': <path d=\"M9 6l6 6-6 6\" />,\n  'chevron-left': <path d=\"M15 6l-6 6 6 6\" />,\n  'arrow-right': <path d=\"M5 12h14M13 6l6 6-6 6\" />,\n  external: (\n    <>\n      <path d=\"M14 4h6v6\" />\n      <path d=\"M20 4l-9 9\" />\n      <path d=\"M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5\" />\n    </>\n  ),\n  check: <path d=\"M5 12.5l4.5 4.5L19 7.5\" />,\n  minus: <path d=\"M6 12h12\" />,\n  close: <path d=\"M6 6l12 12M18 6L6 18\" />,\n  info: (\n    <>\n      <circle cx=\"12\" cy=\"12\" r=\"9\" />\n      <path d=\"M12 11v6M12 7.5v.5\" />\n    </>\n  ),\n  success: (\n    <>\n      <circle cx=\"12\" cy=\"12\" r=\"9\" />\n      <path d=\"M8 12.5l2.8 2.8L16.5 9.5\" />\n    </>\n  ),\n  warning: (\n    <>\n      <path d=\"M12 3.5L2.5 20h19z\" />\n      <path d=\"M12 10v4.5M12 17v.5\" />\n    </>\n  ),\n  danger: (\n    <>\n      <path d=\"M8.3 3h7.4L21 8.3v7.4L15.7 21H8.3L3 15.7V8.3z\" />\n      <path d=\"M12 7.5v5.5M12 16v.5\" />\n    </>\n  ),\n  search: (\n    <>\n      <circle cx=\"11\" cy=\"11\" r=\"6.5\" />\n      <path d=\"M16 16l4.5 4.5\" />\n    </>\n  ),\n} as const;\n\nexport type IconName = keyof typeof paths;\nexport const iconNames = Object.keys(paths) as IconName[];\n\nconst icon = tv({\n  base: 'inline-block shrink-0 align-middle',\n  variants: {\n    size: { sm: 'size-icon-sm', md: 'size-icon-md', lg: 'size-icon-lg', inherit: 'size-[1em]' },\n  },\n  defaultVariants: { size: 'md' },\n});\n\nexport interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'children'> {\n  name: IconName;\n  size?: 'sm' | 'md' | 'lg' | 'inherit';\n  /**\n   * アイコン単体で意味を伝える場合だけ指定する（原則はテキストと併用し、指定しない）。\n   * 未指定なら aria-hidden になる。\n   */\n  label?: string;\n}\n\n/** 線で描くアイコン。原則テキストと併用し、単独で使う場合だけ label を付ける。 */\nexport function Icon({ name, size, label, className, ...rest }: IconProps) {\n  return (\n    <svg\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth={2}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className={icon({ size, className })}\n      focusable=\"false\"\n      {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}\n      {...rest}\n    >\n      {paths[name]}\n    </svg>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

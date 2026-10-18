@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "link",
+  "title": "Link",
+  "description": "ページ遷移のリンク。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@tkc/icon",
+    "@tkc/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/link/link.tsx",
+      "content": "import type { AnchorHTMLAttributes } from 'react';\nimport { Icon } from '@/components/ui/icon';\nimport { tv } from '@/lib/tv';\n\n/**\n * リンクの 5 状態: default / visited / hover / active / focus\n * - 下線は常に表示する（色だけで判別させない）\n * - hover では下線を太くするだけで、文字の太さ・大きさは変えない（レイアウトがずれないように）\n * - focus では背景も黄色にして、文中のリンクでも見失わないようにする\n */\nexport const linkVariants = tv({\n  base: [\n    'rounded-xs text-fg-link underline decoration-1 underline-offset-[0.2em]',\n    'visited:text-fg-link-visited hover:text-fg-link-hover hover:decoration-(length:--tkc-border-width-underline-hover) active:text-fg-link-active',\n    // Tailwind v4 の outline-none は線種を none にするため使わず、:focus-visible で線種から指定する\n    'focus-visible:bg-focus-ring focus-visible:text-focus-text focus-visible:decoration-1 focus-visible:outline-solid',\n    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-outline',\n    'forced-colors:focus-visible:bg-transparent forced-colors:focus-visible:outline-[Highlight]',\n  ],\n});\n\nexport interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {\n  /** 外部サイトへのリンク。末尾にアイコンを付ける。未指定なら target=\"_blank\" のとき true */\n  external?: boolean;\n  /** 新しいタブで開くときに読み上げる補足 */\n  newTabLabel?: string;\n}\n\n/** ページ遷移のリンク。下線は常に表示し、新しいタブで開く場合は読み上げ用の補足を付ける。 */\nexport function Link({\n  external,\n  newTabLabel = '（新しいタブで開きます）',\n  target,\n  rel,\n  className,\n  children,\n  ...rest\n}: LinkProps) {\n  const opensNewTab = target === '_blank';\n  const isExternal = external ?? opensNewTab;\n  return (\n    <a\n      className={linkVariants({ className })}\n      target={target}\n      rel={opensNewTab ? [rel, 'noopener', 'noreferrer'].filter(Boolean).join(' ') : rel}\n      {...rest}\n    >\n      {children}\n      {isExternal && <Icon name=\"external\" size=\"inherit\" className=\"ms-[0.2em] align-[-0.125em]\" />}\n      {opensNewTab && <span className=\"sr-only\">{newTabLabel}</span>}\n    </a>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

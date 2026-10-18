@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "divider",
+  "title": "Divider",
+  "description": "内容を区切る線（Base UI の Separator）。",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@tkc/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/divider/divider.tsx",
+      "content": "import { Separator } from '@base-ui/react/separator';\nimport type { ComponentProps } from 'react';\nimport { type VariantProps, tv } from '@/lib/tv';\n\nexport const dividerVariants = tv({\n  base: 'm-0 shrink-0 border-0',\n  variants: {\n    /** subtle は装飾。意味のある区切り（内容の切れ目）には default を使う */\n    tone: { subtle: 'bg-border-subtle', default: 'bg-border' },\n    orientation: { horizontal: 'h-px w-full', vertical: 'w-px self-stretch' },\n  },\n  defaultVariants: { tone: 'subtle', orientation: 'horizontal' },\n});\n\nexport interface DividerProps\n  extends Omit<ComponentProps<typeof Separator>, 'className'>, VariantProps<typeof dividerVariants> {\n  className?: string;\n}\n\n/** 内容を区切る線（Base UI の Separator）。装飾なら subtle、意味のある区切りなら default。 */\nexport function Divider({ tone, orientation = 'horizontal', className, ...rest }: DividerProps) {\n  return (\n    <Separator orientation={orientation} className={dividerVariants({ tone, orientation, className })} {...rest} />\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

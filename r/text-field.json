@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-field",
+  "title": "TextField",
+  "description": "1 行のテキスト入力。",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@tkc/form-field",
+    "@tkc/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/text-field/text-field.tsx",
+      "content": "'use client';\n\nimport { Field } from '@base-ui/react/field';\nimport type { ComponentProps } from 'react';\nimport { type ControlSize, controlVariants, useFormField } from '@/components/ui/form-field';\n\nexport interface TextFieldProps extends Omit<ComponentProps<typeof Field.Control>, 'className' | 'size'> {\n  size?: ControlSize;\n  className?: string;\n}\n\n/**\n * 1 行のテキスト入力。FormField の中に置くと、ラベル・補足・エラーと自動で関連付く。\n * 入力の種類に合わせて type / inputMode / autoComplete を必ず指定する。\n */\nexport function TextField({ size, className, required, type = 'text', ...rest }: TextFieldProps) {\n  const field = useFormField();\n  return (\n    <Field.Control\n      type={type}\n      required={required ?? field.required}\n      className={controlVariants({ size, className })}\n      {...rest}\n    />\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
