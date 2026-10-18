@@ -8,6 +8,7 @@ AI エージェント向けの作業ガイドです。
 | -------------------------------- | ------------------------------------------------------- |
 | このシステムで UI を作る         | `DESIGN.md` → `.claude/skills/ds-build-ui/SKILL.md`     |
 | このシステム自体を直す・改善する | `docs/rulebook/` → `.claude/skills/ds-improve/SKILL.md` |
+| 見た目が変わる変更を PR にする | `.claude/skills/ds-storybook-preview/SKILL.md`（ローカルでビルドして Pages に公開し、PR にリンクを添える） |
 | 判断の理由を知る                 | `docs/decisions/`                                       |
 
 ## 技術スタック

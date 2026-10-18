@@ -62,6 +62,7 @@ module.exports = {
           'vite[.]config[.]ts$',
           '(^|/)[.]storybook/',
           '[.](stories|figma)[.]tsx?$',
+          '(^|/)scripts/',
         ],
       },
       to: {},

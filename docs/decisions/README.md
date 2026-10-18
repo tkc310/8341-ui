@@ -14,6 +14,7 @@
 | [0008](./0008-stack-2026-10.md)               | Base UI + Tailwind v4 + shadcn 方式などの技術スタック | 採用           |
 | [0009](./0009-dtcg-representation.md)         | DTCG 2025.10 でのトークンの表し方                     | 採用           |
 | [0010](./0010-tailwind-theme-mapping.md)      | Tailwind のテーマ名とトークンの対応                   | 採用           |
+| [0011](./0011-storybook-pr-preview.md) | PR ごとの Storybook をローカルでビルドし Pages（gh-pages ブランチ）に置く | 採用 |
 
 ## テンプレート
 

@@ -7,5 +7,5 @@
     },
     "types": ["node"]
   },
-  "include": ["src", ".storybook", "e2e", "vite.config.ts", "playwright.config.ts"]
+  "include": ["src", ".storybook", "e2e", "scripts", "vite.config.ts", "playwright.config.ts"]
 }
