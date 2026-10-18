@@ -1,3 +1,4 @@
+/// <reference path="../src/env.d.ts" />
 import type { Decorator, Preview } from '@storybook/react-vite';
 import { useEffect } from 'react';
 import '../src/storybook.css';
