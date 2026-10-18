@@ -18,8 +18,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install  # package-lock.json をコミットしたら npm ci に変える
-      - run: npm run audit
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm audit:report
       - name: レポートを Issue に投稿（同じラベルの未解決 Issue があれば更新）
         env:
           GH_TOKEN: ${{ github.token }}

@@ -1,0 +1,28 @@
+{
+  "name": "tkc310-ui-monorepo",
+  "private": true,
+  "type": "module",
+  "description": "tkc310-ui のモノレポ（トークン / コンポーネント / Storybook / レジストリ）",
+  "license": "MIT",
+  "devEngines": {
+    "packageManager": { "name": "pnpm", "version": "^11.0.0", "onFail": "download" },
+    "runtime": { "name": "node", "version": ">=22.12.0" }
+  },
+  "scripts": {
+    "dev": "vp run tkc310-ui-storybook#dev",
+    "build": "vp run -r build",
+    "check": "vp check && vp run -r check && depcruise packages apps",
+    "test": "vp run -r test",
+    "test:vrt": "vp run tkc310-ui#test:vrt",
+    "test:e2e": "vp run tkc310-ui-storybook#test:e2e",
+    "audit:report": "vp run tkc310-ui-tokens#audit",
+    "changeset": "changeset",
+    "release": "vp run -r build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "catalog:",
+    "dependency-cruiser": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}
