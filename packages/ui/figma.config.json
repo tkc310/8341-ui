@@ -1,0 +1,10 @@
+{
+  "codeConnect": {
+    "include": ["src/components/**/*.figma.ts"],
+    "label": "React",
+    "language": "jsx",
+    "documentUrlSubstitutions": {
+      "<FIGMA_DS_URL>": "https://www.figma.com/design/REPLACE_WITH_FILE_KEY/tkc310-ui"
+    }
+  }
+}

@@ -18,6 +18,7 @@ export interface DividerProps
   className?: string;
 }
 
+/** 内容を区切る線（Base UI の Separator）。装飾なら subtle、意味のある区切りなら default。 */
 export function Divider({ tone, orientation = 'horizontal', className, ...rest }: DividerProps) {
   return <Separator orientation={orientation} className={dividerVariants({ tone, orientation, className })} {...rest} />;
 }

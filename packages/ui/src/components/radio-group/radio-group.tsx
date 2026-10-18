@@ -80,6 +80,7 @@ export interface RadioProps extends Omit<ComponentProps<typeof BaseRadio.Root>, 
   className?: string;
 }
 
+/** ラジオボタン（Base UI の Radio）。RadioGroup の中で使う。 */
 export function Radio({ label, description, className, ...rest }: RadioProps) {
   const s = choiceVariants();
   return (

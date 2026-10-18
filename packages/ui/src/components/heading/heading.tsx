@@ -50,6 +50,7 @@ export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement>, Varian
   shoulder?: ReactNode;
 }
 
+/** 見出し。文書構造（level）と見た目（size）を分けて指定でき、レベルは飛ばさない。 */
 export function Heading({ level, size, decoration, shoulder, className, children, ...rest }: HeadingProps) {
   const Tag = `h${level}` as const;
   const s = headingVariants({ size: size ?? defaultSize[level], decoration });

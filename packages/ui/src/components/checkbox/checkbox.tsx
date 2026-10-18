@@ -40,6 +40,7 @@ export interface CheckboxProps extends Omit<ComponentProps<typeof BaseCheckbox.R
   className?: string;
 }
 
+/** チェックボックス（Base UI の Checkbox）。ラベル全体がタップ領域になり、一部選択（indeterminate）も表せる。 */
 export function Checkbox({ label, description, size, className, ...rest }: CheckboxProps) {
   const s = choiceVariants({ size });
   return (

@@ -30,6 +30,7 @@ export interface TextProps extends HTMLAttributes<HTMLElement>, VariantProps<typ
   as?: 'p' | 'span' | 'div' | 'small' | 'strong' | 'em' | 'code';
 }
 
+/** 本文の文字。テキストスタイルと色調（tone）を semantic トークンから選ぶ。 */
 export function Text({ as = 'p', variant, tone, weight, className, ...rest }: TextProps) {
   const Tag = as as ElementType;
   return <Tag className={textVariants({ variant, tone, weight, className })} {...rest} />;

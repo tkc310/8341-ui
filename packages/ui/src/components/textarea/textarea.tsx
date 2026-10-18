@@ -13,6 +13,7 @@ export interface TextareaProps extends Omit<ComponentProps<'textarea'>, 'classNa
   countLimit?: number;
 }
 
+/** 複数行のテキスト入力。文字数カウンターを付けられ、上限を超えても入力は止めない。 */
 export function Textarea({ className, countLimit, rows = 4, required, onChange, ...rest }: TextareaProps) {
   const field = useFormField();
   const counterId = useId();

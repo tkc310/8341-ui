@@ -50,6 +50,7 @@ export interface NotificationBannerProps
   live?: boolean;
 }
 
+/** 状態を伝えるバナー。色・アイコン・文言（読み上げ用の種別名）を併用する。 */
 export function NotificationBanner({
   tone = 'info',
   title,

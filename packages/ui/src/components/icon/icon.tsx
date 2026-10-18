@@ -70,6 +70,7 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'children'> {
   label?: string;
 }
 
+/** 線で描くアイコン。原則テキストと併用し、単独で使う場合だけ label を付ける。 */
 export function Icon({ name, size, label, className, ...rest }: IconProps) {
   return (
     <svg

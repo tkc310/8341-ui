@@ -25,6 +25,7 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   newTabLabel?: string;
 }
 
+/** ページ遷移のリンク。下線は常に表示し、新しいタブで開く場合は読み上げ用の補足を付ける。 */
 export function Link({
   external,
   newTabLabel = '（新しいタブで開きます）',

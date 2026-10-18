@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/ui/*": ["../../packages/ui/src/components/*"],
+      "@/lib/*": ["../../packages/ui/src/lib/*"]
+    },
+    "types": ["node"]
+  },
+  "include": ["src", ".storybook", "e2e", "vite.config.ts", "playwright.config.ts"]
+}

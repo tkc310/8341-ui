@@ -21,6 +21,7 @@ export interface StackProps extends HTMLAttributes<HTMLElement>, VariantProps<ty
   as?: 'div' | 'section' | 'ul' | 'ol' | 'form' | 'fieldset';
 }
 
+/** 子要素の間隔だけを管理するレイアウト部品。余白は sm / md / lg の 3 段階。 */
 export function Stack({ as = 'div', direction, gap, align, wrap, className, ...rest }: StackProps) {
   const Tag = as as ElementType;
   return <Tag className={stackVariants({ direction, gap, align, wrap, className })} {...rest} />;

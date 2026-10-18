@@ -1,0 +1,36 @@
+{
+  "name": "tkc310-ui-storybook",
+  "private": true,
+  "type": "module",
+  "description": "tkc310-ui のドキュメント（Storybook 10）と shadcn レジストリの配信元",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "vp run tkc310-ui#registry:build && storybook build",
+    "test": "vp test --project storybook",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tkc310-ui": "workspace:*",
+    "tkc310-ui-tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@base-ui/react": "catalog:",
+    "@playwright/test": "catalog:",
+    "@storybook/addon-a11y": "catalog:",
+    "@storybook/addon-docs": "catalog:",
+    "@storybook/addon-vitest": "catalog:",
+    "@storybook/react-vite": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@vitest/browser-playwright": "catalog:",
+    "playwright": "catalog:",
+    "storybook": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

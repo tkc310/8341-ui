@@ -16,6 +16,7 @@ export interface BreadcrumbProps {
   className?: string;
 }
 
+/** パンくずリスト。現在地に aria-current="page" を付ける。 */
 export function Breadcrumb({ items, label = 'パンくずリスト', className }: BreadcrumbProps) {
   return (
     <nav aria-label={label} className={className}>

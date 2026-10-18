@@ -4,7 +4,9 @@
   "description": "プロジェクトで使い回す自分用のデザインシステム（React + Base UI + Tailwind CSS v4 / アクセシビリティ優先）",
   "type": "module",
   "license": "MIT",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -18,13 +20,17 @@
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vp pack && tailwindcss -i src/styles/build.css -o dist/styles.css --minify && tsx scripts/check-dist.ts",
-    "check": "tsx scripts/audit-classes.ts",
+    "check": "tsx scripts/audit-classes.ts && tsx scripts/generate-registry.ts --check",
     "test": "vp test --project unit",
     "test:vrt": "vp test --project vrt",
-    "figma:publish": "figma connect publish"
+    "figma:publish": "figma connect publish",
+    "registry": "tsx scripts/generate-registry.ts",
+    "registry:build": "shadcn build ./registry.json -o ../../apps/storybook/public/r"
   },
   "dependencies": {
     "@base-ui/react": "catalog:",
@@ -37,7 +43,9 @@
     "tailwindcss": ">=4.1"
   },
   "peerDependenciesMeta": {
-    "tailwindcss": { "optional": true }
+    "tailwindcss": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@figma/code-connect": "catalog:",
@@ -54,6 +62,7 @@
     "happy-dom": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "shadcn": "catalog:",
     "tailwindcss": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
