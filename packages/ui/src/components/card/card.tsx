@@ -10,7 +10,7 @@ export const cardVariants = tv({
     body: 'flex flex-1 flex-col gap-stack-sm p-inset-xl',
     eyebrow: 'm-0 text-body-sm text-fg-subtle',
     title: 'm-0 text-heading-xs',
-    link: 'text-fg-link underline decoration-1 underline-offset-[0.2em] outline-none after:absolute after:inset-0 after:content-[""] group-hover/card:decoration-(length:--tkc-border-width-underline-hover)',
+    link: 'text-fg-link underline decoration-1 underline-offset-[0.2em] outline-none after:absolute after:inset-0 after:content-[""] group-hover/card:decoration-(length:--tkc-border-width-underline-hover)', // allow-outline-none: フォーカスはカード全体に focus-ring-within で描く
     content: '[&>p]:m-0',
     footer: 'flex items-center justify-between gap-gap-sm px-inset-xl pb-inset-xl text-fg-subtle',
     arrow: 'ms-auto text-icon-key transition-transform group-hover/card:translate-x-gap-xs',

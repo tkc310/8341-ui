@@ -24,7 +24,7 @@ export function Breadcrumb({ items, label = 'パンくずリスト', className }
         {items.map((item, i) => {
           const current = i === items.length - 1;
           return (
-            // biome-ignore lint/suspicious/noArrayIndexKey: 順序が意味を持つ静的なリスト
+            // oxlint-disable-next-line react/no-array-index-key -- 順序が意味を持つ静的なリスト
             <li key={i} className="inline-flex items-center gap-gap-sm">
               {current || !item.href ? (
                 <span aria-current={current ? 'page' : undefined} className={cn(current && 'text-fg')}>

@@ -16,13 +16,15 @@ description: このデザインシステムを使って画面やフォームを�
 ## 作るときの決まり
 
 - 既存コンポーネントを組み合わせる。足りないときは独自に作る前にバックログを確認し、無ければ Issue を起票する
-- 余白は `Stack`（gap は sm / md / lg の 3 段階）、色・寸法は semantic トークンの CSS 変数だけ
-- フォームは必ず `FormField` で包み、`type` / `inputMode` / `autoComplete` を指定する
+- 部品は shadcn 方式で取り込む（`npx shadcn@latest add @tkc/{name}`）か、npm の `tkc310-ui` から import する
+- 余白は `Stack`（gap は sm / md / lg の 3 段階）、色・寸法は semantic トークンの Tailwind クラス（`bg-*`・`text-fg-*`・`border-border-*`・`p-inset-*`）だけ
+- 独自のバリアントは `tv()`（`@/lib/tv`）で書く。クラス名を動的に組み立てない
+- フォームは Base UI の `Form` と `FormField` で組み、`type` / `inputMode` / `autoComplete` を指定する
 - 1 画面の primary ボタンは 1 つを目安に
 
 ## 作った後のセルフチェック
 
-- [ ] 色・px の直書きがない
+- [ ] 色・px の直書き、Tailwind 既定のパレット（`text-gray-500` など）がない
 - [ ] 見出しレベルが飛んでいない（h1 は 1 つ）
 - [ ] すべての入力欄にラベル、必須は「必須」表示
 - [ ] エラー文が「何が誤りで、どう直すか」になっている

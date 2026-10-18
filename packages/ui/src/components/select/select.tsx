@@ -17,13 +17,13 @@ const select = tv({
   slots: {
     trigger: 'flex cursor-pointer items-center justify-between gap-gap-sm text-start data-[placeholder]:text-fg-subtle',
     icon: 'shrink-0 text-icon',
-    positioner: 'z-(--tkc-z-dropdown) outline-none',
+    positioner: 'z-(--tkc-z-dropdown)',
     popup: [
       'max-h-(--available-height) min-w-(--anchor-width) overflow-y-auto rounded-md border border-border bg-surface p-inset-xs shadow-2',
       'origin-(--transform-origin) transition-[opacity,scale] data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0',
     ],
     item: [
-      'flex min-h-target-min cursor-default items-center gap-gap-sm rounded-sm px-inset-sm text-body-md text-fg outline-none select-none',
+      'flex min-h-target-min cursor-default items-center gap-gap-sm rounded-sm px-inset-sm text-body-md text-fg select-none',
       'data-[highlighted]:bg-key-subtle data-[disabled]:text-fg-disabled',
       'forced-colors:data-[highlighted]:bg-[Highlight] forced-colors:data-[highlighted]:text-[HighlightText]',
     ],

@@ -1,13 +1,19 @@
 # DESIGN.md — tkc310-ui
 
 > AI エージェントがこのデザインシステムに沿った日本語 UI を生成・修正するための仕様書です。
-> `<!-- auto:* -->` で囲まれた表は `npm run tokens:build` がトークンから自動生成します（手で編集しない）。
+> `<!-- auto:* -->` で囲まれた表は `pnpm --filter tkc310-ui-tokens design-md` がトークンとコンポーネントから自動生成します（手で編集しない）。
 > 詳しいルールと理由は `docs/rulebook/`、設計判断は `docs/decisions/` を参照してください。
 
-- パッケージ: `tkc310-ui`（React + TypeScript）
-- CSS 接頭辞: `tkc-`（クラス）、`--tkc-`（CSS 変数）
-- 準拠: WCAG 2.2 AA / JIS X 8341-3:2016
-- 参考: デジタル庁デザインシステム（DADS）
+| 項目 | 内容 |
+| --- | --- |
+| パッケージ | `tkc310-ui`（コンポーネント）、`tkc310-ui-tokens`（トークン） |
+| ヘッドレス UI | Base UI v1（`@base-ui/react`） |
+| スタイリング | Tailwind CSS v4 + CSS 変数（`--tkc-*`）。バリアントは tailwind-variants v3 |
+| 配布 | shadcn 方式（レジストリ `@tkc`、`registry:base` で Base UI を固定）と npm パッケージ |
+| トークン | W3C DTCG 2025.10 → Style Dictionary v5 |
+| 準拠 | WCAG 2.2 AA / JIS X 8341-3:2016 |
+
+---
 
 ## 0. 位置づけと採用したルール
 
@@ -17,24 +23,23 @@
 - **原則とトークン・コンポーネントの対応**: `docs/rulebook/01-principles.md`
 - **必須ルールを外した項目**: なし。タップ領域 44px、文字のコントラストを一律 4.5:1、リンクの下線必須、二重のフォーカス線は、上流の必須より厳しくしている
 
----
-
 ## 1. Visual Theme & Atmosphere
 
 - **キーワード**: 静か・明快・誠実。装飾を控え、文字と情報を主役にする
 - **キーカラー**: 藍（OKLCH hue 265）。落ち着いた青紫
 - **密度**: 本文 16px・行間 1.7。コントロールの標準高さ 44px（= 最小タップ領域）
-- **テーマ**: ライト / ダーク。`<html data-theme="dark">` で明示、属性なしなら OS 設定に従う
-- **奥行き**: 面の差は背景色と罫線で表す。影は浮いている物（メニュー・モーダル）にだけ使う
+- **テーマ**: ライト / ダーク。`<html class="dark">` または `<html data-theme="dark">`。どちらも無ければ OS の設定に従う
+- **奥行き**: 面の差は背景色と罫線で表す。影は浮いている物（メニュー・ポップアップ）にだけ使う
 
 ## 2. Color Palette & Roles
 
 ### 使い方の原則
 
-- コンポーネント・アプリは **semantic トークンだけ** を使う（`var(--tkc-color-text-default)` など）
-- primitive（`--tkc-color-primitive-*`）と色の直書きは禁止（`npm run check:css` が検出）
-- すべての組み合わせは `tokens/contrast.rules.json` で両テーマ検証済み: 文字 4.5:1 以上、UI 境界 3:1 以上
-- `color.border.subtle` は装飾専用（3:1 未満）。入力欄やカードの境界には `border.input` / `border.default`
+- **semantic トークンの Tailwind クラスだけを使う**: 面は `bg-*`、文字は `text-fg-*`、アイコンは `text-icon-*`、線は `border-border-*`
+- Tailwind 既定のパレット（`text-gray-500`、`bg-blue-600` など）はテーマで消してあり、**効かない**
+- 任意値（`bg-[...]`）で色を書かない。手書きの CSS や任意値でトークンが必要なら `var(--tkc-*)` を参照する（`--color-*` などの Tailwind のテーマ変数は、使われたものしか出力されないため参照しない）
+- すべての組み合わせは `packages/tokens/src/contrast.rules.json` で両テーマ検証済み: 文字 4.5:1 以上、UI 境界 3:1 以上
+- `border-border-subtle` は装飾専用（3:1 未満）。入力欄やカードの境界には `border-border-input` / `border-border`
 
 ### Semantic colors
 
@@ -97,6 +102,7 @@
 ### Primitive colors（参照用）
 
 全色相で OKLCH の明度カーブを共有。段階番号がコントラストの目安になる（600 ≒ 白背景 4.5:1、800 ≒ 8:1）。
+DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` の形で持ち、CSS には `oklch()` で出力する。
 
 <!-- auto:primitive-colors -->
 | family | 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100 | 1200 |
@@ -113,18 +119,14 @@
 
 ## 3. Typography Rules
 
-```css
---tkc-font-family-sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
---tkc-font-family-mono: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-```
-
-- 太さは **400 と 700 の 2 種類のみ**
-- **最小 14px**。それ未満は使わない
+- フォント: `font-sans`（Noto Sans JP → OS の和文ゴシック）、`font-mono`（Noto Sans Mono）
+- **太さは `font-regular`（400）と `font-bold`（700）の 2 種類のみ**
+- **最小 14px**（`text-body-sm`）。Tailwind 既定の `text-xs` などは消してあり使えない
+- 文字サイズは `text-{スタイル名}` で指定し、行間・字間・太さも一緒に決まる
 - 字間はサイズに反比例: 44px 以上 `0` / 28〜36px `0.01em` / それ以下 `0.02em`
-- 見出し（Heading）のみ `font-feature-settings: 'palt'`。本文はベタ組み
-- 本文の 1 行は最大 `--tkc-size-prose-max`（720px ≒ 40〜45 字）
-- 和文の改行: `line-break: strict; overflow-wrap: anywhere;`（base.css で設定済み）
-- テキストスタイルはクラス `.tkc-text-{style}` か、CSS 変数 `--tkc-text-{style}-{font-size|line-height|...}` で使う
+- 見出し（Heading）のみ `palt`。本文はベタ組み
+- 本文の 1 行は最大 `max-w-prose`（720px ≒ 40〜45 字）
+- 和文の改行: `line-break: strict; overflow-wrap: anywhere;`（テーマの base 層で設定済み）
 
 <!-- auto:typography -->
 | style | Tailwind | size | line-height | weight | letter-spacing | 用途 |
@@ -153,56 +155,59 @@
 ### 一覧
 
 <!-- auto:components -->
-- `Accordion` — `packages/ui/src/components/Accordion/`
-- `Breadcrumb` — `packages/ui/src/components/Breadcrumb/`
-- `Button` — `packages/ui/src/components/Button/`
-- `Card` — `packages/ui/src/components/Card/`
-- `Checkbox` — `packages/ui/src/components/Checkbox/`
-- `Divider` — `packages/ui/src/components/Divider/`
-- `FormField` — `packages/ui/src/components/FormField/`
-- `Heading` — `packages/ui/src/components/Heading/`
-- `Icon` — `packages/ui/src/components/Icon/`
-- `Link` — `packages/ui/src/components/Link/`
-- `NotificationBanner` — `packages/ui/src/components/NotificationBanner/`
-- `Radio` — `packages/ui/src/components/Radio/`
-- `Select` — `packages/ui/src/components/Select/`
-- `Stack` — `packages/ui/src/components/Stack/`
-- `Tag` — `packages/ui/src/components/Tag/`
-- `Text` — `packages/ui/src/components/Text/`
-- `TextField` — `packages/ui/src/components/TextField/`
-- `Textarea` — `packages/ui/src/components/Textarea/`
+- `accordion` — `packages/ui/src/components/accordion/`
+- `breadcrumb` — `packages/ui/src/components/breadcrumb/`
+- `button` — `packages/ui/src/components/button/`
+- `card` — `packages/ui/src/components/card/`
+- `checkbox` — `packages/ui/src/components/checkbox/`
+- `divider` — `packages/ui/src/components/divider/`
+- `form-field` — `packages/ui/src/components/form-field/`
+- `heading` — `packages/ui/src/components/heading/`
+- `icon` — `packages/ui/src/components/icon/`
+- `link` — `packages/ui/src/components/link/`
+- `notification-banner` — `packages/ui/src/components/notification-banner/`
+- `radio-group` — `packages/ui/src/components/radio-group/`
+- `select` — `packages/ui/src/components/select/`
+- `stack` — `packages/ui/src/components/stack/`
+- `tag` — `packages/ui/src/components/tag/`
+- `text` — `packages/ui/src/components/text/`
+- `text-field` — `packages/ui/src/components/text-field/`
+- `textarea` — `packages/ui/src/components/textarea/`
 <!-- /auto:components -->
 
 ### 共通規約
 
-- クラスは `tkc-{block}__{element}`、状態・バリエーションは `data-*` 属性（`data-variant`、`data-size`、`data-tone`）
-- ARIA で表せる状態は ARIA 属性をセレクタに使う（`[aria-invalid='true']`、`[aria-busy='true']`）
-- フォーカス可能な要素には `.tkc-focusable` を付け、共通の二重リングを使う
-- `:hover` は `@media (hover: hover)` 内に書き、`:not(:disabled)` を付ける
-- hover で文字の太さ・大きさを変えない
+- コンポーネントは Base UI の部品を `tv()`（`@/lib/tv`）のスタイルで包む。`tailwind-variants` の `tv` を直接使わない（独自のテーマ名を登録した `tv` でないと `text-fg text-body-md` の文字色が消える）
+- import パスは shadcn 方式: `@/components/ui/{name}`、`@/lib/{name}`
+- 状態は Base UI の data 属性で装飾する: `data-[checked]:`、`data-[invalid]:`、`data-[disabled]:`、`data-[highlighted]:`、`data-[panel-open]:`、`data-[starting-style]:`
+- **フォーカスは `focus-ring` クラス**（Base UI は `data-focus-visible` を付けないため `:focus-visible` で描く）。`outline-none` だけで消さない
+- 見た目が 44px 未満の操作対象には `tap-target` クラスでタップ領域を足す
+- `hover:` は Tailwind v4 では自動で `@media (hover: hover)` に入る。無効状態に効かせないよう `enabled:hover:` を使う
+- 強制カラーモードは `forced-colors:` で補う
+- `'use client'` はフック・コンテキスト・イベントハンドラを作るエントリだけに付ける（button / form-field / text-field / textarea / select）
 
 ### Button
 
 | prop | 値 | 備考 |
 | --- | --- | --- |
 | `variant` | `primary`（既定）/ `secondary` / `tertiary` / `danger` | primary は 1 画面 1 つが目安 |
-| `size` | `sm` 36px / `md` 44px（既定）/ `lg` 52px | sm は擬似要素でタップ領域 44px |
+| `size` | `sm` 36px / `md` 44px（既定）/ `lg` 52px | sm は `tap-target` でタップ領域 44px |
 | `loading` | boolean | `aria-busy`。disabled にせずクリックだけ無効化 |
 | `iconStart` / `iconEnd` | ReactNode | アイコンは文字と併用 |
 
-- 既定 `type="button"`。角丸 `radius.md`（sm は `radius.sm`）
-- 色: primary = `bg.key` / `text.on-key`、hover `bg.key-hover`、active `bg.key-active`
-- secondary = `bg.surface` + `border.key` + `text.key`、hover で `bg.key-subtle`
+- 既定 `type="button"`。Base UI の `render` prop で別要素にもできる（`nativeButton={false}` を併用）
+- primary: `bg-key text-fg-on-key`、hover `bg-key-hover`、active `bg-key-active`
+- secondary: `bg-surface border-border-key text-fg-key`、hover `bg-key-subtle`
 
 ### Link（5 状態）
 
 | 状態 | 表現 |
 | --- | --- |
-| default | `text.link` + 下線 1px（offset 0.2em） |
-| visited | `text.link-visited`（藤） |
-| hover | `text.link-hover` + 下線 3px（太さだけ変える） |
-| active | `text.link-active`（橙） |
-| focus | 背景 `focus.ring` + 文字 `focus.text` + 外側アウトライン |
+| default | `text-fg-link` + 下線 1px（offset 0.2em） |
+| visited | `text-fg-link-visited`（藤） |
+| hover | `text-fg-link-hover` + 下線 3px（太さだけ変える） |
+| active | `text-fg-link-active`（橙） |
+| focus | 背景 `bg-focus-ring` + 文字 `text-focus-text` + 外側アウトライン |
 
 - `target="_blank"` で外部アイコンと「（新しいタブで開きます）」の読み上げ補足が自動で付く
 
@@ -214,31 +219,45 @@
 </FormField>
 ```
 
-- FormField が `id`・`aria-describedby`（エラー → 補足の順）・`aria-invalid`・`required` を子に渡す
+- FormField は Base UI の `Field`。`aria-describedby`（補足とエラー）と `aria-invalid` は Base UI が付ける
+- `error` を渡すとその文を表示する。渡さなければ、ネイティブ検証（`required` など）の結果を Base UI が表示する
+- 送信時の検証は Base UI の `Form` に任せる（最初の誤りにフォーカスが移る）。検証の時点は `validationMode`（上流の推奨は `onBlur`）
 - 必須は「必須」バッジ（文字）。`*` だけにしない
-- 入力欄: 枠 `border.input` 1px、角丸 `radius.md`、高さ 36/44/52、font-size 16px 固定（iOS のズーム防止）
-- エラー: 枠 `border.danger` を 2px 相当に＋エラーアイコン＋太字の文言（`text.danger`）
-- 読み取り専用: 破線の枠 + `bg.subtle`
-- 選択肢が 2〜6 個なら RadioGroup、7 個以上なら Select
+- 入力欄: `border-border-input`、`rounded-md`、高さ 36/44/52、文字は `text-body-md` 固定（iOS の拡大防止）
+- エラー: `border-border-danger` を 2px 相当に＋エラーアイコン＋太字の文言（`text-fg-danger`）
+- 読み取り専用: 破線の枠 + `bg-subtle`
+- **Select** は Base UI の Select。`options={[{ value, label }]}` と `placeholder` を渡す。選択肢が 2〜6 個なら RadioGroup
+- **Checkbox** は `onCheckedChange(checked)`、`indeterminate`。**RadioGroup** は `onValueChange(value)`
+
+### Accordion
+
+```tsx
+<Accordion>
+  <AccordionItem summary="申請に必要なものは？" headingLevel={3}>…</AccordionItem>
+</Accordion>
+```
+
+- Base UI の Accordion。見出しの中のボタンで開閉し、閉じた中身もページ内検索で見つかる（`hiddenUntilFound`）
 
 ### NotificationBanner
 
-- `tone`: `info` / `success` / `warning` / `danger`。左に 4px の色帯、背景 `bg.{tone}-subtle`、角丸 `radius.lg`
+- `tone`: `info` / `success` / `warning` / `danger`。左に 4px の色帯、背景 `bg-{tone}-subtle`、`rounded-lg`
 - 見出しの先頭に種別（「エラー: 」など）を視覚的に隠して読ませる
 - 動的に挿入するときだけ `live`（danger は `role="alert"`、他は `role="status"`）
 
 ### Card
 
-- 枠 `border.default`、角丸 `radius.xl`、内側余白 24px
-- `href` を渡すとタイトルのリンクを `::after` でカード全体に広げる（読み上げはタイトルだけ）
+- `border-border`、`rounded-xl`、内側余白 `p-inset-xl`
+- `href` を渡すとタイトルのリンクを `::after` でカード全体に広げる（読み上げはタイトルだけ）。フォーカスはカード全体に描く（`focus-ring-within`）
+- 表の行の代わりに敷き詰めない
 
 ## 5. Layout Principles
 
-- **ブレークポイントは 1 点**: `@media (min-width: 48rem)`（768px）
-- **レイアウト余白は 3 段階**: `space.stack-sm` 8px（密接）/ `stack-md` 24px（同じグループ）/ `stack-lg` 64px（セクション間）
-- 部品内の余白は `space.inset-*` / `space.gap-*`（4px 刻み）
-- グリッド: 12 カラム、ガター `space.gutter`（32px = 本文 × 2）、最大幅 `size.content-max`（1200px）
-- 左右の余白: モバイル 16px、768px 以上 32px
+- **ブレークポイントは 1 点**: `md:`（768px）。Tailwind 既定の `sm:` / `lg:` などは消してある
+- **レイアウト余白は 3 段階**: `gap-stack-sm` 8px（密接）/ `gap-stack-md` 24px（同じグループ）/ `gap-stack-lg` 64px（セクション間）
+- 部品内の余白は `p-inset-*` / `gap-gap-*`（4px 刻み）。数値の `p-4` も使えるが、semantic な名前を優先する
+- グリッド: 12 カラム、ガター `gap-gutter`（32px = 本文 × 2）、最大幅 `max-w-content`（1200px）
+- 左右の余白: モバイル `px-page-inline`（16px）、768px 以上 32px
 - 要素の間隔は Stack コンポーネント（`gap="sm|md|lg"`）で管理し、個別の margin を書かない
 
 <!-- auto:dimensions -->
@@ -299,59 +318,61 @@
 
 ## 6. Depth & Elevation
 
-- `shadow.1`: カードのホバー・ドロップダウン / `shadow.2`: ポップオーバー / `shadow.3`: ドロワー・モーダル
+- `shadow-1`: カードのホバー・ドロップダウン / `shadow-2`: ポップオーバー・Select / `shadow-3`: ドロワー・モーダル
 - ボタン・入力欄に影は使わない
-- ダークテーマでは影より面の明るさ（`bg.canvas` < `bg.surface` < `bg.muted`）で手前を表す
+- ダークテーマでは影より面の明るさ（`bg-canvas` < `bg-surface` < `bg-muted`）で手前を表す
 
 ## 7. Do's and Don'ts
 
 ### Do
 
-- semantic トークンだけを使う
+- semantic トークンの Tailwind クラスだけを使う
+- コンポーネントのスタイルは `tv()`（`@/lib/tv`）で書き、クラスの結合は `cn()`（`@/lib/tv`）
 - 状態は色＋形（アイコン・線の太さ・下線）＋文字で伝える
-- ネイティブ要素（`button`、`a`、`details`、`select`、`fieldset`）を使う
+- Base UI の部品とネイティブ要素を使い、独自の操作体系を作らない
 - ボタンの文言は「〜する」の動詞。リンクは行き先が分かる文
-- エラーは「何が誤りで、どう直すか」を書き、送信時は最初のエラーにフォーカスを移す
+- エラーは「何が誤りで、どう直すか」を書く
 - 新しい semantic カラーを足したら `contrast.rules.json` に組み合わせを足す
 
 ### Don't
 
-- 色の直書き（`#333`、`rgb()`）、primitive カラーの参照
-- 3px を超える px の直書き（トークンを使う）
-- 14px 未満の文字、純黒 `#000` の本文
-- 中間ウェイト（500 / 600）
-- `:hover` を `@media (hover: hover)` の外に書く、hover で太さ・大きさを変える
+- 任意値での色・px の直書き（`bg-[#333]`、`p-[12px]`）。Tailwind 既定のパレット
+- 任意値・手書き CSS からの `--color-*` / `--spacing-*` / `--text-*` の参照（`--tkc-*` を使う）
+- 動的なクラス名の組み立て（`` `text-${size}` ``）。Tailwind が検出できない。variants に列挙する
+- 14px 未満の文字、純黒の本文、中間ウェイト（500 / 600）
+- hover で太さ・大きさを変える
 - プレースホルダーをラベル代わりにする
 - アイコンだけのボタン（閉じるボタンなど慣習的なもの以外）。使う場合は `aria-label`
-- `outline: none` でフォーカス表示を消す
+- `outline-none` でフォーカス表示を消す（代わりに `focus-ring`）
 - `div` に `role="button"` を付けて作り直す
 
 ## 8. Responsive Behavior
 
 - 768px 未満: 1 カラム、左右余白 16px、見出しは 1 段小さい size を選ぶ（例: h1 を `xl` → `lg`）
-- 文字サイズを 200% にしても、横幅 320px でも、情報と機能が欠けない
+- 文字サイズを 200% にしても、横幅 320px でも、情報と機能が欠けない（e2e で検査）
 - タップ領域は常に 44×44px 以上
-- `prefers-reduced-motion: reduce` で動きを止める（base.css）
-- `forced-colors: active` で境界・フォーカスを維持（各コンポーネント CSS）
+- `prefers-reduced-motion: reduce` で動きを止める（テーマで設定済み。Tailwind の `motion-reduce:` も使う）
+- `forced-colors: active` で境界・フォーカスを維持（各コンポーネントの `forced-colors:`）
 
 ## 9. Agent Prompt Guide
 
 ### クイックリファレンス
 
 ```
-Import:      import { Button, FormField, TextField, ... } from 'tkc310-ui';
-             import 'tkc310-ui/styles.css';
-Theme:       <html data-theme="light|dark">（未指定は OS 追従）
-Body:        16px / 400 / 1.7 / 0.02em / color: var(--tkc-color-text-default)
-Sub text:    var(--tkc-color-text-subtle)
-Link:        var(--tkc-color-text-link) + underline（常に）
-Primary bg:  var(--tkc-color-bg-key) / text: var(--tkc-color-text-on-key)
-Border:      input → var(--tkc-color-border-input) / card → var(--tkc-color-border-default)
-Focus:       class="tkc-focusable"（黄リング + 外側アウトライン）
-Spacing:     8 / 24 / 64（stack-sm / md / lg）
-Radius:      button・input 8 / banner 12 / card 16
-Control:     36 / 44 / 52（既定 44）
-Breakpoint:  768px のみ
+Import (npm):       import { Button } from 'tkc310-ui/button';  +  @import "tkc310-ui/theme.css";
+Import (shadcn):    npx shadcn@latest add @tkc/button          →  import { Button } from '@/components/ui/button';
+Theme:              <html class="dark"> / <html data-theme="dark">（未指定は OS 追従）
+Body:               text-body-md text-fg（16px / 1.7 / 0.02em）
+Sub text:           text-fg-subtle
+Link:               Link コンポーネント（下線は常に表示）
+Primary:            bg-key text-fg-on-key（Button variant="primary"）
+Border:             入力欄 border-border-input / カード border-border
+Focus:              focus-ring
+Spacing:            gap-stack-sm / md / lg（8 / 24 / 64）、p-inset-*
+Radius:             ボタン・入力 rounded-md / バナー rounded-lg / カード rounded-xl
+Control height:     h-control-sm / md / lg（36 / 44 / 52、既定 44）
+Breakpoint:         md: のみ（768px）
+Variants:           tv() from '@/lib/tv'（tailwind-variants v3）
 ```
 
 ### 作業前に必ず読むもの
@@ -359,22 +380,21 @@ Breakpoint:  768px のみ
 0. 画面を作る場合は、プロダクトの DESIGN.md（UI の方向性とサービス種別）
 1. このファイル
 2. `docs/rulebook/02-accessibility.md`（必須ルール）
-3. 該当コンポーネントのソースとストーリー（`src/components/*/`）
+3. 該当コンポーネントのソースとストーリー（`packages/ui/src/components/*/`）
 
 ### 作業後に必ず実行するもの
 
 ```bash
-npm run check   # トークン・コントラスト・CSS 規約・DESIGN.md 同期・型・Lint
-npm test        # 単体テスト + 全ストーリーの a11y テスト
+pnpm check   # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ
+pnpm test    # 単体テスト + 全ストーリーの a11y テスト
 ```
 
 ### プロンプト例
 
 ```
 tkc310-ui の DESIGN.md に従って、住所変更の申請フォームを作ってください。
-- 部品は FormField / TextField / Select / RadioGroup / Button を使う
+- 部品は FormField / TextField / Select / RadioGroup / Button を使い、Base UI の Form で包む
 - 郵便番号は inputMode="numeric"、autoComplete を必ず指定
-- 必須項目には required、送信時のエラーは「何が誤りで、どう直すか」を書く
-- 送信時にエラーがあれば上部に NotificationBanner（danger）で一覧を出し、最初のエラーにフォーカス
-- 余白は Stack（gap="md"）で管理し、色や px を直書きしない
+- 必須項目には required。エラー文は「何が誤りで、どう直すか」を書く
+- 余白は Stack（gap="md"）で管理し、色や px を直書きしない。Tailwind のクラスは semantic トークンのものだけ
 ```

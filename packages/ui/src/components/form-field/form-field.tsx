@@ -15,7 +15,8 @@ export const controlVariants = tv({
     focusRing,
     // エラーは色に加えて線を太くし、形でも示す
     'data-[invalid]:border-border-danger data-[invalid]:shadow-[inset_0_0_0_1px_var(--tkc-color-border-danger)] aria-invalid:border-border-danger aria-invalid:shadow-[inset_0_0_0_1px_var(--tkc-color-border-danger)]',
-    'read-only:border-dashed read-only:bg-subtle',
+    // :read-only は button や無効の input にも当たるため、編集できる欄の読み取り専用に限る
+    '[&:read-only:not(:disabled,button)]:border-dashed [&:read-only:not(:disabled,button)]:bg-subtle',
     'disabled:cursor-not-allowed disabled:border-border-disabled disabled:bg-disabled disabled:text-fg-disabled data-[disabled]:cursor-not-allowed data-[disabled]:border-border-disabled data-[disabled]:bg-disabled data-[disabled]:text-fg-disabled',
     'forced-colors:data-[invalid]:border-2',
   ],

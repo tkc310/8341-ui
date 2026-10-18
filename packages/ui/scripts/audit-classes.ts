@@ -9,6 +9,9 @@
  *   primitive-token  … --tkc-color-primitive-* の参照
  *   inline-style-color … style 属性での色の指定
  *   missing-use-client … React のフックを使うのに 'use client' が無い
+ *   outline-none     … Tailwind v4 の outline-none はアウトラインの線種を none にし、focus-visible の線まで消す。
+ *                      フォーカスは focus-ring を使う。別の要素に描く場合だけ行末に `// allow-outline-none: 理由`
+ *   bare-read-only   … read-only: は button や無効の input にも当たる。[&:read-only:not(:disabled,button)]: を使う
  *   theme-var-ref    … 任意値・手書き CSS からの Tailwind テーマ変数（--color-* / --spacing-* / --text-* など）の参照。
  *                      @theme inline は使われた変数しか出力しないため未定義になりうる。常に存在する --tkc-* を参照する
  * warning
@@ -59,6 +62,10 @@ export function auditClasses(): Finding[] {
           if (Number(px[1]) > 3) add('raw-length', 'error', `${px[0]} を直書きしています: ${m[0]}`);
         }
       }
+      if (/\boutline-none\b/.test(line) && !/allow-outline-none/.test(raw))
+        add('outline-none', 'error', 'outline-none はフォーカスの線まで消します。focus-ring を使ってください');
+      if (/(?<![\w&:-])read-only:/.test(line))
+        add('bare-read-only', 'error', 'read-only: は button や無効の input にも当たります。[&:read-only:not(:disabled,button)]: を使ってください');
       const palette = line.match(PALETTE);
       if (palette) add('tailwind-palette', 'error', `Tailwind 既定のパレットは使えません: ${palette[0]}（semantic の色を使う）`);
       const themeVar = line.match(/(?:var\(|\()(?:length:|color:)?(--(?:color|spacing|text|font|radius|shadow|container|ease)-[a-z0-9-]+)\)/);

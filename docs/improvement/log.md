@@ -4,6 +4,12 @@
 
 | 日付 | 種別 | 内容 | 再発防止 |
 | --- | --- | --- | --- |
+| 2026-10-18 | a11y | Tailwind v4 の `outline-none` がフォーカスの線種まで消し、リンクと Select の項目でアウトラインが出なかった | クラス監査に outline-none を追加（別の要素に描く場合だけ明示して許可） |
+| 2026-10-18 | 不具合 | `read-only:` が button や無効の input にも当たり、Select のトリガーに破線が付いた | 読み取り専用の装飾を編集できる欄に限定し、クラス監査に bare-read-only を追加 |
+| 2026-10-18 | スタック | Base UI + Tailwind v4 + tailwind-variants + shadcn 方式、DTCG 2025.10 + Style Dictionary v5、Vite+・pnpm 11 に移行 | ADR-0008〜0010 |
+| 2026-10-18 | 不具合 | tailwind-variants のクラス統合が独自のテーマ名を知らず、`text-fg text-body-md` の文字色が消える | トークンから tw-merge-config.ts を生成し、CI で鮮度を検査。単体テストに cn の回帰テストを追加 |
+| 2026-10-18 | 不具合 | `@theme inline` は使われたテーマ変数しか出力せず、任意値の `var(--color-*)` が未定義になる | クラス監査に theme-var-ref を追加し、`--tkc-*` の参照を必須に |
+| 2026-10-18 | 不具合 | Tailwind のブレークポイントを var() で出すとメディアクエリが効かない | Tailwind テーマの生成でブレークポイントだけ値で出力 |
 | 2026-10-18 | ルール | 画面設計のルールを上流の design-principles に一本化し、01 章を対応表に変更。プロダクト用 DESIGN.md の雛形を追加 | ADR-0007。上流のギャップは上流へ PR する方針を 01 章に明記 |
 | 2026-10-18 | 上流 | 基盤 DS の作り方、テーマ別コントラストなど 7 件のギャップを上流へ提案 | tkc310/agents-playground#27 |
 | 2026-10-18 | 命名 | パッケージ名を `tkc310-ui`、接頭辞を `tkc-` に変更 | 接頭辞は `scripts/lib/tokens.ts` の 1 か所で管理 |

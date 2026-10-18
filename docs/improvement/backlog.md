@@ -16,11 +16,11 @@
 ## コンポーネント
 
 - [ ] Table（ソート・横スクロール時の見出し固定、識別子の等幅）— 特化ルール「管理画面」
-- [ ] Dialog（`dialog` 要素ベース。フォーカストラップと戻り先）— 原則「誤りと撤回」の確認の段
+- [ ] Dialog / AlertDialog（Base UI）— 原則「誤りと撤回」の確認の段
 - [ ] EmptyState（「データが無い」「条件に一致しない」「権限がない」の書き分け）— 特化ルール「管理画面」
-- [ ] Progress / Toast / Skeleton — 原則「状態と応答」
-- [ ] Tooltip（1.4.13 の解除・ホバー・持続を満たす）— 原則「再認」
-- [ ] Tabs（APG のタブパターン）
+- [ ] Progress / Toast（Base UI）/ Skeleton — 原則「状態と応答」
+- [ ] Tooltip（Base UI。1.4.13 の解除・ホバー・持続を満たすか確認）・Combobox — 原則「再認」
+- [ ] Tabs・Switch・Menu（Base UI）
 - [ ] SkipLink（本文へ移動）— WCAG 2.4.1
 - [ ] ErrorSummary（送信時のエラー一覧と最初の誤りへのフォーカス移動。現在は NotificationBanner の組み合わせで代用）— WCAG 3.3.1
 - [ ] Pagination
@@ -28,6 +28,10 @@
 
 ## 仕組み
 
-- [ ] Storybook の VRT（ライト / ダーク / 強制カラーのスクリーンショット比較）を CI に追加する
-- [ ] Figma Variables との同期（tokens.json → Figma）
+- [ ] VRT の対象を全ストーリーに広げる（現在は代表のギャラリーだけ）
+- [ ] 依存パッケージを入れた環境で初回の `pnpm check` / `pnpm test` / `pnpm build` を通し、出た問題を直す（構築時はネットワーク制限で未実行）
+- [ ] shadcn CLI で `registry:base` の書き方（config の入れ子かトップレベルか）を確かめる
+- [ ] Code Connect を残りのコンポーネントにも書き、Figma のノード ID を埋める
+- [ ] Style Dictionary が DTCG の Resolver に対応したら、自前の読み込み処理を置き換える
+- [ ] Figma Variables の取り込みを実際のファイルで確かめ、手順をルールブックに書く
 - [ ] 利用プロジェクトでの使用状況を集計し、未使用トークン・未使用 props を検出する

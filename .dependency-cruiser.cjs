@@ -1,5 +1,5 @@
 /**
- * アーキテクチャルール。npm run check（depcruise packages apps）で検査する。
+ * アーキテクチャルール。pnpm check（depcruise packages apps）で検査する。
  * レイヤー: tokens ← ui（lib → primitives → components）← storybook / registry
  * @type {import('dependency-cruiser').IConfiguration}
  */

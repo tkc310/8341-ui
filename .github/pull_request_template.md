@@ -4,7 +4,8 @@
 
 ## 完了の定義
 
-- [ ] `npm run check` と `npm test` が通る
+- [ ] `pnpm check` と `pnpm test` が通る
+- [ ] changeset を追加した（`pnpm changeset`。利用者に影響が無い変更なら不要）
 - [ ] ライト / ダークの両方で見た目を確認した
 - [ ] キーボードで操作でき、フォーカス表示が見える
 - [ ] 新しい semantic カラーを足した場合、`tokens/contrast.rules.json` に組み合わせを足した

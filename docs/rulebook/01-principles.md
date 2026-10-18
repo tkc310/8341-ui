@@ -23,14 +23,14 @@ tkc310-ui が受け持つのは 3 と 4 であり、どのサービス種別で�
 | --- | --- | --- |
 | 読み順と優先度 | 見出しの段ごとのテキストスタイル（`text.heading-*`）、Heading の `level` と `size` の分離、primary ボタンは 1 画面 1 つの規約 | 画面ごとの強調要素の選定 |
 | まとまり | 余白は `space.stack-sm / md / lg`（8 / 24 / 64）の 3 段階で、グループ内 < グループ間を保証。Stack、FormField（ラベルと入力欄を 8px で結ぶ）、Card | — |
-| 文字と図の判別 | `contrast.rules.json` で全組み合わせを両テーマ検証（文字 4.5:1、境界 3:1）。本文 16px・行間 1.7 を初期値として固定。状態は色＋アイコン＋文字 | — |
+| 文字と図の判別 | `contrast.rules.json` で全組み合わせを両テーマ検証（文字 4.5:1、境界 3:1）。本文 16px・行間 1.7 を初期値として固定。Tailwind 既定のパレットと 14px 未満の文字サイズは消してある。状態は色＋アイコン＋文字 | — |
 | 配置の秩序 | 12 カラム、ガター `space.gutter`、最大幅 `size.content-max`、単一ブレークポイント | グリッド部品（バックログ） |
 | 操作の幾何 | 最小タップ領域 `size.target-min` 44px（上流の必須 24px より厳しい）。Button sm は擬似要素で 44px を確保 | 続けて押す操作の配置 |
 | 一度に出す数 | RadioGroup（2〜6 個）と Select（7 個以上）の使い分け規約 | ページ分割、絞り込み（バックログ） |
 | 一貫性 | semantic カラーで色の意味を固定、Button の variant、アイコンセットを線の描き方で統一 | ナビゲーション部品（バックログ） |
 | 状態と応答 | Button の `loading`（`aria-busy`）、NotificationBanner の `live`、Breadcrumb の `aria-current` | 進捗表示、トースト、スケルトン（バックログ） |
-| 誤りと撤回 | FormField の補足（入力前に形式を示す）とエラー（項目の特定と直し方）、送信ボタンを無効化しない規約、danger ボタン | 確認ダイアログ、エラー一覧（バックログ） |
-| 再認 | Select、RadioGroup、アイコン単体利用時の `label` 必須 | コンボボックス、ツールチップ（バックログ） |
+| 誤りと撤回 | FormField（Base UI の Field）の補足とエラー、Base UI の Form による送信時の検証とフォーカス移動、`validationMode="onBlur"`、送信ボタンを無効化しない規約、danger ボタン | 確認ダイアログ（Base UI の AlertDialog）、エラー一覧（バックログ） |
+| 再認 | Select、RadioGroup、アイコン単体利用時の `label` 必須 | コンボボックス・ツールチップ（Base UI にあり、バックログ） |
 | 文言 | [05 文言](./05-writing.md)、`label` / `legend` を必須 props にする契約 | — |
 | 削る | 影は 3 段階・ボタンに使わない、`prefers-reduced-motion` で動きを止める | 画面ごとの要素の取捨 |
 | 助けの場所 | — | ヘッダーの配置（プロダクト側） |
