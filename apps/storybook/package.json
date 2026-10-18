@@ -1,8 +1,8 @@
 {
   "name": "tkc310-ui-storybook",
   "private": true,
-  "type": "module",
   "description": "tkc310-ui のドキュメント（Storybook 10）と shadcn レジストリの配信元",
+  "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "pnpm --filter tkc310-ui registry:build && storybook build",
@@ -22,6 +22,7 @@
     "@storybook/addon-vitest": "catalog:",
     "@storybook/react-vite": "catalog:",
     "@tailwindcss/vite": "catalog:",
+    "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",

@@ -60,7 +60,10 @@ export function parseColor(input: string): { rgb: RGB; alpha: number } {
   }
   const r = hex.match(/^rgba?\(([^)]+)\)$/);
   if (r) {
-    const parts = (r[1] ?? '').split(/[\s,/]+/).filter(Boolean).map(Number);
+    const parts = (r[1] ?? '')
+      .split(/[\s,/]+/)
+      .filter(Boolean)
+      .map(Number);
     const [red = 0, green = 0, blue = 0] = parts;
     return {
       rgb: [red / 255, green / 255, blue / 255],

@@ -6,7 +6,8 @@ import { type VariantProps, tv } from '@/lib/tv';
 export const cardVariants = tv({
   slots: {
     root: 'group/card relative flex list-none flex-col overflow-hidden rounded-xl border text-fg',
-    media: '[&>img,&>picture,&>video]:block [&>img,&>picture,&>video]:aspect-video [&>img,&>picture,&>video]:w-full [&>img,&>picture,&>video]:object-cover',
+    media:
+      '[&>img,&>picture,&>video]:block [&>img,&>picture,&>video]:aspect-video [&>img,&>picture,&>video]:w-full [&>img,&>picture,&>video]:object-cover',
     body: 'flex flex-1 flex-col gap-stack-sm p-inset-xl',
     eyebrow: 'm-0 text-body-sm text-fg-subtle',
     title: 'm-0 text-heading-xs',
@@ -27,7 +28,8 @@ export const cardVariants = tv({
   defaultVariants: { variant: 'outlined' },
 });
 
-export interface CardProps extends Omit<HTMLAttributes<HTMLElement>, 'title'>, Pick<VariantProps<typeof cardVariants>, 'variant'> {
+export interface CardProps
+  extends Omit<HTMLAttributes<HTMLElement>, 'title'>, Pick<VariantProps<typeof cardVariants>, 'variant'> {
   as?: 'article' | 'section' | 'div' | 'li';
   title?: ReactNode;
   headingLevel?: 2 | 3 | 4;

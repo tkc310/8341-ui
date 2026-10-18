@@ -2,12 +2,12 @@
 
 ## 技術
 
-| 役割 | 使うもの |
-| --- | --- |
+| 役割                       | 使うもの                                                                                              |
+| -------------------------- | ----------------------------------------------------------------------------------------------------- |
 | 振る舞い・アクセシビリティ | Base UI v1（`@base-ui/react`）。ネイティブ要素で足りるもの（a、h1〜h6、hr 相当以外）は Base UI を使う |
-| スタイル | Tailwind CSS v4 のクラス（semantic トークンのものだけ） |
-| バリアント | tailwind-variants v3 の `tv()`。**必ず `@/lib/tv` から import する** |
-| 配布 | shadcn 方式（`registry.json`）と npm パッケージ（`vp pack`） |
+| スタイル                   | Tailwind CSS v4 のクラス（semantic トークンのものだけ）                                               |
+| バリアント                 | tailwind-variants v3 の `tv()`。**必ず `@/lib/tv` から import する**                                  |
+| 配布                       | shadcn 方式（`registry.json`）と npm パッケージ（`vp pack`）                                          |
 
 ## ファイル構成
 
@@ -64,15 +64,15 @@ packages/ui/src/components/button/
 
 ## 部品の選び方
 
-| やりたいこと | 使うもの | 使わないもの |
-| --- | --- | --- |
-| 処理を実行する | Button | Link |
-| ページを移動する | Link（カード全体なら Card の `href`） | Button |
-| 2〜6 個から 1 つ選ぶ | RadioGroup | Select |
-| 7 個以上から 1 つ選ぶ | Select | RadioGroup |
-| オン / オフ、複数選択 | Checkbox | トグルスイッチ（未提供） |
-| ページ上部の重要なお知らせ | NotificationBanner | Tag |
-| 一覧の項目の状態 | Tag（アイコン付き） | 色だけの点 |
-| よくある質問など折りたたみ | Accordion + AccordionItem | 独自のディスクロージャ |
-| 要素の縦横の間隔 | Stack | 個別の margin |
-| フォームの送信と検証 | Base UI の Form + FormField | 独自の検証の仕組み |
+| やりたいこと               | 使うもの                              | 使わないもの             |
+| -------------------------- | ------------------------------------- | ------------------------ |
+| 処理を実行する             | Button                                | Link                     |
+| ページを移動する           | Link（カード全体なら Card の `href`） | Button                   |
+| 2〜6 個から 1 つ選ぶ       | RadioGroup                            | Select                   |
+| 7 個以上から 1 つ選ぶ      | Select                                | RadioGroup               |
+| オン / オフ、複数選択      | Checkbox                              | トグルスイッチ（未提供） |
+| ページ上部の重要なお知らせ | NotificationBanner                    | Tag                      |
+| 一覧の項目の状態           | Tag（アイコン付き）                   | 色だけの点               |
+| よくある質問など折りたたみ | Accordion + AccordionItem             | 独自のディスクロージャ   |
+| 要素の縦横の間隔           | Stack                                 | 個別の margin            |
+| フォームの送信と検証       | Base UI の Form + FormField           | 独自の検証の仕組み       |

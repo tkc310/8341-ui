@@ -23,7 +23,9 @@ const walk = (dir: string): string[] =>
     const p = join(dir, f);
     return statSync(p).isDirectory() ? walk(p) : /\.(tsx?|css)$/.test(p) ? [p] : [];
   });
-const sources = [...walk(UI), ...walk(resolve(REPO_ROOT, 'apps/storybook/src'))].map((f) => readFileSync(f, 'utf8')).join('\n');
+const sources = [...walk(UI), ...walk(resolve(REPO_ROOT, 'apps/storybook/src'))]
+  .map((f) => readFileSync(f, 'utf8'))
+  .join('\n');
 
 // 1. コントラスト
 const contrast = runContrast();
@@ -50,7 +52,10 @@ const components = readdirSync(resolve(UI, 'components'), { withFileTypes: true 
   .filter((d) => d.isDirectory())
   .map((d) => d.name);
 const has = (c: string, suffix: string) => readdirSync(resolve(UI, 'components', c)).some((f) => f.endsWith(suffix));
-const storyText = walk(resolve(UI, 'components')).filter((f) => f.endsWith('.stories.tsx')).map((f) => readFileSync(f, 'utf8')).join('\n');
+const storyText = walk(resolve(UI, 'components'))
+  .filter((f) => f.endsWith('.stories.tsx'))
+  .map((f) => readFileSync(f, 'utf8'))
+  .join('\n');
 const pascal = (c: string) => c.replace(/(^|-)(\w)/g, (_, __, x: string) => x.toUpperCase());
 const noStory = components.filter((c) => !has(c, '.stories.tsx') && !new RegExp(`<${pascal(c)}\\b`).test(storyText));
 const noFigma = components.filter((c) => !has(c, '.figma.ts'));
@@ -75,12 +80,28 @@ const report = `# デザインシステム監査レポート ${date}
 | Code Connect の無いコンポーネント | ${noFigma.length} |
 | 改善バックログの未着手 | ${open} |
 
-${section('コントラスト不足', failed.map((r) => `[${r.theme}] \`${r.fg}\` on \`${r.bg}\`: ${r.ratio}:1`))}
+${section(
+  'コントラスト不足',
+  failed.map((r) => `[${r.theme}] \`${r.fg}\` on \`${r.bg}\`: ${r.ratio}:1`),
+)}
 ${section('コントラストの余裕が 5% 未満', tight)}
-${section('クラス監査', classFindings.map((f) => `\`${f.file}:${f.line}\` [${f.rule}] ${f.message}`))}
-${section('未使用の semantic トークン', unused.map((n) => `\`${n}\``), 'なし（すべて参照されている）')}
-${section('ストーリーの無いコンポーネント', noStory.map((n) => `\`${n}\``))}
-${section('Code Connect の無いコンポーネント', noFigma.map((n) => `\`${n}\``))}
+${section(
+  'クラス監査',
+  classFindings.map((f) => `\`${f.file}:${f.line}\` [${f.rule}] ${f.message}`),
+)}
+${section(
+  '未使用の semantic トークン',
+  unused.map((n) => `\`${n}\``),
+  'なし（すべて参照されている）',
+)}
+${section(
+  'ストーリーの無いコンポーネント',
+  noStory.map((n) => `\`${n}\``),
+)}
+${section(
+  'Code Connect の無いコンポーネント',
+  noFigma.map((n) => `\`${n}\``),
+)}
 
 ---
 次の一手: 上の項目から 1 つ選び、\`docs/rulebook/06-improvement-loop.md\` の手順で直す。

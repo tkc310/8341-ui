@@ -14,11 +14,11 @@ packages/tokens/src/tkc310-ui.resolver.json（DTCG Resolver: primitive → seman
         └─(tw-merge)───────────────────▶ packages/ui/src/lib/tw-merge-config.ts
 ```
 
-| 層 | 例 | 誰が参照するか |
-| --- | --- | --- |
-| Primitive | `color.primitive.indigo.700`、`dimension.16`、`font.size.16` | semantic トークンだけ |
-| Semantic | `color.text.subtle`、`space.stack-md`、`text.body-md.*`、`radius.md` | コンポーネント、アプリ（Tailwind のクラス経由） |
-| Component | Tailwind のクラスと `tv()` のバリアント | そのコンポーネントだけ |
+| 層        | 例                                                                   | 誰が参照するか                                  |
+| --------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| Primitive | `color.primitive.indigo.700`、`dimension.16`、`font.size.16`         | semantic トークンだけ                           |
+| Semantic  | `color.text.subtle`、`space.stack-md`、`text.body-md.*`、`radius.md` | コンポーネント、アプリ（Tailwind のクラス経由） |
+| Component | Tailwind のクラスと `tv()` のバリアント                              | そのコンポーネントだけ                          |
 
 **必須**: コンポーネントとアプリは semantic トークンの Tailwind クラスだけを使う。任意値での色・3px を超える px の直書き、Tailwind 既定のパレット、primitive カラーの参照は `pnpm --filter tkc310-ui check`（クラス監査）が error にする。
 
@@ -38,20 +38,20 @@ DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-
 
 ## 命名と Tailwind のクラス名
 
-| トークン | Tailwind の変数 | クラスの例 |
-| --- | --- | --- |
-| `color.bg.{name}` | `--color-{name}` | `bg-canvas`、`bg-key`、`bg-danger-subtle` |
-| `color.text.default` / `.{name}` | `--color-fg` / `--color-fg-{name}` | `text-fg`、`text-fg-subtle`、`text-fg-on-key` |
-| `color.icon.{name}` | `--color-icon[-{name}]` | `text-icon`、`text-icon-danger` |
-| `color.border.{name}` | `--color-border[-{name}]` | `border-border`、`border-border-input` |
-| `color.focus.{name}` | `--color-focus-{name}` | `outline-focus-outline`（通常は `focus-ring` を使う） |
-| `space.{name}` | `--spacing-{name}` | `p-inset-md`、`gap-stack-md` |
-| `size.control-*` など | `--spacing-*` | `h-control-md`、`size-icon-md`、`min-h-target-min` |
-| `size.content-max` / `prose-max` | `--container-content` / `prose` | `max-w-content`、`max-w-prose` |
-| `radius.{name}` | `--radius-{name}` | `rounded-md` |
-| `shadow.{n}` | `--shadow-{n}` | `shadow-1` |
-| `text.{style}.*` | `--text-{style}`（行間・字間・太さを含む） | `text-body-md`、`text-heading-lg` |
-| `breakpoint.md` | `--breakpoint-md`（値をそのまま） | `md:` |
+| トークン                         | Tailwind の変数                            | クラスの例                                            |
+| -------------------------------- | ------------------------------------------ | ----------------------------------------------------- |
+| `color.bg.{name}`                | `--color-{name}`                           | `bg-canvas`、`bg-key`、`bg-danger-subtle`             |
+| `color.text.default` / `.{name}` | `--color-fg` / `--color-fg-{name}`         | `text-fg`、`text-fg-subtle`、`text-fg-on-key`         |
+| `color.icon.{name}`              | `--color-icon[-{name}]`                    | `text-icon`、`text-icon-danger`                       |
+| `color.border.{name}`            | `--color-border[-{name}]`                  | `border-border`、`border-border-input`                |
+| `color.focus.{name}`             | `--color-focus-{name}`                     | `outline-focus-outline`（通常は `focus-ring` を使う） |
+| `space.{name}`                   | `--spacing-{name}`                         | `p-inset-md`、`gap-stack-md`                          |
+| `size.control-*` など            | `--spacing-*`                              | `h-control-md`、`size-icon-md`、`min-h-target-min`    |
+| `size.content-max` / `prose-max` | `--container-content` / `prose`            | `max-w-content`、`max-w-prose`                        |
+| `radius.{name}`                  | `--radius-{name}`                          | `rounded-md`                                          |
+| `shadow.{n}`                     | `--shadow-{n}`                             | `shadow-1`                                            |
+| `text.{style}.*`                 | `--text-{style}`（行間・字間・太さを含む） | `text-body-md`、`text-heading-lg`                     |
+| `breakpoint.md`                  | `--breakpoint-md`（値をそのまま）          | `md:`                                                 |
 
 - CSS 変数そのものは `--tkc-{パス}`（例: `--tkc-color-text-default`）
 - Tailwind 既定の色・文字サイズ・角丸・影・ブレークポイントは `@theme` で消している。数値の余白（`p-4`）は残している
@@ -61,14 +61,14 @@ DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-
 
 全色相で **OKLCH の明度カーブを共有** している（`palette.config.json` の `lightness`）。段階番号がそのままコントラストの目安になる。
 
-| 段階 | 白背景とのコントラスト | 主な用途 |
-| --- | --- | --- |
-| 50〜200 | 1.1〜1.4 | 薄い面（`bg-*-subtle`） |
-| 300〜400 | 1.8〜2.4 | ダークテーマの文字・キー |
-| 600 | 約 4.5 | 境界（3:1 以上） |
-| 700 | 約 6 | ライトのキー背景・アイコン |
-| 800 | 約 8 | ライトの文字色（リンク・エラー） |
-| 1000〜1200 | 13〜17 | 本文・ダークの面 |
+| 段階       | 白背景とのコントラスト | 主な用途                         |
+| ---------- | ---------------------- | -------------------------------- |
+| 50〜200    | 1.1〜1.4               | 薄い面（`bg-*-subtle`）          |
+| 300〜400   | 1.8〜2.4               | ダークテーマの文字・キー         |
+| 600        | 約 4.5                 | 境界（3:1 以上）                 |
+| 700        | 約 6                   | ライトのキー背景・アイコン       |
+| 800        | 約 8                   | ライトの文字色（リンク・エラー） |
+| 1000〜1200 | 13〜17                 | 本文・ダークの面                 |
 
 色相を変えるときは `palette.config.json` の `hue` を変え、`palette` → `build` → `check:contrast` の順に実行する。
 
@@ -81,14 +81,14 @@ DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-
 
 ## タイポグラフィ・余白・サイズ・角丸
 
-| 種類 | クラス | ルール |
-| --- | --- | --- |
-| 文字 | `text-display-*` / `text-heading-*` / `text-body-*` / `text-dense-*` / `text-label-*` / `text-mono-*` | 最小 14px。太さは 400 / 700 のみ |
-| レイアウト余白 | `gap-stack-sm / md / lg`（8 / 24 / 64） | 3 段階のみ。要素の関係の近さで選ぶ |
-| 部品内の余白 | `p-inset-*`、`gap-gap-*` | 4px 刻み |
-| コントロール高さ | `h-control-sm / md / lg`（36 / 44 / 52） | md が既定。sm は `tap-target` でタップ領域 44px |
-| 角丸 | `rounded-xs`〜`rounded-xl`、`rounded-full` | 横長の要素ほど小さく。カード xl、バナー lg、ボタン・入力 md |
-| 影 | `shadow-1〜3` | ボタンには使わない。浮いている物だけ |
+| 種類             | クラス                                                                                                | ルール                                                      |
+| ---------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| 文字             | `text-display-*` / `text-heading-*` / `text-body-*` / `text-dense-*` / `text-label-*` / `text-mono-*` | 最小 14px。太さは 400 / 700 のみ                            |
+| レイアウト余白   | `gap-stack-sm / md / lg`（8 / 24 / 64）                                                               | 3 段階のみ。要素の関係の近さで選ぶ                          |
+| 部品内の余白     | `p-inset-*`、`gap-gap-*`                                                                              | 4px 刻み                                                    |
+| コントロール高さ | `h-control-sm / md / lg`（36 / 44 / 52）                                                              | md が既定。sm は `tap-target` でタップ領域 44px             |
+| 角丸             | `rounded-xs`〜`rounded-xl`、`rounded-full`                                                            | 横長の要素ほど小さく。カード xl、バナー lg、ボタン・入力 md |
+| 影               | `shadow-1〜3`                                                                                         | ボタンには使わない。浮いている物だけ                        |
 
 ## Figma
 

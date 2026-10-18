@@ -2,8 +2,12 @@
   "name": "tkc310-ui-tokens",
   "version": "0.1.0",
   "description": "tkc310-ui のデザイントークン（DTCG 2025.10）と、そこから生成した CSS 変数・Tailwind v4 テーマ・Figma Variables",
-  "type": "module",
   "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "type": "module",
   "sideEffects": [
     "**/*.css"
   ],
@@ -15,10 +19,9 @@
     "./figma/*": "./dist/figma/*",
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsx scripts/build.ts && tsx scripts/export-figma.ts",
     "palette": "tsx scripts/generate-palette.ts",
@@ -36,8 +39,5 @@
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

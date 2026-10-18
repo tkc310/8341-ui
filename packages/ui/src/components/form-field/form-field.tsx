@@ -34,7 +34,8 @@ export type ControlSize = NonNullable<VariantProps<typeof controlVariants>['size
 const field = tv({
   slots: {
     root: 'flex min-w-0 flex-col gap-stack-sm',
-    label: 'inline-flex flex-wrap items-center gap-gap-sm text-body-md font-bold text-fg data-[disabled]:text-fg-disabled',
+    label:
+      'inline-flex flex-wrap items-center gap-gap-sm text-body-md font-bold text-fg data-[disabled]:text-fg-disabled',
     badge: 'rounded-xs border px-inset-xs text-label-sm leading-(--tkc-text-dense-sm-line-height)',
     description: 'm-0 text-body-sm text-fg-subtle',
     error: 'm-0 flex items-start gap-gap-xs text-body-sm font-bold text-fg-danger',

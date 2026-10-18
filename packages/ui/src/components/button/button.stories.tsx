@@ -30,10 +30,18 @@ export const Primary: Story = {};
 export const Variants: Story = {
   render: (args) => (
     <Stack direction="horizontal" wrap>
-      <Button {...args} variant="primary">保存する</Button>
-      <Button {...args} variant="secondary">下書きに戻す</Button>
-      <Button {...args} variant="tertiary">キャンセル</Button>
-      <Button {...args} variant="danger">削除する</Button>
+      <Button {...args} variant="primary">
+        保存する
+      </Button>
+      <Button {...args} variant="secondary">
+        下書きに戻す
+      </Button>
+      <Button {...args} variant="tertiary">
+        キャンセル
+      </Button>
+      <Button {...args} variant="danger">
+        削除する
+      </Button>
     </Stack>
   ),
 };
@@ -41,9 +49,15 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <Stack direction="horizontal" wrap>
-      <Button {...args} size="sm">小（見た目 36px / タップ 44px）</Button>
-      <Button {...args} size="md">標準 44px</Button>
-      <Button {...args} size="lg">大 52px</Button>
+      <Button {...args} size="sm">
+        小（見た目 36px / タップ 44px）
+      </Button>
+      <Button {...args} size="md">
+        標準 44px
+      </Button>
+      <Button {...args} size="lg">
+        大 52px
+      </Button>
     </Stack>
   ),
 };
@@ -51,8 +65,12 @@ export const Sizes: Story = {
 export const WithIcons: Story = {
   render: (args) => (
     <Stack direction="horizontal" wrap>
-      <Button {...args} iconStart={<Icon name="search" />}>検索する</Button>
-      <Button {...args} variant="secondary" iconEnd={<Icon name="arrow-right" />}>次へ進む</Button>
+      <Button {...args} iconStart={<Icon name="search" />}>
+        検索する
+      </Button>
+      <Button {...args} variant="secondary" iconEnd={<Icon name="arrow-right" />}>
+        次へ進む
+      </Button>
     </Stack>
   ),
 };
@@ -62,7 +80,8 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       description: {
-        story: '無効化は理由が伝わらないため最小限に。入力の不足は、ボタンを押せる状態のまま、押したときにエラーで示す（上流ルール「誤りと撤回」）。',
+        story:
+          '無効化は理由が伝わらないため最小限に。入力の不足は、ボタンを押せる状態のまま、押したときにエラーで示す（上流ルール「誤りと撤回」）。',
       },
     },
   },
@@ -73,6 +92,8 @@ export const Loading: Story = {
   play: async ({ canvasElement, args }) => {
     const button = within(canvasElement).getByRole('button');
     await expect(button).toHaveAttribute('aria-busy', 'true');
+    // 文字を見えなくしても、ボタンの名前は残す
+    await expect(button).toHaveAccessibleName('送信しています');
     await expect(button).toBeEnabled();
     await userEvent.click(button);
     await expect(args.onClick).not.toHaveBeenCalled();

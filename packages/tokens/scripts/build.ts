@@ -105,7 +105,10 @@ StyleDictionary.registerTransform({
       return c.alpha === undefined || c.alpha === 1 ? c.hex : `rgb(${r} ${g} ${b} / ${c.alpha})`;
     };
     return layers
-      .map((l) => `${l.inset ? 'inset ' : ''}${len(l.offsetX)} ${len(l.offsetY)} ${len(l.blur)} ${len(l.spread)} ${color(l.color)}`)
+      .map(
+        (l) =>
+          `${l.inset ? 'inset ' : ''}${len(l.offsetX)} ${len(l.offsetY)} ${len(l.blur)} ${len(l.spread)} ${color(l.color)}`,
+      )
       .join(', ');
   },
 });
@@ -208,7 +211,9 @@ function config(opts: {
   return {
     // semantic は include した primitive を var() で参照する（意図どおり）。
     // その「出力から外したトークンへの参照」警告をエラーにしないため warn にする
-    log: { verbosity: 'default', warnings: 'warn' },
+    // 「Token collisions detected」は各ファイル直下の $schema / $description が重なるだけで、トークンの衝突ではない。
+    // 詳細を見るときは SD_VERBOSE=1 pnpm --filter tkc310-ui-tokens build
+    log: { verbosity: process.env.SD_VERBOSE ? 'verbose' : 'default', warnings: 'warn' },
     include: opts.include,
     source: opts.source,
     platforms: {

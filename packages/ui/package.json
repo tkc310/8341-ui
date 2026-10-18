@@ -2,8 +2,11 @@
   "name": "tkc310-ui",
   "version": "0.1.0",
   "description": "プロジェクトで使い回す自分用のデザインシステム（React + Base UI + Tailwind CSS v4 / アクセシビリティ優先）",
-  "type": "module",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
   "sideEffects": [
     "**/*.css"
   ],
@@ -20,9 +23,9 @@
     },
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "vp pack && tailwindcss -i src/styles/build.css -o dist/styles.css --minify && tsx scripts/check-dist.ts",
     "check": "tsx scripts/audit-classes.ts && tsx scripts/generate-registry.ts --check",
@@ -36,16 +39,6 @@
     "@base-ui/react": "catalog:",
     "tailwind-variants": "catalog:",
     "tkc310-ui-tokens": "workspace:*"
-  },
-  "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19",
-    "tailwindcss": ">=4.1"
-  },
-  "peerDependenciesMeta": {
-    "tailwindcss": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@figma/code-connect": "catalog:",
@@ -71,7 +64,14 @@
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   },
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "tailwindcss": ">=4.1"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
   }
 }

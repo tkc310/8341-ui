@@ -61,11 +61,7 @@
       "overlay": {
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.0,
-            0.0,
-            0.0
-          ],
+          "components": [0.0, 0.0, 0.0],
           "alpha": 0.64,
           "hex": "#000000"
         }
@@ -184,11 +180,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0,
-              0.0,
-              0.0
-            ],
+            "components": [0.0, 0.0, 0.0],
             "alpha": 0.48,
             "hex": "#000000"
           },
@@ -212,11 +204,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0,
-              0.0,
-              0.0
-            ],
+            "components": [0.0, 0.0, 0.0],
             "alpha": 0.32,
             "hex": "#000000"
           },
@@ -244,11 +232,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0,
-              0.0,
-              0.0
-            ],
+            "components": [0.0, 0.0, 0.0],
             "alpha": 0.52,
             "hex": "#000000"
           },
@@ -272,11 +256,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0,
-              0.0,
-              0.0
-            ],
+            "components": [0.0, 0.0, 0.0],
             "alpha": 0.36,
             "hex": "#000000"
           },
@@ -304,11 +284,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0,
-              0.0,
-              0.0
-            ],
+            "components": [0.0, 0.0, 0.0],
             "alpha": 0.56,
             "hex": "#000000"
           },
@@ -332,11 +308,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0,
-              0.0,
-              0.0
-            ],
+            "components": [0.0, 0.0, 0.0],
             "alpha": 0.4,
             "hex": "#000000"
           },

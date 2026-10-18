@@ -49,7 +49,13 @@ export function auditClasses(): Finding[] {
     const lines = text.split('\n');
     const usesHooks = /\buse(State|Effect|Context|Ref|Id|Reducer|Memo|Callback|LayoutEffect|FormField)\s*\(/.test(text);
     if (usesHooks && !/^['"]use client['"];/m.test(text)) {
-      findings.push({ file: rel, line: 1, rule: 'missing-use-client', severity: 'error', message: "フックを使っているのに 'use client' がありません" });
+      findings.push({
+        file: rel,
+        line: 1,
+        rule: 'missing-use-client',
+        severity: 'error',
+        message: "フックを使っているのに 'use client' がありません",
+      });
     }
     lines.forEach((raw, i) => {
       const add = (rule: string, severity: Finding['severity'], message: string) =>
@@ -57,7 +63,8 @@ export function auditClasses(): Finding[] {
       const line = raw.replace(/\/\/.*$/, '');
       for (const m of line.matchAll(/[\w:-]*-\[([^\]]+)\]/g)) {
         const v = m[1] ?? '';
-        if (/#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|oklch|oklab)\(/i.test(v)) add('raw-color', 'error', `色を直書きしています: ${m[0]}`);
+        if (/#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|oklch|oklab)\(/i.test(v))
+          add('raw-color', 'error', `色を直書きしています: ${m[0]}`);
         for (const px of v.matchAll(/(?<![\w-])(\d*\.?\d+)px\b/g)) {
           if (Number(px[1]) > 3) add('raw-length', 'error', `${px[0]} を直書きしています: ${m[0]}`);
         }
@@ -65,15 +72,27 @@ export function auditClasses(): Finding[] {
       if (/\boutline-none\b/.test(line) && !/allow-outline-none/.test(raw))
         add('outline-none', 'error', 'outline-none はフォーカスの線まで消します。focus-ring を使ってください');
       if (/(?<![\w&:-])read-only:/.test(line))
-        add('bare-read-only', 'error', 'read-only: は button や無効の input にも当たります。[&:read-only:not(:disabled,button)]: を使ってください');
+        add(
+          'bare-read-only',
+          'error',
+          'read-only: は button や無効の input にも当たります。[&:read-only:not(:disabled,button)]: を使ってください',
+        );
       const palette = line.match(PALETTE);
-      if (palette) add('tailwind-palette', 'error', `Tailwind 既定のパレットは使えません: ${palette[0]}（semantic の色を使う）`);
-      const themeVar = line.match(/(?:var\(|\()(?:length:|color:)?(--(?:color|spacing|text|font|radius|shadow|container|ease)-[a-z0-9-]+)\)/);
+      if (palette)
+        add('tailwind-palette', 'error', `Tailwind 既定のパレットは使えません: ${palette[0]}（semantic の色を使う）`);
+      const themeVar = line.match(
+        /(?:var\(|\()(?:length:|color:)?(--(?:color|spacing|text|font|radius|shadow|container|ease)-[a-z0-9-]+)\)/,
+      );
       if (themeVar) add('theme-var-ref', 'error', `${themeVar[1]} ではなく --tkc-* のトークン変数を参照してください`);
-      if (/--tkc-color-primitive-/.test(line)) add('primitive-token', 'error', 'primitive の色を参照しています。semantic を使ってください');
-      if (/style=\{\{[^}]*(color|background)[^}]*#/.test(line)) add('inline-style-color', 'error', 'style 属性で色を指定しています');
-      for (const m of line.matchAll(/(?<![\w-])-?(?:p|px|py|pt|pb|ps|pe|m|mx|my|mt|mb|ms|me|gap|gap-x|gap-y|space-x|space-y)-(\d+(?:\.5)?)\b/g)) {
-        if (m[1] !== '0') add('numeric-spacing', 'warning', `${m[0]}: semantic な余白（inset-* / gap-* / stack-*）を検討してください`);
+      if (/--tkc-color-primitive-/.test(line))
+        add('primitive-token', 'error', 'primitive の色を参照しています。semantic を使ってください');
+      if (/style=\{\{[^}]*(color|background)[^}]*#/.test(line))
+        add('inline-style-color', 'error', 'style 属性で色を指定しています');
+      for (const m of line.matchAll(
+        /(?<![\w-])-?(?:p|px|py|pt|pb|ps|pe|m|mx|my|mt|mb|ms|me|gap|gap-x|gap-y|space-x|space-y)-(\d+(?:\.5)?)\b/g,
+      )) {
+        if (m[1] !== '0')
+          add('numeric-spacing', 'warning', `${m[0]}: semantic な余白（inset-* / gap-* / stack-*）を検討してください`);
       }
     });
   }
@@ -85,8 +104,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const errors = findings.filter((f) => f.severity === 'error');
   if (process.argv.includes('--json')) console.log(JSON.stringify(findings, null, 2));
   else {
-    for (const f of findings) (f.severity === 'error' ? console.error : console.warn)(`${f.severity === 'error' ? '✖' : '△'} ${f.file}:${f.line} [${f.rule}] ${f.message}`);
-    console.log(`${errors.length ? '✖' : '✔'} クラス監査: error ${errors.length} 件 / warning ${findings.length - errors.length} 件`);
+    for (const f of findings)
+      (f.severity === 'error' ? console.error : console.warn)(
+        `${f.severity === 'error' ? '✖' : '△'} ${f.file}:${f.line} [${f.rule}] ${f.message}`,
+      );
+    console.log(
+      `${errors.length ? '✖' : '✔'} クラス監査: error ${errors.length} 件 / warning ${findings.length - errors.length} 件`,
+    );
   }
   if (errors.length) process.exit(1);
 }

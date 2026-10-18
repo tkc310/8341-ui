@@ -36,7 +36,11 @@ export function Textarea({ className, countLimit, rows = 4, required, onChange, 
         required={required ?? field.required}
         // 超過時だけ上書きする。それ以外は Field の検証結果（aria-invalid）と補足の関連付け（aria-describedby）に任せる
         {...(over ? { 'aria-invalid': true } : {})}
-        className={cn(controlVariants(), 'min-h-[calc(var(--tkc-size-control-md)*2)] resize-y leading-(--tkc-text-body-md-line-height)', className)}
+        className={cn(
+          controlVariants(),
+          'min-h-[calc(var(--tkc-size-control-md)*2)] resize-y leading-(--tkc-text-body-md-line-height)',
+          className,
+        )}
       />
       {countLimit !== undefined && (
         // Field.Description にすると、Field が入力欄の aria-describedby に自動で足す（既存の補足と並ぶ）

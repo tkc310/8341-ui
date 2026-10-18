@@ -2,27 +2,16 @@
   "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [
-    [
-      "tkc310-ui",
-      "tkc310-ui-tokens"
-    ]
-  ],
+  "fixed": [["tkc310-ui", "tkc310-ui-tokens"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
-  "changedFilePatterns": [
-    "src/**",
-    "scripts/**",
-    "package.json"
-  ],
+  "changedFilePatterns": ["src/**", "scripts/**", "package.json"],
   "format": "oxfmt",
   "privatePackages": {
     "version": false,
     "tag": false
   },
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "tkc310-ui-storybook"
-  ]
+  "ignore": ["tkc310-ui-storybook"]
 }

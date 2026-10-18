@@ -16,7 +16,8 @@ const light = byTheme.light ?? [];
 const dark = new Map((byTheme.dark ?? []).map((t) => [t.name, t]));
 const pick = (prefix: string) => light.filter((t) => t.name.startsWith(prefix));
 const esc = (s = '') => s.replace(/\|/g, '\\|');
-const short = (v: unknown) => (typeof v === 'string' ? v.replace(/^\{color\.primitive\.|\}$/g, '').replace(/^\{|\}$/g, '') : '');
+const short = (v: unknown) =>
+  typeof v === 'string' ? v.replace(/^\{color\.primitive\.|\}$/g, '').replace(/^\{|\}$/g, '') : '';
 
 function show(type: string, v: unknown): string {
   if (type === 'color') {
@@ -55,17 +56,20 @@ const blocks: Record<string, () => string> = {
     const steps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000', '1100', '1200'];
     const head = `| family | ${steps.join(' | ')} |\n| --- |${' --- |'.repeat(steps.length)}`;
     const get = (f: string, s: string) => light.find((t) => t.name === `color.primitive.${f}.${s}`);
-    const rows = families.map((f) => `| ${f} | ${steps.map((s) => `\`${show('color', get(f, s)?.resolved)}\``).join(' | ')} |`);
+    const rows = families.map(
+      (f) => `| ${f} | ${steps.map((s) => `\`${show('color', get(f, s)?.resolved)}\``).join(' | ')} |`,
+    );
     return [head, ...rows].join('\n');
   },
   typography: () => {
-    const head = '| style | Tailwind | size | line-height | weight | letter-spacing | 用途 |\n| --- | --- | --- | --- | --- | --- | --- |';
+    const head =
+      '| style | Tailwind | size | line-height | weight | letter-spacing | 用途 |\n| --- | --- | --- | --- | --- | --- | --- |';
     const styles = [...new Set(pick('text.').map((t) => t.path[1] as string))];
     const prop = (s: string, p: string) => light.find((t) => t.name === `text.${s}.${p}`);
     const rows = styles.map((s) => {
       const size = prop(s, 'font-size');
       const mono = String(prop(s, 'font-family')?.value).includes('mono');
-      return `| ${s} | \`text-${s}\`${mono ? ' `font-mono`' : ''} | ${show('dimension', size?.resolved)} | ${prop(s, 'line-height')?.resolved} | ${prop(s, 'font-weight')?.resolved} | ${prop(s, 'letter-spacing')?.resolved}em | ${esc(light.find((t) => t.path[1] === s)?.description ?? '')} |`;
+      return `| ${s} | \`text-${s}\`${mono ? ' `font-mono`' : ''} | ${show('dimension', size?.resolved)} | ${String(prop(s, 'line-height')?.resolved)} | ${String(prop(s, 'font-weight')?.resolved)} | ${String(prop(s, 'letter-spacing')?.resolved)}em | ${esc(light.find((t) => t.path[1] === s)?.description ?? '')} |`;
     });
     return [head, ...rows].join('\n');
   },
@@ -100,7 +104,9 @@ for (const [name, gen] of Object.entries(blocks)) {
 
 if (CHECK) {
   if (md !== original) {
-    console.error('✖ DESIGN.md がトークンと一致していません。pnpm --filter tkc310-ui-tokens design-md を実行してください');
+    console.error(
+      '✖ DESIGN.md がトークンと一致していません。pnpm --filter tkc310-ui-tokens design-md を実行してください',
+    );
     process.exit(1);
   }
   console.log('✔ DESIGN.md はトークンと一致しています');

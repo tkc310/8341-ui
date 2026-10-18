@@ -28,7 +28,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const prefectures = ['北海道', '青森県', '岩手県', '宮城県', '東京都', '大阪府', '沖縄県'].map((p) => ({ value: p, label: p }));
+const prefectures = ['北海道', '青森県', '岩手県', '宮城県', '東京都', '大阪府', '沖縄県'].map((p) => ({
+  value: p,
+  label: p,
+}));
 
 export const TextFieldStates: Story = {
   args: { label: '', children: null },
@@ -54,9 +57,15 @@ export const Sizes: Story = {
   args: { label: '', children: null },
   render: () => (
     <Stack className="max-w-prose">
-      <FormField label="小（36px）"><TextField size="sm" /></FormField>
-      <FormField label="標準（44px）"><TextField size="md" /></FormField>
-      <FormField label="大（52px）"><TextField size="lg" /></FormField>
+      <FormField label="小（36px）">
+        <TextField size="sm" />
+      </FormField>
+      <FormField label="標準（44px）">
+        <TextField size="md" />
+      </FormField>
+      <FormField label="大（52px）">
+        <TextField size="lg" />
+      </FormField>
     </Stack>
   ),
 };

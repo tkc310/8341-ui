@@ -82,7 +82,14 @@ for (const theme of THEMES) {
       const f = toFigma(t.type, t.resolved, t.path);
       if (!f) return null;
       const scopes = t.path[0] === 'color' ? { 'com.figma.scopes': scopesFor(t.path) } : undefined;
-      return { path: t.path, node: { ...f, ...(t.description ? { $description: t.description } : {}), ...(scopes ? { $extensions: scopes } : {}) } };
+      return {
+        path: t.path,
+        node: {
+          ...f,
+          ...(t.description ? { $description: t.description } : {}),
+          ...(scopes ? { $extensions: scopes } : {}),
+        },
+      };
     })
     .filter((e) => e !== null);
   writeFileSync(resolve(OUT, `${theme}.tokens.json`), `${JSON.stringify(tree(semantic), null, 2)}\n`);

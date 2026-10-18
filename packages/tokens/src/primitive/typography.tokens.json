@@ -5,23 +5,11 @@
     "family": {
       "$type": "fontFamily",
       "sans": {
-        "$value": [
-          "Noto Sans JP",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Hiragino Sans",
-          "sans-serif"
-        ],
+        "$value": ["Noto Sans JP", "-apple-system", "BlinkMacSystemFont", "Hiragino Sans", "sans-serif"],
         "$description": "Web フォントが読めなくても情報が伝わるよう OS 標準の和文ゴシックへフォールバックする"
       },
       "mono": {
-        "$value": [
-          "Noto Sans Mono",
-          "ui-monospace",
-          "SFMono-Regular",
-          "Menlo",
-          "monospace"
-        ]
+        "$value": ["Noto Sans Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"]
       }
     },
     "size": {

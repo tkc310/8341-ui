@@ -18,7 +18,16 @@ export default defineConfig({
     platform: 'neutral',
     // Tailwind のテーマは別エントリで配る（ビルド済み styles.css は package.json の build で作る）
     copy: [{ from: 'src/styles/theme.css', to: 'dist' }],
-    deps: { neverBundle: ['react', 'react-dom', 'react/jsx-runtime', /^@base-ui\/react/, 'tailwind-variants', /^tkc310-ui-tokens/] },
+    deps: {
+      neverBundle: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        /^@base-ui\/react/,
+        'tailwind-variants',
+        /^tkc310-ui-tokens/,
+      ],
+    },
   },
 
   test: {
@@ -44,10 +53,13 @@ export default defineConfig({
             enabled: true,
             headless: true,
             provider: playwright(),
-            instances: [
-              { browser: 'chromium', viewport: { width: 1024, height: 768 } },
-            ],
-            expect: { toMatchScreenshot: { comparatorName: 'pixelmatch', comparatorOptions: { allowedMismatchedPixelRatio: 0.002 } } },
+            instances: [{ browser: 'chromium', viewport: { width: 1024, height: 768 } }],
+            expect: {
+              toMatchScreenshot: {
+                comparatorName: 'pixelmatch',
+                comparatorOptions: { allowedMismatchedPixelRatio: 0.002 },
+              },
+            },
           },
         },
       },

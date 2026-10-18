@@ -14,7 +14,8 @@ export const accordionVariants = tv({
       focusRing,
     ],
     icon: 'ms-gap-md shrink-0 text-icon-key transition-transform group-data-[panel-open]/trigger:rotate-180',
-    panel: 'h-(--accordion-panel-height) overflow-hidden transition-[height] ease-standard data-[ending-style]:h-0 data-[starting-style]:h-0',
+    panel:
+      'h-(--accordion-panel-height) overflow-hidden transition-[height] ease-standard data-[ending-style]:h-0 data-[starting-style]:h-0',
     content: 'px-inset-sm pb-inset-xl [&>p]:m-0',
   },
 });
@@ -28,7 +29,13 @@ export interface AccordionProps extends Omit<ComponentProps<typeof BaseAccordion
  * 閉じている中身もページ内検索で見つかるよう hiddenUntilFound を有効にしている。
  */
 export function Accordion({ className, hiddenUntilFound = true, ...rest }: AccordionProps) {
-  return <BaseAccordion.Root className={accordionVariants().root({ className })} hiddenUntilFound={hiddenUntilFound} {...rest} />;
+  return (
+    <BaseAccordion.Root
+      className={accordionVariants().root({ className })}
+      hiddenUntilFound={hiddenUntilFound}
+      {...rest}
+    />
+  );
 }
 
 export interface AccordionItemProps extends Omit<ComponentProps<typeof BaseAccordion.Item>, 'className' | 'title'> {

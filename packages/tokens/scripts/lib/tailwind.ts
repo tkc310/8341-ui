@@ -8,7 +8,8 @@
 export function tailwindName(path: string[]): string | null {
   const [group, kind, ...rest] = path;
   const tail = rest.join('-');
-  const named = (base: string, key: string | undefined) => (key === 'default' || key === undefined ? base : `${base}-${key}`);
+  const named = (base: string, key: string | undefined) =>
+    key === 'default' || key === undefined ? base : `${base}-${key}`;
 
   if (group === 'color') {
     if (kind === 'primitive') return null;
@@ -42,7 +43,6 @@ export function tailwindName(path: string[]): string | null {
   if (group === 'breakpoint') return `--breakpoint-${kind}`;
   return null;
 }
-
 
 /** テーマ変数名から、代表的なユーティリティクラスの例を返す（DESIGN.md 用） */
 export function utilityExample(themeVar: string | null): string {

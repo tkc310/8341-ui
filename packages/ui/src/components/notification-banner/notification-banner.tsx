@@ -24,18 +24,25 @@ export const notificationBannerVariants = tv({
   },
   variants: {
     tone: {
-      info: { root: 'border-border-key bg-info-subtle [--banner-accent:var(--tkc-color-border-key)] [--banner-icon:var(--tkc-color-icon-info)]' },
-      success: { root: 'border-border-success bg-success-subtle [--banner-accent:var(--tkc-color-border-success)] [--banner-icon:var(--tkc-color-icon-success)]' },
-      warning: { root: 'border-border-warning bg-warning-subtle [--banner-accent:var(--tkc-color-border-warning)] [--banner-icon:var(--tkc-color-icon-warning)]' },
-      danger: { root: 'border-border-danger bg-danger-subtle [--banner-accent:var(--tkc-color-border-danger)] [--banner-icon:var(--tkc-color-icon-danger)]' },
+      info: {
+        root: 'border-border-key bg-info-subtle [--banner-accent:var(--tkc-color-border-key)] [--banner-icon:var(--tkc-color-icon-info)]',
+      },
+      success: {
+        root: 'border-border-success bg-success-subtle [--banner-accent:var(--tkc-color-border-success)] [--banner-icon:var(--tkc-color-icon-success)]',
+      },
+      warning: {
+        root: 'border-border-warning bg-warning-subtle [--banner-accent:var(--tkc-color-border-warning)] [--banner-icon:var(--tkc-color-icon-warning)]',
+      },
+      danger: {
+        root: 'border-border-danger bg-danger-subtle [--banner-accent:var(--tkc-color-border-danger)] [--banner-icon:var(--tkc-color-icon-danger)]',
+      },
     },
   },
   defaultVariants: { tone: 'info' },
 });
 
 export interface NotificationBannerProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'title'>,
-    VariantProps<typeof notificationBannerVariants> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'title'>, VariantProps<typeof notificationBannerVariants> {
   title: ReactNode;
   /** 見出しレベル。ページの文書構造に合わせて指定する */
   headingLevel?: 2 | 3 | 4;

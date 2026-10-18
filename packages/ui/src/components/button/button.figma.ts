@@ -5,7 +5,12 @@ import figma from 'figma';
 
 const instance = figma.selectedInstance;
 const label = instance.getString('Label');
-const variant = instance.getEnum('Variant', { Primary: 'primary', Secondary: 'secondary', Tertiary: 'tertiary', Danger: 'danger' });
+const variant = instance.getEnum('Variant', {
+  Primary: 'primary',
+  Secondary: 'secondary',
+  Tertiary: 'tertiary',
+  Danger: 'danger',
+});
 const size = instance.getEnum('Size', { Small: 'sm', Medium: 'md', Large: 'lg' });
 const disabled = instance.getBoolean('Disabled');
 const loading = instance.getBoolean('Loading');

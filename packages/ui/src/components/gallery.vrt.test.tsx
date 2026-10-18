@@ -27,7 +27,10 @@ function Gallery() {
         <Button size="sm">小</Button>
       </Stack>
       <p className="m-0">
-        本文中の <Link href="#">リンク</Link> と <Link href="https://example.com" target="_blank">外部リンク</Link>
+        本文中の <Link href="#">リンク</Link> と{' '}
+        <Link href="https://example.com" target="_blank">
+          外部リンク
+        </Link>
       </p>
       <Stack direction="horizontal" wrap>
         <Tag>下書き</Tag>

@@ -32,7 +32,7 @@ jobs:
           step 01-install pnpm install --no-frozen-lockfile
           step 01b-peers pnpm peers check
           cp pnpm-lock.yaml "$RUNNER_TEMP/out/" || true
-          step 02-tokens pnpm build:tokens
+          step 02-tokens env SD_VERBOSE=1 pnpm build:tokens
           step 03a-fmt pnpm exec vp fmt
           git diff > "$RUNNER_TEMP/out/fmt.patch"
           step 03-vp-check pnpm exec vp check

@@ -67,11 +67,7 @@
       "overlay": {
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.0392,
-            0.0471,
-            0.0784
-          ],
+          "components": [0.0392, 0.0471, 0.0784],
           "alpha": 0.48,
           "hex": "#0a0c14"
         },
@@ -202,11 +198,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0627,
-              0.0941,
-              0.1882
-            ],
+            "components": [0.0627, 0.0941, 0.1882],
             "alpha": 0.12,
             "hex": "#101830"
           },
@@ -230,11 +222,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0627,
-              0.0941,
-              0.1882
-            ],
+            "components": [0.0627, 0.0941, 0.1882],
             "alpha": 0.08,
             "hex": "#101830"
           },
@@ -263,11 +251,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0627,
-              0.0941,
-              0.1882
-            ],
+            "components": [0.0627, 0.0941, 0.1882],
             "alpha": 0.14,
             "hex": "#101830"
           },
@@ -291,11 +275,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0627,
-              0.0941,
-              0.1882
-            ],
+            "components": [0.0627, 0.0941, 0.1882],
             "alpha": 0.08,
             "hex": "#101830"
           },
@@ -324,11 +304,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0627,
-              0.0941,
-              0.1882
-            ],
+            "components": [0.0627, 0.0941, 0.1882],
             "alpha": 0.16,
             "hex": "#101830"
           },
@@ -352,11 +328,7 @@
         {
           "color": {
             "colorSpace": "srgb",
-            "components": [
-              0.0627,
-              0.0941,
-              0.1882
-            ],
+            "components": [0.0627, 0.0941, 0.1882],
             "alpha": 0.1,
             "hex": "#101830"
           },

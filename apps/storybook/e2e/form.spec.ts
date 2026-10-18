@@ -32,7 +32,9 @@ test.describe('レイアウト', () => {
   test('幅 320px で横スクロールが出ない（WCAG 1.4.10）', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 640 });
     await page.goto(story('components-form--text-field-states'));
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    );
     expect(overflow).toBe(false);
   });
 

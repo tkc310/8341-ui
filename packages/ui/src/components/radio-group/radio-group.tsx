@@ -91,7 +91,9 @@ export function Radio({ label, description, className, ...rest }: RadioProps) {
     <Field.Item>
       <Field.Label className={s.label({ className })}>
         <BaseRadio.Root
-          className={s.control({ className: 'rounded-full data-[checked]:border-key forced-colors:data-[checked]:border-[Highlight]' })}
+          className={s.control({
+            className: 'rounded-full data-[checked]:border-key forced-colors:data-[checked]:border-[Highlight]',
+          })}
           {...rest}
         >
           <BaseRadio.Indicator className="size-[calc(var(--choice-box)/2)] rounded-full bg-key group-data-[disabled]/control:bg-fg-disabled forced-colors:bg-[CanvasText]" />

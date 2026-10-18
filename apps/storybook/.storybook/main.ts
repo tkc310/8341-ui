@@ -6,11 +6,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
  */
 const config: StorybookConfig = {
   framework: { name: '@storybook/react-vite', options: {} },
-  stories: [
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(ts|tsx)',
-    '../../../packages/ui/src/**/*.stories.@(ts|tsx)',
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)', '../../../packages/ui/src/**/*.stories.@(ts|tsx)'],
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-vitest'],
   // レジストリ（/r/*.json）を Storybook と同じ場所から配信する
   staticDirs: ['../public'],

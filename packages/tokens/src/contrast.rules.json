@@ -15,95 +15,50 @@
         "color.text.link-visited",
         "color.text.link-active"
       ],
-      "bg": [
-        "color.bg.canvas",
-        "color.bg.surface",
-        "color.bg.subtle"
-      ],
+      "bg": ["color.bg.canvas", "color.bg.surface", "color.bg.subtle"],
       "min": 4.5,
       "wcag": "1.4.3"
     },
     {
       "id": "text-on-muted",
-      "fg": [
-        "color.text.default",
-        "color.text.subtle"
-      ],
-      "bg": [
-        "color.bg.muted",
-        "color.bg.key-subtle"
-      ],
+      "fg": ["color.text.default", "color.text.subtle"],
+      "bg": ["color.bg.muted", "color.bg.key-subtle"],
       "min": 4.5,
       "wcag": "1.4.3"
     },
     {
       "id": "text-on-hover-selection",
       "pairs": [
-        [
-          "color.text.default",
-          "color.bg.key-subtle-hover"
-        ],
-        [
-          "color.text.key",
-          "color.bg.key-subtle-hover"
-        ]
+        ["color.text.default", "color.bg.key-subtle-hover"],
+        ["color.text.key", "color.bg.key-subtle-hover"]
       ],
       "min": 4.5,
       "wcag": "1.4.3"
     },
     {
       "id": "key-text-on-key-subtle",
-      "fg": [
-        "color.text.key"
-      ],
-      "bg": [
-        "color.bg.key-subtle",
-        "color.bg.key-subtle-hover",
-        "color.bg.info-subtle"
-      ],
+      "fg": ["color.text.key"],
+      "bg": ["color.bg.key-subtle", "color.bg.key-subtle-hover", "color.bg.info-subtle"],
       "min": 4.5,
       "wcag": "1.4.3"
     },
     {
       "id": "status-text-on-status-bg",
       "pairs": [
-        [
-          "color.text.danger",
-          "color.bg.danger-subtle"
-        ],
-        [
-          "color.text.success",
-          "color.bg.success-subtle"
-        ],
-        [
-          "color.text.warning",
-          "color.bg.warning-subtle"
-        ],
-        [
-          "color.text.default",
-          "color.bg.danger-subtle"
-        ],
-        [
-          "color.text.default",
-          "color.bg.success-subtle"
-        ],
-        [
-          "color.text.default",
-          "color.bg.warning-subtle"
-        ],
-        [
-          "color.text.default",
-          "color.bg.info-subtle"
-        ]
+        ["color.text.danger", "color.bg.danger-subtle"],
+        ["color.text.success", "color.bg.success-subtle"],
+        ["color.text.warning", "color.bg.warning-subtle"],
+        ["color.text.default", "color.bg.danger-subtle"],
+        ["color.text.default", "color.bg.success-subtle"],
+        ["color.text.default", "color.bg.warning-subtle"],
+        ["color.text.default", "color.bg.info-subtle"]
       ],
       "min": 4.5,
       "wcag": "1.4.3"
     },
     {
       "id": "on-key",
-      "fg": [
-        "color.text.on-key"
-      ],
+      "fg": ["color.text.on-key"],
       "bg": [
         "color.bg.key",
         "color.bg.key-hover",
@@ -117,12 +72,7 @@
     },
     {
       "id": "inverse",
-      "pairs": [
-        [
-          "color.text.inverse",
-          "color.bg.inverse"
-        ]
-      ],
+      "pairs": [["color.text.inverse", "color.bg.inverse"]],
       "min": 4.5,
       "wcag": "1.4.3"
     },
@@ -137,10 +87,7 @@
         "color.border.success",
         "color.border.warning"
       ],
-      "bg": [
-        "color.bg.canvas",
-        "color.bg.surface"
-      ],
+      "bg": ["color.bg.canvas", "color.bg.surface"],
       "min": 3,
       "wcag": "1.4.11"
     },
@@ -155,93 +102,51 @@
         "color.icon.warning",
         "color.icon.info"
       ],
-      "bg": [
-        "color.bg.canvas",
-        "color.bg.surface"
-      ],
+      "bg": ["color.bg.canvas", "color.bg.surface"],
       "min": 4.5,
       "wcag": "1.4.11 (テキストに隣接するアイコンは 4.5:1 とする独自基準)"
     },
     {
       "id": "status-icons-on-status-bg",
       "pairs": [
-        [
-          "color.icon.danger",
-          "color.bg.danger-subtle"
-        ],
-        [
-          "color.icon.success",
-          "color.bg.success-subtle"
-        ],
-        [
-          "color.icon.warning",
-          "color.bg.warning-subtle"
-        ],
-        [
-          "color.icon.info",
-          "color.bg.info-subtle"
-        ]
+        ["color.icon.danger", "color.bg.danger-subtle"],
+        ["color.icon.success", "color.bg.success-subtle"],
+        ["color.icon.warning", "color.bg.warning-subtle"],
+        ["color.icon.info", "color.bg.info-subtle"]
       ],
       "min": 3,
       "wcag": "1.4.11"
     },
     {
       "id": "key-bg-as-boundary",
-      "fg": [
-        "color.bg.key",
-        "color.bg.danger"
-      ],
-      "bg": [
-        "color.bg.canvas"
-      ],
+      "fg": ["color.bg.key", "color.bg.danger"],
+      "bg": ["color.bg.canvas"],
       "min": 3,
       "wcag": "1.4.11"
     },
     {
       "id": "focus-indicator",
-      "fg": [
-        "color.focus.outline"
-      ],
-      "bg": [
-        "color.bg.canvas",
-        "color.bg.surface",
-        "color.bg.subtle",
-        "color.bg.muted"
-      ],
+      "fg": ["color.focus.outline"],
+      "bg": ["color.bg.canvas", "color.bg.surface", "color.bg.subtle", "color.bg.muted"],
       "min": 3,
       "wcag": "2.4.13（外側のアウトラインが常に周囲の背景と 3:1 以上になるようにする。内側の黄色リングは暗い要素上での補助）"
     },
     {
       "id": "link-vs-text",
-      "pairs": [
-        [
-          "color.text.link",
-          "color.text.default"
-        ]
-      ],
+      "pairs": [["color.text.link", "color.text.default"]],
       "min": 1,
       "wcag": "1.4.1（リンクは下線必須なので色差は要求しない。記録用）"
     },
     {
       "id": "disabled-legibility",
-      "fg": [
-        "color.text.disabled"
-      ],
-      "bg": [
-        "color.bg.disabled",
-        "color.bg.canvas"
-      ],
+      "fg": ["color.text.disabled"],
+      "bg": ["color.bg.disabled", "color.bg.canvas"],
       "min": 2.5,
       "wcag": "対象外（独自の下限）"
     },
     {
       "id": "text-on-focus-ring",
-      "pairs": [
-        [
-          "color.focus.text",
-          "color.focus.ring"
-        ]
-      ],
+      "pairs": [["color.focus.text", "color.focus.ring"]],
       "min": 4.5,
       "wcag": "1.4.3"
     }

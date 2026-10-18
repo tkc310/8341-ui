@@ -37,7 +37,11 @@ describe('tokens', () => {
 
   it('色はすべて DTCG 2025.10 の色オブジェクトで hex の代替値を持つ', () => {
     for (const t of resolvedTokens('light').filter((x) => x.type === 'color')) {
-      expect(t.resolved).toMatchObject({ colorSpace: expect.any(String), components: expect.any(Array), hex: expect.stringMatching(/^#[0-9a-f]{6}$/) });
+      expect(t.resolved).toMatchObject({
+        colorSpace: expect.any(String),
+        components: expect.any(Array),
+        hex: expect.stringMatching(/^#[0-9a-f]{6}$/),
+      });
     }
   });
 });
@@ -52,7 +56,9 @@ describe('tailwind', () => {
   });
 
   it('Tailwind の変数名が重複しない', () => {
-    const names = resolvedTokens('light').map((t) => tailwindName(t.path)).filter(Boolean);
+    const names = resolvedTokens('light')
+      .map((t) => tailwindName(t.path))
+      .filter(Boolean);
     expect(new Set(names).size).toBe(names.length);
   });
 });

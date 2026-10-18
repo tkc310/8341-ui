@@ -31,7 +31,14 @@ export interface ContrastResult {
 
 /** テーマ間で themed トークンのキーが一致しているか */
 export function checkThemeKeys(): string[] {
-  const keys = THEMES.map((t) => new Set(loadTokens(t).filter((x) => x.themed).map((x) => x.name)));
+  const keys = THEMES.map(
+    (t) =>
+      new Set(
+        loadTokens(t)
+          .filter((x) => x.themed)
+          .map((x) => x.name),
+      ),
+  );
   const errors: string[] = [];
   THEMES.forEach((a, i) => {
     THEMES.forEach((b, j) => {
@@ -54,11 +61,20 @@ export function runContrast(): ContrastResult[] {
       return colorToCssRgba(t.resolved as DtcgColor);
     };
     for (const rule of rules) {
-      const pairs = rule.pairs ?? (rule.fg ?? []).flatMap((f) => (rule.bg ?? []).map((b) => [f, b] as [string, string]));
+      const pairs =
+        rule.pairs ?? (rule.fg ?? []).flatMap((f) => (rule.bg ?? []).map((b) => [f, b] as [string, string]));
       for (const [fg, bg] of pairs) {
         // WCAG は四捨五入しない（4.499 は 4.5 を満たさない）
         const ratio = contrastRatio(get(fg), get(bg));
-        results.push({ theme, rule: rule.id, fg, bg, ratio: Math.floor(ratio * 100) / 100, min: rule.min, pass: ratio >= rule.min });
+        results.push({
+          theme,
+          rule: rule.id,
+          fg,
+          bg,
+          ratio: Math.floor(ratio * 100) / 100,
+          min: rule.min,
+          pass: ratio >= rule.min,
+        });
       }
     }
   }
@@ -74,7 +90,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (process.argv.includes('--json')) {
     console.log(JSON.stringify({ total: results.length, failed, keyErrors }, null, 2));
   } else {
-    for (const r of failed) console.error(`✖ [${r.theme}] ${r.fg} on ${r.bg}: ${r.ratio}:1 (必要 ${r.min}:1, rule=${r.rule})`);
+    for (const r of failed)
+      console.error(`✖ [${r.theme}] ${r.fg} on ${r.bg}: ${r.ratio}:1 (必要 ${r.min}:1, rule=${r.rule})`);
     for (const r of results.filter((x) => x.pass && x.ratio < x.min * 1.05))
       console.warn(`△ [${r.theme}] ${r.fg} on ${r.bg}: ${r.ratio}:1 — 余裕が 5% 未満`);
     console.log(

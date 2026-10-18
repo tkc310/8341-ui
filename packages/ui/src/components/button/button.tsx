@@ -47,7 +47,8 @@ export const buttonVariants = tv({
       lg: { root: 'min-h-control-lg px-inset-xl' },
     },
     fullWidth: { true: { root: 'w-full' } },
-    loading: { true: { root: 'cursor-progress', content: 'invisible' } },
+    // 文字は opacity で隠す（invisible = visibility:hidden だとアクセシビリティツリーからも消え、ボタンの名前が無くなる）
+    loading: { true: { root: 'cursor-progress', content: 'opacity-0' } },
   },
   defaultVariants: { variant: 'primary', size: 'md' },
 });

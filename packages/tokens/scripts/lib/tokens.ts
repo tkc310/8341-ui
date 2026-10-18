@@ -91,13 +91,16 @@ function flattenFile(file: string, layer: FlatToken['layer'], themed: boolean): 
  * Resolver の resolutionOrder に従って、ある context（{ theme: 'dark' } など）の source ファイル一覧を返す。
  * 後のファイルほど優先される。
  */
-export function sourceFiles(inputs: Record<string, string> = {}): { file: string; kind: 'set' | 'modifier'; name: string }[] {
+export function sourceFiles(
+  inputs: Record<string, string> = {},
+): { file: string; kind: 'set' | 'modifier'; name: string }[] {
   const files: { file: string; kind: 'set' | 'modifier'; name: string }[] = [];
   for (const { $ref } of resolverDoc.resolutionOrder) {
     const [, kind, name] = $ref.match(/^#\/(sets|modifiers)\/(.+)$/) ?? [];
     if (!kind || !name) throw new Error(`未対応の $ref: ${$ref}`);
     if (kind === 'sets') {
-      for (const s of resolverDoc.sets[name]?.sources ?? []) files.push({ file: resolve(SRC, s.$ref), kind: 'set', name });
+      for (const s of resolverDoc.sets[name]?.sources ?? [])
+        files.push({ file: resolve(SRC, s.$ref), kind: 'set', name });
     } else {
       const mod = resolverDoc.modifiers[name];
       if (!mod) throw new Error(`未定義の modifier: ${name}`);
@@ -135,7 +138,8 @@ export function createResolver(all: FlatToken[]) {
       return resolveValue(t.value, [...seen, name]);
     }
     if (Array.isArray(v)) return v.map((x) => resolveValue(x, seen));
-    if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, resolveValue(x, seen)]));
+    if (v && typeof v === 'object')
+      return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, resolveValue(x, seen)]));
     return v;
   };
   return { map, resolveValue };

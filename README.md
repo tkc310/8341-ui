@@ -7,16 +7,16 @@
 
 ![ライト / ダークのプレビュー](./docs/assets/preview.png)
 
-| 含まれるもの | 場所 |
-| --- | --- |
-| ルールブック（原則・アクセシビリティ・トークン・コンポーネント・文言・改善ループ） | [`docs/rulebook/`](./docs/rulebook/) |
-| トークン（W3C DTCG 2025.10、primitive / semantic、ライト / ダーク） | [`packages/tokens`](./packages/tokens/)（`tkc310-ui-tokens`） |
-| コンポーネント 18 種（Base UI + Tailwind CSS v4 + tailwind-variants） | [`packages/ui`](./packages/ui/)（`tkc310-ui`） |
-| shadcn レジストリ（`registry:base` で Base UI を固定） | [`packages/ui/registry.json`](./packages/ui/registry.json) |
-| Storybook 10・e2e | [`apps/storybook`](./apps/storybook/) |
-| AI エージェント向け仕様 | [`DESIGN.md`](./DESIGN.md)、[`AGENTS.md`](./AGENTS.md) |
-| 自己改善の仕組み | [`docs/rulebook/06-improvement-loop.md`](./docs/rulebook/06-improvement-loop.md) |
-| プロダクト用 DESIGN.md の雛形 | [`templates/PRODUCT-DESIGN.md`](./templates/PRODUCT-DESIGN.md) |
+| 含まれるもの                                                                       | 場所                                                                             |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| ルールブック（原則・アクセシビリティ・トークン・コンポーネント・文言・改善ループ） | [`docs/rulebook/`](./docs/rulebook/)                                             |
+| トークン（W3C DTCG 2025.10、primitive / semantic、ライト / ダーク）                | [`packages/tokens`](./packages/tokens/)（`tkc310-ui-tokens`）                    |
+| コンポーネント 18 種（Base UI + Tailwind CSS v4 + tailwind-variants）              | [`packages/ui`](./packages/ui/)（`tkc310-ui`）                                   |
+| shadcn レジストリ（`registry:base` で Base UI を固定）                             | [`packages/ui/registry.json`](./packages/ui/registry.json)                       |
+| Storybook 10・e2e                                                                  | [`apps/storybook`](./apps/storybook/)                                            |
+| AI エージェント向け仕様                                                            | [`DESIGN.md`](./DESIGN.md)、[`AGENTS.md`](./AGENTS.md)                           |
+| 自己改善の仕組み                                                                   | [`docs/rulebook/06-improvement-loop.md`](./docs/rulebook/06-improvement-loop.md) |
+| プロダクト用 DESIGN.md の雛形                                                      | [`templates/PRODUCT-DESIGN.md`](./templates/PRODUCT-DESIGN.md)                   |
 
 技術スタックと選んだ理由は [ADR-0008](./docs/decisions/0008-stack-2026-10.md) にあります。
 
@@ -51,8 +51,8 @@ npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
 
 ```css
 /* globals.css */
-@import "tailwindcss";
-@import "./styles/tkc310-ui.css";
+@import 'tailwindcss';
+@import './styles/tkc310-ui.css';
 ```
 
 ### npm パッケージ
@@ -76,8 +76,8 @@ export function SignUp() {
 
 ```css
 /* Tailwind を使う場合 */
-@import "tailwindcss";
-@import "tkc310-ui/theme.css";
+@import 'tailwindcss';
+@import 'tkc310-ui/theme.css';
 @source "../node_modules/tkc310-ui/dist";
 ```
 

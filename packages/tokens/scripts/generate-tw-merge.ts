@@ -54,7 +54,9 @@ if (CHECK) {
     current = readFileSync(OUT, 'utf8');
   } catch {}
   if (current !== content) {
-    console.error('✖ packages/ui/src/lib/tw-merge-config.ts が古くなっています。pnpm --filter tkc310-ui-tokens tw-merge を実行してください');
+    console.error(
+      '✖ packages/ui/src/lib/tw-merge-config.ts が古くなっています。pnpm --filter tkc310-ui-tokens tw-merge を実行してください',
+    );
     process.exit(1);
   }
   console.log('✔ tw-merge-config.ts はトークンと一致しています');

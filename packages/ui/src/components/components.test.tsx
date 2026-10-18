@@ -16,7 +16,9 @@ import { cn } from '@/lib/tv';
 
 /** happy-dom ではレイアウトと色を計算できないため、構造（ARIA・ラベル）の規則だけを検査する */
 async function expectNoA11yViolations(container: HTMLElement) {
-  const result = await axe.run(container, { rules: { 'color-contrast': { enabled: false }, region: { enabled: false } } });
+  const result = await axe.run(container, {
+    rules: { 'color-contrast': { enabled: false }, region: { enabled: false } },
+  });
   expect(result.violations.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
 }
 
@@ -35,7 +37,7 @@ describe('Button', () => {
   });
 
   it('loading 中はクリックを無視し、フォーカスできるまま aria-busy を立てる', async () => {
-    const onClick = vi.fn();
+    const onClick = vi.fn<() => void>();
     render(
       <Button loading onClick={onClick}>
         送信する

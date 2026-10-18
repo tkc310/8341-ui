@@ -1,5 +1,5 @@
 /* ビルド済み CSS（dist/styles.css）の入力。Tailwind を使わないプロジェクト向け */
-@import "tailwindcss";
-@import "./theme.css";
+@import 'tailwindcss';
+@import './theme.css';
 @source "../components";
 @source "../lib";

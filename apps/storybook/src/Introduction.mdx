@@ -11,11 +11,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## 構成
 
-| 層 | 置き場所 | 技術 |
-| --- | --- | --- |
-| トークン | `packages/tokens` | W3C DTCG 2025.10 → Style Dictionary v5 → CSS 変数・Tailwind `@theme`・Figma Variables |
-| コンポーネント | `packages/ui` | Base UI v1 + Tailwind CSS v4 + tailwind-variants v3 |
-| 配布 | `packages/ui/registry.json` | shadcn 方式（コードを持つ）。npm パッケージとしても使える |
+| 層             | 置き場所                    | 技術                                                                                  |
+| -------------- | --------------------------- | ------------------------------------------------------------------------------------- |
+| トークン       | `packages/tokens`           | W3C DTCG 2025.10 → Style Dictionary v5 → CSS 変数・Tailwind `@theme`・Figma Variables |
+| コンポーネント | `packages/ui`               | Base UI v1 + Tailwind CSS v4 + tailwind-variants v3                                   |
+| 配布           | `packages/ui/registry.json` | shadcn 方式（コードを持つ）。npm パッケージとしても使える                             |
 
 ## 使い方 1: shadcn 方式（推奨）
 
@@ -34,8 +34,8 @@ npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
 `globals.css` で Tailwind の後にテーマを読み込みます。
 
 ```css
-@import "tailwindcss";
-@import "./styles/tkc310-ui.css";
+@import 'tailwindcss';
+@import './styles/tkc310-ui.css';
 ```
 
 ## 使い方 2: npm パッケージ
@@ -48,8 +48,8 @@ import 'tkc310-ui/styles.css'; // Tailwind を使わない場合（ビルド済�
 Tailwind を使うプロジェクトでは `styles.css` の代わりに次を書きます。
 
 ```css
-@import "tailwindcss";
-@import "tkc310-ui/theme.css";
+@import 'tailwindcss';
+@import 'tkc310-ui/theme.css';
 @source "../node_modules/tkc310-ui/dist";
 ```
 

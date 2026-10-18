@@ -6,7 +6,11 @@ const meta = {
   title: 'Components/Card',
   component: Card,
   parameters: {
-    docs: { description: { component: '情報のまとまり。表の行の代わりに敷き詰めない。href を渡すとタイトルのリンクがカード全体に広がる。' } },
+    docs: {
+      description: {
+        component: '情報のまとまり。表の行の代わりに敷き詰めない。href を渡すとタイトルのリンクがカード全体に広がる。',
+      },
+    },
   },
 } satisfies Meta<typeof Card>;
 
@@ -22,7 +26,12 @@ export const Cards: Story = {
       <Card as="li" eyebrow="手続き" title="子育て支援の申請" href="#child">
         <Text tone="subtle">児童手当や保育園の申し込み方法。</Text>
       </Card>
-      <Card as="li" variant="filled" title="リンクしないカード" footer={<Text variant="body-sm">2026年10月1日更新</Text>}>
+      <Card
+        as="li"
+        variant="filled"
+        title="リンクしないカード"
+        footer={<Text variant="body-sm">2026年10月1日更新</Text>}
+      >
         <Text tone="subtle">情報をまとめて見せるだけのカード。</Text>
       </Card>
     </ul>

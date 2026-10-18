@@ -23,7 +23,8 @@ for (const { name } of components) {
   const has = /^['"]use client['"];?/.test(readFileSync(out, 'utf8').trimStart());
   if (needs && !has) errors.push(`'use client' が出力から消えています: dist/components/${name}/${name}.js`);
   for (const f of ['index.js', 'index.d.ts']) {
-    if (!existsSync(resolve(ROOT, `dist/components/${name}/${f}`))) errors.push(`exports の対象がありません: dist/components/${name}/${f}`);
+    if (!existsSync(resolve(ROOT, `dist/components/${name}/${f}`)))
+      errors.push(`exports の対象がありません: dist/components/${name}/${f}`);
   }
 }
 for (const f of ['index.js', 'index.d.ts', 'theme.css', 'styles.css']) {

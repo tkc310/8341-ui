@@ -1,7 +1,6 @@
 'use client';
 
 import { Select as BaseSelect } from '@base-ui/react/select';
-import type { ComponentProps } from 'react';
 import { type ControlSize, controlVariants, useFormField } from '@/components/ui/form-field';
 import { Icon } from '@/components/ui/icon';
 import { focusRing } from '@/lib/focus';
@@ -32,8 +31,13 @@ const select = tv({
   },
 });
 
-export interface SelectProps
-  extends Omit<ComponentProps<typeof BaseSelect.Root>, 'items' | 'children' | 'value' | 'defaultValue' | 'onValueChange'> {
+/** 単一選択・値は文字列（未選択は null）に固定した Base UI の Select.Root の props */
+type BaseRootProps = BaseSelect.Root.Props<string | null, false>;
+
+export interface SelectProps extends Omit<
+  BaseRootProps,
+  'items' | 'children' | 'value' | 'defaultValue' | 'onValueChange' | 'multiple'
+> {
   options: SelectOption[];
   value?: string | null;
   defaultValue?: string | null;
@@ -54,7 +58,7 @@ export function Select({ options, placeholder, size, className, required, ...res
   // Base UI の Select は value が null の item を未選択の表示に使う
   const items = [...(placeholder !== undefined ? [{ value: null, label: placeholder }] : []), ...options];
   return (
-    <BaseSelect.Root items={items} required={required ?? field.required} {...rest}>
+    <BaseSelect.Root<string | null, false> items={items} required={required ?? field.required} {...rest}>
       <BaseSelect.Trigger className={controlVariants({ size, className: s.trigger({ className }) })}>
         <BaseSelect.Value />
         <BaseSelect.Icon className={s.icon()}>
@@ -66,7 +70,12 @@ export function Select({ options, placeholder, size, className, required, ...res
           <BaseSelect.Popup className={s.popup()}>
             <BaseSelect.List>
               {options.map((o) => (
-                <BaseSelect.Item key={o.value} value={o.value} disabled={o.disabled} className={s.item({ className: focusRing })}>
+                <BaseSelect.Item
+                  key={o.value}
+                  value={o.value}
+                  disabled={o.disabled}
+                  className={s.item({ className: focusRing })}
+                >
                   <span className={s.indicatorSlot()}>
                     <BaseSelect.ItemIndicator>
                       <Icon name="check" className={s.indicator()} />

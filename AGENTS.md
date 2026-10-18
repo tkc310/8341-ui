@@ -4,11 +4,11 @@ AI エージェント向けの作業ガイドです。
 
 ## まず読むもの
 
-| やりたいこと | 読むもの |
-| --- | --- |
-| このシステムで UI を作る | `DESIGN.md` → `.claude/skills/ds-build-ui/SKILL.md` |
+| やりたいこと                     | 読むもの                                                |
+| -------------------------------- | ------------------------------------------------------- |
+| このシステムで UI を作る         | `DESIGN.md` → `.claude/skills/ds-build-ui/SKILL.md`     |
 | このシステム自体を直す・改善する | `docs/rulebook/` → `.claude/skills/ds-improve/SKILL.md` |
-| 判断の理由を知る | `docs/decisions/` |
+| 判断の理由を知る                 | `docs/decisions/`                                       |
 
 ## 技術スタック
 

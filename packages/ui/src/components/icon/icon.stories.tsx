@@ -7,7 +7,9 @@ const meta = {
   title: 'Components/Icon',
   component: Icon,
   args: { name: 'info' },
-  parameters: { docs: { description: { component: 'アイコンはテキストと併用する。単独で意味を伝える場合だけ label を付ける。' } } },
+  parameters: {
+    docs: { description: { component: 'アイコンはテキストと併用する。単独で意味を伝える場合だけ label を付ける。' } },
+  },
 } satisfies Meta<typeof Icon>;
 
 export default meta;
@@ -19,7 +21,9 @@ export const All: Story = {
       {iconNames.map((name) => (
         <Stack key={name} gap="sm" align="center" className="w-24">
           <Icon name={name} size="lg" />
-          <Text as="span" variant="mono-sm">{name}</Text>
+          <Text as="span" variant="mono-sm">
+            {name}
+          </Text>
         </Stack>
       ))}
     </Stack>

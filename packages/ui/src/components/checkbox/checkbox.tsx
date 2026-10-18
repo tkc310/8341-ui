@@ -32,7 +32,8 @@ export const choiceVariants = tv({
   defaultVariants: { size: 'md' },
 });
 
-export interface CheckboxProps extends Omit<ComponentProps<typeof BaseCheckbox.Root>, 'className'>, VariantProps<typeof choiceVariants> {
+export interface CheckboxProps
+  extends Omit<ComponentProps<typeof BaseCheckbox.Root>, 'className'>, VariantProps<typeof choiceVariants> {
   /** ラベルは必須。ラベル全体がクリック領域になる */
   label: ReactNode;
   /** ラベル下の補足 */

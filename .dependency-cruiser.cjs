@@ -54,7 +54,15 @@ module.exports = {
     {
       name: 'no-orphans',
       severity: 'warn',
-      from: { orphan: true, pathNot: ['[.]d[.]ts$', '(^|/)[.][^/]+[.](?:js|cjs|mjs|ts|json)$', 'vite[.]config[.]ts$', '[.](stories|figma)[.]tsx?$'] },
+      from: {
+        orphan: true,
+        pathNot: [
+          '[.]d[.]ts$',
+          '(^|/)[.][^/]+[.](?:js|cjs|mjs|ts|json)$',
+          'vite[.]config[.]ts$',
+          '[.](stories|figma)[.]tsx?$',
+        ],
+      },
       to: {},
     },
   ],

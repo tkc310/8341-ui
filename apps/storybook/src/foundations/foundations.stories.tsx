@@ -50,8 +50,14 @@ export const PrimitiveColors: Story = {
             <h2 className="m-0 mb-stack-sm text-heading-xxs">{family}</h2>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] gap-gap-sm">
               {pick(`color.primitive.${family}.`).map((t) => (
-                <div key={t.name} className="flex flex-col gap-gap-xs text-body-sm leading-(--tkc-text-dense-sm-line-height)">
-                  <div className="h-12 rounded-md border border-border-subtle" style={{ background: `var(${t.cssVar})` }} />
+                <div
+                  key={t.name}
+                  className="flex flex-col gap-gap-xs text-body-sm leading-(--tkc-text-dense-sm-line-height)"
+                >
+                  <div
+                    className="h-12 rounded-md border border-border-subtle"
+                    style={{ background: `var(${t.cssVar})` }}
+                  />
                   <code>{t.name.split('.').at(-1)}</code>
                   <code>{hex(t.value)}</code>
                   <span className="text-fg-subtle">{t.description}</span>
@@ -85,7 +91,10 @@ export const SemanticColors: Story = {
             .map((t) => (
               <tr key={t.name}>
                 <td className="border-b border-border-subtle p-inset-sm">
-                  <span className="inline-block size-8 rounded-md border border-border" style={{ background: `var(${t.cssVar})` }} />
+                  <span
+                    className="inline-block size-8 rounded-md border border-border"
+                    style={{ background: `var(${t.cssVar})` }}
+                  />
                 </td>
                 <td className="border-b border-border-subtle p-inset-sm">
                   <code>{t.name}</code>
@@ -156,7 +165,10 @@ export const SpaceRadiusSize: Story = {
                 </td>
                 <td className="border-b border-border-subtle p-inset-sm">
                   {p === 'radius.' ? (
-                    <span className="block h-12 w-24 border-2 border-border-key bg-key-subtle" style={{ borderRadius: `var(${t.cssVar})` }} />
+                    <span
+                      className="block h-12 w-24 border-2 border-border-key bg-key-subtle"
+                      style={{ borderRadius: `var(${t.cssVar})` }}
+                    />
                   ) : (
                     <span className="block h-3 rounded-xs bg-key" style={{ width: `min(var(${t.cssVar}), 100%)` }} />
                   )}
@@ -176,7 +188,11 @@ export const Elevation: Story = {
     <Page lead="影は浮いている物（メニュー・モーダル）にだけ使う。ボタンや入力欄には使わない。">
       <div className="flex flex-wrap gap-gutter">
         {pick('shadow.').map((t) => (
-          <div key={t.name} className="flex w-60 flex-col gap-gap-sm rounded-xl bg-surface p-inset-xl" style={{ boxShadow: `var(${t.cssVar})` }}>
+          <div
+            key={t.name}
+            className="flex w-60 flex-col gap-gap-sm rounded-xl bg-surface p-inset-xl"
+            style={{ boxShadow: `var(${t.cssVar})` }}
+          >
             <code>{t.tailwind}</code>
             <span>{t.description}</span>
           </div>
