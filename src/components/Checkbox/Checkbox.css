@@ -1,0 +1,125 @@
+/* Checkbox / Radio 共通（.dsm-choice） */
+.dsm-choice {
+  --_box: var(--dsm-size-icon-lg);
+
+  display: flex;
+  width: fit-content;
+  align-items: flex-start;
+  gap: var(--dsm-space-gap-sm);
+  /* ラベル全体をタップ領域にし、44px を確保する */
+  min-height: var(--dsm-size-target-min);
+  padding-block: calc((var(--dsm-size-target-min) - var(--dsm-text-body-md-font-size) * var(--dsm-text-body-md-line-height)) / 2);
+  color: var(--dsm-color-text-default);
+  font-family: var(--dsm-text-body-md-font-family);
+  font-size: var(--dsm-text-body-md-font-size);
+  line-height: var(--dsm-text-body-md-line-height);
+  letter-spacing: var(--dsm-text-body-md-letter-spacing);
+  cursor: pointer;
+}
+
+.dsm-choice[data-size='lg'] {
+  --_box: calc(var(--dsm-size-icon-lg) + var(--dsm-space-gap-xs));
+}
+
+.dsm-choice__input {
+  appearance: none;
+  flex-shrink: 0;
+  display: grid;
+  place-content: center;
+  width: var(--_box);
+  height: var(--_box);
+  /* 1 行目の中央に揃える */
+  margin: calc((var(--dsm-text-body-md-font-size) * var(--dsm-text-body-md-line-height) - var(--_box)) / 2) 0 0;
+  border: var(--dsm-border-width-strong) solid var(--dsm-color-border-input);
+  border-radius: var(--dsm-radius-xs);
+  background-color: var(--dsm-color-bg-surface);
+  cursor: inherit;
+}
+
+.dsm-choice__input[data-kind='radio'] {
+  border-radius: var(--dsm-radius-full);
+}
+
+/* チェック記号は CSS マスクで描く（currentColor 追従・強制カラー対応） */
+.dsm-choice__input::before {
+  content: '';
+  width: calc(var(--_box) * 0.7);
+  height: calc(var(--_box) * 0.7);
+  background-color: var(--dsm-color-text-on-key);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transform: scale(0);
+}
+
+.dsm-choice__input[data-kind='checkbox']:checked,
+.dsm-choice__input[data-kind='checkbox']:indeterminate {
+  border-color: var(--dsm-color-bg-key);
+  background-color: var(--dsm-color-bg-key);
+}
+
+.dsm-choice__input:checked::before,
+.dsm-choice__input:indeterminate::before {
+  transform: scale(1);
+}
+
+.dsm-choice__input:indeterminate::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
+}
+
+.dsm-choice__input[data-kind='radio']::before {
+  width: calc(var(--_box) * 0.5);
+  height: calc(var(--_box) * 0.5);
+  border-radius: var(--dsm-radius-full);
+  background-color: var(--dsm-color-bg-key);
+  mask: none;
+}
+
+.dsm-choice__input[data-kind='radio']:checked {
+  border-color: var(--dsm-color-bg-key);
+}
+
+@media (hover: hover) {
+  .dsm-choice:hover .dsm-choice__input:not(:disabled, :checked, :indeterminate) {
+    border-color: var(--dsm-color-border-strong);
+    background-color: var(--dsm-color-bg-muted);
+  }
+}
+
+.dsm-choice__input[aria-invalid='true'] {
+  border-color: var(--dsm-color-border-danger);
+}
+
+.dsm-choice__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dsm-choice__description {
+  color: var(--dsm-color-text-subtle);
+  font-size: var(--dsm-text-body-sm-font-size);
+  line-height: var(--dsm-text-body-sm-line-height);
+}
+
+.dsm-choice:has(:disabled) {
+  color: var(--dsm-color-text-disabled);
+  cursor: not-allowed;
+}
+.dsm-choice:has(:disabled) .dsm-choice__description {
+  color: var(--dsm-color-text-disabled);
+}
+.dsm-choice__input:disabled {
+  border-color: var(--dsm-color-border-disabled);
+  background-color: var(--dsm-color-bg-disabled);
+}
+.dsm-choice__input:disabled::before {
+  background-color: var(--dsm-color-text-disabled);
+}
+
+@media (forced-colors: active) {
+  .dsm-choice__input::before {
+    background-color: CanvasText;
+  }
+  .dsm-choice__input:checked {
+    border-color: Highlight;
+  }
+}

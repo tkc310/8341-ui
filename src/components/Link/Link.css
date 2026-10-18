@@ -1,0 +1,48 @@
+/*
+ * リンクの 5 状態: default / visited / hover / active / focus
+ * - 下線は常に表示（色だけで判別させない）
+ * - hover では下線を太くするだけで、文字の太さ・大きさは変えない（レイアウトがずれないように）
+ */
+.dsm-link {
+  color: var(--dsm-color-text-link);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--dsm-border-width-underline);
+  text-underline-offset: 0.2em;
+  border-radius: var(--dsm-radius-xs);
+}
+
+.dsm-link:visited {
+  color: var(--dsm-color-text-link-visited);
+}
+
+@media (hover: hover) {
+  .dsm-link:hover {
+    color: var(--dsm-color-text-link-hover);
+    text-decoration-thickness: var(--dsm-border-width-underline-hover);
+  }
+}
+
+.dsm-link:active {
+  color: var(--dsm-color-text-link-active);
+}
+
+/* フォーカス時は背景も黄色にして、文中のリンクでも見失わないようにする */
+.dsm-link:focus-visible {
+  background-color: var(--dsm-color-focus-ring);
+  color: var(--dsm-color-focus-text);
+  box-shadow: none;
+  text-decoration-thickness: var(--dsm-border-width-underline);
+}
+
+.dsm-link__icon {
+  margin-inline-start: 0.2em;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+@media (forced-colors: active) {
+  .dsm-link:focus-visible {
+    background-color: transparent;
+  }
+}

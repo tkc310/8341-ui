@@ -1,0 +1,92 @@
+.dsm-banner {
+  --_accent: var(--dsm-color-border-key);
+  --_icon: var(--dsm-color-icon-info);
+  --_bg: var(--dsm-color-bg-info-subtle);
+
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dsm-space-gap-md);
+  padding: var(--dsm-space-inset-lg);
+  padding-inline-start: calc(var(--dsm-space-inset-lg) + var(--dsm-border-width-accent));
+  border: var(--dsm-border-width-default) solid var(--_accent);
+  border-radius: var(--dsm-radius-lg);
+  background-color: var(--_bg);
+  /* 左の太線は内側の影で描く（角丸と両立させるため） */
+  box-shadow: inset var(--dsm-border-width-accent) 0 0 0 var(--_accent);
+  color: var(--dsm-color-text-default);
+}
+
+.dsm-banner[data-tone='success'] {
+  --_accent: var(--dsm-color-border-success);
+  --_icon: var(--dsm-color-icon-success);
+  --_bg: var(--dsm-color-bg-success-subtle);
+}
+.dsm-banner[data-tone='warning'] {
+  --_accent: var(--dsm-color-border-warning);
+  --_icon: var(--dsm-color-icon-warning);
+  --_bg: var(--dsm-color-bg-warning-subtle);
+}
+.dsm-banner[data-tone='danger'] {
+  --_accent: var(--dsm-color-border-danger);
+  --_icon: var(--dsm-color-icon-danger);
+  --_bg: var(--dsm-color-bg-danger-subtle);
+}
+
+.dsm-banner__icon {
+  margin-block-start: calc((var(--dsm-text-heading-xxs-font-size) * var(--dsm-text-heading-xxs-line-height) - var(--dsm-size-icon-lg)) / 2);
+  color: var(--_icon);
+}
+
+.dsm-banner__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--dsm-space-stack-sm);
+  min-width: 0;
+}
+
+.dsm-banner__title {
+  margin: 0;
+  font-family: var(--dsm-text-heading-xxs-font-family);
+  font-size: var(--dsm-text-heading-xxs-font-size);
+  font-weight: var(--dsm-text-heading-xxs-font-weight);
+  line-height: var(--dsm-text-heading-xxs-line-height);
+  letter-spacing: var(--dsm-text-heading-xxs-letter-spacing);
+}
+
+.dsm-banner__content > :where(p) {
+  margin: 0;
+}
+
+.dsm-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dsm-space-gap-sm);
+}
+
+.dsm-banner__close {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--dsm-size-target-min);
+  height: var(--dsm-size-target-min);
+  margin: calc(var(--dsm-space-inset-md) * -1);
+  padding: 0;
+  border: 0;
+  border-radius: var(--dsm-radius-md);
+  background: transparent;
+  color: var(--dsm-color-icon-default);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dsm-banner__close:hover {
+    background-color: var(--dsm-color-bg-muted);
+  }
+}
+
+@media (forced-colors: active) {
+  .dsm-banner {
+    border-inline-start-width: var(--dsm-border-width-accent);
+  }
+}

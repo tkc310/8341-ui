@@ -1,0 +1,454 @@
+{
+  "$description": "Primitive colors. 自動生成ファイル — 直接編集せず tokens/palette.config.json を変更すること。",
+  "color": {
+    "$type": "color",
+    "primitive": {
+      "white": {
+        "$value": "#ffffff"
+      },
+      "black": {
+        "$value": "#000000"
+      },
+      "indigo": {
+        "50": {
+          "$value": "#f3f7fe",
+          "$description": "白背景 1.07:1"
+        },
+        "100": {
+          "$value": "#e4edff",
+          "$description": "白背景 1.18:1"
+        },
+        "200": {
+          "$value": "#cadbfe",
+          "$description": "白背景 1.39:1"
+        },
+        "300": {
+          "$value": "#a8c4fe",
+          "$description": "白背景 1.75:1"
+        },
+        "400": {
+          "$value": "#82a8fd",
+          "$description": "白背景 2.34:1"
+        },
+        "500": {
+          "$value": "#628bea",
+          "$description": "白背景 3.28:1"
+        },
+        "600": {
+          "$value": "#4971d2",
+          "$description": "白背景 4.59:1"
+        },
+        "700": {
+          "$value": "#385db8",
+          "$description": "白背景 6.13:1"
+        },
+        "800": {
+          "$value": "#2d4c9c",
+          "$description": "白背景 8.00:1"
+        },
+        "900": {
+          "$value": "#223d81",
+          "$description": "白背景 10.23:1"
+        },
+        "1000": {
+          "$value": "#192f65",
+          "$description": "白背景 12.84:1"
+        },
+        "1100": {
+          "$value": "#11234f",
+          "$description": "白背景 15.25:1"
+        },
+        "1200": {
+          "$value": "#0a183b",
+          "$description": "白背景 17.40:1"
+        },
+        "$description": "藍 Ai — キーカラー"
+      },
+      "teal": {
+        "50": {
+          "$value": "#eafbfa",
+          "$description": "白背景 1.07:1"
+        },
+        "100": {
+          "$value": "#d4f4f4",
+          "$description": "白背景 1.16:1"
+        },
+        "200": {
+          "$value": "#ade8e7",
+          "$description": "白背景 1.36:1"
+        },
+        "300": {
+          "$value": "#7ed6d5",
+          "$description": "白背景 1.68:1"
+        },
+        "400": {
+          "$value": "#3ec0c0",
+          "$description": "白背景 2.21:1"
+        },
+        "500": {
+          "$value": "#0ba3a4",
+          "$description": "白背景 3.09:1"
+        },
+        "600": {
+          "$value": "#098989",
+          "$description": "白背景 4.24:1"
+        },
+        "700": {
+          "$value": "#087272",
+          "$description": "白背景 5.74:1"
+        },
+        "800": {
+          "$value": "#015f5f",
+          "$description": "白背景 7.49:1"
+        },
+        "900": {
+          "$value": "#024d4d",
+          "$description": "白背景 9.67:1"
+        },
+        "1000": {
+          "$value": "#033b3b",
+          "$description": "白背景 12.41:1"
+        },
+        "1100": {
+          "$value": "#002d2d",
+          "$description": "白背景 14.86:1"
+        },
+        "1200": {
+          "$value": "#002020",
+          "$description": "白背景 17.11:1"
+        },
+        "$description": "青磁 Seiji — サブ / データ可視化"
+      },
+      "purple": {
+        "50": {
+          "$value": "#f8f5fe",
+          "$description": "白背景 1.08:1"
+        },
+        "100": {
+          "$value": "#f0e9ff",
+          "$description": "白背景 1.18:1"
+        },
+        "200": {
+          "$value": "#e1d2fe",
+          "$description": "白背景 1.41:1"
+        },
+        "300": {
+          "$value": "#ceb6fc",
+          "$description": "白背景 1.79:1"
+        },
+        "400": {
+          "$value": "#b897f0",
+          "$description": "白背景 2.41:1"
+        },
+        "500": {
+          "$value": "#9e77dc",
+          "$description": "白背景 3.43:1"
+        },
+        "600": {
+          "$value": "#875ec4",
+          "$description": "白背景 4.74:1"
+        },
+        "700": {
+          "$value": "#724aab",
+          "$description": "白背景 6.40:1"
+        },
+        "800": {
+          "$value": "#5f3c91",
+          "$description": "白背景 8.26:1"
+        },
+        "900": {
+          "$value": "#4d2f77",
+          "$description": "白背景 10.56:1"
+        },
+        "1000": {
+          "$value": "#3b235d",
+          "$description": "白背景 13.25:1"
+        },
+        "1100": {
+          "$value": "#2d1a49",
+          "$description": "白背景 15.49:1"
+        },
+        "1200": {
+          "$value": "#201136",
+          "$description": "白背景 17.58:1"
+        },
+        "$description": "藤 Fuji — 訪問済みリンク / データ可視化"
+      },
+      "red": {
+        "50": {
+          "$value": "#fef4f3",
+          "$description": "白背景 1.08:1"
+        },
+        "100": {
+          "$value": "#fee7e4",
+          "$description": "白背景 1.18:1"
+        },
+        "200": {
+          "$value": "#ffcdc8",
+          "$description": "白背景 1.42:1"
+        },
+        "300": {
+          "$value": "#feaba4",
+          "$description": "白背景 1.81:1"
+        },
+        "400": {
+          "$value": "#fe7f77",
+          "$description": "白背景 2.47:1"
+        },
+        "500": {
+          "$value": "#eb5451",
+          "$description": "白背景 3.55:1"
+        },
+        "600": {
+          "$value": "#d13437",
+          "$description": "白背景 4.93:1"
+        },
+        "700": {
+          "$value": "#b61b25",
+          "$description": "白背景 6.62:1"
+        },
+        "800": {
+          "$value": "#9a101c",
+          "$description": "白背景 8.52:1"
+        },
+        "900": {
+          "$value": "#800613",
+          "$description": "白背景 10.75:1"
+        },
+        "1000": {
+          "$value": "#64050d",
+          "$description": "白背景 13.38:1"
+        },
+        "1100": {
+          "$value": "#4e0208",
+          "$description": "白背景 15.72:1"
+        },
+        "1200": {
+          "$value": "#3a0104",
+          "$description": "白背景 17.71:1"
+        },
+        "$description": "紅 Beni — エラー"
+      },
+      "orange": {
+        "50": {
+          "$value": "#fff4ef",
+          "$description": "白背景 1.08:1"
+        },
+        "100": {
+          "$value": "#fee8db",
+          "$description": "白背景 1.18:1"
+        },
+        "200": {
+          "$value": "#ffcfb5",
+          "$description": "白背景 1.41:1"
+        },
+        "300": {
+          "$value": "#feaf82",
+          "$description": "白背景 1.80:1"
+        },
+        "400": {
+          "$value": "#f48c4c",
+          "$description": "白背景 2.41:1"
+        },
+        "500": {
+          "$value": "#de6905",
+          "$description": "白背景 3.43:1"
+        },
+        "600": {
+          "$value": "#ba5601",
+          "$description": "白背景 4.75:1"
+        },
+        "700": {
+          "$value": "#9c4804",
+          "$description": "白背景 6.28:1"
+        },
+        "800": {
+          "$value": "#833b02",
+          "$description": "白背景 8.10:1"
+        },
+        "900": {
+          "$value": "#6b2f01",
+          "$description": "白背景 10.33:1"
+        },
+        "1000": {
+          "$value": "#532301",
+          "$description": "白背景 13.05:1"
+        },
+        "1100": {
+          "$value": "#411900",
+          "$description": "白背景 15.40:1"
+        },
+        "1200": {
+          "$value": "#2f1000",
+          "$description": "白背景 17.57:1"
+        },
+        "$description": "橙 Daidai — 警告 / active"
+      },
+      "yellow": {
+        "50": {
+          "$value": "#fffcf3",
+          "$description": "白背景 1.03:1"
+        },
+        "100": {
+          "$value": "#fef1ce",
+          "$description": "白背景 1.12:1"
+        },
+        "200": {
+          "$value": "#f5de9f",
+          "$description": "白背景 1.33:1"
+        },
+        "300": {
+          "$value": "#e7c567",
+          "$description": "白背景 1.67:1"
+        },
+        "400": {
+          "$value": "#d5aa02",
+          "$description": "白背景 2.19:1"
+        },
+        "500": {
+          "$value": "#b48f0a",
+          "$description": "白背景 3.05:1"
+        },
+        "600": {
+          "$value": "#977806",
+          "$description": "白背景 4.20:1"
+        },
+        "700": {
+          "$value": "#7f6404",
+          "$description": "白背景 5.63:1"
+        },
+        "800": {
+          "$value": "#6b5402",
+          "$description": "白背景 7.26:1"
+        },
+        "900": {
+          "$value": "#574401",
+          "$description": "白背景 9.41:1"
+        },
+        "1000": {
+          "$value": "#443401",
+          "$description": "白背景 12.09:1"
+        },
+        "1100": {
+          "$value": "#352800",
+          "$description": "白背景 14.43:1"
+        },
+        "1200": {
+          "$value": "#271d00",
+          "$description": "白背景 16.64:1"
+        },
+        "$description": "山吹 Yamabuki — フォーカス / 注意"
+      },
+      "green": {
+        "50": {
+          "$value": "#edfbf1",
+          "$description": "白背景 1.07:1"
+        },
+        "100": {
+          "$value": "#daf5e2",
+          "$description": "白背景 1.16:1"
+        },
+        "200": {
+          "$value": "#b9e8c8",
+          "$description": "白背景 1.36:1"
+        },
+        "300": {
+          "$value": "#91d7a9",
+          "$description": "白背景 1.68:1"
+        },
+        "400": {
+          "$value": "#64c288",
+          "$description": "白背景 2.18:1"
+        },
+        "500": {
+          "$value": "#30a867",
+          "$description": "白背景 3.03:1"
+        },
+        "600": {
+          "$value": "#078e51",
+          "$description": "白背景 4.20:1"
+        },
+        "700": {
+          "$value": "#037743",
+          "$description": "白背景 5.64:1"
+        },
+        "800": {
+          "$value": "#016337",
+          "$description": "白背景 7.39:1"
+        },
+        "900": {
+          "$value": "#00502b",
+          "$description": "白背景 9.62:1"
+        },
+        "1000": {
+          "$value": "#003e20",
+          "$description": "白背景 12.28:1"
+        },
+        "1100": {
+          "$value": "#003017",
+          "$description": "白背景 14.63:1"
+        },
+        "1200": {
+          "$value": "#00220f",
+          "$description": "白背景 16.99:1"
+        },
+        "$description": "常磐 Tokiwa — 成功"
+      },
+      "gray": {
+        "50": {
+          "$value": "#f6f7f7",
+          "$description": "白背景 1.07:1"
+        },
+        "100": {
+          "$value": "#ecedee",
+          "$description": "白背景 1.17:1"
+        },
+        "200": {
+          "$value": "#d9dbdd",
+          "$description": "白背景 1.39:1"
+        },
+        "300": {
+          "$value": "#c2c4c8",
+          "$description": "白背景 1.75:1"
+        },
+        "400": {
+          "$value": "#a8abb0",
+          "$description": "白背景 2.30:1"
+        },
+        "500": {
+          "$value": "#8c8f95",
+          "$description": "白背景 3.24:1"
+        },
+        "600": {
+          "$value": "#75777d",
+          "$description": "白背景 4.48:1"
+        },
+        "700": {
+          "$value": "#616369",
+          "$description": "白背景 6.01:1"
+        },
+        "800": {
+          "$value": "#505257",
+          "$description": "白背景 7.82:1"
+        },
+        "900": {
+          "$value": "#404246",
+          "$description": "白背景 10.07:1"
+        },
+        "1000": {
+          "$value": "#313336",
+          "$description": "白背景 12.67:1"
+        },
+        "1100": {
+          "$value": "#252629",
+          "$description": "白背景 15.13:1"
+        },
+        "1200": {
+          "$value": "#1a1b1d",
+          "$description": "白背景 17.24:1"
+        },
+        "$description": "墨 Sumi — 中立色（わずかに藍へ寄せる）"
+      }
+    }
+  }
+}

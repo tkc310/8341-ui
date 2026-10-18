@@ -1,0 +1,9 @@
+.dsm-divider {
+  margin: 0;
+  border: 0;
+  border-block-start: var(--dsm-border-width-default) solid var(--dsm-color-border-subtle);
+}
+
+.dsm-divider[data-tone='default'] {
+  border-block-start-color: var(--dsm-color-border-default);
+}

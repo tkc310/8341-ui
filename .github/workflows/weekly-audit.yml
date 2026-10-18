@@ -1,0 +1,33 @@
+name: Weekly audit
+
+# 改善ループの「気づく」段階。毎週の健康診断レポートを Issue に投稿する。
+on:
+  schedule:
+    - cron: '0 0 * * 1' # 毎週月曜 9:00 JST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install  # package-lock.json をコミットしたら npm ci に変える
+      - run: npm run audit
+      - name: レポートを Issue に投稿（同じラベルの未解決 Issue があれば更新）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create design-audit --color 385DB8 --description "週次のデザインシステム監査" 2>/dev/null || true
+          number=$(gh issue list --label design-audit --state open --json number --jq '.[0].number')
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file reports/audit.md
+          else
+            gh issue create --title "デザインシステム監査レポート" --label design-audit --body-file reports/audit.md
+          fi

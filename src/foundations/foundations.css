@@ -1,0 +1,110 @@
+/* Storybook の Foundations ページ専用。ライブラリには含めない */
+.fd-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsm-space-stack-md);
+  padding: var(--dsm-space-inset-xl);
+  background: var(--dsm-color-bg-canvas);
+  color: var(--dsm-color-text-default);
+}
+
+.fd-row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--dsm-space-gutter);
+}
+
+.fd-lead {
+  max-width: var(--dsm-size-prose-max);
+  margin: 0;
+  color: var(--dsm-color-text-subtle);
+}
+
+.fd-ramp__title {
+  margin: 0 0 var(--dsm-space-stack-sm);
+  font-size: var(--dsm-text-heading-xxs-font-size);
+}
+
+.fd-ramp__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: var(--dsm-space-gap-sm);
+}
+
+.fd-chip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsm-space-gap-xs);
+  font-size: var(--dsm-text-body-sm-font-size);
+  line-height: var(--dsm-text-dense-sm-line-height);
+}
+
+.fd-chip__swatch {
+  height: var(--dsm-dimension-48);
+  border: var(--dsm-border-width-default) solid var(--dsm-color-border-subtle);
+  border-radius: var(--dsm-radius-md);
+}
+
+.fd-chip__note {
+  color: var(--dsm-color-text-subtle);
+}
+
+.fd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--dsm-text-dense-sm-font-size);
+  line-height: var(--dsm-text-dense-sm-line-height);
+}
+
+.fd-table :is(th, td) {
+  padding: var(--dsm-space-inset-sm);
+  border-block-end: var(--dsm-border-width-default) solid var(--dsm-color-border-subtle);
+  text-align: start;
+  vertical-align: middle;
+}
+
+.fd-dot {
+  display: inline-block;
+  width: var(--dsm-dimension-32);
+  height: var(--dsm-dimension-32);
+  border: var(--dsm-border-width-default) solid var(--dsm-color-border-default);
+  border-radius: var(--dsm-radius-md);
+}
+
+.fd-type {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsm-space-gap-xs);
+  padding-block-end: var(--dsm-space-stack-sm);
+  border-block-end: var(--dsm-border-width-default) solid var(--dsm-color-border-subtle);
+}
+
+.fd-type__meta {
+  color: var(--dsm-color-text-subtle);
+  font-size: var(--dsm-text-mono-sm-font-size);
+}
+
+.fd-bar {
+  display: block;
+  height: var(--dsm-dimension-12);
+  border-radius: var(--dsm-radius-xs);
+  background: var(--dsm-color-bg-key);
+}
+
+.fd-radius {
+  display: block;
+  width: var(--dsm-dimension-96);
+  height: var(--dsm-dimension-48);
+  border: var(--dsm-border-width-strong) solid var(--dsm-color-border-key);
+  background: var(--dsm-color-bg-key-subtle);
+}
+
+.fd-elevation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsm-space-gap-sm);
+  width: 240px;
+  padding: var(--dsm-space-inset-xl);
+  border-radius: var(--dsm-radius-xl);
+  background: var(--dsm-color-bg-surface);
+}

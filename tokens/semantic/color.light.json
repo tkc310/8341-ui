@@ -1,0 +1,203 @@
+{
+  "$description": "Semantic colors — light theme. コンポーネントはこの層だけを参照する。キーは color.dark.json と完全一致させること（CI で検証）。",
+  "color": {
+    "$type": "color",
+    "bg": {
+      "canvas": {
+        "$value": "{color.primitive.white}",
+        "$description": "ページ全体の背景"
+      },
+      "surface": {
+        "$value": "{color.primitive.white}",
+        "$description": "カード・入力欄など面の背景"
+      },
+      "subtle": {
+        "$value": "{color.primitive.gray.50}",
+        "$description": "区切りたい帯・コードブロック"
+      },
+      "muted": {
+        "$value": "{color.primitive.gray.100}",
+        "$description": "ホバー時の面・テーブル見出し"
+      },
+      "inverse": {
+        "$value": "{color.primitive.gray.1100}"
+      },
+      "disabled": {
+        "$value": "{color.primitive.gray.100}"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.700}",
+        "$description": "主要アクション（Primary ボタン）"
+      },
+      "key-hover": {
+        "$value": "{color.primitive.indigo.800}"
+      },
+      "key-active": {
+        "$value": "{color.primitive.indigo.900}"
+      },
+      "key-subtle": {
+        "$value": "{color.primitive.indigo.100}",
+        "$description": "選択中の項目・Secondary ボタンの hover"
+      },
+      "key-subtle-hover": {
+        "$value": "{color.primitive.indigo.200}"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.700}"
+      },
+      "danger-hover": {
+        "$value": "{color.primitive.red.800}"
+      },
+      "danger-active": {
+        "$value": "{color.primitive.red.900}"
+      },
+      "danger-subtle": {
+        "$value": "{color.primitive.red.50}"
+      },
+      "success-subtle": {
+        "$value": "{color.primitive.green.50}"
+      },
+      "warning-subtle": {
+        "$value": "{color.primitive.yellow.50}"
+      },
+      "info-subtle": {
+        "$value": "{color.primitive.indigo.50}"
+      },
+      "overlay": {
+        "$value": "rgba(10, 12, 20, 0.48)",
+        "$description": "モーダル背面"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.primitive.gray.1100}",
+        "$description": "本文。純黒は使わない"
+      },
+      "subtle": {
+        "$value": "{color.primitive.gray.700}",
+        "$description": "補足・説明文（4.5:1 以上）"
+      },
+      "disabled": {
+        "$value": "{color.primitive.gray.500}",
+        "$description": "無効状態（WCAG のコントラスト要件対象外だが 3:1 を目安）"
+      },
+      "inverse": {
+        "$value": "{color.primitive.gray.50}"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.800}",
+        "$description": "キーカラーの文字（Secondary ボタン等）"
+      },
+      "on-key": {
+        "$value": "{color.primitive.white}",
+        "$description": "bg.key / bg.danger の上の文字"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.800}"
+      },
+      "success": {
+        "$value": "{color.primitive.green.800}"
+      },
+      "warning": {
+        "$value": "{color.primitive.orange.800}"
+      },
+      "link": {
+        "$value": "{color.primitive.indigo.800}"
+      },
+      "link-hover": {
+        "$value": "{color.primitive.indigo.1000}"
+      },
+      "link-visited": {
+        "$value": "{color.primitive.purple.800}"
+      },
+      "link-active": {
+        "$value": "{color.primitive.orange.800}"
+      }
+    },
+    "icon": {
+      "default": {
+        "$value": "{color.primitive.gray.1000}"
+      },
+      "subtle": {
+        "$value": "{color.primitive.gray.700}"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.700}"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.700}"
+      },
+      "success": {
+        "$value": "{color.primitive.green.700}"
+      },
+      "warning": {
+        "$value": "{color.primitive.yellow.700}"
+      },
+      "info": {
+        "$value": "{color.primitive.indigo.700}"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.primitive.gray.200}",
+        "$description": "装飾的な区切り線（情報を担わないもの限定）"
+      },
+      "default": {
+        "$value": "{color.primitive.gray.500}",
+        "$description": "カードなど意味のある境界（3:1 以上）"
+      },
+      "input": {
+        "$value": "{color.primitive.gray.600}",
+        "$description": "入力欄・チェックボックスの枠"
+      },
+      "strong": {
+        "$value": "{color.primitive.gray.900}",
+        "$description": "入力欄 hover"
+      },
+      "key": {
+        "$value": "{color.primitive.indigo.700}"
+      },
+      "danger": {
+        "$value": "{color.primitive.red.700}"
+      },
+      "success": {
+        "$value": "{color.primitive.green.700}"
+      },
+      "warning": {
+        "$value": "{color.primitive.yellow.600}"
+      },
+      "disabled": {
+        "$value": "{color.primitive.gray.300}"
+      }
+    },
+    "focus": {
+      "ring": {
+        "$value": "{color.primitive.yellow.300}",
+        "$description": "フォーカスの内側リング"
+      },
+      "outline": {
+        "$value": "{color.primitive.gray.1200}",
+        "$description": "フォーカスの外側アウトライン"
+      },
+      "text": {
+        "$value": "{color.primitive.gray.1200}",
+        "$description": "フォーカスリング色の背景に乗る文字（リンクのフォーカス時）"
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "1": {
+      "$value": "0 1px 2px 0 rgba(16, 24, 48, 0.12), 0 1px 3px 1px rgba(16, 24, 48, 0.08)",
+      "$description": "カード hover・ドロップダウン"
+    },
+    "2": {
+      "$value": "0 2px 6px 0 rgba(16, 24, 48, 0.14), 0 4px 12px 2px rgba(16, 24, 48, 0.08)",
+      "$description": "ポップオーバー・メニュー"
+    },
+    "3": {
+      "$value": "0 6px 16px 0 rgba(16, 24, 48, 0.16), 0 12px 32px 4px rgba(16, 24, 48, 0.10)",
+      "$description": "ドロワー・モーダル"
+    }
+  }
+}

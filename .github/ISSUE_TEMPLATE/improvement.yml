@@ -1,0 +1,49 @@
+name: 改善提案
+description: 使っていて気づいた問題・改善のアイデア
+title: '[改善] '
+labels: [improvement]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 種類
+      description: 優先度はこの順（上ほど高い）で判断します
+      options:
+        - アクセシビリティの不具合（誰かが使えない）
+        - 一貫性の破れ（同じものが違って見える）
+        - 開発体験（API が使いにくい・部品が足りない）
+        - 見た目の改善
+    validations:
+      required: true
+  - type: dropdown
+    id: principle
+    attributes:
+      label: 関係する原則
+      options:
+        - 1. 誰も取り残さない
+        - 2. 迷わせない
+        - 3. 文字で伝える
+        - 4. 少ない選択肢で組む
+        - 5. 測って、直す
+        - 分からない
+  - type: input
+    id: where
+    attributes:
+      label: 対象
+      placeholder: 例) Button / color.text.subtle / ルールブック 03
+  - type: textarea
+    id: what
+    attributes:
+      label: 何が起きたか・何に困ったか
+      description: 再現手順、スクリーンショット、利用したプロジェクト
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 改善案（あれば）
+  - type: textarea
+    id: prevention
+    attributes:
+      label: 再発防止の案
+      description: どのチェック・テスト・ルールを足せば同じ問題が起きなくなるか

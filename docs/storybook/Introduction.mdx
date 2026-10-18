@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="はじめに" />
+
+# design-system-myself
+
+プロジェクトをまたいで使い回す、自分用のデザインシステムです。
+[デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) のアクセシビリティ基準と構造を土台に、
+キーカラー「藍」とダークテーマを加えて再設計しています。
+
+## 3 つの層
+
+| 層 | 置き場所 | 役割 |
+| --- | --- | --- |
+| Primitive | `tokens/primitive/*` | 値の素材（色の段階、4px グリッド）。コンポーネントは参照しない |
+| Semantic | `tokens/semantic/*` | 用途で名付けた値（`color.text.subtle` など）。テーマで切り替わる |
+| Component | `src/components/*` | semantic トークンだけで組み立てた React 部品 |
+
+## 使い方
+
+```tsx
+import { Button, FormField, TextField } from 'design-system-myself';
+import 'design-system-myself/styles.css';
+
+<FormField label="氏名" required>
+  <TextField autoComplete="name" />
+</FormField>
+<Button>送信する</Button>
+```
+
+テーマは `<html data-theme="dark">` で切り替えます。属性が無ければ OS の設定に従います。
+
+## ドキュメント
+
+- ルールブック: リポジトリの `docs/rulebook/`
+- AI エージェント向けの仕様: `DESIGN.md`
+- 改善の進め方: `docs/rulebook/06-improvement-loop.md`

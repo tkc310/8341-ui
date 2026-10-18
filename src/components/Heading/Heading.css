@@ -1,0 +1,39 @@
+.dsm-heading {
+  margin: 0;
+  color: var(--dsm-color-text-default);
+  /* 見出しは字面が大きく、約物の空きが目立つため約物を詰める */
+  font-feature-settings: 'palt';
+  text-wrap: balance;
+}
+
+.dsm-heading__shoulder {
+  display: block;
+  margin-block-end: var(--dsm-space-gap-xs);
+  color: var(--dsm-color-text-subtle);
+  font-family: var(--dsm-text-label-md-font-family);
+  font-size: var(--dsm-text-body-md-font-size);
+  font-weight: var(--dsm-text-label-md-font-weight);
+  line-height: var(--dsm-text-body-md-line-height);
+  letter-spacing: var(--dsm-text-body-md-letter-spacing);
+  font-feature-settings: normal;
+}
+
+.dsm-heading__text {
+  display: block;
+}
+
+.dsm-heading[data-decoration='bar'] {
+  padding-inline-start: var(--dsm-space-inset-md);
+  border-inline-start: var(--dsm-border-width-accent) solid var(--dsm-color-border-key);
+}
+
+.dsm-heading[data-decoration='rule'] {
+  padding-block-end: var(--dsm-space-inset-sm);
+  border-block-end: var(--dsm-border-width-strong) solid var(--dsm-color-border-key);
+}
+
+@media (forced-colors: active) {
+  .dsm-heading[data-decoration] {
+    border-color: CanvasText;
+  }
+}
