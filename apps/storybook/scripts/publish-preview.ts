@@ -50,10 +50,17 @@ function repoSlug(): { owner: string; repo: string } {
 }
 
 function findPr(owner: string, repo: string, branch: string): number {
-  const out = run('gh', ['api', `repos/${owner}/${repo}/pulls?head=${owner}:${branch}&state=open`, '--jq', '.[0].number']);
+  const out = run('gh', [
+    'api',
+    `repos/${owner}/${repo}/pulls?head=${owner}:${branch}&state=open`,
+    '--jq',
+    '.[0].number',
+  ]);
   const n = Number(out);
   if (!out || !Number.isInteger(n)) {
-    throw new Error(`ブランチ ${branch} の開いている PR が見つかりません。先に PR を作るか、--pr で番号を渡してください`);
+    throw new Error(
+      `ブランチ ${branch} の開いている PR が見つかりません。先に PR を作るか、--pr で番号を渡してください`,
+    );
   }
   return n;
 }
@@ -70,7 +77,10 @@ if (!values.remove) {
   }
   // プレビューが PR の内容と食い違わないよう、未コミット・未 push の変更があれば知らせる（止めはしない）
   if (git(['status', '--porcelain'])) console.warn('⚠ 未コミットの変更を含んだビルドを公開します');
-  if (tryGit(['fetch', '--quiet', 'origin', branch]) && git(['rev-parse', 'HEAD']) !== git(['rev-parse', `origin/${branch}`])) {
+  if (
+    tryGit(['fetch', '--quiet', 'origin', branch]) &&
+    git(['rev-parse', 'HEAD']) !== git(['rev-parse', `origin/${branch}`])
+  ) {
     console.warn(`⚠ HEAD が origin/${branch} と一致しません。push してから公開すると、PR の差分とプレビューが揃います`);
   }
 }
@@ -109,7 +119,9 @@ try {
     }
     if (!pushed) throw new Error(`${BRANCH} への push に失敗しました`);
   }
-  console.log(values.remove ? `✔ PR #${pr} のプレビューを消しました` : `✔ ${url}\n  （Pages への反映に 1〜2 分かかります）`);
+  console.log(
+    values.remove ? `✔ PR #${pr} のプレビューを消しました` : `✔ ${url}\n  （Pages への反映に 1〜2 分かかります）`,
+  );
 } finally {
   tryGit(['worktree', 'remove', '--force', work]);
   rmSync(work, { recursive: true, force: true });
