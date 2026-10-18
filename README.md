@@ -5,6 +5,9 @@
 キーカラー「藍」・ダークテーマ・自己改善の仕組みを加えて再設計しています。
 画面設計のルールは [design-principles](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) を採用しています。
 
+- **Storybook**: https://tkc310.github.io/design-system-myself/
+- **shadcn レジストリ**: `https://tkc310.github.io/design-system-myself/r/{name}.json`（例: [button](https://tkc310.github.io/design-system-myself/r/button.json)）
+
 ![ライト / ダークのプレビュー](./docs/assets/preview.png)
 
 | 含まれるもの                                                                       | 場所                                                                             |
