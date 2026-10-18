@@ -24,11 +24,13 @@ jobs:
           node-version: 22
       - name: run all
         run: |
+          set +e
           mkdir -p "$RUNNER_TEMP/out/logs"
           L="$RUNNER_TEMP/out/logs"
           step() { name=$1; shift; echo "\$ $*" > "$L/$name.log"; ( "$@" ) >> "$L/$name.log" 2>&1; echo "exit=$?" >> "$L/$name.log"; tail -1 "$L/$name.log"; }
           { node -v; pnpm -v; } > "$L/00-env.log" 2>&1
           step 01-install pnpm install --no-frozen-lockfile
+          step 01b-peers pnpm peers check
           cp pnpm-lock.yaml "$RUNNER_TEMP/out/" || true
           step 02-tokens pnpm build:tokens
           step 03-vp-check pnpm exec vp check

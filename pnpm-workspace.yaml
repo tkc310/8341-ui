@@ -61,6 +61,8 @@ allowBuilds:
   esbuild: true
   '@tailwindcss/oxide': true
   playwright: false
+  # Storybook 経由の監視用ネイティブ拡張。ビルドしなくても JS 実装で動く
+  '@parcel/watcher': false
 
 # 公開から 1 日経っていない版は入れない（サプライチェーン対策。pnpm 11 の既定）
 minimumReleaseAge: 1440
