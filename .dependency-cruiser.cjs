@@ -59,7 +59,8 @@ module.exports = {
         pathNot: [
           '[.]d[.]ts$',
           '(^|/)[.][^/]+[.](?:js|cjs|mjs|ts|json)$',
-          'vite[.]config[.]ts$', '(^|/)[.]storybook/',
+          'vite[.]config[.]ts$',
+          '(^|/)[.]storybook/',
           '[.](stories|figma)[.]tsx?$',
         ],
       },
