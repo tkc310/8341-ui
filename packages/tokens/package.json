@@ -1,0 +1,37 @@
+{
+  "name": "tkc310-ui-tokens",
+  "version": "0.1.0",
+  "description": "tkc310-ui のデザイントークン（DTCG 2025.10）と、そこから生成した CSS 変数・Tailwind v4 テーマ・Figma Variables",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": ["**/*.css"],
+  "exports": {
+    "./tokens.css": "./dist/css/tokens.css",
+    "./tailwind.css": "./dist/css/tailwind.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./dtcg/*": "./src/*",
+    "./figma/*": "./dist/figma/*",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsx scripts/build.ts && tsx scripts/export-figma.ts",
+    "palette": "tsx scripts/generate-palette.ts",
+    "design-md": "tsx scripts/sync-design-md.ts",
+    "figma": "tsx scripts/export-figma.ts",
+    "check": "tsx scripts/check-contrast.ts && tsx scripts/sync-design-md.ts --check",
+    "check:contrast": "tsx scripts/check-contrast.ts",
+    "test": "vp test",
+    "audit": "tsx scripts/audit-report.ts"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "style-dictionary": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

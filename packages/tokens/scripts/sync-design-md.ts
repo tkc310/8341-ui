@@ -1,83 +1,92 @@
 /**
- * DESIGN.md の自動生成ブロック（<!-- auto:NAME --> 〜 <!-- /auto:NAME -->）をトークンから再生成する。
- * 手書き部分には触れない。
- * 実行: npm run tokens:build に含まれる。--check で差分検出のみ。
+ * リポジトリ直下の DESIGN.md の自動生成ブロック（<!-- auto:NAME --> 〜 <!-- /auto:NAME -->）を
+ * トークンとコンポーネント一覧から再生成する。手書き部分には触れない。
+ * 実行: pnpm --filter tkc310-ui-tokens design-md（--check で差分検出のみ）
  */
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { ROOT } from './lib/tokens.ts';
-
-interface Token {
-  name: string;
-  cssVar: string;
-  type: string;
-  layer: string;
-  themed: boolean;
-  value: unknown;
-  ref?: unknown;
-  description?: string;
-}
+import { tailwindName, utilityExample } from './lib/tailwind.ts';
+import { type DtcgColor, type DtcgDimension, REPO_ROOT, THEMES, cssVarName, resolvedTokens } from './lib/tokens.ts';
 
 const CHECK = process.argv.includes('--check');
-const path = resolve(ROOT, 'DESIGN.md');
-const { tokens } = JSON.parse(readFileSync(resolve(ROOT, 'src/tokens/tokens.json'), 'utf8')) as { tokens: Token[] };
-const pick = (prefix: string) => tokens.filter((t) => t.name.startsWith(prefix));
-const short = (r: unknown) => (typeof r === 'string' ? r.replace('color.primitive.', '') : '');
+const path = resolve(REPO_ROOT, 'DESIGN.md');
+
+const byTheme = Object.fromEntries(THEMES.map((t) => [t, resolvedTokens(t)]));
+const light = byTheme.light ?? [];
+const dark = new Map((byTheme.dark ?? []).map((t) => [t.name, t]));
+const pick = (prefix: string) => light.filter((t) => t.name.startsWith(prefix));
 const esc = (s = '') => s.replace(/\|/g, '\\|');
+const short = (v: unknown) => (typeof v === 'string' ? v.replace(/^\{color\.primitive\.|\}$/g, '').replace(/^\{|\}$/g, '') : '');
+
+function show(type: string, v: unknown): string {
+  if (type === 'color') {
+    const c = v as DtcgColor;
+    return c.alpha !== undefined && c.alpha < 1 ? `${c.hex} / ${c.alpha}` : (c.hex ?? '');
+  }
+  if (type === 'dimension') {
+    const d = v as DtcgDimension;
+    return `${d.value}${d.unit}`;
+  }
+  if (type === 'duration') {
+    const d = v as { value: number; unit: string };
+    return `${d.value}${d.unit}`;
+  }
+  if (type === 'cubicBezier') return `cubic-bezier(${(v as number[]).join(', ')})`;
+  if (type === 'shadow') return `${(v as unknown[]).length} 層の影`;
+  return String(v);
+}
 
 const blocks: Record<string, () => string> = {
+  'semantic-colors': () => {
+    const head = '| token | Tailwind | CSS 変数 | light | dark | 用途 |\n| --- | --- | --- | --- | --- | --- |';
+    const rows = pick('color.')
+      .filter((t) => t.layer === 'semantic')
+      .map((t) => {
+        const d = dark.get(t.name);
+        const tw = utilityExample(tailwindName(t.path));
+        return `| \`${t.name}\` | ${tw ? `\`${tw}\`` : '—'} | \`${cssVarName(t.name)}\` | \`${show('color', t.resolved)}\` ${short(t.value)} | \`${show('color', d?.resolved)}\` ${short(d?.value)} | ${esc(t.description)} |`;
+      });
+    return [head, ...rows].join('\n');
+  },
   'primitive-colors': () => {
-    const families = [...new Set(pick('color.primitive.').map((t) => t.name.split('.')[2]))].filter(
+    const families = [...new Set(pick('color.primitive.').map((t) => t.path[2] as string))].filter(
       (f) => !['white', 'black'].includes(f),
     );
     const steps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000', '1100', '1200'];
     const head = `| family | ${steps.join(' | ')} |\n| --- |${' --- |'.repeat(steps.length)}`;
-    const rows = families.map(
-      (f) => `| ${f} | ${steps.map((s) => `\`${tokens.find((t) => t.name === `color.primitive.${f}.${s}`)?.value}\``).join(' | ')} |`,
-    );
-    return [head, ...rows].join('\n');
-  },
-  'semantic-colors': () => {
-    const head = '| token | CSS 変数 | light | dark | 用途 |\n| --- | --- | --- | --- | --- |';
-    const rows = pick('color.')
-      .filter((t) => t.layer === 'semantic')
-      .map((t) => {
-        const v = t.value as { light: string; dark: string };
-        const r = (t.ref ?? {}) as { light?: string; dark?: string };
-        return `| \`${t.name}\` | \`${t.cssVar}\` | \`${v.light}\` ${short(r.light)} | \`${v.dark}\` ${short(r.dark)} | ${esc(t.description)} |`;
-      });
+    const get = (f: string, s: string) => light.find((t) => t.name === `color.primitive.${f}.${s}`);
+    const rows = families.map((f) => `| ${f} | ${steps.map((s) => `\`${show('color', get(f, s)?.resolved)}\``).join(' | ')} |`);
     return [head, ...rows].join('\n');
   },
   typography: () => {
-    const head = '| style | class | size | line-height | weight | letter-spacing | 用途 |\n| --- | --- | --- | --- | --- | --- | --- |';
-    const rows = pick('text.')
-      .filter((t) => t.type === 'typography')
-      .map((t) => {
-        const v = t.value as Record<string, unknown>;
-        const name = t.name.replace('text.', '');
-        return `| ${name} | \`.tkc-text-${name}\` | ${v.fontSize} | ${v.lineHeight} | ${v.fontWeight} | ${v.letterSpacing} | ${esc(t.description)} |`;
-      });
+    const head = '| style | Tailwind | size | line-height | weight | letter-spacing | 用途 |\n| --- | --- | --- | --- | --- | --- | --- |';
+    const styles = [...new Set(pick('text.').map((t) => t.path[1] as string))];
+    const prop = (s: string, p: string) => light.find((t) => t.name === `text.${s}.${p}`);
+    const rows = styles.map((s) => {
+      const size = prop(s, 'font-size');
+      const mono = String(prop(s, 'font-family')?.value).includes('mono');
+      return `| ${s} | \`text-${s}\`${mono ? ' `font-mono`' : ''} | ${show('dimension', size?.resolved)} | ${prop(s, 'line-height')?.resolved} | ${prop(s, 'font-weight')?.resolved} | ${prop(s, 'letter-spacing')?.resolved}em | ${esc(light.find((t) => t.path[1] === s)?.description ?? '')} |`;
+    });
     return [head, ...rows].join('\n');
   },
   dimensions: () => {
-    const head = '| token | CSS 変数 | 値 | 用途 |\n| --- | --- | --- | --- |';
+    const head = '| token | Tailwind | CSS 変数 | 値 | 用途 |\n| --- | --- | --- | --- | --- |';
     const rows = ['space.', 'size.', 'radius.', 'border-width.', 'focus.', 'shadow.', 'motion.', 'z.']
       .flatMap(pick)
-      .filter((t) => t.layer === 'semantic' && !t.name.startsWith('color.'))
       .map((t) => {
-        const v = t.themed ? (t.value as { light: unknown }).light : t.value;
-        const val = Array.isArray(v) ? `cubic-bezier(${v.join(', ')})` : String(v);
-        return `| \`${t.name}\` | \`${t.cssVar}\` | \`${esc(val)}\` | ${esc(t.description)} |`;
+        const tw = utilityExample(tailwindName(t.path));
+        return `| \`${t.name}\` | ${tw ? `\`${tw}\`` : '—'} | \`${cssVarName(t.name)}\` | \`${esc(show(t.type, t.resolved))}\` | ${esc(t.description)} |`;
       });
     return [head, ...rows].join('\n');
   },
   components: () => {
-    const dir = resolve(ROOT, 'src/components');
-    const names = readdirSync(dir, { withFileTypes: true })
+    const dir = resolve(REPO_ROOT, 'packages/ui/src/components');
+    return readdirSync(dir, { withFileTypes: true })
       .filter((d) => d.isDirectory() && !d.name.startsWith('_'))
       .map((d) => d.name)
-      .sort();
-    return names.map((n) => `- \`${n}\` — \`src/components/${n}/\``).join('\n');
+      .sort()
+      .map((n) => `- \`${n}\` — \`packages/ui/src/components/${n}/\``)
+      .join('\n');
   },
 };
 
@@ -91,7 +100,7 @@ for (const [name, gen] of Object.entries(blocks)) {
 
 if (CHECK) {
   if (md !== original) {
-    console.error('✖ DESIGN.md がトークンと一致していません。npm run tokens:build を実行してください');
+    console.error('✖ DESIGN.md がトークンと一致していません。pnpm --filter tkc310-ui-tokens design-md を実行してください');
     process.exit(1);
   }
   console.log('✔ DESIGN.md はトークンと一致しています');

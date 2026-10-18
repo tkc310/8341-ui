@@ -1,10 +1,12 @@
 /**
- * tokens/palette.config.json から tokens/primitive/color.json を生成する。
- * 実行: npm run tokens:palette
+ * src/palette.config.json から src/primitive/color.tokens.json を生成する。
+ * 色は DTCG 2025.10 の色オブジェクト（colorSpace: oklch）で持ち、sRGB の hex を代替値として添える。
+ * 彩度は sRGB の色域に収まるまで下げてあるので、oklch() と hex は同じ色になる。
+ * 実行: pnpm --filter tkc310-ui-tokens palette
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { contrastRatio, oklchToHex } from './lib/color.ts';
+import { contrastRatio, gamutMapOklch } from './lib/color.ts';
 
 interface Family {
   label: string;
@@ -20,41 +22,33 @@ interface PaletteConfig {
 }
 
 const root = resolve(import.meta.dirname, '..');
-const config: PaletteConfig = JSON.parse(
-  readFileSync(resolve(root, 'tokens/palette.config.json'), 'utf8'),
-);
+const config = JSON.parse(readFileSync(resolve(root, 'src/palette.config.json'), 'utf8')) as PaletteConfig;
 
-const out: Record<string, unknown> = {};
+const color = (components: [number, number, number], hex: string) => ({ colorSpace: 'oklch', components, hex });
+
+const primitive: Record<string, unknown> = {
+  white: { $value: color([1, 0, 0], '#ffffff') },
+  black: { $value: color([0, 0, 0], '#000000') },
+};
+
 for (const [name, fam] of Object.entries(config.families)) {
-  const scale: Record<string, unknown> = {
-    $description: fam.label,
-  };
+  const scale: Record<string, unknown> = { $description: fam.label };
   config.steps.forEach((step, i) => {
-    const L = Math.min(config.lightness[i] + (fam.lightnessShift ?? 0), 0.99);
-    const hex = oklchToHex(L, config.chroma[i] * fam.chromaScale, fam.hue);
+    const L = Math.min((config.lightness[i] ?? 0) + (fam.lightnessShift ?? 0), 0.99);
+    const { components, hex } = gamutMapOklch(L, (config.chroma[i] ?? 0) * fam.chromaScale, fam.hue);
     scale[String(step)] = {
-      $value: hex,
+      $value: color(components, hex),
       $description: `白背景 ${contrastRatio(hex, '#ffffff').toFixed(2)}:1`,
     };
   });
-  out[name] = scale;
+  primitive[name] = scale;
 }
 
 const doc = {
-  $description:
-    'Primitive colors. 自動生成ファイル — 直接編集せず tokens/palette.config.json を変更すること。',
-  color: {
-    $type: 'color',
-    primitive: {
-      white: { $value: '#ffffff' },
-      black: { $value: '#000000' },
-      ...out,
-    },
-  },
+  $schema: 'https://www.designtokens.org/schemas/2025.10/format.json',
+  $description: 'Primitive colors. 自動生成ファイル — 直接編集せず src/palette.config.json を変更すること。',
+  color: { $type: 'color', primitive },
 };
 
-writeFileSync(
-  resolve(root, 'tokens/primitive/color.json'),
-  `${JSON.stringify(doc, null, 2)}\n`,
-);
-console.log('✔ tokens/primitive/color.json を生成しました');
+writeFileSync(resolve(root, 'src/primitive/color.tokens.json'), `${JSON.stringify(doc, null, 2)}\n`);
+console.log('✔ src/primitive/color.tokens.json を生成しました');

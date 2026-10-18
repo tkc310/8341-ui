@@ -1,0 +1,31 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "name": "tkc310-ui",
+  "description": "tkc310-ui のトークン構成。primitive と theme 非依存の semantic を土台に、theme（light / dark）で semantic カラーと影を差し替える。",
+  "sets": {
+    "primitive": {
+      "description": "値の素材。コンポーネントから直接参照しない",
+      "sources": [
+        { "$ref": "primitive/color.tokens.json" },
+        { "$ref": "primitive/dimension.tokens.json" },
+        { "$ref": "primitive/typography.tokens.json" }
+      ]
+    },
+    "semantic": {
+      "description": "テーマに依存しない semantic（テキストスタイル・余白・角丸・サイズ・モーション）",
+      "sources": [{ "$ref": "semantic/base.tokens.json" }]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "description": "カラーテーマ。両方の context で同じキーを持つこと（CI で検証）",
+      "contexts": {
+        "light": [{ "$ref": "semantic/light.tokens.json" }],
+        "dark": [{ "$ref": "semantic/dark.tokens.json" }]
+      },
+      "default": "light"
+    }
+  },
+  "resolutionOrder": [{ "$ref": "#/sets/primitive" }, { "$ref": "#/sets/semantic" }, { "$ref": "#/modifiers/theme" }]
+}
