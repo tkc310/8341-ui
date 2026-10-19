@@ -141,7 +141,18 @@ function version() {
     .map((p) => `## ${p.name} ${next}\n\n${releaseNotes(p.dir, next)}`)
     .join('\n\n');
   const body = `v${next} をリリースする。マージ後に main で \`pnpm release:publish\` を実行する（docs/releasing.md）。\n\n${notes}`;
-  const url = run('gh', ['pr', 'create', '--base', 'main', '--head', branch, '--title', `chore: リリース v${next}`, '--body', body]);
+  const url = run('gh', [
+    'pr',
+    'create',
+    '--base',
+    'main',
+    '--head',
+    branch,
+    '--title',
+    `chore: リリース v${next}`,
+    '--body',
+    body,
+  ]);
   console.log(`✔ 版を上げる PR を作りました: ${url}`);
 }
 
@@ -189,7 +200,11 @@ function publish() {
     });
   }
   step(`版ごとのレジストリを置く（https://${owner}.github.io/${repo}/r/v${ver}/）`, () => publishRegistrySnapshot(ver));
-  console.log(DRY ? `✔ dry-run を終えました（v${ver}）` : `✔ v${ver} をリリースしました: https://github.com/${owner}/${repo}/releases`);
+  console.log(
+    DRY
+      ? `✔ dry-run を終えました（v${ver}）`
+      : `✔ v${ver} をリリースしました: https://github.com/${owner}/${repo}/releases`,
+  );
 }
 
 const command = positionals[0];
