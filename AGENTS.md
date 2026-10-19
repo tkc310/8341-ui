@@ -55,6 +55,7 @@ templates/                プロダクト用 DESIGN.md の雛形
 ## コマンド
 
 ```bash
+mise install                               # .tool-versions の Node.js・pnpm・gh を入れる（asdf なら asdf install）
 pnpm install
 pnpm dev                                   # Storybook
 pnpm build                                 # トークン → UI（vp pack + styles.css）→ Storybook

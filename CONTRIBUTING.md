@@ -5,22 +5,74 @@ AI エージェントで開発するときも、この手順と [AGENTS.md](./AG
 
 ## 前提
 
-| 道具 | 版 |
-| --- | --- |
-| Node.js | 22.12 以上 |
-| pnpm | 11（`corepack enable` で有効にできる） |
-| GitHub CLI（`gh`） | プレビューの公開と PR の操作に使う |
+使う道具と版は、リポジトリ直下の [`.tool-versions`](./.tool-versions) に書いている。CI も同じ版を使う。
 
-Windows では、シンボリックリンクを使うための設定が要る（[docs/ai-agents.md](./docs/ai-agents.md) の「Windows で使う場合」）。
+| 道具 | 版（`.tool-versions`） | 用途 |
+| --- | --- | --- |
+| Node.js | 22.23.3 | ビルド・テスト・スクリプトの実行 |
+| pnpm | 11.28.6 | 依存の管理（workspaces / catalog） |
+| GitHub CLI（`gh`） | 2.89.0 | Storybook のプレビューの公開、リリース、PR の操作 |
+| Git | 指定なし | シンボリックリンクを扱える設定にする（Windows は下の注意） |
 
-## セットアップ
+Playwright のブラウザ、Storybook、Vite+ などは pnpm の依存として入るので、個別に入れる必要はない。
+
+## 導入手順
+
+### 1. 版管理ツールを入れる
+
+`.tool-versions` を読める版管理ツールを使う。おすすめは [mise](https://mise.jdx.dev/)（asdf でもよい）。
+
+```bash
+# macOS（Homebrew）
+brew install mise
+# その他の環境: https://mise.jdx.dev/getting-started.html
+
+# シェルで有効にする（zsh の例。bash は ~/.bashrc に bash を指定）
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc && exec zsh
+```
+
+asdf を使う場合は、プラグインを先に入れる。
+
+```bash
+asdf plugin add nodejs
+asdf plugin add pnpm
+asdf plugin add github-cli
+```
+
+### 2. リポジトリを取得して道具を入れる
 
 ```bash
 git clone https://github.com/tkc310/8341ui.git
 cd 8341ui
-pnpm install          # prepare でトークンもビルドされる
-pnpm dev              # Storybook（http://localhost:6006）
+mise install        # asdf の場合は asdf install。.tool-versions の版が入る
+node -v             # v22.23.3
+pnpm -v             # 11.28.6
+gh --version        # 2.89.0
 ```
+
+版管理ツールを使わない場合は、上の表の版を手で入れる（pnpm は `corepack enable && corepack prepare pnpm@11.28.6 --activate` でも入る）。
+
+### 3. 依存を入れて動かす
+
+```bash
+pnpm install        # prepare でトークンもビルドされる
+pnpm dev            # Storybook（http://localhost:6006）
+pnpm check && pnpm test   # 動作確認
+```
+
+### 4. GitHub CLI にログインする（プレビューの公開・リリースをする人）
+
+```bash
+gh auth login
+```
+
+### Windows の場合
+
+シンボリックリンク（`CLAUDE.md`、スキル）を使うため、開発者モードを有効にして `git config --global core.symlinks true` を設定してから clone するか、WSL の中で作業する（[docs/ai-agents.md](./docs/ai-agents.md)）。
+
+### 道具の版を上げる
+
+`.tool-versions` を書き換えて PR を出す。CI もその版で動くので、`check` と `test` が通れば上げてよい。Node のメジャー版を上げるときは、`package.json` の `devEngines` も合わせる。
 
 ## よく使うコマンド
 

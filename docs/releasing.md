@@ -55,6 +55,7 @@
 | 道具 | 状態 |
 | --- | --- |
 | リポジトリの権限 | main・gh-pages への push とリリースの作成ができる（Maintain 以上） |
+| 道具 | `.tool-versions` の版（`mise install`。[導入手順](../CONTRIBUTING.md#導入手順)） |
 | GitHub CLI（`gh`） | `gh auth login` 済み |
 | npm（`--npm` のときだけ） | `npm login` 済みで、パッケージの公開権限がある。2 段階認証の OTP を手元で入力する |
 | 依存 | `pnpm install` 済み |

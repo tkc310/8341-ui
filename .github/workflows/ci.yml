@@ -14,12 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # 道具の版は .tool-versions にそろえる
+      - id: versions
+        run: echo "pnpm=$(awk '$1=="pnpm"{print $2}' .tool-versions)" >> "$GITHUB_OUTPUT"
       - uses: pnpm/action-setup@v4
         with:
-          version: 11
+          version: ${{ steps.versions.outputs.pnpm }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .tool-versions
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       # 生成物の鮮度・コントラスト・DESIGN.md 同期・レジストリ・fmt・lint（型情報つき）・型検査・アーキテクチャ
@@ -29,12 +32,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # 道具の版は .tool-versions にそろえる
+      - id: versions
+        run: echo "pnpm=$(awk '$1=="pnpm"{print $2}' .tool-versions)" >> "$GITHUB_OUTPUT"
       - uses: pnpm/action-setup@v4
         with:
-          version: 11
+          version: ${{ steps.versions.outputs.pnpm }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .tool-versions
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter 8341-ui-storybook exec playwright install --with-deps chromium
@@ -58,12 +64,15 @@ jobs:
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
+      # 道具の版は .tool-versions にそろえる
+      - id: versions
+        run: echo "pnpm=$(awk '$1=="pnpm"{print $2}' .tool-versions)" >> "$GITHUB_OUTPUT"
       - uses: pnpm/action-setup@v4
         with:
-          version: 11
+          version: ${{ steps.versions.outputs.pnpm }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .tool-versions
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build:storybook
