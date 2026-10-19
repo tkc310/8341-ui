@@ -40,6 +40,8 @@ catalog:
   '@storybook/addon-docs': ^10.6.2
   '@storybook/addon-a11y': ^10.6.2
   '@storybook/addon-vitest': ^10.6.2
+  # MDX で表（GFM）を描画する。Storybook には含まれないので別に入れる
+  remark-gfm: ^4.0.1
   # 配布（shadcn 方式のレジストリ）
   shadcn: ^4.21.0
   # Figma
