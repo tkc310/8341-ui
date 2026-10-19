@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    defaults:
+      run:
+        shell: bash --noprofile --norc {0}
     steps:
       - uses: actions/checkout@v7
       - id: versions
@@ -47,6 +50,7 @@ jobs:
           for f in src/components/ui/TextField/index.tsx src/components/ui/FormField/index.tsx src/components/ui/FormField/useFormField.ts; do echo "== $f"; head -12 "$f"; done >> /tmp/out/shadcn.log 2>&1
       - if: always()
         run: |
-          git config user.name ci && git config user.email ci@example.com
-          git checkout -q --orphan ci-debug && git rm -rqf . && cp /tmp/out/* . && git add -A
-          git commit -qm debug && git push -f origin ci-debug
+          url=$(git remote get-url origin); auth=$(git config --get http.https://github.com/.extraheader)
+          cd /tmp/out && git init -q -b ci-debug && git add -A
+          git -c user.name=ci -c user.email=ci@example.com commit -qm debug
+          git -c http.https://github.com/.extraheader="$auth" push -f "$url" ci-debug
