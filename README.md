@@ -55,16 +55,16 @@
 
 ## はじめる
 
-使う道具の版は [`.tool-versions`](./.tool-versions)（Node.js・pnpm・GitHub CLI）にあります。[mise](https://mise.jdx.dev/) か asdf で `mise install` すると、同じ版が入ります。詳しい導入手順は [CONTRIBUTING.md](./CONTRIBUTING.md#導入手順) を読んでください。
+使う道具の版は [`.tool-versions`](./.tool-versions)（Node.js・pnpm・GitHub CLI）にあります。コマンドはすべて `make` で実行します（`make` だけで一覧が出ます）。詳しい導入手順は [CONTRIBUTING.md](./CONTRIBUTING.md#導入手順) を読んでください。
 
 ```bash
-mise install   # .tool-versions の版の Node.js・pnpm・gh を入れる
-pnpm install
-pnpm dev       # Storybook（http://localhost:6006）
-pnpm check     # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ
-pnpm test      # 単体テスト（happy-dom）＋ 全ストーリーの a11y テスト
-pnpm test:vrt  # VRT（手動）
-pnpm test:e2e  # e2e（手動）
+make setup       # .tool-versions の Node.js・pnpm・gh（mise / asdf）と依存を入れる
+make dev         # Storybook（http://localhost:6006）
+make check       # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ
+make test        # 単体テスト（happy-dom）＋ 全ストーリーの a11y テスト
+make test-vrt    # VRT（手動）
+make test-e2e    # e2e（手動）
+make             # コマンドの一覧
 ```
 
 ## 使う
@@ -134,16 +134,16 @@ Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.c
 
 ```bash
 # 例: キーカラーの色相を変える（packages/tokens/src/palette.config.json の families.indigo.hue）
-pnpm --filter 8341-ui-tokens palette     # primitive を再生成
-pnpm --filter 8341-ui-tokens build       # CSS 変数・Tailwind テーマ・Figma JSON
-pnpm --filter 8341-ui-tokens design-md   # DESIGN.md の表
-pnpm --filter 8341-ui-tokens tw-merge    # クラス統合の設定
-pnpm check
+make palette     # primitive を再生成
+make tokens       # CSS 変数・Tailwind テーマ・Figma JSON
+make design-md   # DESIGN.md の表
+make tw-merge    # クラス統合の設定
+make check
 ```
 
 ## 開発に参加する
 
-セットアップ・コマンド・変更の流れは [CONTRIBUTING.md](./CONTRIBUTING.md) にあります。見た目が変わる PR には、`pnpm storybook:preview` で公開した Storybook のプレビューを添えます。
+セットアップ・コマンド・変更の流れは [CONTRIBUTING.md](./CONTRIBUTING.md) にあります。見た目が変わる PR には、`make storybook-preview` で公開した Storybook のプレビューを添えます。
 
 ## 運用
 
@@ -151,7 +151,7 @@ CI・GitHub Pages の構成・リポジトリの設定（main の保護、ブラ
 
 ## リリース
 
-権限のあるアカウント保有者が手元で `pnpm release:version`（版を上げる PR を作る）と `pnpm release:publish`（タグ・GitHub Releases・その版のレジストリ `r/v<版>/`）を実行します。リポジトリにトークンは置きません。npm への公開は任意です（`--npm`）。手順と版の決め方は [docs/releasing.md](./docs/releasing.md) にあります。
+権限のあるアカウント保有者が手元で `make release-version`（版を上げる PR を作る）と `make release-publish`（タグ・GitHub Releases・その版のレジストリ `r/v<版>/`）を実行します。リポジトリにトークンは置きません。npm への公開は任意です（`--npm`）。手順と版の決め方は [docs/releasing.md](./docs/releasing.md) にあります。
 
 ## ライセンス
 

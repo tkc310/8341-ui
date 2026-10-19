@@ -17,7 +17,7 @@ const OUT_DIR = resolve(ROOT, 'registry-assets');
 const inline = (file: string) => {
   const path = resolve(TOKENS_CSS, file);
   if (!existsSync(path)) {
-    throw new Error(`${path} がありません。先に pnpm --filter 8341-ui-tokens build を実行してください`);
+    throw new Error(`${path} がありません。先に make tokens を実行してください`);
   }
   return `/* ---- 8341-ui-tokens/${file} ---- */\n${readFileSync(path, 'utf8').trim()}\n`;
 };

@@ -5,7 +5,7 @@
  * 後から書いた方だけが残って文字色が消える。
  *
  * 出力: packages/ui/src/lib/tw-merge-config.ts（コミットする。--check で差分検出）
- * 実行: pnpm --filter 8341-ui-tokens tw-merge
+ * 実行: make tw-merge
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -54,9 +54,7 @@ if (CHECK) {
     current = readFileSync(OUT, 'utf8');
   } catch {}
   if (current !== content) {
-    console.error(
-      '✖ packages/ui/src/lib/tw-merge-config.ts が古くなっています。pnpm --filter 8341-ui-tokens tw-merge を実行してください',
-    );
+    console.error('✖ packages/ui/src/lib/tw-merge-config.ts が古くなっています。make tw-merge を実行してください');
     process.exit(1);
   }
   console.log('✔ tw-merge-config.ts はトークンと一致しています');

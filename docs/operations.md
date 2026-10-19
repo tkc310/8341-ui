@@ -19,8 +19,8 @@
 https://tkc310.github.io/8341ui/
 ├── index.html …            main の Storybook（CI の storybook ジョブ）
 ├── r/{name}.json           最新のレジストリ（同上）
-├── r/v<版>/{name}.json     リリースした版のレジストリ（手元の pnpm release:publish。残し続ける）
-└── pr-preview/pr-<番号>/   PR ごとの Storybook（ローカルの pnpm storybook:preview。PR を閉じると消える）
+├── r/v<版>/{name}.json     リリースした版のレジストリ（手元の make release-publish。残し続ける）
+└── pr-preview/pr-<番号>/   PR ごとの Storybook（ローカルの make storybook-preview。PR を閉じると消える）
 ```
 
 `gh-pages` ブランチは手で編集しない・強制 push しない（ほかの置き場所が消える）。
@@ -88,6 +88,6 @@ gh api -X PUT repos/tkc310/8341ui/environments/branch-cleanup \
 | 症状 | 原因と対処 |
 | --- | --- |
 | Pages が古い内容のまま | 配信のキャッシュ。`gh-pages` ブランチが新しければ数分で反映される |
-| `pnpm install --frozen-lockfile` が失敗する | 依存を変えたのにロックファイルを更新していない。手元で `pnpm install` してコミットする |
+| `make install-ci`（`pnpm install --frozen-lockfile`）が失敗する | 依存を変えたのにロックファイルを更新していない。手元で `make install` してコミットする |
 | `check` が生成物のずれで失敗する | トークンやコンポーネントを変えたら、`design-md`・`tw-merge`・`registry` を実行して生成物を更新する |
 | Windows で `CLAUDE.md` やスキルが読めない | シンボリックリンクが取り出せていない（[ai-agents.md](./ai-agents.md) の「Windows で使う場合」） |

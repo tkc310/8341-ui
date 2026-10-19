@@ -38,11 +38,11 @@
 ```
 変更の PR（changeset を添える） ──マージ──▶ main（.changeset/*.md が溜まる）
 
-【手元】pnpm release:version
+【手元】make release-version
    └─▶「chore: リリース v<版>」PR（版の更新と CHANGELOG の追記）。人が作る PR なので CI がそのまま動く
           │ レビューしてマージ
           ▼
-【手元】main で pnpm release:publish [--npm]
+【手元】main で make release-publish [NPM=1]
    ├─▶ ビルド（トークン・コンポーネント・レジストリ）
    ├─▶ タグ 8341-ui@<版> / 8341-ui-tokens@<版> を作って push
    ├─▶ GitHub Releases（本文は CHANGELOG の該当節）
@@ -55,17 +55,17 @@
 | 道具 | 状態 |
 | --- | --- |
 | リポジトリの権限 | main・gh-pages への push とリリースの作成ができる（Maintain 以上） |
-| 道具 | `.tool-versions` の版（`mise install`。[導入手順](../CONTRIBUTING.md#導入手順)） |
+| 道具 | `.tool-versions` の版（`make tools`。[導入手順](../CONTRIBUTING.md#導入手順)） |
 | GitHub CLI（`gh`） | `gh auth login` 済み |
 | npm（`--npm` のときだけ） | `npm login` 済みで、パッケージの公開権限がある。2 段階認証の OTP を手元で入力する |
-| 依存 | `pnpm install` 済み |
+| 依存 | `make install` 済み |
 
 ## 手順
 
 ### 1. 変更の PR に changeset を添える（開発者）
 
 ```bash
-pnpm changeset
+make changeset
 ```
 
 対象のパッケージと版の上げ幅（patch / minor / major）を選び、利用者向けの説明を書く。`.changeset/*.md` を PR に含める。
@@ -74,7 +74,7 @@ pnpm changeset
 
 ```bash
 git switch main && git pull
-pnpm release:version
+make release-version
 ```
 
 - `changeset version` で版と CHANGELOG を更新し、`release/v<版>` ブランチから PR を作る
@@ -84,9 +84,9 @@ pnpm release:version
 
 ```bash
 git switch main && git pull
-pnpm release:publish --dry-run   # 何をするか確認する
-pnpm release:publish             # npm に公開しないとき
-pnpm release:publish --npm       # npm にも公開するとき
+make release-publish DRY_RUN=1   # 何をするか確認する
+make release-publish             # npm に公開しないとき
+make release-publish NPM=1       # npm にも公開するとき
 ```
 
 - main が origin/main と一致し、未コミットの変更がないことを確かめてから動く

@@ -7,7 +7,7 @@
  * - registry:file  theme    … Tailwind のテーマ。トークンの CSS を同梱した 1 ファイル（scripts/build-registry-css.ts が作る）
  * - registry:ui    各コンポーネント
  *
- * 実行: pnpm --filter 8341-ui registry（--check で差分検出）。公開は shadcn build（registry:build）
+ * 実行: make registry（--check で差分検出）。公開は shadcn build（registry:build）
  */
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -132,7 +132,7 @@ if (CHECK) {
     current = readFileSync(OUT, 'utf8');
   } catch {}
   if (current !== content) {
-    console.error('✖ registry.json が古くなっています。pnpm --filter 8341-ui registry を実行してください');
+    console.error('✖ registry.json が古くなっています。make registry を実行してください');
     process.exit(1);
   }
   console.log('✔ registry.json はコンポーネントと一致しています');

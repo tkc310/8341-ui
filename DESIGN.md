@@ -1,7 +1,7 @@
 # DESIGN.md — 8341-ui
 
 > AI エージェントがこのデザインシステムに沿った日本語 UI を生成・修正するための仕様書です。
-> `<!-- auto:* -->` で囲まれた表は `pnpm --filter 8341-ui-tokens design-md` がトークンとコンポーネントから自動生成します（手で編集しない）。
+> `<!-- auto:* -->` で囲まれた表は `make design-md` がトークンとコンポーネントから自動生成します（手で編集しない）。
 > 詳しいルールと理由は `docs/rulebook/`、設計判断は `docs/decisions/` を参照してください。
 
 | 項目 | 内容 |
@@ -385,8 +385,8 @@ Variants:           tv() from '@/lib/tv'（tailwind-variants v3）
 ### 作業後に必ず実行するもの
 
 ```bash
-pnpm check   # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ
-pnpm test    # 単体テスト + 全ストーリーの a11y テスト
+make check   # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ
+make test    # 単体テスト + 全ストーリーの a11y テスト
 ```
 
 ### プロンプト例

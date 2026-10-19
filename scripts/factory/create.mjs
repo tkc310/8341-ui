@@ -16,7 +16,7 @@
  *   - 8341-ui → name、8341 → prefix、indigo → keyColor.family、リポジトリの URL を置き換える
  *     （規格名の「JIS X 8341」は置き換えない）
  *   - palette.config.json のキーカラーの色相と、中立色（gray）の色相を keyColor に合わせる
- *   - ファクトリー専用のファイルと、<!-- factory:start --> 〜 <!-- factory:end --> の範囲を取り除く
+ *   - ファクトリー専用のファイルと、<!-- factory:start --> 〜 <!-- factory:end -->（Makefile では # factory:start 〜 # factory:end）の範囲を取り除く
  *   - 改善ログを空にし、生成の記録を ADR に残す
  */
 import { execFileSync } from 'node:child_process';
@@ -103,6 +103,7 @@ const { owner, name: repoName } = config.repository;
 function transform(text) {
   return text
     .replace(/<!-- factory:start -->[\s\S]*?<!-- factory:end -->\n?/g, '')
+    .replace(/# factory:start\n[\s\S]*?# factory:end\n?/g, '')
     .replaceAll(TEMPLATE_PAGES, `${owner}.github.io/${repoName}`)
     .replaceAll(TEMPLATE_REPO, `${owner}/${repoName}`)
     .replace(new RegExp(`(?<!X )${TEMPLATE_NAME}`, 'g'), config.name)
@@ -228,8 +229,6 @@ if (leftovers) {
 console.log(`
 次の手順:
   cd ${values.out}
-  git init && pnpm install
-  pnpm --filter ${config.name}-tokens palette && pnpm build:tokens
-  pnpm --filter ${config.name}-tokens design-md && pnpm --filter ${config.name}-tokens tw-merge
-  pnpm --filter ${config.name} registry
-  pnpm check && pnpm test`);
+  git init && make setup
+  make palette && make generate
+  make verify`);

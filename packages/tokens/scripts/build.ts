@@ -12,7 +12,7 @@
  *
  * Style Dictionary v5 は DTCG の Resolver モジュールに未対応のため、
  * どのファイルをどの順で読むかは scripts/lib/tokens.ts が Resolver 文書から求めて渡す。
- * 実行: pnpm --filter 8341-ui-tokens build
+ * 実行: make tokens
  */
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -212,7 +212,7 @@ function config(opts: {
     // semantic は include した primitive を var() で参照する（意図どおり）。
     // その「出力から外したトークンへの参照」警告をエラーにしないため warn にする
     // 「Token collisions detected」は各ファイル直下の $schema / $description が重なるだけで、トークンの衝突ではない。
-    // 詳細を見るときは SD_VERBOSE=1 pnpm --filter 8341-ui-tokens build
+    // 詳細を見るときは SD_VERBOSE=1 make tokens
     log: { verbosity: process.env.SD_VERBOSE ? 'verbose' : 'default', warnings: 'warn' },
     include: opts.include,
     source: opts.source,

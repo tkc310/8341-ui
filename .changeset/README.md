@@ -1,6 +1,6 @@
 # Changesets
 
-公開パッケージ（`8341-ui`・`8341-ui-tokens`）を変えた PR には、`pnpm changeset` で変更内容を 1 つ追加します。
+公開パッケージ（`8341-ui`・`8341-ui-tokens`）を変えた PR には、`make changeset` で変更内容を 1 つ追加します。
 リリースの流れと版の決め方は [docs/releasing.md](../docs/releasing.md) を読んでください。
 
 - `8341-ui` と `8341-ui-tokens` は同じ版でそろえます（`fixed`）

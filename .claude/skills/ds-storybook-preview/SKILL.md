@@ -10,7 +10,7 @@ description: コンポーネントやトークンの見た目が変わる変更�
 
 | 何が | どこに | 誰が置くか |
 | --- | --- | --- |
-| PR ごとのプレビュー | `https://tkc310.github.io/8341ui/pr-preview/pr-<番号>/` | このスキル（`pnpm storybook:preview`） |
+| PR ごとのプレビュー | `https://tkc310.github.io/8341ui/pr-preview/pr-<番号>/` | このスキル（`make storybook-preview`） |
 | main の Storybook とレジストリ | `https://tkc310.github.io/8341ui/` | CI（main への push 時） |
 
 どちらも `gh-pages` ブランチに置かれる（ADR-0011）。PR を閉じると、プレビューは CI（`storybook-preview-cleanup.yml`）が消す。
@@ -36,11 +36,11 @@ description: コンポーネントやトークンの見た目が変わる変更�
 2. **ビルドして公開する**（リポジトリのルートで）
 
    ```bash
-   pnpm storybook:preview
+   make storybook-preview
    ```
 
    - トークンの生成 → レジストリのビルド → Storybook のビルド → `gh-pages` の `pr-preview/pr-<番号>/` へ push、の順に動く
-   - PR 番号は今のブランチから自動で探す。見つからないときは `pnpm build:storybook && pnpm --filter 8341-ui-storybook preview:publish -- --pr <番号>`
+   - PR 番号は今のブランチから自動で探す。見つからないときは `make storybook-preview PR=<番号>`
    - 最後に URL が出る。Pages への反映に 1〜2 分かかる
    - ビルドが失敗したら、原因を直してから公開する。ビルドの通らない PR はレビューに出さない
 
@@ -92,7 +92,7 @@ description: コンポーネントやトークンの見た目が変わる変更�
 
 - Settings > Pages > Build and deployment > Source を「Deploy from a branch」、Branch を `gh-pages` / `(root)` にする
   - 「GitHub Actions」のままだと `gh-pages` ブランチの内容は配信されない
-  - `gh-pages` ブランチは、最初の `pnpm storybook:preview` か main への最初の push で作られる
+  - `gh-pages` ブランチは、最初の `make storybook-preview` か main への最初の push で作られる
 - Settings > Actions > General > Workflow permissions を「Read and write permissions」にする（main の配信と PR を閉じたときの削除に使う）
 - ローカルに `gh`（GitHub CLI、ログイン済み）と、`gh-pages` へ push できる権限があること
 

@@ -54,20 +54,23 @@ templates/                プロダクト用 DESIGN.md の雛形
 
 ## コマンド
 
+コマンドはすべて `make` で実行する（`make` だけで一覧が出る。中身は `Makefile`）。
+
 ```bash
-mise install                               # .tool-versions の Node.js・pnpm・gh を入れる（asdf なら asdf install）
-pnpm install
-pnpm dev                                   # Storybook
-pnpm build                                 # トークン → UI（vp pack + styles.css）→ Storybook
-pnpm check                                 # vp check（fmt・lint・型）＋ 各パッケージの検査 ＋ dependency-cruiser
-pnpm test                                  # 単体テスト（happy-dom）＋ ストーリーテスト（a11y）
-pnpm test:vrt / pnpm test:e2e              # 手動・都度実行
-pnpm --filter 8341-ui-tokens build         # トークンの CSS・Tailwind テーマ・Figma JSON を生成
-pnpm --filter 8341-ui-tokens design-md     # DESIGN.md の表を更新
-pnpm --filter 8341-ui-tokens tw-merge      # クラス統合の設定を更新
-pnpm --filter 8341-ui registry             # registry.json を更新
-pnpm audit:report                          # 健康診断レポート（reports/audit.md）
-pnpm changeset                             # 変更内容を記録（公開されるパッケージを変えたとき）
+make setup                  # 初回: .tool-versions の道具（mise / asdf）と依存を入れる
+make dev                    # Storybook
+make build                  # トークン → コンポーネント（vp pack + styles.css）
+make build-storybook        # Storybook とレジストリ
+make check                  # fmt・lint・型 ＋ 各パッケージの検査 ＋ dependency-cruiser
+make test                   # 単体テスト（happy-dom）＋ ストーリーテスト（a11y）
+make verify                 # check と test
+make test-vrt / test-e2e    # 手動・都度実行
+make generate               # 生成物をまとめて更新（tokens・design-md・tw-merge・registry）
+make tokens / palette / design-md / tw-merge / figma / registry   # 生成物を個別に更新
+make audit                  # 健康診断レポート（reports/audit.md）
+make changeset              # 変更内容を記録（公開されるパッケージを変えたとき）
+make storybook-preview      # PR 用の Storybook を Pages に公開
+make release-version / release-publish   # リリース（アカウント保有者が手元で）
 ```
 
 ## 守ること
@@ -77,5 +80,5 @@ pnpm changeset                             # 変更内容を記録（公開さ�
 - コンポーネントは semantic トークンの Tailwind クラスだけを使い、`tv` / `cn` は `@/lib/tv` から import する
 - 任意値・手書き CSS では `var(--8341-*)` を参照する（`var(--color-*)` は未定義になりうる）
 - チェックを通すためにルールを緩めない（必要なら ADR を書いて人間に確認する）
-- 変更したら `pnpm check && pnpm test` を通し、`docs/improvement/log.md` に記録する
-- 公開パッケージを変えたら `pnpm changeset` を添える（版の決め方は `docs/releasing.md`）
+- 変更したら `make verify` を通し、`docs/improvement/log.md` に記録する
+- 公開パッケージを変えたら `make changeset` を添える（版の決め方は `docs/releasing.md`）

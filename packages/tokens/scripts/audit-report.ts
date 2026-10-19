@@ -1,6 +1,6 @@
 /**
  * デザインシステムの健康診断レポートを作る（改善ループの「気づく」段階）。
- * 実行: pnpm audit:report → reports/audit.md（リポジトリ直下）
+ * 実行: make audit → reports/audit.md（リポジトリ直下）
  * 週次の GitHub Actions がこのレポートを Issue に投稿する。
  *
  * 見るもの

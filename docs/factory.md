@@ -43,7 +43,7 @@ docs/design-principles/ ──（ルール）──┬──▶ 8341-ui（この
    - キーカラーの色相（hex から変換も可）を `palette.config.json` に入れる
    - ファクトリー専用のファイルと、文書中の `<!-- factory:start -->` 〜 `<!-- factory:end -->` を取り除く
    - 改善ログを空にし、生成の記録を ADR に残す
-5. **仕上げ**（生成先で）: 依存の導入、パレットとトークンの再生成、コントラストの確認、見た目の性格（キーカラーの名前・説明）の書き換え、プロダクトの前提を DESIGN.md に記入、`pnpm check && pnpm test`
+5. **仕上げ**（生成先で）: 依存の導入、パレットとトークンの再生成、コントラストの確認、見た目の性格（キーカラーの名前・説明）の書き換え、プロダクトの前提を DESIGN.md に記入、`make verify`
 6. **公開**: ユーザーの承認を得てから GitHub にリポジトリを作る
 
 詳しい手順は [`.claude/skills/ds-factory/SKILL.md`](../.claude/skills/ds-factory/SKILL.md)。
@@ -54,7 +54,7 @@ docs/design-principles/ ──（ルール）──┬──▶ 8341-ui（この
 | --- | --- |
 | トークン・コンポーネント・Storybook・検査・CI・改善ループ | ファクトリー（`scripts/factory/`、`ds-factory` スキル、この文書） |
 | design-principles とそのスキル | 8341-ui の改善ログ（空から始める） |
-| ルールブック・ADR（引き継いだ判断として残る） | ロックファイル（生成先で `pnpm install` して作る） |
+| ルールブック・ADR（引き継いだ判断として残る） | ロックファイル（生成先で `make install` して作る） |
 
 ### 設定ファイルの例
 
