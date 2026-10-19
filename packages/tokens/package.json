@@ -10,15 +10,15 @@
     "style-dictionary",
     "tailwindcss"
   ],
-  "homepage": "https://tkc310.github.io/8341ui/",
+  "homepage": "https://tkc310.github.io/8341-ui/",
   "bugs": {
-    "url": "https://github.com/tkc310/8341ui/issues"
+    "url": "https://github.com/tkc310/8341-ui/issues"
   },
   "license": "MIT",
   "author": "Takashi Sato",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tkc310/8341ui.git",
+    "url": "git+https://github.com/tkc310/8341-ui.git",
     "directory": "packages/tokens"
   },
   "files": [

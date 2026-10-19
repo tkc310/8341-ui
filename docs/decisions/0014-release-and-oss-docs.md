@@ -4,7 +4,7 @@
 - 状態: 採用
 
 ## 背景
-リポジトリ名を `design-system-myself` から `8341ui` に変えた（Pages の URL も `tkc310.github.io/8341ui/` に変わる）。
+リポジトリ名を `design-system-myself` から `8341-ui` に変えた（途中で `8341ui` を経て、同日に `8341-ui` へそろえた。Pages の URL は `tkc310.github.io/8341-ui/`）。
 リリースは Changesets の「版を上げる PR」までしか動いておらず、npm に公開しない設定では、タグも GitHub Releases も作られなかった。shadcn のレジストリは常に最新だけを配るため、利用側が版を固定できなかった。
 
 ## 決定

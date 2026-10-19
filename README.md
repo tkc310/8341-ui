@@ -11,27 +11,25 @@
 </p>
 
 <p align="center">
-  <a href="https://tkc310.github.io/8341ui/"><b>Storybook</b></a> ·
-  <a href="https://tkc310.github.io/8341ui/r/registry.json"><b>Registry</b></a> ·
+  <a href="https://tkc310.github.io/8341-ui/"><b>Storybook</b></a> ·
+  <a href="https://tkc310.github.io/8341-ui/r/registry.json"><b>Registry</b></a> ·
   <a href="./DESIGN.md"><b>DESIGN.md</b></a> ·
   <a href="./docs/rulebook/"><b>ルールブック</b></a> ·
-  <a href="https://github.com/tkc310/8341ui/releases"><b>Releases</b></a> ·
+  <a href="https://github.com/tkc310/8341-ui/releases"><b>Releases</b></a> ·
   <a href="./CONTRIBUTING.md"><b>開発ガイド</b></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/tkc310/8341ui/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/tkc310/8341ui/actions/workflows/ci.yml/badge.svg?branch=main"></a>
-  <a href="https://github.com/tkc310/8341ui/releases"><img alt="Release" src="https://img.shields.io/github/v/release/tkc310/8341ui?sort=semver&display_name=tag&color=385db8"></a>
-  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/tkc310/8341ui?color=385db8"></a>
+  <a href="https://github.com/tkc310/8341-ui/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/tkc310/8341-ui/actions/workflows/ci.yml/badge.svg?branch=main"></a>
+  <a href="https://github.com/tkc310/8341-ui/releases"><img alt="Release" src="https://img.shields.io/github/v/release/tkc310/8341-ui?sort=semver&display_name=tag&color=385db8"></a>
+  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/tkc310/8341-ui?color=385db8"></a>
   <a href="./docs/rulebook/02-accessibility.md"><img alt="WCAG 2.2 AA" src="https://img.shields.io/badge/WCAG%202.2-AA-005A9C?logo=w3c&logoColor=white"></a>
-  <a href="https://tkc310.github.io/8341ui/"><img alt="Storybook" src="https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white"></a>
-  <a href="https://tkc310.github.io/8341ui/r/registry.json"><img alt="shadcn registry" src="https://img.shields.io/badge/shadcn-%408341-000000?logo=shadcnui&logoColor=white"></a>
+  <a href="https://tkc310.github.io/8341-ui/"><img alt="Storybook" src="https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white"></a>
+  <a href="https://tkc310.github.io/8341-ui/r/registry.json"><img alt="shadcn registry" src="https://img.shields.io/badge/shadcn-%408341-000000?logo=shadcnui&logoColor=white"></a>
   <a href="./docs/ai-agents.md"><img alt="Agent Skills" src="https://img.shields.io/badge/Agent%20Skills-Claude%20Code%20%7C%20Cursor%20%7C%20Codex-D97757?logo=claude&logoColor=white"></a>
 </p>
 
 <br>
-
-![ライト / ダークのプレビュー](./docs/assets/preview.png)
 
 ## 特長
 
@@ -62,11 +60,11 @@ docs/design-principles ─┬─▶ 8341-ui（このリポジトリ）
 
 ```json
 {
-  "registries": { "@8341": "https://tkc310.github.io/8341ui/r/{name}.json" }
+  "registries": { "@8341": "https://tkc310.github.io/8341-ui/r/{name}.json" }
 }
 ```
 
-版を固定するときは、URL を `https://tkc310.github.io/8341ui/r/v0.1.0/{name}.json` のようにします。
+版を固定するときは、URL を `https://tkc310.github.io/8341-ui/r/v0.1.0/{name}.json` のようにします。
 
 **2. 部品を取り込む**
 
@@ -124,7 +122,7 @@ Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.c
 
 ## コンポーネント
 
-ヘッドレス UI の [Base UI](https://base-ui.com/) に、トークンの見た目を載せた 18 種類です。使い分けの規約は [04 コンポーネント](./docs/rulebook/04-components.md)、動く見本は [Storybook](https://tkc310.github.io/8341ui/) にあります。
+ヘッドレス UI の [Base UI](https://base-ui.com/) に、トークンの見た目を載せた 18 種類です。使い分けの規約は [04 コンポーネント](./docs/rulebook/04-components.md)、動く見本は [Storybook](https://tkc310.github.io/8341-ui/) にあります。
 
 | 種類 | コンポーネント |
 | --- | --- |
