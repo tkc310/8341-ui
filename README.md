@@ -188,4 +188,4 @@ templates/                プロダクト用 DESIGN.md の雛形
 
 ## ライセンス
 
-[MIT](./LICENSE) © Takashi Sato
+[MIT](./LICENSE) © tkc310
