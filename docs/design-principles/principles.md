@@ -419,7 +419,7 @@
 
 ### ニールセンのユーザビリティ 10 原則
 
-Jakob Nielsen がインタラクティブシステムの評価用に整理した十のヒューリスティックである。原文は [10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/)（Nielsen Norman Group）。
+Jakob Nielsen がインタラクティブシステムの評価用に整理した十のヒューリスティックである。原文は [10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/)（Nielsen Norman Group）。要約は [sources/nngroup-ten-usability-heuristics.md](./sources/nngroup-ten-usability-heuristics.md)。
 
 | 原則 | 吸収先 |
 | --- | --- |
@@ -444,7 +444,7 @@ Jakob Nielsen がインタラクティブシステムの評価用に整理した
 
 ### デジタル庁のユーザビリティデザインの原則
 
-デジタル庁の DS-671.1『ユーザビリティ導入ガイドブック』は、次の四つを推奨している。アクセシビリティファーストを基盤にし、その上に対話、情報提示、人間中心を置く、という関係である。公開先は [サービスデザイン（デジタル庁）](https://www.digital.go.jp/policies/servicedesign)。対話の原則は JIS Z 8520、情報提示の原則は JIS Z 8522 を参照している。
+デジタル庁の DS-671.1『ユーザビリティ導入ガイドブック』は、次の四つを推奨している。アクセシビリティファーストを基盤にし、その上に対話、情報提示、人間中心を置く、という関係である。公開先は [サービスデザイン（デジタル庁）](https://www.digital.go.jp/policies/servicedesign)。要約は [sources/digital-agency-service-design.md](./sources/digital-agency-service-design.md)。対話の原則は JIS Z 8520、情報提示の原則は JIS Z 8522 を参照している。
 
 アクセシビリティファーストは、使いやすさの選択が多様な利用者の利用可能性と衝突したときに、利用可能性を優先するという基盤である。適用ルールの一項目にはせず、この文書の前提にした。数値は [wcag-for-designers.md](./wcag-for-designers.md) に置く。
 
@@ -488,14 +488,14 @@ Jakob Nielsen がインタラクティブシステムの評価用に整理した
 
 | パターン | 内容 | 吸収先 |
 | --- | --- | --- |
-| F 字型パターン | 文章が主体のウェブページでは、視線が上部と左寄りに集中する。Nielsen Norman Group のアイトラッキングに基づく（[F-Shaped Pattern of Reading on the Web](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/)） | 読み順と優先度 |
+| F 字型パターン | 文章が主体のウェブページでは、視線が上部と左寄りに集中する。Nielsen Norman Group のアイトラッキングに基づく（[F-Shaped Pattern of Reading on the Web](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/)、要約は [sources/nngroup-f-shaped-pattern.md](./sources/nngroup-f-shaped-pattern.md)） | 読み順と優先度 |
 | Z 字型パターン | 要素の少ないページで、左上、右上、左下、右下の順に要素を置く配置の経験則。F 字型パターンと同じ種類の計測結果ではない | 読み順と優先度 |
 
 ### その他のウェブで使う法則
 
 | 法則 | 内容 | 吸収先 |
 | --- | --- | --- |
-| ジャコブの法則 | 利用者は他のサイトにいる時間のほうが長く、そちらの慣習どおりに動くことを期待する（[Jakob's Law](https://www.nngroup.com/articles/jakobs-law-internet-ux/)、Nielsen Norman Group） | 一貫性 |
+| ジャコブの法則 | 利用者は他のサイトにいる時間のほうが長く、そちらの慣習どおりに動くことを期待する（[Jakob's Law of the Internet User Experience](https://jakobnielsenphd.substack.com/p/jakobs-law)、Jakob Nielsen。要約は [sources/jakobs-law.md](./sources/jakobs-law.md)） | 一貫性 |
 | 連続位置効果 | 並びの先頭と末尾の項目が、中央より記憶に残りやすい | 読み順と優先度 |
 | フォン・レストルフ効果 | 周囲と違う一つの要素が記憶に残りやすい | 読み順と優先度 |
 | ドハティのしきい値 | 応答がおおよそ 400 ミリ秒を超えると、対話のテンポが落ちる、という呼び方。Doherty と Thadani の応答時間に関する議論に由来する | 状態と応答 |
