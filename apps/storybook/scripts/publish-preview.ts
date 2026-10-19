@@ -4,9 +4,9 @@
  *   https://<owner>.github.io/<repo>/pr-preview/pr-<番号>/
  *
  * 使い方（リポジトリのルートで）
- *   pnpm storybook:preview              # ビルドして、今のブランチの PR に公開する
- *   pnpm --filter 8341-ui-storybook preview:publish -- --pr 12     # ビルド済みのものを PR #12 に公開する
- *   pnpm --filter 8341-ui-storybook preview:publish -- --pr 12 --remove   # PR #12 のプレビューを消す
+ *   make storybook-preview              # ビルドして、今のブランチの PR に公開する
+ *   make storybook-preview PR=12     # ビルド済みのものを PR #12 に公開する
+ *   make storybook-preview-remove PR=12   # PR #12 のプレビューを消す
  *
  * - PR 番号を省くと、今のブランチから開いている PR を探す（gh の REST API を使う）
  * - gh-pages ブランチは一時的な git worktree で扱い、作業ツリーには触らない。強制 push はしない
@@ -73,7 +73,7 @@ const url = `https://${owner}.github.io/${repo}/${UMBRELLA}/pr-${pr}/`;
 
 if (!values.remove) {
   if (!existsSync(join(STATIC_DIR, 'index.html'))) {
-    throw new Error('storybook-static がありません。先に `pnpm build:storybook` を実行してください');
+    throw new Error('storybook-static がありません。先に `make build-storybook` を実行してください');
   }
   // プレビューが PR の内容と食い違わないよう、未コミット・未 push の変更があれば知らせる（止めはしない）
   if (git(['status', '--porcelain'])) console.warn('⚠ 未コミットの変更を含んだビルドを公開します');

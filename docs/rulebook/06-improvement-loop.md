@@ -24,9 +24,9 @@
 
 | 仕組み                  | タイミング | 何を見つけるか                                                                                                                                                                    |
 | ----------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm check`（CI）      | PR ごと    | fmt・lint（oxlint、型情報つき）・型、コントラスト不足、テーマ間のキーずれ、DESIGN.md / tw-merge 設定 / registry.json のずれ、クラス監査、アーキテクチャ違反（dependency-cruiser） |
-| `pnpm test`（Vitest 5） | PR ごと    | 振る舞いの退行（happy-dom）、全ストーリーの play 関数と axe による WCAG 違反（実ブラウザ）                                                                                        |
-| VRT・e2e                | 手動・都度 | 見た目の退行（`pnpm test:vrt`）、320px・200%・強制カラーでの崩れ（`pnpm test:e2e`）                                                                                               |
+| `make check`（CI）      | PR ごと    | fmt・lint（oxlint、型情報つき）・型、コントラスト不足、テーマ間のキーずれ、DESIGN.md / tw-merge 設定 / registry.json のずれ、クラス監査、アーキテクチャ違反（dependency-cruiser） |
+| `make test`（Vitest 5） | PR ごと    | 振る舞いの退行（happy-dom）、全ストーリーの play 関数と axe による WCAG 違反（実ブラウザ）                                                                                        |
+| VRT・e2e                | 手動・都度 | 見た目の退行（`make test-vrt`）、320px・200%・強制カラーでの崩れ（`make test-e2e`）                                                                                               |
 | 週次監査ワークフロー    | 毎週月曜   | warning の蓄積、コントラストの余裕が 5% 未満の組み合わせ、未使用トークン、ストーリー・Code Connect の欠け。結果を Issue に起票                                                    |
 
 ### 手動
@@ -47,9 +47,9 @@
 ## 3. 直す
 
 - 修正は PR で行い、PR テンプレートのチェックリスト（完了の定義）を満たす
-- 見た目を変えたら、ローカルで `pnpm storybook:preview` を実行して PR ごとの Storybook を GitHub Pages に公開し、変わったストーリーへのリンクを PR に添える（`.claude/skills/ds-storybook-preview/SKILL.md`）
+- 見た目を変えたら、ローカルで `make storybook-preview` を実行して PR ごとの Storybook を GitHub Pages に公開し、変わったストーリーへのリンクを PR に添える（`.claude/skills/ds-storybook-preview/SKILL.md`）
 - 値や方針を変えたら ADR を追加する（`docs/decisions/NNNN-*.md`）
-- トークンを変えたら `pnpm --filter 8341-ui-tokens build` と `design-md` で CSS と DESIGN.md を更新する（CI がずれを検出する）
+- トークンを変えたら `make tokens` と `design-md` で CSS と DESIGN.md を更新する（CI がずれを検出する）
 
 ## 4. 再発を防ぐ（いちばん大事）
 
@@ -73,8 +73,8 @@
 
 `.claude/skills/ds-improve/SKILL.md` に手順をまとめています。エージェントは次の順で動きます。
 
-1. `pnpm audit:report` で現状のレポート（`reports/audit.md`）を作る
+1. `make audit` で現状のレポート（`reports/audit.md`）を作る
 2. `docs/improvement/backlog.md` と未解決の Issue を読み、優先度の高いものを 1 つ選ぶ
 3. 修正し、上の「再発を防ぐ」に従ってチェックを追加する
-4. `pnpm check && pnpm test` が通ることを確認し、changeset と log.md を追加して PR を出す
+4. `make verify` が通ることを確認し、changeset と log.md を追加して PR を出す
 5. 見た目を変えたら `ds-storybook-preview` スキルでプレビューを公開し、PR 本文にリンクを書く

@@ -13,6 +13,7 @@ AI エージェントで開発するときも、この手順と [AGENTS.md](./AG
 | pnpm | 12.14.0 | 依存の管理（workspaces / catalog） |
 | GitHub CLI（`gh`） | 2.102.0 | Storybook のプレビューの公開、リリース、PR の操作 |
 | Git | 指定なし | シンボリックリンクを扱える設定にする（Windows は下の注意） |
+| make | 指定なし | コマンドの入口（macOS・Linux には標準で入っている。Windows は WSL を使う） |
 
 Playwright のブラウザ、Storybook、Vite+ などは pnpm の依存として入るので、個別に入れる必要はない。
 
@@ -44,7 +45,7 @@ asdf plugin add github-cli
 ```bash
 git clone https://github.com/tkc310/8341ui.git
 cd 8341ui
-mise install        # asdf の場合は asdf install。.tool-versions の版が入る
+make tools          # mise（なければ asdf）で .tool-versions の版を入れる
 node -v             # v24.22.0
 pnpm -v             # 12.14.0
 gh --version        # 2.102.0
@@ -55,10 +56,12 @@ gh --version        # 2.102.0
 ### 3. 依存を入れて動かす
 
 ```bash
-pnpm install        # prepare でトークンもビルドされる
-pnpm dev            # Storybook（http://localhost:6006）
-pnpm check && pnpm test   # 動作確認
+make install        # 依存を入れる（prepare でトークンもビルドされる）
+make dev            # Storybook（http://localhost:6006）
+make verify         # 動作確認（check と test）
 ```
+
+2 と 3 は `make setup`（`make tools` と `make install`）でまとめて行える。
 
 ### 4. GitHub CLI にログインする（プレビューの公開・リリースをする人）
 
@@ -76,28 +79,40 @@ gh auth login
 
 ## よく使うコマンド
 
+コマンドはすべて `make` で実行する。`make` だけで一覧が出る（定義は [`Makefile`](./Makefile)。中身は pnpm のスクリプトを呼ぶだけ）。
+
 | コマンド | やること |
 | --- | --- |
-| `pnpm dev` | Storybook を起動する |
-| `pnpm check` | fmt・lint（型情報つき）・型、生成物の鮮度、コントラスト、クラス監査、依存の向き |
-| `pnpm test` | 単体テスト（happy-dom）と、全ストーリーの実ブラウザ描画・axe |
-| `pnpm test:vrt` | 見た目の回帰テスト（手動） |
-| `pnpm test:e2e` | e2e（320px・200%・強制カラー。手動） |
-| `pnpm build` | トークン → コンポーネント（ESM・型・CSS） |
-| `pnpm build:storybook` | Storybook とレジストリをビルドする |
-| `pnpm storybook:preview` | PR 用の Storybook を Pages に公開する |
-| `pnpm changeset` | 変更内容を記録する（公開パッケージを変えたとき） |
+| `make setup` | 初回の準備（`make tools` と `make install`） |
+| `make dev` | Storybook を起動する |
+| `make check` | fmt・lint（型情報つき）・型、生成物の鮮度、コントラスト、クラス監査、依存の向き |
+| `make test` | 単体テスト（happy-dom）と、全ストーリーの実ブラウザ描画・axe |
+| `make verify` | `check` と `test` をまとめて実行する（PR を出す前に） |
+| `make test-vrt` | 見た目の回帰テスト（手動） |
+| `make test-e2e` | e2e（320px・200%・強制カラー・ドキュメントの表示。手動） |
+| `make browsers` | テスト用のブラウザ（Playwright の Chromium）を入れる |
+| `make build` | トークン → コンポーネント（ESM・型・CSS） |
+| `make build-storybook` | Storybook とレジストリをビルドする |
+| `make generate` | 生成物をまとめて更新する（tokens・design-md・tw-merge・registry） |
+| `make tokens` / `palette` / `design-md` / `tw-merge` / `figma` / `registry` | 生成物を個別に更新する |
+| `make audit` | 健康診断レポートを作る（`reports/audit.md`） |
+| `make storybook-preview` | PR 用の Storybook を Pages に公開する（`PR=番号` で指定も可） |
+| `make changeset` | 変更内容を記録する（公開パッケージを変えたとき） |
+| `make release-version` / `make release-publish` | リリース（[docs/releasing.md](./docs/releasing.md)） |
+| `make clean` | ビルドの成果物を消す |
+
+pnpm のスクリプト（`pnpm check` など）を直接実行しても同じ結果になる。ターゲットを足すときは、`Makefile` に `## 説明` を付けて一覧に出るようにする。
 
 ## 変更の流れ
 
 1. **ブランチを切る**: `feat/…`・`fix/…`・`docs/…`・`chore/…` のように、変更の種類を頭に付ける
 2. **変更する**: 下の「変更の種類ごとの手順」に従う
-3. **確かめる**: `pnpm check && pnpm test`。見た目を変えたら `pnpm test:vrt` も
+3. **確かめる**: `make verify`。見た目を変えたら `make test-vrt` も
 4. **記録する**:
-   - 公開パッケージ（`8341-ui`・`8341-ui-tokens`）を変えたら `pnpm changeset`（[版の決め方](./docs/releasing.md#版の決め方)）
+   - 公開パッケージ（`8341-ui`・`8341-ui-tokens`）を変えたら `make changeset`（[版の決め方](./docs/releasing.md#版の決め方)）
    - 改善なら `docs/improvement/log.md` に 1 行
    - 値や方針を変えたら `docs/decisions/` に ADR
-5. **PR を出す**: PR テンプレートのチェックリストを埋める。見た目が変わるなら、`pnpm storybook:preview` で公開したプレビューのリンクを添える（`ds-storybook-preview` スキル）
+5. **PR を出す**: PR テンプレートのチェックリストを埋める。見た目が変わるなら、`make storybook-preview` で公開したプレビューのリンクを添える（`ds-storybook-preview` スキル）
 6. **マージ**: `check` と `test` が通ったらマージする。マージ後のブランチは `Branch cleanup` が消す
 
 コミットメッセージは `種類: 変更の要約`（例: `feat: Tooltip を追加`、`fix(select): …`）。本文は日本語で、何をなぜ変えたかを書く。
@@ -109,11 +124,11 @@ gh auth login
 ```bash
 # 値を変える: packages/tokens/src/{primitive,semantic}/*.tokens.json
 # キーカラーを変える: packages/tokens/src/palette.config.json → 次で primitive を再生成
-pnpm --filter 8341-ui-tokens palette
-pnpm --filter 8341-ui-tokens build       # CSS 変数・Tailwind テーマ・Figma JSON
-pnpm --filter 8341-ui-tokens design-md   # DESIGN.md の表
-pnpm --filter 8341-ui-tokens tw-merge    # クラス統合の設定
-pnpm check
+make palette
+make tokens       # CSS 変数・Tailwind テーマ・Figma JSON
+make design-md   # DESIGN.md の表
+make tw-merge    # クラス統合の設定
+make check
 ```
 
 - semantic カラーを足したら、`packages/tokens/src/contrast.rules.json` に組み合わせを足す
@@ -132,7 +147,7 @@ pnpm check
 
 - semantic トークンの Tailwind クラスだけを使う（任意値では `var(--8341-*)`）
 - 振る舞いのテストは `src/components/components.test.tsx` に足す
-- 追加・削除したら `pnpm --filter 8341-ui registry` でレジストリを更新する
+- 追加・削除したら `make registry` でレジストリを更新する
 - 使い方の規約は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)、アクセシビリティは [02-accessibility.md](./docs/rulebook/02-accessibility.md)
 
 ### 画面設計のルールを変える

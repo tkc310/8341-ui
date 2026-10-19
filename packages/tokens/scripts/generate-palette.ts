@@ -2,7 +2,7 @@
  * src/palette.config.json から src/primitive/color.tokens.json を生成する。
  * 色は DTCG 2025.10 の色オブジェクト（colorSpace: oklch）で持ち、sRGB の hex を代替値として添える。
  * 彩度は sRGB の色域に収まるまで下げてあるので、oklch() と hex は同じ色になる。
- * 実行: pnpm --filter 8341-ui-tokens palette
+ * 実行: make palette
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';

@@ -24,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version-file: .tool-versions
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm audit:report
+      - run: make install-ci
+      - run: make audit
       - name: レポートを Issue に投稿（同じラベルの未解決 Issue があれば更新）
         env:
           GH_TOKEN: ${{ github.token }}

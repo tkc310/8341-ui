@@ -3,10 +3,10 @@
  * 手元で行うリリース。権限のあるアカウント保有者が、自分の gh・npm のログインで実行する
  * （リポジトリにトークンやシークレットを置かない。ADR-0014）。手順の全体は docs/releasing.md。
  *
- *   pnpm release:version            # changeset を版に反映し、「版を上げる PR」を作る
- *   pnpm release:publish            # （その PR のマージ後、main で）タグ・GitHub Releases・版ごとのレジストリを作る
- *   pnpm release:publish --npm      # 上に加えて npm にも公開する（npm login 済みであること）
- *   pnpm release:publish --dry-run  # 何をするかだけ表示する
+ *   make release-version            # changeset を版に反映し、「版を上げる PR」を作る
+ *   make release-publish            # （その PR のマージ後、main で）タグ・GitHub Releases・版ごとのレジストリを作る
+ *   make release-publish NPM=1      # 上に加えて npm にも公開する（npm login 済みであること）
+ *   make release-publish DRY_RUN=1  # 何をするかだけ表示する
  */
 import { execFileSync } from 'node:child_process';
 import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
@@ -140,7 +140,7 @@ function version() {
   const notes = publicPackages()
     .map((p) => `## ${p.name} ${next}\n\n${releaseNotes(p.dir, next)}`)
     .join('\n\n');
-  const body = `v${next} をリリースする。マージ後に main で \`pnpm release:publish\` を実行する（docs/releasing.md）。\n\n${notes}`;
+  const body = `v${next} をリリースする。マージ後に main で \`make release-publish\` を実行する（docs/releasing.md）。\n\n${notes}`;
   const url = run('gh', [
     'pr',
     'create',
@@ -168,7 +168,7 @@ function publish() {
   if (existing) fail(`すでにタグがあります: ${existing.replace(/\n/g, ', ')}（この版はリリース済み）`);
   const { owner, repo } = repoSlug();
 
-  step('ビルドとレジストリの生成（pnpm build・registry:build）', () => {
+  step('ビルドとレジストリの生成（make build・registry:build）', () => {
     runLive('pnpm', ['build']);
     runLive('pnpm', ['--filter', packages[0].name, 'registry:build']);
   });

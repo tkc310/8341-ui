@@ -1,6 +1,6 @@
 /**
  * コンポーネントのクラス名がルールブックの規約を守っているかを静的に検査する。
- * 実行: pnpm --filter 8341-ui check（--json で機械可読な結果）
+ * 実行: make check（--json で機械可読な結果）
  *
  * error（CI を落とす）
  *   raw-color        … 任意値での色の直書き（bg-[#fff]、text-[rgb(...)] など）。semantic トークンのユーティリティを使う

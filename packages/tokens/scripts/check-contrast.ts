@@ -3,7 +3,7 @@
  *   1. テーマ（light / dark）で semantic のキーが一致しているか
  *   2. すべての参照が解決できるか
  *   3. src/contrast.rules.json の組み合わせが、両テーマで基準を満たすか
- * 実行: pnpm --filter 8341-ui-tokens check:contrast（--json で機械可読な結果）
+ * 実行: make check:contrast（--json で機械可読な結果）
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';

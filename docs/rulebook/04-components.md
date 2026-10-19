@@ -51,16 +51,16 @@ packages/ui/src/components/button/
 
 ## 完了の定義（Definition of Done）
 
-- [ ] semantic トークンのクラスだけで書かれている（`pnpm --filter 8341-ui check` が error 0）
+- [ ] semantic トークンのクラスだけで書かれている（`make check` が error 0）
 - [ ] すべての状態（default / hover / active / focus / disabled / invalid など）のストーリーがある
 - [ ] ライトとダークの両方で見た目を確認した（Storybook の「並べて表示」）
 - [ ] addon-a11y の違反がゼロ（ストーリーテストで検査される）
 - [ ] キーボード操作を play 関数かテストで検証している
 - [ ] [02 アクセシビリティ](./02-accessibility.md) の手動確認項目を実施した
 - [ ] 主たる関数の JSDoc の 1 文目に「何をする部品か」を書いた（レジストリの説明になる）
-- [ ] `src/index.ts` から export し、`pnpm --filter 8341-ui registry` でレジストリを更新した
+- [ ] `src/index.ts` から export し、`make registry` でレジストリを更新した
 - [ ] Figma のコンポーネントがあれば `.figma.ts` を書いた
-- [ ] changeset を追加した（`pnpm changeset`）
+- [ ] changeset を追加した（`make changeset`）
 
 ## 部品の選び方
 

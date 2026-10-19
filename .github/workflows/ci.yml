@@ -24,9 +24,9 @@ jobs:
         with:
           node-version-file: .tool-versions
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: make install-ci
       # 生成物の鮮度・コントラスト・DESIGN.md 同期・レジストリ・fmt・lint（型情報つき）・型検査・アーキテクチャ
-      - run: pnpm check
+      - run: make check
 
   test:
     runs-on: ubuntu-latest
@@ -42,11 +42,11 @@ jobs:
         with:
           node-version-file: .tool-versions
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter 8341-ui-storybook exec playwright install --with-deps chromium
+      - run: make install-ci
+      - run: make browsers
       # unit（happy-dom）+ storybook（全ストーリーを実ブラウザで描画し a11y 検査）
       # VRT と e2e は手動・都度実行のため CI では回さない
-      - run: pnpm test
+      - run: make test
 
   # リリースは CI では行わない。権限のあるアカウント保有者が手元で pnpm release:version / release:publish を実行する
   # （リポジトリにトークンやシークレットを置かない。docs/releasing.md・ADR-0014）
@@ -74,8 +74,8 @@ jobs:
         with:
           node-version-file: .tool-versions
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build:storybook
+      - run: make install-ci
+      - run: make build-storybook
       - uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
           folder: apps/storybook/storybook-static
