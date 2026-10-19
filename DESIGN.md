@@ -8,8 +8,8 @@
 | --- | --- |
 | パッケージ | `8341-ui`（コンポーネント）、`8341-ui-tokens`（トークン） |
 | ヘッドレス UI | Base UI v1（`@base-ui/react`） |
-| スタイリング | Tailwind CSS v4 + CSS 変数（`--tkc-*`）。バリアントは tailwind-variants v3 |
-| 配布 | shadcn 方式（レジストリ `@tkc`、`registry:base` で Base UI を固定）と npm パッケージ |
+| スタイリング | Tailwind CSS v4 + CSS 変数（`--8341-*`）。バリアントは tailwind-variants v3 |
+| 配布 | shadcn 方式（レジストリ `@8341`、`registry:base` で Base UI を固定）と npm パッケージ |
 | トークン | W3C DTCG 2025.10 → Style Dictionary v5 |
 | 準拠 | WCAG 2.2 AA / JIS X 8341-3:2016 |
 
@@ -37,7 +37,7 @@
 
 - **semantic トークンの Tailwind クラスだけを使う**: 面は `bg-*`、文字は `text-fg-*`、アイコンは `text-icon-*`、線は `border-border-*`
 - Tailwind 既定のパレット（`text-gray-500`、`bg-blue-600` など）はテーマで消してあり、**効かない**
-- 任意値（`bg-[...]`）で色を書かない。手書きの CSS や任意値でトークンが必要なら `var(--tkc-*)` を参照する（`--color-*` などの Tailwind のテーマ変数は、使われたものしか出力されないため参照しない）
+- 任意値（`bg-[...]`）で色を書かない。手書きの CSS や任意値でトークンが必要なら `var(--8341-*)` を参照する（`--color-*` などの Tailwind のテーマ変数は、使われたものしか出力されないため参照しない）
 - すべての組み合わせは `packages/tokens/src/contrast.rules.json` で両テーマ検証済み: 文字 4.5:1 以上、UI 境界 3:1 以上
 - `border-border-subtle` は装飾専用（3:1 未満）。入力欄やカードの境界には `border-border-input` / `border-border`
 
@@ -46,57 +46,57 @@
 <!-- auto:semantic-colors -->
 | token | Tailwind | CSS 変数 | light | dark | 用途 |
 | --- | --- | --- | --- | --- | --- |
-| `color.bg.canvas` | `bg-canvas` | `--tkc-color-bg-canvas` | `#ffffff` white | `#1a1b1d` gray.1200 | ページ全体の背景 |
-| `color.bg.surface` | `bg-surface` | `--tkc-color-bg-surface` | `#ffffff` white | `#252629` gray.1100 | カード・入力欄など面の背景 |
-| `color.bg.subtle` | `bg-subtle` | `--tkc-color-bg-subtle` | `#f6f7f7` gray.50 | `#252629` gray.1100 | 区切りたい帯・コードブロック |
-| `color.bg.muted` | `bg-muted` | `--tkc-color-bg-muted` | `#ecedee` gray.100 | `#313336` gray.1000 | ホバー時の面・テーブル見出し |
-| `color.bg.inverse` | `bg-inverse` | `--tkc-color-bg-inverse` | `#252629` gray.1100 | `#f6f7f7` gray.50 |  |
-| `color.bg.disabled` | `bg-disabled` | `--tkc-color-bg-disabled` | `#ecedee` gray.100 | `#313336` gray.1000 |  |
-| `color.bg.key` | `bg-key` | `--tkc-color-bg-key` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 | 主要アクション（Primary ボタン） |
-| `color.bg.key-hover` | `bg-key-hover` | `--tkc-color-bg-key-hover` | `#2d4c9c` indigo.800 | `#cadbfe` indigo.200 |  |
-| `color.bg.key-active` | `bg-key-active` | `--tkc-color-bg-key-active` | `#223d81` indigo.900 | `#e4edff` indigo.100 |  |
-| `color.bg.key-subtle` | `bg-key-subtle` | `--tkc-color-bg-key-subtle` | `#e4edff` indigo.100 | `#11234f` indigo.1100 | 選択中の項目・Secondary ボタンの hover |
-| `color.bg.key-subtle-hover` | `bg-key-subtle-hover` | `--tkc-color-bg-key-subtle-hover` | `#cadbfe` indigo.200 | `#192f65` indigo.1000 |  |
-| `color.bg.danger` | `bg-danger` | `--tkc-color-bg-danger` | `#b61b25` red.700 | `#feaba4` red.300 |  |
-| `color.bg.danger-hover` | `bg-danger-hover` | `--tkc-color-bg-danger-hover` | `#9a101c` red.800 | `#ffcdc8` red.200 |  |
-| `color.bg.danger-active` | `bg-danger-active` | `--tkc-color-bg-danger-active` | `#800613` red.900 | `#fee7e4` red.100 |  |
-| `color.bg.danger-subtle` | `bg-danger-subtle` | `--tkc-color-bg-danger-subtle` | `#fef4f3` red.50 | `#3a0104` red.1200 |  |
-| `color.bg.success-subtle` | `bg-success-subtle` | `--tkc-color-bg-success-subtle` | `#edfbf1` green.50 | `#00220f` green.1200 |  |
-| `color.bg.warning-subtle` | `bg-warning-subtle` | `--tkc-color-bg-warning-subtle` | `#fffcf3` yellow.50 | `#271d00` yellow.1200 |  |
-| `color.bg.info-subtle` | `bg-info-subtle` | `--tkc-color-bg-info-subtle` | `#f3f7fe` indigo.50 | `#0a183b` indigo.1200 |  |
-| `color.bg.overlay` | `bg-overlay` | `--tkc-color-bg-overlay` | `#0a0c14 / 0.48`  | `#000000 / 0.64`  | モーダル背面 |
-| `color.text.default` | `text-fg` | `--tkc-color-text-default` | `#252629` gray.1100 | `#f6f7f7` gray.50 | 本文。純黒は使わない |
-| `color.text.subtle` | `text-fg-subtle` | `--tkc-color-text-subtle` | `#616369` gray.700 | `#c2c4c8` gray.300 | 補足・説明文（4.5:1 以上） |
-| `color.text.disabled` | `text-fg-disabled` | `--tkc-color-text-disabled` | `#8c8f95` gray.500 | `#75777d` gray.600 | 無効状態（WCAG のコントラスト要件対象外だが 3:1 を目安） |
-| `color.text.inverse` | `text-fg-inverse` | `--tkc-color-text-inverse` | `#f6f7f7` gray.50 | `#252629` gray.1100 |  |
-| `color.text.key` | `text-fg-key` | `--tkc-color-text-key` | `#2d4c9c` indigo.800 | `#a8c4fe` indigo.300 | キーカラーの文字（Secondary ボタン等） |
-| `color.text.on-key` | `text-fg-on-key` | `--tkc-color-text-on-key` | `#ffffff` white | `#0a183b` indigo.1200 | bg.key / bg.danger の上の文字 |
-| `color.text.danger` | `text-fg-danger` | `--tkc-color-text-danger` | `#9a101c` red.800 | `#feaba4` red.300 |  |
-| `color.text.success` | `text-fg-success` | `--tkc-color-text-success` | `#016337` green.800 | `#91d7a9` green.300 |  |
-| `color.text.warning` | `text-fg-warning` | `--tkc-color-text-warning` | `#833b02` orange.800 | `#e7c567` yellow.300 |  |
-| `color.text.link` | `text-fg-link` | `--tkc-color-text-link` | `#2d4c9c` indigo.800 | `#a8c4fe` indigo.300 |  |
-| `color.text.link-hover` | `text-fg-link-hover` | `--tkc-color-text-link-hover` | `#192f65` indigo.1000 | `#cadbfe` indigo.200 |  |
-| `color.text.link-visited` | `text-fg-link-visited` | `--tkc-color-text-link-visited` | `#5f3c91` purple.800 | `#ceb6fc` purple.300 |  |
-| `color.text.link-active` | `text-fg-link-active` | `--tkc-color-text-link-active` | `#833b02` orange.800 | `#feaf82` orange.300 |  |
-| `color.icon.default` | `text-icon` | `--tkc-color-icon-default` | `#313336` gray.1000 | `#ecedee` gray.100 |  |
-| `color.icon.subtle` | `text-icon-subtle` | `--tkc-color-icon-subtle` | `#616369` gray.700 | `#c2c4c8` gray.300 |  |
-| `color.icon.key` | `text-icon-key` | `--tkc-color-icon-key` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 |  |
-| `color.icon.danger` | `text-icon-danger` | `--tkc-color-icon-danger` | `#b61b25` red.700 | `#feaba4` red.300 |  |
-| `color.icon.success` | `text-icon-success` | `--tkc-color-icon-success` | `#037743` green.700 | `#91d7a9` green.300 |  |
-| `color.icon.warning` | `text-icon-warning` | `--tkc-color-icon-warning` | `#7f6404` yellow.700 | `#e7c567` yellow.300 |  |
-| `color.icon.info` | `text-icon-info` | `--tkc-color-icon-info` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 |  |
-| `color.border.subtle` | `border-border-subtle` | `--tkc-color-border-subtle` | `#d9dbdd` gray.200 | `#313336` gray.1000 | 装飾的な区切り線（情報を担わないもの限定） |
-| `color.border.default` | `border-border` | `--tkc-color-border-default` | `#8c8f95` gray.500 | `#75777d` gray.600 | カードなど意味のある境界（3:1 以上） |
-| `color.border.input` | `border-border-input` | `--tkc-color-border-input` | `#75777d` gray.600 | `#8c8f95` gray.500 | 入力欄・チェックボックスの枠 |
-| `color.border.strong` | `border-border-strong` | `--tkc-color-border-strong` | `#404246` gray.900 | `#d9dbdd` gray.200 | 入力欄 hover |
-| `color.border.key` | `border-border-key` | `--tkc-color-border-key` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 |  |
-| `color.border.danger` | `border-border-danger` | `--tkc-color-border-danger` | `#b61b25` red.700 | `#fe7f77` red.400 |  |
-| `color.border.success` | `border-border-success` | `--tkc-color-border-success` | `#037743` green.700 | `#64c288` green.400 |  |
-| `color.border.warning` | `border-border-warning` | `--tkc-color-border-warning` | `#977806` yellow.600 | `#d5aa02` yellow.400 |  |
-| `color.border.disabled` | `border-border-disabled` | `--tkc-color-border-disabled` | `#c2c4c8` gray.300 | `#404246` gray.900 |  |
-| `color.focus.ring` | `outline-focus-ring` | `--tkc-color-focus-ring` | `#e7c567` yellow.300 | `#e7c567` yellow.300 | フォーカスの内側リング |
-| `color.focus.outline` | `outline-focus-outline` | `--tkc-color-focus-outline` | `#1a1b1d` gray.1200 | `#f6f7f7` gray.50 | フォーカスの外側アウトライン |
-| `color.focus.text` | `outline-focus-text` | `--tkc-color-focus-text` | `#1a1b1d` gray.1200 | `#1a1b1d` gray.1200 | フォーカスリング色の背景に乗る文字（リンクのフォーカス時） |
+| `color.bg.canvas` | `bg-canvas` | `--8341-color-bg-canvas` | `#ffffff` white | `#1a1b1d` gray.1200 | ページ全体の背景 |
+| `color.bg.surface` | `bg-surface` | `--8341-color-bg-surface` | `#ffffff` white | `#252629` gray.1100 | カード・入力欄など面の背景 |
+| `color.bg.subtle` | `bg-subtle` | `--8341-color-bg-subtle` | `#f6f7f7` gray.50 | `#252629` gray.1100 | 区切りたい帯・コードブロック |
+| `color.bg.muted` | `bg-muted` | `--8341-color-bg-muted` | `#ecedee` gray.100 | `#313336` gray.1000 | ホバー時の面・テーブル見出し |
+| `color.bg.inverse` | `bg-inverse` | `--8341-color-bg-inverse` | `#252629` gray.1100 | `#f6f7f7` gray.50 |  |
+| `color.bg.disabled` | `bg-disabled` | `--8341-color-bg-disabled` | `#ecedee` gray.100 | `#313336` gray.1000 |  |
+| `color.bg.key` | `bg-key` | `--8341-color-bg-key` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 | 主要アクション（Primary ボタン） |
+| `color.bg.key-hover` | `bg-key-hover` | `--8341-color-bg-key-hover` | `#2d4c9c` indigo.800 | `#cadbfe` indigo.200 |  |
+| `color.bg.key-active` | `bg-key-active` | `--8341-color-bg-key-active` | `#223d81` indigo.900 | `#e4edff` indigo.100 |  |
+| `color.bg.key-subtle` | `bg-key-subtle` | `--8341-color-bg-key-subtle` | `#e4edff` indigo.100 | `#11234f` indigo.1100 | 選択中の項目・Secondary ボタンの hover |
+| `color.bg.key-subtle-hover` | `bg-key-subtle-hover` | `--8341-color-bg-key-subtle-hover` | `#cadbfe` indigo.200 | `#192f65` indigo.1000 |  |
+| `color.bg.danger` | `bg-danger` | `--8341-color-bg-danger` | `#b61b25` red.700 | `#feaba4` red.300 |  |
+| `color.bg.danger-hover` | `bg-danger-hover` | `--8341-color-bg-danger-hover` | `#9a101c` red.800 | `#ffcdc8` red.200 |  |
+| `color.bg.danger-active` | `bg-danger-active` | `--8341-color-bg-danger-active` | `#800613` red.900 | `#fee7e4` red.100 |  |
+| `color.bg.danger-subtle` | `bg-danger-subtle` | `--8341-color-bg-danger-subtle` | `#fef4f3` red.50 | `#3a0104` red.1200 |  |
+| `color.bg.success-subtle` | `bg-success-subtle` | `--8341-color-bg-success-subtle` | `#edfbf1` green.50 | `#00220f` green.1200 |  |
+| `color.bg.warning-subtle` | `bg-warning-subtle` | `--8341-color-bg-warning-subtle` | `#fffcf3` yellow.50 | `#271d00` yellow.1200 |  |
+| `color.bg.info-subtle` | `bg-info-subtle` | `--8341-color-bg-info-subtle` | `#f3f7fe` indigo.50 | `#0a183b` indigo.1200 |  |
+| `color.bg.overlay` | `bg-overlay` | `--8341-color-bg-overlay` | `#0a0c14 / 0.48`  | `#000000 / 0.64`  | モーダル背面 |
+| `color.text.default` | `text-fg` | `--8341-color-text-default` | `#252629` gray.1100 | `#f6f7f7` gray.50 | 本文。純黒は使わない |
+| `color.text.subtle` | `text-fg-subtle` | `--8341-color-text-subtle` | `#616369` gray.700 | `#c2c4c8` gray.300 | 補足・説明文（4.5:1 以上） |
+| `color.text.disabled` | `text-fg-disabled` | `--8341-color-text-disabled` | `#8c8f95` gray.500 | `#75777d` gray.600 | 無効状態（WCAG のコントラスト要件対象外だが 3:1 を目安） |
+| `color.text.inverse` | `text-fg-inverse` | `--8341-color-text-inverse` | `#f6f7f7` gray.50 | `#252629` gray.1100 |  |
+| `color.text.key` | `text-fg-key` | `--8341-color-text-key` | `#2d4c9c` indigo.800 | `#a8c4fe` indigo.300 | キーカラーの文字（Secondary ボタン等） |
+| `color.text.on-key` | `text-fg-on-key` | `--8341-color-text-on-key` | `#ffffff` white | `#0a183b` indigo.1200 | bg.key / bg.danger の上の文字 |
+| `color.text.danger` | `text-fg-danger` | `--8341-color-text-danger` | `#9a101c` red.800 | `#feaba4` red.300 |  |
+| `color.text.success` | `text-fg-success` | `--8341-color-text-success` | `#016337` green.800 | `#91d7a9` green.300 |  |
+| `color.text.warning` | `text-fg-warning` | `--8341-color-text-warning` | `#833b02` orange.800 | `#e7c567` yellow.300 |  |
+| `color.text.link` | `text-fg-link` | `--8341-color-text-link` | `#2d4c9c` indigo.800 | `#a8c4fe` indigo.300 |  |
+| `color.text.link-hover` | `text-fg-link-hover` | `--8341-color-text-link-hover` | `#192f65` indigo.1000 | `#cadbfe` indigo.200 |  |
+| `color.text.link-visited` | `text-fg-link-visited` | `--8341-color-text-link-visited` | `#5f3c91` purple.800 | `#ceb6fc` purple.300 |  |
+| `color.text.link-active` | `text-fg-link-active` | `--8341-color-text-link-active` | `#833b02` orange.800 | `#feaf82` orange.300 |  |
+| `color.icon.default` | `text-icon` | `--8341-color-icon-default` | `#313336` gray.1000 | `#ecedee` gray.100 |  |
+| `color.icon.subtle` | `text-icon-subtle` | `--8341-color-icon-subtle` | `#616369` gray.700 | `#c2c4c8` gray.300 |  |
+| `color.icon.key` | `text-icon-key` | `--8341-color-icon-key` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 |  |
+| `color.icon.danger` | `text-icon-danger` | `--8341-color-icon-danger` | `#b61b25` red.700 | `#feaba4` red.300 |  |
+| `color.icon.success` | `text-icon-success` | `--8341-color-icon-success` | `#037743` green.700 | `#91d7a9` green.300 |  |
+| `color.icon.warning` | `text-icon-warning` | `--8341-color-icon-warning` | `#7f6404` yellow.700 | `#e7c567` yellow.300 |  |
+| `color.icon.info` | `text-icon-info` | `--8341-color-icon-info` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 |  |
+| `color.border.subtle` | `border-border-subtle` | `--8341-color-border-subtle` | `#d9dbdd` gray.200 | `#313336` gray.1000 | 装飾的な区切り線（情報を担わないもの限定） |
+| `color.border.default` | `border-border` | `--8341-color-border-default` | `#8c8f95` gray.500 | `#75777d` gray.600 | カードなど意味のある境界（3:1 以上） |
+| `color.border.input` | `border-border-input` | `--8341-color-border-input` | `#75777d` gray.600 | `#8c8f95` gray.500 | 入力欄・チェックボックスの枠 |
+| `color.border.strong` | `border-border-strong` | `--8341-color-border-strong` | `#404246` gray.900 | `#d9dbdd` gray.200 | 入力欄 hover |
+| `color.border.key` | `border-border-key` | `--8341-color-border-key` | `#385db8` indigo.700 | `#a8c4fe` indigo.300 |  |
+| `color.border.danger` | `border-border-danger` | `--8341-color-border-danger` | `#b61b25` red.700 | `#fe7f77` red.400 |  |
+| `color.border.success` | `border-border-success` | `--8341-color-border-success` | `#037743` green.700 | `#64c288` green.400 |  |
+| `color.border.warning` | `border-border-warning` | `--8341-color-border-warning` | `#977806` yellow.600 | `#d5aa02` yellow.400 |  |
+| `color.border.disabled` | `border-border-disabled` | `--8341-color-border-disabled` | `#c2c4c8` gray.300 | `#404246` gray.900 |  |
+| `color.focus.ring` | `outline-focus-ring` | `--8341-color-focus-ring` | `#e7c567` yellow.300 | `#e7c567` yellow.300 | フォーカスの内側リング |
+| `color.focus.outline` | `outline-focus-outline` | `--8341-color-focus-outline` | `#1a1b1d` gray.1200 | `#f6f7f7` gray.50 | フォーカスの外側アウトライン |
+| `color.focus.text` | `outline-focus-text` | `--8341-color-focus-text` | `#1a1b1d` gray.1200 | `#1a1b1d` gray.1200 | フォーカスリング色の背景に乗る文字（リンクのフォーカス時） |
 <!-- /auto:semantic-colors -->
 
 ### Primitive colors（参照用）
@@ -263,57 +263,57 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 <!-- auto:dimensions -->
 | token | Tailwind | CSS 変数 | 値 | 用途 |
 | --- | --- | --- | --- | --- |
-| `space.inset-xs` | `p-inset-xs` | `--tkc-space-inset-xs` | `4px` |  |
-| `space.inset-sm` | `p-inset-sm` | `--tkc-space-inset-sm` | `8px` |  |
-| `space.inset-md` | `p-inset-md` | `--tkc-space-inset-md` | `12px` |  |
-| `space.inset-lg` | `p-inset-lg` | `--tkc-space-inset-lg` | `16px` |  |
-| `space.inset-xl` | `p-inset-xl` | `--tkc-space-inset-xl` | `24px` |  |
-| `space.gap-xs` | `gap-gap-xs` | `--tkc-space-gap-xs` | `4px` |  |
-| `space.gap-sm` | `gap-gap-sm` | `--tkc-space-gap-sm` | `8px` |  |
-| `space.gap-md` | `gap-gap-md` | `--tkc-space-gap-md` | `16px` |  |
-| `space.stack-sm` | `gap-stack-sm` | `--tkc-space-stack-sm` | `8px` | 密接に関係する要素（ラベルと入力欄） |
-| `space.stack-md` | `gap-stack-md` | `--tkc-space-stack-md` | `24px` | 同じグループ内の要素（フォーム項目同士） |
-| `space.stack-lg` | `gap-stack-lg` | `--tkc-space-stack-lg` | `64px` | セクション間 |
-| `space.gutter` | `h-gutter` | `--tkc-space-gutter` | `32px` | グリッドのガター（本文サイズ × 2） |
-| `space.page-inline` | `h-page-inline` | `--tkc-space-page-inline` | `16px` | モバイル時の左右余白。md 以上は 32px |
-| `size.control-sm` | `h-control-sm` | `--tkc-size-control-sm` | `36px` | 小さいコントロールの見た目の高さ（タップ領域は 44px を別途確保） |
-| `size.control-md` | `h-control-md` | `--tkc-size-control-md` | `44px` | 標準。見た目の高さ＝最小タップ領域 |
-| `size.control-lg` | `h-control-lg` | `--tkc-size-control-lg` | `52px` |  |
-| `size.target-min` | `h-target-min` | `--tkc-size-target-min` | `44px` | WCAG 2.5.5 のタップ領域 |
-| `size.icon-sm` | `size-icon-sm` | `--tkc-size-icon-sm` | `16px` |  |
-| `size.icon-md` | `size-icon-md` | `--tkc-size-icon-md` | `20px` |  |
-| `size.icon-lg` | `size-icon-lg` | `--tkc-size-icon-lg` | `24px` |  |
-| `size.content-max` | `max-w-content` | `--tkc-size-content-max` | `1200px` | コンテンツ最大幅 |
-| `size.prose-max` | `max-w-prose` | `--tkc-size-prose-max` | `720px` | 本文の最大幅（和文で 1 行 40〜45 字） |
-| `radius.none` | `rounded-none` | `--tkc-radius-none` | `0px` |  |
-| `radius.xs` | `rounded-xs` | `--tkc-radius-xs` | `4px` | チェックボックス・タグ |
-| `radius.sm` | `rounded-sm` | `--tkc-radius-sm` | `6px` | 小さいボタン |
-| `radius.md` | `rounded-md` | `--tkc-radius-md` | `8px` | ボタン・入力欄 |
-| `radius.lg` | `rounded-lg` | `--tkc-radius-lg` | `12px` | バナー・横長カード |
-| `radius.xl` | `rounded-xl` | `--tkc-radius-xl` | `16px` | カード・ダイアログ |
-| `radius.full` | `rounded-full` | `--tkc-radius-full` | `9999px` | ピル形・円 |
-| `border-width.default` | — | `--tkc-border-width-default` | `1px` |  |
-| `border-width.strong` | — | `--tkc-border-width-strong` | `2px` |  |
-| `border-width.accent` | — | `--tkc-border-width-accent` | `4px` | 見出しのバー・バナーの左線 |
-| `border-width.underline` | — | `--tkc-border-width-underline` | `1px` | リンクの下線 |
-| `border-width.underline-hover` | — | `--tkc-border-width-underline-hover` | `3px` | ホバー時のリンク下線（太さで状態変化を示す） |
-| `focus.outline-width` | — | `--tkc-focus-outline-width` | `2px` |  |
-| `focus.ring-width` | — | `--tkc-focus-ring-width` | `4px` | outline-offset 分を含む box-shadow の広がり |
-| `focus.offset` | — | `--tkc-focus-offset` | `2px` |  |
-| `shadow.1` | `shadow-1` | `--tkc-shadow-1` | `2 層の影` | カード hover・ドロップダウン |
-| `shadow.2` | `shadow-2` | `--tkc-shadow-2` | `2 層の影` | ポップオーバー・メニュー |
-| `shadow.3` | `shadow-3` | `--tkc-shadow-3` | `2 層の影` | ドロワー・モーダル |
-| `motion.duration.fast` | — | `--tkc-motion-duration-fast` | `120ms` |  |
-| `motion.duration.base` | — | `--tkc-motion-duration-base` | `200ms` |  |
-| `motion.duration.slow` | — | `--tkc-motion-duration-slow` | `320ms` |  |
-| `motion.easing.standard` | `ease-standard` | `--tkc-motion-easing-standard` | `cubic-bezier(0.2, 0, 0, 1)` |  |
-| `motion.easing.enter` | `ease-enter` | `--tkc-motion-easing-enter` | `cubic-bezier(0, 0, 0, 1)` |  |
-| `motion.easing.exit` | `ease-exit` | `--tkc-motion-easing-exit` | `cubic-bezier(0.3, 0, 1, 1)` |  |
-| `z.dropdown` | — | `--tkc-z-dropdown` | `100` |  |
-| `z.sticky` | — | `--tkc-z-sticky` | `200` |  |
-| `z.overlay` | — | `--tkc-z-overlay` | `300` |  |
-| `z.modal` | — | `--tkc-z-modal` | `400` |  |
-| `z.toast` | — | `--tkc-z-toast` | `500` |  |
+| `space.inset-xs` | `p-inset-xs` | `--8341-space-inset-xs` | `4px` |  |
+| `space.inset-sm` | `p-inset-sm` | `--8341-space-inset-sm` | `8px` |  |
+| `space.inset-md` | `p-inset-md` | `--8341-space-inset-md` | `12px` |  |
+| `space.inset-lg` | `p-inset-lg` | `--8341-space-inset-lg` | `16px` |  |
+| `space.inset-xl` | `p-inset-xl` | `--8341-space-inset-xl` | `24px` |  |
+| `space.gap-xs` | `gap-gap-xs` | `--8341-space-gap-xs` | `4px` |  |
+| `space.gap-sm` | `gap-gap-sm` | `--8341-space-gap-sm` | `8px` |  |
+| `space.gap-md` | `gap-gap-md` | `--8341-space-gap-md` | `16px` |  |
+| `space.stack-sm` | `gap-stack-sm` | `--8341-space-stack-sm` | `8px` | 密接に関係する要素（ラベルと入力欄） |
+| `space.stack-md` | `gap-stack-md` | `--8341-space-stack-md` | `24px` | 同じグループ内の要素（フォーム項目同士） |
+| `space.stack-lg` | `gap-stack-lg` | `--8341-space-stack-lg` | `64px` | セクション間 |
+| `space.gutter` | `h-gutter` | `--8341-space-gutter` | `32px` | グリッドのガター（本文サイズ × 2） |
+| `space.page-inline` | `h-page-inline` | `--8341-space-page-inline` | `16px` | モバイル時の左右余白。md 以上は 32px |
+| `size.control-sm` | `h-control-sm` | `--8341-size-control-sm` | `36px` | 小さいコントロールの見た目の高さ（タップ領域は 44px を別途確保） |
+| `size.control-md` | `h-control-md` | `--8341-size-control-md` | `44px` | 標準。見た目の高さ＝最小タップ領域 |
+| `size.control-lg` | `h-control-lg` | `--8341-size-control-lg` | `52px` |  |
+| `size.target-min` | `h-target-min` | `--8341-size-target-min` | `44px` | WCAG 2.5.5 のタップ領域 |
+| `size.icon-sm` | `size-icon-sm` | `--8341-size-icon-sm` | `16px` |  |
+| `size.icon-md` | `size-icon-md` | `--8341-size-icon-md` | `20px` |  |
+| `size.icon-lg` | `size-icon-lg` | `--8341-size-icon-lg` | `24px` |  |
+| `size.content-max` | `max-w-content` | `--8341-size-content-max` | `1200px` | コンテンツ最大幅 |
+| `size.prose-max` | `max-w-prose` | `--8341-size-prose-max` | `720px` | 本文の最大幅（和文で 1 行 40〜45 字） |
+| `radius.none` | `rounded-none` | `--8341-radius-none` | `0px` |  |
+| `radius.xs` | `rounded-xs` | `--8341-radius-xs` | `4px` | チェックボックス・タグ |
+| `radius.sm` | `rounded-sm` | `--8341-radius-sm` | `6px` | 小さいボタン |
+| `radius.md` | `rounded-md` | `--8341-radius-md` | `8px` | ボタン・入力欄 |
+| `radius.lg` | `rounded-lg` | `--8341-radius-lg` | `12px` | バナー・横長カード |
+| `radius.xl` | `rounded-xl` | `--8341-radius-xl` | `16px` | カード・ダイアログ |
+| `radius.full` | `rounded-full` | `--8341-radius-full` | `9999px` | ピル形・円 |
+| `border-width.default` | — | `--8341-border-width-default` | `1px` |  |
+| `border-width.strong` | — | `--8341-border-width-strong` | `2px` |  |
+| `border-width.accent` | — | `--8341-border-width-accent` | `4px` | 見出しのバー・バナーの左線 |
+| `border-width.underline` | — | `--8341-border-width-underline` | `1px` | リンクの下線 |
+| `border-width.underline-hover` | — | `--8341-border-width-underline-hover` | `3px` | ホバー時のリンク下線（太さで状態変化を示す） |
+| `focus.outline-width` | — | `--8341-focus-outline-width` | `2px` |  |
+| `focus.ring-width` | — | `--8341-focus-ring-width` | `4px` | outline-offset 分を含む box-shadow の広がり |
+| `focus.offset` | — | `--8341-focus-offset` | `2px` |  |
+| `shadow.1` | `shadow-1` | `--8341-shadow-1` | `2 層の影` | カード hover・ドロップダウン |
+| `shadow.2` | `shadow-2` | `--8341-shadow-2` | `2 層の影` | ポップオーバー・メニュー |
+| `shadow.3` | `shadow-3` | `--8341-shadow-3` | `2 層の影` | ドロワー・モーダル |
+| `motion.duration.fast` | — | `--8341-motion-duration-fast` | `120ms` |  |
+| `motion.duration.base` | — | `--8341-motion-duration-base` | `200ms` |  |
+| `motion.duration.slow` | — | `--8341-motion-duration-slow` | `320ms` |  |
+| `motion.easing.standard` | `ease-standard` | `--8341-motion-easing-standard` | `cubic-bezier(0.2, 0, 0, 1)` |  |
+| `motion.easing.enter` | `ease-enter` | `--8341-motion-easing-enter` | `cubic-bezier(0, 0, 0, 1)` |  |
+| `motion.easing.exit` | `ease-exit` | `--8341-motion-easing-exit` | `cubic-bezier(0.3, 0, 1, 1)` |  |
+| `z.dropdown` | — | `--8341-z-dropdown` | `100` |  |
+| `z.sticky` | — | `--8341-z-sticky` | `200` |  |
+| `z.overlay` | — | `--8341-z-overlay` | `300` |  |
+| `z.modal` | — | `--8341-z-modal` | `400` |  |
+| `z.toast` | — | `--8341-z-toast` | `500` |  |
 <!-- /auto:dimensions -->
 
 ## 6. Depth & Elevation
@@ -337,7 +337,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 ### Don't
 
 - 任意値での色・px の直書き（`bg-[#333]`、`p-[12px]`）。Tailwind 既定のパレット
-- 任意値・手書き CSS からの `--color-*` / `--spacing-*` / `--text-*` の参照（`--tkc-*` を使う）
+- 任意値・手書き CSS からの `--color-*` / `--spacing-*` / `--text-*` の参照（`--8341-*` を使う）
 - 動的なクラス名の組み立て（`` `text-${size}` ``）。Tailwind が検出できない。variants に列挙する
 - 14px 未満の文字、純黒の本文、中間ウェイト（500 / 600）
 - hover で太さ・大きさを変える
@@ -360,7 +360,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 ```
 Import (npm):       import { Button } from '8341-ui/button';  +  @import "8341-ui/theme.css";
-Import (shadcn):    npx shadcn@latest add @tkc/button          →  import { Button } from '@/components/ui/button';
+Import (shadcn):    npx shadcn@latest add @8341/button          →  import { Button } from '@/components/ui/button';
 Theme:              <html class="dark"> / <html data-theme="dark">（未指定は OS 追従）
 Body:               text-body-md text-fg（16px / 1.7 / 0.02em）
 Sub text:           text-fg-subtle

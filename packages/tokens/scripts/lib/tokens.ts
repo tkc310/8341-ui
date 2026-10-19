@@ -13,7 +13,7 @@ import { dirname, relative, resolve } from 'node:path';
 export const ROOT = resolve(import.meta.dirname, '../..');
 export const SRC = resolve(ROOT, 'src');
 export const REPO_ROOT = resolve(ROOT, '../..');
-export const PREFIX = 'tkc';
+export const PREFIX = '8341';
 export const RESOLVER = resolve(SRC, '8341-ui.resolver.json');
 
 type Json = Record<string, unknown>;

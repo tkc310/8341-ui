@@ -1,0 +1,72 @@
+name: Branch cleanup
+
+# 不要になったブランチを、承認を経てから削除する。
+#   - 対象: main・gh-pages 以外で、開いている PR が無く、次のどれかに当たるブランチ
+#     マージ済み・閉じた PR の元ブランチ / main に取り込み済み / ci-debug で始まる一時ブランチ
+#   - plan ジョブが候補を一覧にし、delete ジョブは環境 branch-cleanup の承認を待ってから消す
+#     （承認者は Settings > Environments > branch-cleanup の Required reviewers で設定する。手順は README）
+#   - 候補が無ければ delete ジョブは動かず、承認の依頼も出ない
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: branch-cleanup
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      branches: ${{ steps.list.outputs.branches }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 削除候補を一覧にする
+        id: list
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          git fetch --quiet --prune origin '+refs/heads/*:refs/remotes/origin/*'
+          candidates=""
+          for b in $(git for-each-ref --format='%(refname:lstrip=3)' refs/remotes/origin); do
+            case "$b" in main | gh-pages | HEAD) continue ;; esac
+            open=$(gh api "repos/$REPO/pulls?head=$OWNER:$b&state=open" --jq length)
+            [ "$open" != "0" ] && continue
+            closed=$(gh api "repos/$REPO/pulls?head=$OWNER:$b&state=closed" --jq length)
+            if [ "$closed" != "0" ] || git merge-base --is-ancestor "origin/$b" origin/main || [[ "$b" == ci-debug* ]]; then
+              candidates="$candidates $b"
+            fi
+          done
+          candidates=$(echo $candidates)
+          echo "branches=$candidates" >> "$GITHUB_OUTPUT"
+          {
+            echo "### 削除候補のブランチ"
+            if [ -z "$candidates" ]; then echo "なし"; else for b in $candidates; do echo "- \`$b\`"; done; fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  delete:
+    needs: plan
+    if: needs.plan.outputs.branches != ''
+    runs-on: ubuntu-latest
+    # この環境に Required reviewers を設定すると、承認されるまでここで止まる
+    environment: branch-cleanup
+    steps:
+      - name: ブランチを削除する
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BRANCHES: ${{ needs.plan.outputs.branches }}
+        run: |
+          for b in $BRANCHES; do
+            gh api -X DELETE "repos/$REPO/git/refs/heads/$b" && echo "削除: $b"
+          done

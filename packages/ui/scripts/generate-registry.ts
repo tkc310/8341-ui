@@ -2,7 +2,7 @@
  * shadcn 方式の配布用 registry.json を、各コンポーネントの import から生成する。
  * 依存（npm パッケージ・他のコンポーネント）を手で書かないので、ずれない。
  *
- * - registry:base  tkc-base … Base UI を固定した土台。利用側の `shadcn init` で読み込む
+ * - registry:base  8341-base … Base UI を固定した土台。利用側の `shadcn init` で読み込む
  * - registry:lib   tv       … tv / cn / フォーカス表示のクラス
  * - registry:file  theme    … Tailwind のテーマ。トークンの CSS を同梱した 1 ファイル（scripts/build-registry-css.ts が作る）
  * - registry:ui    各コンポーネント
@@ -15,7 +15,7 @@ import { resolve } from 'node:path';
 const ROOT = resolve(import.meta.dirname, '..');
 const OUT = resolve(ROOT, 'registry.json');
 const CHECK = process.argv.includes('--check');
-const NS = '@tkc';
+const NS = '@8341';
 const pkg = JSON.parse(readFileSync(resolve(ROOT, 'package.json'), 'utf8')) as { version: string };
 const catalog = readFileSync(resolve(ROOT, '../../pnpm-workspace.yaml'), 'utf8');
 const versionOf = (name: string) => {
@@ -83,7 +83,7 @@ const registry = {
   homepage: 'https://github.com/tkc310/design-system-myself',
   items: [
     {
-      name: 'tkc-base',
+      name: '8341-base',
       type: 'registry:base',
       title: '8341-ui base',
       description: `8341-ui ${pkg.version} の土台。ヘッドレス UI は Base UI に固定し、トークンとテーマを入れる`,

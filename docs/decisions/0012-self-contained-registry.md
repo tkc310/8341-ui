@@ -4,8 +4,8 @@
 - 状態: 採用
 
 ## 背景
-レジストリの `theme`（と `tkc-base`）が npm パッケージ `8341-ui-tokens` に依存していた。
-npm にはまだ公開しておらず、公開も既定で無効にしている（ENABLE_NPM_PUBLISH）ため、`npx shadcn add @tkc/...` がそのパッケージのインストールで失敗していた。
+レジストリの `theme`（と `8341-base`）が npm パッケージ `8341-ui-tokens` に依存していた。
+npm にはまだ公開しておらず、公開も既定で無効にしている（ENABLE_NPM_PUBLISH）ため、`npx shadcn add @8341/...` がそのパッケージのインストールで失敗していた。
 
 ## 決定
 - レジストリの `theme` は、`src/styles/theme.css` の `@import '8341-ui-tokens/*.css'` を、ビルド済みのトークン CSS（`tokens.css`・`tailwind.css`）の中身に置き換えた 1 ファイル（`styles/8341-ui.css`）として配る
@@ -18,6 +18,6 @@ npm にはまだ公開しておらず、公開も既定で無効にしている�
 - shadcn 方式はコードを利用側に置く方式なので、テーマ CSS も同じく利用側に置くのが一貫する
 
 ## 影響・トレードオフ
-- トークンを変えたら、利用側で `npx shadcn@latest add @tkc/theme --overwrite` を実行して取り込み直す（版の通知や固定は無い）
+- トークンを変えたら、利用側で `npx shadcn@latest add @8341/theme --overwrite` を実行して取り込み直す（版の通知や固定は無い）
 - トークンのデータ（`tokens.json`・DTCG・Figma 用 JSON）はレジストリでは配らない。必要ならリポジトリから取得するか、npm に公開する
 - Tailwind を使わないプロジェクトは、レジストリでは使えない（npm 版のビルド済み `styles.css` が要る）

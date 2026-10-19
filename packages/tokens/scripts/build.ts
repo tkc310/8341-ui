@@ -38,7 +38,7 @@ const valueOf = (t: TransformedToken) => (t.$value ?? t.value) as unknown;
 
 /** px の dimension を rem に（ユーザーの文字サイズ設定に追従させる）。罫線など 3px 以下とブレークポイントは px のまま */
 StyleDictionary.registerTransform({
-  name: 'tkc/dimension/rem',
+  name: '8341/dimension/rem',
   type: 'value',
   transitive: true,
   filter: (t) => typeOf(t) === 'dimension',
@@ -54,7 +54,7 @@ StyleDictionary.registerTransform({
 
 /** 字間（文字サイズに対する比率の number）を em に */
 StyleDictionary.registerTransform({
-  name: 'tkc/letter-spacing/em',
+  name: '8341/letter-spacing/em',
   type: 'value',
   transitive: true,
   filter: (t) => t.path.includes('letter-spacing'),
@@ -66,7 +66,7 @@ StyleDictionary.registerTransform({
 
 /** duration（{ value, unit }）を ms / s のまま CSS に */
 StyleDictionary.registerTransform({
-  name: 'tkc/duration/css',
+  name: '8341/duration/css',
   type: 'value',
   transitive: true,
   filter: (t) => typeOf(t) === 'duration',
@@ -83,7 +83,7 @@ StyleDictionary.registerTransform({
  * 入れ子の値は他の transform が届かないため、ここでまとめて変換する。
  */
 StyleDictionary.registerTransform({
-  name: 'tkc/shadow/css',
+  name: '8341/shadow/css',
   type: 'value',
   transitive: true,
   filter: (t) => typeOf(t) === 'shadow',
@@ -116,14 +116,14 @@ StyleDictionary.registerTransform({
 const transforms = [
   'attribute/cti',
   'name/kebab',
-  'tkc/dimension/rem',
-  'tkc/letter-spacing/em',
-  'tkc/duration/css',
+  '8341/dimension/rem',
+  '8341/letter-spacing/em',
+  '8341/duration/css',
   // 色は oklch() で出力する（DTCG の色オブジェクトを Style Dictionary v5.3+ が解釈する）
   'color/oklch',
   'fontFamily/css',
   'cubicBezier/css',
-  'tkc/shadow/css',
+  '8341/shadow/css',
 ];
 
 // ---------------------------------------------------------------------------
@@ -132,7 +132,7 @@ const transforms = [
 
 /** セレクタ（と任意のメディアクエリ）で包んだ CSS 変数のブロック */
 StyleDictionary.registerFormat({
-  name: 'tkc/css-block',
+  name: '8341/css-block',
   format: async ({ dictionary, file, options }) => {
     const header = await fileHeader({ file });
     const body = formattedVariables({
@@ -149,7 +149,7 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerFormat({
-  name: 'tkc/tailwind-theme',
+  name: '8341/tailwind-theme',
   format: async ({ dictionary, file }) => {
     const header = await fileHeader({ file });
     const lines = dictionary.allTokens
@@ -248,7 +248,7 @@ async function build() {
       include: [],
       source: primitive,
       destination: '1-primitive.css',
-      format: 'tkc/css-block',
+      format: '8341/css-block',
       options: { selector: ':root', outputReferences: false },
     }),
   ).buildAllPlatforms();
@@ -259,7 +259,7 @@ async function build() {
       include: primitive,
       source: base,
       destination: '2-semantic.css',
-      format: 'tkc/css-block',
+      format: '8341/css-block',
       filter: (t) => t.isSource === true,
       options: { selector: ':root' },
     }),
@@ -281,7 +281,7 @@ async function build() {
           include: [...primitive, ...base],
           source: themed,
           destination: v.destination,
-          format: 'tkc/css-block',
+          format: '8341/css-block',
           filter: (t) => t.isSource === true,
           options: { selector: v.selector, media: v.media, colorScheme: theme },
         }),
@@ -295,7 +295,7 @@ async function build() {
       include: [],
       source: rel(sourceFiles()),
       destination: 'tailwind.css',
-      format: 'tkc/tailwind-theme',
+      format: '8341/tailwind-theme',
     }),
   ).buildAllPlatforms();
 

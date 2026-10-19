@@ -23,12 +23,12 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ```json
 {
-  "registries": { "@tkc": "https://tkc310.github.io/design-system-myself/r/{name}.json" }
+  "registries": { "@8341": "https://tkc310.github.io/design-system-myself/r/{name}.json" }
 }
 ```
 
 ```bash
-npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
+npx shadcn@latest add @8341/8341-base @8341/button @8341/form-field @8341/text-field
 ```
 
 `globals.css` で Tailwind の後にテーマを読み込みます。
@@ -39,7 +39,7 @@ npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
 ```
 
 テーマ（`styles/8341-ui.css`）はトークンの CSS を同梱しているので、npm のパッケージは要りません。
-トークンを更新したら `npx shadcn@latest add @tkc/theme --overwrite` で取り込み直します。
+トークンを更新したら `npx shadcn@latest add @8341/theme --overwrite` で取り込み直します。
 トークンをデータ（`tokens.json` や Figma 用 JSON）として使いたい場合は、このリポジトリの `packages/tokens/dist/` から取得します（npm には公開していません）。
 
 ## 使い方 2: npm パッケージ（公開した場合）

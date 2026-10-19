@@ -44,12 +44,12 @@ pnpm test:e2e  # e2e（手動）
 
 ```json
 {
-  "registries": { "@tkc": "https://tkc310.github.io/design-system-myself/r/{name}.json" }
+  "registries": { "@8341": "https://tkc310.github.io/design-system-myself/r/{name}.json" }
 }
 ```
 
 ```bash
-npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
+npx shadcn@latest add @8341/8341-base @8341/button @8341/form-field @8341/text-field
 ```
 
 ```css
@@ -59,7 +59,7 @@ npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
 ```
 
 テーマ（`styles/8341-ui.css`）はトークンの CSS を同梱しているので、npm のパッケージは要りません。
-トークンを更新したら `npx shadcn@latest add @tkc/theme --overwrite` で取り込み直します。
+トークンを更新したら `npx shadcn@latest add @8341/theme --overwrite` で取り込み直します。
 トークンをデータ（`tokens.json` や Figma 用 JSON）として使いたい場合は、このリポジトリの `packages/tokens/dist/` から取得します（npm には公開していません）。
 
 ### npm パッケージ（公開した場合）
@@ -116,6 +116,24 @@ pnpm storybook:preview   # ビルドして https://tkc310.github.io/design-syste
 
 PR を作って push した後に実行します。変わったストーリーへのリンクを PR 本文の「Storybook プレビュー」節に書きます（手順: `.claude/skills/ds-storybook-preview/SKILL.md`、ADR-0011）。
 PR を閉じるとプレビューは自動で消えます。初回は、リポジトリの Settings > Pages で配信元を `gh-pages` ブランチにしてください。
+
+## ブランチの片付け
+
+マージ済み・閉じた PR の元ブランチと、一時ブランチ（`ci-debug*`）は、ワークフロー `Branch cleanup` が削除します。
+main への push のたびに候補を一覧にし、承認されてから削除します（Actions の画面か、通知の「Review deployments」から承認）。
+
+承認者の設定（一度だけ）:
+
+```bash
+gh api -X PUT repos/tkc310/design-system-myself/environments/branch-cleanup \
+  -F "reviewers[][type]=User" -F "reviewers[][id]=$(gh api users/tkc310 --jq .id)"
+```
+
+今後のマージで元ブランチを自動で消すなら、あわせて次も設定します（承認なしで消えます）。
+
+```bash
+gh api -X PATCH repos/tkc310/design-system-myself -F delete_branch_on_merge=true
+```
 
 ## リリース
 

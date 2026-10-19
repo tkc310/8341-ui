@@ -10,11 +10,11 @@ export const choiceVariants = tv({
     label: [
       'flex w-fit cursor-pointer items-start gap-gap-sm text-body-md text-fg',
       // 1 行の高さ（16px × 1.7）に上下の余白を足して 44px のタップ領域にする
-      'min-h-target-min py-[calc((var(--tkc-size-target-min)-var(--tkc-text-body-md-font-size)*var(--tkc-text-body-md-line-height))/2)]',
+      'min-h-target-min py-[calc((var(--8341-size-target-min)-var(--8341-text-body-md-font-size)*var(--8341-text-body-md-line-height))/2)]',
       'has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:text-fg-disabled',
     ],
     control: [
-      'group/control mt-[calc((var(--tkc-text-body-md-font-size)*var(--tkc-text-body-md-line-height)-var(--choice-box))/2)] inline-grid size-(--choice-box) shrink-0 place-items-center',
+      'group/control mt-[calc((var(--8341-text-body-md-font-size)*var(--8341-text-body-md-line-height)-var(--choice-box))/2)] inline-grid size-(--choice-box) shrink-0 place-items-center',
       'border-2 border-border-input bg-surface hover:border-border-strong hover:bg-muted',
       'data-[invalid]:border-border-danger',
       'data-[disabled]:border-border-disabled data-[disabled]:bg-disabled',
@@ -25,8 +25,8 @@ export const choiceVariants = tv({
   },
   variants: {
     size: {
-      md: { label: '[--choice-box:var(--tkc-size-icon-lg)]' },
-      lg: { label: '[--choice-box:calc(var(--tkc-size-icon-lg)+var(--tkc-space-gap-xs))]' },
+      md: { label: '[--choice-box:var(--8341-size-icon-lg)]' },
+      lg: { label: '[--choice-box:calc(var(--8341-size-icon-lg)+var(--8341-space-gap-xs))]' },
     },
   },
   defaultVariants: { size: 'md' },

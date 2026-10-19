@@ -6,7 +6,7 @@
 packages/tokens/src/palette.config.json ─(pnpm --filter 8341-ui-tokens palette)─▶ src/primitive/color.tokens.json
 packages/tokens/src/8341-ui.resolver.json（DTCG Resolver: primitive → semantic → theme）
         │
-        ├─(build: Style Dictionary v5)─▶ dist/css/tokens.css     … --tkc-* の CSS 変数（light / dark / OS 追従）
+        ├─(build: Style Dictionary v5)─▶ dist/css/tokens.css     … --8341-* の CSS 変数（light / dark / OS 追従）
         │                              ▶ dist/css/tailwind.css   … Tailwind v4 の @theme inline（bg-key・text-fg など）
         │                              ▶ dist/tokens.json        … テーマ別の解決済みトークン（Storybook・エージェント用）
         ├─(figma)──────────────────────▶ dist/figma/*.tokens.json … Figma Variables に取り込む DTCG JSON
@@ -53,9 +53,9 @@ DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-
 | `text.{style}.*`                 | `--text-{style}`（行間・字間・太さを含む） | `text-body-md`、`text-heading-lg`                     |
 | `breakpoint.md`                  | `--breakpoint-md`（値をそのまま）          | `md:`                                                 |
 
-- CSS 変数そのものは `--tkc-{パス}`（例: `--tkc-color-text-default`）
+- CSS 変数そのものは `--8341-{パス}`（例: `--8341-color-text-default`）
 - Tailwind 既定の色・文字サイズ・角丸・影・ブレークポイントは `@theme` で消している。数値の余白（`p-4`）は残している
-- **任意値と手書き CSS では `var(--tkc-*)` を参照する**。`@theme inline` は使われたテーマ変数しか出力しないため、`var(--color-*)` は未定義になりうる（クラス監査で error）
+- **任意値と手書き CSS では `var(--8341-*)` を参照する**。`@theme inline` は使われたテーマ変数しか出力しないため、`var(--color-*)` は未定義になりうる（クラス監査で error）
 
 ## カラー
 

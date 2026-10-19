@@ -32,7 +32,7 @@ for (const file of ['tokens.css', 'tailwind.css']) {
 const header = [
   '/*',
   ' * 8341-ui のテーマ（shadcn のレジストリ版。トークンを同梱しているので、このファイルだけで動く）。',
-  ' * 生成物なので編集しない。更新は npx shadcn@latest add @tkc/theme --overwrite',
+  ' * 生成物なので編集しない。更新は npx shadcn@latest add @8341/theme --overwrite',
   ' *',
   " *   @import 'tailwindcss';",
   " *   @import './styles/8341-ui.css';",

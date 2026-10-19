@@ -10,11 +10,11 @@ export const controlVariants = tv({
   base: [
     'block w-full rounded-md border border-border-input bg-surface px-inset-md py-inset-sm',
     // 16px 未満だと iOS Safari がフォーカス時に拡大するため、文字サイズは固定
-    'text-body-md leading-(--tkc-text-dense-md-line-height) text-fg placeholder:text-fg-subtle',
+    'text-body-md leading-(--8341-text-dense-md-line-height) text-fg placeholder:text-fg-subtle',
     'transition-colors hover:border-border-strong focus-visible:border-border-strong',
     focusRing,
     // エラーは色に加えて線を太くし、形でも示す
-    'data-[invalid]:border-border-danger data-[invalid]:shadow-[inset_0_0_0_1px_var(--tkc-color-border-danger)] aria-invalid:border-border-danger aria-invalid:shadow-[inset_0_0_0_1px_var(--tkc-color-border-danger)]',
+    'data-[invalid]:border-border-danger data-[invalid]:shadow-[inset_0_0_0_1px_var(--8341-color-border-danger)] aria-invalid:border-border-danger aria-invalid:shadow-[inset_0_0_0_1px_var(--8341-color-border-danger)]',
     // :read-only は button や無効の input にも当たるため、編集できる欄の読み取り専用に限る
     '[&:read-only:not(:disabled,button)]:border-dashed [&:read-only:not(:disabled,button)]:bg-subtle',
     'disabled:cursor-not-allowed disabled:border-border-disabled disabled:bg-disabled disabled:text-fg-disabled data-[disabled]:cursor-not-allowed data-[disabled]:border-border-disabled data-[disabled]:bg-disabled data-[disabled]:text-fg-disabled',
@@ -36,7 +36,7 @@ const field = tv({
     root: 'flex min-w-0 flex-col gap-stack-sm',
     label:
       'inline-flex flex-wrap items-center gap-gap-sm text-body-md font-bold text-fg data-[disabled]:text-fg-disabled',
-    badge: 'rounded-xs border px-inset-xs text-label-sm leading-(--tkc-text-dense-sm-line-height)',
+    badge: 'rounded-xs border px-inset-xs text-label-sm leading-(--8341-text-dense-sm-line-height)',
     description: 'm-0 text-body-sm text-fg-subtle',
     error: 'm-0 flex items-start gap-gap-xs text-body-sm font-bold text-fg-danger',
     errorIcon: 'size-icon-md shrink-0 text-icon-danger',
@@ -58,7 +58,7 @@ export function ErrorIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={field().errorIcon()}>
       <path d="M8.3 3h7.4L21 8.3v7.4L15.7 21H8.3L3 15.7V8.3z" fill="currentColor" />
-      <path d="M12 7.5v5.5M12 16v.5" stroke="var(--tkc-color-bg-surface)" strokeWidth="2" strokeLinecap="round" />
+      <path d="M12 7.5v5.5M12 16v.5" stroke="var(--8341-color-bg-surface)" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }

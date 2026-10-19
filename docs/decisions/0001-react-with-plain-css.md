@@ -10,7 +10,7 @@
 ## 決定
 
 - コンポーネントは React + TypeScript で実装する
-- スタイルは CSS-in-JS や Tailwind を使わず、CSS 変数（トークン）+ BEM（`tkc-` 接頭辞）+ `data-*` 属性で書く
+- スタイルは CSS-in-JS や Tailwind を使わず、CSS 変数（トークン）+ BEM（`8341-` 接頭辞）+ `data-*` 属性で書く
 - CSS は `:where()` などで詳細度を低く保ち、利用側のリセット CSS と共存させる
 
 ## 理由

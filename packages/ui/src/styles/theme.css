@@ -14,9 +14,9 @@
 /* フォーカス表示: どの背景でも内側（黄）か外側（濃色）のどちらかが 3:1 以上になる二重リング */
 @utility focus-ring {
   &:focus-visible {
-    outline: var(--tkc-focus-outline-width) solid var(--tkc-color-focus-outline);
-    outline-offset: var(--tkc-focus-offset);
-    box-shadow: 0 0 0 var(--tkc-focus-ring-width) var(--tkc-color-focus-ring);
+    outline: var(--8341-focus-outline-width) solid var(--8341-color-focus-outline);
+    outline-offset: var(--8341-focus-offset);
+    box-shadow: 0 0 0 var(--8341-focus-ring-width) var(--8341-color-focus-ring);
   }
   @media (forced-colors: active) {
     &:focus-visible {
@@ -28,9 +28,9 @@
 
 @utility focus-ring-within {
   &:has(:focus-visible) {
-    outline: var(--tkc-focus-outline-width) solid var(--tkc-color-focus-outline);
-    outline-offset: var(--tkc-focus-offset);
-    box-shadow: 0 0 0 var(--tkc-focus-ring-width) var(--tkc-color-focus-ring);
+    outline: var(--8341-focus-outline-width) solid var(--8341-color-focus-outline);
+    outline-offset: var(--8341-focus-offset);
+    box-shadow: 0 0 0 var(--8341-focus-ring-width) var(--8341-color-focus-ring);
   }
   @media (forced-colors: active) {
     &:has(:focus-visible) {
@@ -47,20 +47,20 @@
     content: '';
     position: absolute;
     inset: 50% auto auto 50%;
-    width: max(100%, var(--tkc-size-target-min));
-    height: max(100%, var(--tkc-size-target-min));
+    width: max(100%, var(--8341-size-target-min));
+    height: max(100%, var(--8341-size-target-min));
     transform: translate(-50%, -50%);
   }
 }
 
 @layer base {
   body {
-    background-color: var(--tkc-color-bg-canvas);
-    color: var(--tkc-color-text-default);
-    font-family: var(--tkc-font-family-sans);
-    font-size: var(--tkc-text-body-md-font-size);
-    line-height: var(--tkc-text-body-md-line-height);
-    letter-spacing: var(--tkc-text-body-md-letter-spacing);
+    background-color: var(--8341-color-bg-canvas);
+    color: var(--8341-color-text-default);
+    font-family: var(--8341-font-family-sans);
+    font-size: var(--8341-text-body-md-font-size);
+    line-height: var(--8341-text-body-md-line-height);
+    letter-spacing: var(--8341-text-body-md-letter-spacing);
     font-feature-settings: normal;
     /* 和文の禁則を厳格に、単語途中の改行を避ける */
     line-break: strict;
@@ -72,12 +72,12 @@
   /* Base UI のポップアップがページの内容より前面に出るよう、アプリのルートで重なりの文脈を作る */
   #root,
   #__next,
-  [data-tkc-root] {
+  [data-8341-root] {
     isolation: isolate;
   }
 
   :where(code, kbd, samp, pre) {
-    font-family: var(--tkc-font-family-mono);
+    font-family: var(--8341-font-family-mono);
   }
 }
 

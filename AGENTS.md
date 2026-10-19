@@ -60,6 +60,6 @@ pnpm changeset                             # 変更内容を記録（公開さ�
 
 - 生成物を手で編集しない: `packages/tokens/dist/`、`packages/tokens/src/primitive/color.tokens.json`、`packages/ui/src/lib/tw-merge-config.ts`、`packages/ui/registry.json`、DESIGN.md の `<!-- auto:* -->` ブロック
 - コンポーネントは semantic トークンの Tailwind クラスだけを使い、`tv` / `cn` は `@/lib/tv` から import する
-- 任意値・手書き CSS では `var(--tkc-*)` を参照する（`var(--color-*)` は未定義になりうる）
+- 任意値・手書き CSS では `var(--8341-*)` を参照する（`var(--color-*)` は未定義になりうる）
 - チェックを通すためにルールを緩めない（必要なら ADR を書いて人間に確認する）
 - 変更したら `pnpm check && pnpm test` を通し、`docs/improvement/log.md` に記録する

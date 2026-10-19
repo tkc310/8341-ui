@@ -8,7 +8,7 @@ import { type VariantProps, tv } from '@/lib/tv';
 export const buttonVariants = tv({
   slots: {
     root: [
-      'relative inline-flex min-w-[calc(var(--tkc-size-control-md)*2)] items-center justify-center',
+      'relative inline-flex min-w-[calc(var(--8341-size-control-md)*2)] items-center justify-center',
       'rounded-md border px-inset-lg text-label-md select-none',
       'transition-colors',
       focusRing,
@@ -42,7 +42,7 @@ export const buttonVariants = tv({
     },
     /** sm は見た目 36px だが、タップ領域は 44px を確保する */
     size: {
-      sm: { root: 'tap-target min-h-control-sm min-w-[calc(var(--tkc-size-control-sm)*2)] rounded-sm px-inset-md' },
+      sm: { root: 'tap-target min-h-control-sm min-w-[calc(var(--8341-size-control-sm)*2)] rounded-sm px-inset-md' },
       md: { root: 'min-h-control-md' },
       lg: { root: 'min-h-control-lg px-inset-xl' },
     },

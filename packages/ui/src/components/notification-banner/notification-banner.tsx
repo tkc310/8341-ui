@@ -8,11 +8,11 @@ const toneLabel = { info: 'お知らせ', success: '完了', warning: '注意', 
 export const notificationBannerVariants = tv({
   slots: {
     root: [
-      'flex items-start gap-gap-md rounded-lg border p-inset-lg ps-[calc(var(--tkc-space-inset-lg)+var(--tkc-border-width-accent))] text-fg',
+      'flex items-start gap-gap-md rounded-lg border p-inset-lg ps-[calc(var(--8341-space-inset-lg)+var(--8341-border-width-accent))] text-fg',
       // 左の太線は内側の影で描く（角丸と両立させるため）。強制カラーでは影が消えるので線で補う
-      'shadow-[inset_var(--tkc-border-width-accent)_0_0_0_var(--banner-accent)] forced-colors:border-s-4',
+      'shadow-[inset_var(--8341-border-width-accent)_0_0_0_var(--banner-accent)] forced-colors:border-s-4',
     ],
-    icon: 'mt-[calc((var(--tkc-text-heading-xxs-font-size)*var(--tkc-text-heading-xxs-line-height)-var(--tkc-size-icon-lg))/2)] text-(color:--banner-icon)',
+    icon: 'mt-[calc((var(--8341-text-heading-xxs-font-size)*var(--8341-text-heading-xxs-line-height)-var(--8341-size-icon-lg))/2)] text-(color:--banner-icon)',
     body: 'flex min-w-0 flex-1 flex-col gap-stack-sm',
     title: 'm-0 text-heading-xxs',
     content: '[&>p]:m-0',
@@ -25,16 +25,16 @@ export const notificationBannerVariants = tv({
   variants: {
     tone: {
       info: {
-        root: 'border-border-key bg-info-subtle [--banner-accent:var(--tkc-color-border-key)] [--banner-icon:var(--tkc-color-icon-info)]',
+        root: 'border-border-key bg-info-subtle [--banner-accent:var(--8341-color-border-key)] [--banner-icon:var(--8341-color-icon-info)]',
       },
       success: {
-        root: 'border-border-success bg-success-subtle [--banner-accent:var(--tkc-color-border-success)] [--banner-icon:var(--tkc-color-icon-success)]',
+        root: 'border-border-success bg-success-subtle [--banner-accent:var(--8341-color-border-success)] [--banner-icon:var(--8341-color-icon-success)]',
       },
       warning: {
-        root: 'border-border-warning bg-warning-subtle [--banner-accent:var(--tkc-color-border-warning)] [--banner-icon:var(--tkc-color-icon-warning)]',
+        root: 'border-border-warning bg-warning-subtle [--banner-accent:var(--8341-color-border-warning)] [--banner-icon:var(--8341-color-icon-warning)]',
       },
       danger: {
-        root: 'border-border-danger bg-danger-subtle [--banner-accent:var(--tkc-color-border-danger)] [--banner-icon:var(--tkc-color-icon-danger)]',
+        root: 'border-border-danger bg-danger-subtle [--banner-accent:var(--8341-color-border-danger)] [--banner-icon:var(--8341-color-icon-danger)]',
       },
     },
   },

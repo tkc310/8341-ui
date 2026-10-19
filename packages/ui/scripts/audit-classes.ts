@@ -6,14 +6,14 @@
  *   raw-color        … 任意値での色の直書き（bg-[#fff]、text-[rgb(...)] など）。semantic トークンのユーティリティを使う
  *   raw-length       … 任意値での 3px を超える px の直書き（p-[12px] など）。space / size / radius を使う
  *   tailwind-palette … Tailwind 既定のパレット（text-gray-500、bg-blue-600 など）。テーマで消してあり、効かない
- *   primitive-token  … --tkc-color-primitive-* の参照
+ *   primitive-token  … --8341-color-primitive-* の参照
  *   inline-style-color … style 属性での色の指定
  *   missing-use-client … React のフックを使うのに 'use client' が無い
  *   outline-none     … Tailwind v4 の outline-none はアウトラインの線種を none にし、focus-visible の線まで消す。
  *                      フォーカスは focus-ring を使う。別の要素に描く場合だけ行末に `// allow-outline-none: 理由`
  *   bare-read-only   … read-only: は button や無効の input にも当たる。[&:read-only:not(:disabled,button)]: を使う
  *   theme-var-ref    … 任意値・手書き CSS からの Tailwind テーマ変数（--color-* / --spacing-* / --text-* など）の参照。
- *                      @theme inline は使われた変数しか出力しないため未定義になりうる。常に存在する --tkc-* を参照する
+ *                      @theme inline は使われた変数しか出力しないため未定義になりうる。常に存在する --8341-* を参照する
  * warning
  *   numeric-spacing  … p-4 / gap-6 など数値の余白。semantic な余白（p-inset-md、gap-stack-md）を検討する
  */
@@ -83,8 +83,8 @@ export function auditClasses(): Finding[] {
       const themeVar = line.match(
         /(?:var\(|\()(?:length:|color:)?(--(?:color|spacing|text|font|radius|shadow|container|ease)-[a-z0-9-]+)\)/,
       );
-      if (themeVar) add('theme-var-ref', 'error', `${themeVar[1]} ではなく --tkc-* のトークン変数を参照してください`);
-      if (/--tkc-color-primitive-/.test(line))
+      if (themeVar) add('theme-var-ref', 'error', `${themeVar[1]} ではなく --8341-* のトークン変数を参照してください`);
+      if (/--8341-color-primitive-/.test(line))
         add('primitive-token', 'error', 'primitive の色を参照しています。semantic を使ってください');
       if (/style=\{\{[^}]*(color|background)[^}]*#/.test(line))
         add('inline-style-color', 'error', 'style 属性で色を指定しています');
