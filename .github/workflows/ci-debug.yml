@@ -1,0 +1,52 @@
+# 一時的な検証用（マージ前に削除する）
+name: ci-debug
+on:
+  push:
+    branches: [refactor/component-structure]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - id: versions
+        run: echo "pnpm=$(awk '$1=="pnpm"{print $2}' .tool-versions)" >> "$GITHUB_OUTPUT"
+      - uses: pnpm/action-setup@v6
+        with:
+          version: ${{ steps.versions.outputs.pnpm }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .tool-versions
+          cache: pnpm
+      - run: make install-ci
+      - run: mkdir -p /tmp/out
+      - run: make check > /tmp/out/check.log 2>&1; echo "exit=$?" >> /tmp/out/check.log
+      - run: pnpm exec vp fmt >/dev/null 2>&1 || true; git diff > /tmp/out/fmt.patch; git checkout -- .
+      - run: make build > /tmp/out/build.log 2>&1; echo "exit=$?" >> /tmp/out/build.log; ls -R packages/ui/dist/components | head -60 >> /tmp/out/build.log
+      - run: make build-storybook > /tmp/out/storybook.log 2>&1; echo "exit=$?" >> /tmp/out/storybook.log
+      - run: make browsers > /dev/null 2>&1; make test > /tmp/out/test.log 2>&1; echo "exit=$?" >> /tmp/out/test.log
+      - run: make test-e2e > /tmp/out/e2e.log 2>&1; echo "exit=$?" >> /tmp/out/e2e.log
+      - name: shadcn で導入できるか
+        run: |
+          set +e
+          (cd apps/storybook/storybook-static && python3 -m http.server 8000 >/dev/null 2>&1 &)
+          sleep 2
+          mkdir -p /tmp/app/src && cd /tmp/app
+          echo '{"name":"app","private":true,"type":"module","dependencies":{"react":"^19.0.0","react-dom":"^19.0.0"}}' > package.json
+          echo '{"compilerOptions":{"baseUrl":".","paths":{"@/*":["./src/*"]},"jsx":"react-jsx"}}' > tsconfig.json
+          echo '@import "tailwindcss";' > src/index.css
+          cat > components.json <<'JSON'
+          {"$schema":"https://ui.shadcn.com/schema.json","style":"new-york","rsc":false,"tsx":true,
+           "tailwind":{"config":"","css":"src/index.css","baseColor":"neutral","cssVariables":true},
+           "aliases":{"components":"@/components","utils":"@/lib/utils","ui":"@/components/ui","lib":"@/lib","hooks":"@/hooks"},
+           "registries":{"@8341":"http://localhost:8000/r/{name}.json"}}
+          JSON
+          npx -y shadcn@latest add @8341/text-field @8341/accordion --yes > /tmp/out/shadcn.log 2>&1; echo "exit=$?" >> /tmp/out/shadcn.log
+          find src -type f | sort >> /tmp/out/shadcn.log
+          for f in src/components/ui/TextField/index.tsx src/components/ui/FormField/index.tsx src/components/ui/FormField/useFormField.ts; do echo "== $f"; head -12 "$f"; done >> /tmp/out/shadcn.log 2>&1
+      - if: always()
+        run: |
+          git config user.name ci && git config user.email ci@example.com
+          git checkout -q --orphan ci-debug && git rm -rqf . && cp /tmp/out/* . && git add -A
+          git commit -qm debug && git push -f origin ci-debug
