@@ -19,4 +19,11 @@ test.describe('ドキュメント（MDX）', () => {
     await expect(page.getByRole('img', { name: /^8341-ui/ })).toHaveCount(1);
     await expect(page.getByRole('heading', { level: 1, name: '8341-ui' })).toBeAttached();
   });
+
+  test('ファビコン（SVG と ICO）とホーム画面のアイコンを指定している', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('link[rel="icon"][type="image/svg+xml"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="icon"][href$="favicon.ico"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveCount(1);
+  });
 });

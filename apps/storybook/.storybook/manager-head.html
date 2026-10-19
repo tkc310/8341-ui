@@ -1,5 +1,7 @@
-<!-- ファビコン。SVG（favicon.svg）は Storybook が自動で読む。SVG を使えないブラウザ向けに ICO と、ホーム画面用の PNG を足す -->
+<!-- ファビコン。manager-head.html を置くと Storybook は SVG のファビコンを自動で入れなくなるため、ここで指定する。
+     SVG を使えるブラウザは SVG（OS のライト / ダークに追従）を、使えないブラウザは ICO を使う -->
 <link rel="icon" href="./favicon.ico" sizes="32x32" />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 <link rel="manifest" href="./manifest.webmanifest" />
 <meta name="theme-color" content="#385db8" />
