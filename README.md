@@ -1,77 +1,64 @@
-# 8341-ui
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/banner-dark.svg">
+    <img alt="8341-ui — アクセシブルな日本語 UI のためのデザインシステム" src="./docs/assets/banner-light.svg" width="100%">
+  </picture>
+</p>
 
-[![CI](https://github.com/tkc310/8341ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tkc310/8341ui/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/tkc310/8341ui?sort=semver&display_name=tag)](https://github.com/tkc310/8341ui/releases)
-[![License: MIT](https://img.shields.io/github/license/tkc310/8341ui)](./LICENSE)
-[![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://tkc310.github.io/8341ui/)
-[![shadcn registry](https://img.shields.io/badge/shadcn-registry%20%408341-000000?logo=shadcnui&logoColor=white)](https://tkc310.github.io/8341ui/r/registry.json)
-[![WCAG 2.2 AA](https://img.shields.io/badge/WCAG%202.2-AA-005A9C?logo=w3c&logoColor=white)](./docs/rulebook/02-accessibility.md)
-[![Changesets](https://img.shields.io/badge/maintained%20with-changesets-176de3)](https://github.com/changesets/changesets)
+<p align="center">
+  <b>アクセシビリティを土台に、AI エージェントと一緒に育てるデザインシステム。</b><br>
+  WCAG 2.2 AA を全トークン・全コンポーネントで検証し、shadcn のレジストリでそのまま取り込めます。
+</p>
 
-[![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Node.js 24 LTS](https://img.shields.io/badge/Node.js-24%20LTS-5FA04E?logo=nodedotjs&logoColor=white)](./.tool-versions)
-[![TypeScript 7](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Base UI](https://img.shields.io/badge/Base%20UI-v1-111111)](https://base-ui.com/)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![DTCG 2025.10](https://img.shields.io/badge/Design%20Tokens-DTCG%202025.10-6E56CF)](https://www.designtokens.org/)
-[![pnpm 12](https://img.shields.io/badge/pnpm-12-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
-[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Claude%20Code%20%7C%20Cursor%20%7C%20Codex-D97757?logo=claude&logoColor=white)](./docs/ai-agents.md)
+<p align="center">
+  <a href="https://tkc310.github.io/8341ui/"><b>Storybook</b></a> ·
+  <a href="https://tkc310.github.io/8341ui/r/registry.json"><b>Registry</b></a> ·
+  <a href="./DESIGN.md"><b>DESIGN.md</b></a> ·
+  <a href="./docs/rulebook/"><b>ルールブック</b></a> ·
+  <a href="https://github.com/tkc310/8341ui/releases"><b>Releases</b></a> ·
+  <a href="./CONTRIBUTING.md"><b>開発ガイド</b></a>
+</p>
 
-プロジェクトで使い回す、自分用のデザインシステムです。
-[デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) のアクセシビリティ基準を土台に、
-キーカラー「藍」・ダークテーマ・自己改善の仕組みを加えて再設計しています。
-画面設計のルールは [design-principles](./docs/design-principles/README.md)（このリポジトリの `docs/design-principles/`）を採用しています。
+<p align="center">
+  <a href="https://github.com/tkc310/8341ui/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/tkc310/8341ui/actions/workflows/ci.yml/badge.svg?branch=main"></a>
+  <a href="https://github.com/tkc310/8341ui/releases"><img alt="Release" src="https://img.shields.io/github/v/release/tkc310/8341ui?sort=semver&display_name=tag&color=385db8"></a>
+  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/tkc310/8341ui?color=385db8"></a>
+  <a href="./docs/rulebook/02-accessibility.md"><img alt="WCAG 2.2 AA" src="https://img.shields.io/badge/WCAG%202.2-AA-005A9C?logo=w3c&logoColor=white"></a>
+  <a href="https://tkc310.github.io/8341ui/"><img alt="Storybook" src="https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white"></a>
+  <a href="https://tkc310.github.io/8341ui/r/registry.json"><img alt="shadcn registry" src="https://img.shields.io/badge/shadcn-%408341-000000?logo=shadcnui&logoColor=white"></a>
+  <a href="./docs/ai-agents.md"><img alt="Agent Skills" src="https://img.shields.io/badge/Agent%20Skills-Claude%20Code%20%7C%20Cursor%20%7C%20Codex-D97757?logo=claude&logoColor=white"></a>
+</p>
 
-<!-- factory:start -->
-## このリポジトリの位置づけ
-
-1. **デザインシステムとして使う** — 8341-ui のトークンとコンポーネントを、shadcn のレジストリでプロダクトに取り込みます（下の「使う」）。
-2. **デザインシステムファクトリーとして使う** — design-principles とヒアリングの結果から、8341-ui をひな形に新しいデザインシステムのリポジトリを作ります。AI エージェントのスキル `ds-factory` として動きます（`/ds-factory`）。
-3. **AI エージェント** — Claude Code を推奨とし、Cursor と Codex でも同じ指示とスキルを読めるよう、シンボリックリンクで入口をそろえています。
-
-詳しくは [`docs/factory.md`](./docs/factory.md)（位置づけとファクトリー）と [`docs/ai-agents.md`](./docs/ai-agents.md)（エージェントごとの対応）を読んでください。
-
-<!-- factory:end -->
-
-- **Storybook**: https://tkc310.github.io/8341ui/
-- **shadcn レジストリ**: `https://tkc310.github.io/8341ui/r/{name}.json`（例: [button](https://tkc310.github.io/8341ui/r/button.json)）
+<br>
 
 ![ライト / ダークのプレビュー](./docs/assets/preview.png)
 
-| 含まれるもの                                                                       | 場所                                                                             |
-| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| 画面設計のルール（UI の方向性 → サービス別の特化ルール → 原則 → WCAG 2.2）        | [`docs/design-principles/`](./docs/design-principles/)                           |
-| ルールブック（原則・アクセシビリティ・トークン・コンポーネント・文言・改善ループ） | [`docs/rulebook/`](./docs/rulebook/)                                             |
-| AI エージェントのスキル（Claude Code 推奨。Cursor・Codex にも対応）                | [`.claude/skills/`](./.claude/skills/)（[対応表](./docs/ai-agents.md)）          |
-| トークン（W3C DTCG 2025.10、primitive / semantic、ライト / ダーク）                | [`packages/tokens`](./packages/tokens/)（`8341-ui-tokens`）                    |
-| コンポーネント 18 種（Base UI + Tailwind CSS v4 + tailwind-variants）              | [`packages/ui`](./packages/ui/)（`8341-ui`）                                   |
-| shadcn レジストリ（`registry:base` で Base UI を固定）                             | [`packages/ui/registry.json`](./packages/ui/registry.json)                       |
-| Storybook 10・e2e                                                                  | [`apps/storybook`](./apps/storybook/)                                            |
-| AI エージェント向け仕様                                                            | [`DESIGN.md`](./DESIGN.md)、[`AGENTS.md`](./AGENTS.md)                           |
-| 自己改善の仕組み                                                                   | [`docs/rulebook/06-improvement-loop.md`](./docs/rulebook/06-improvement-loop.md) |
-| プロダクト用 DESIGN.md の雛形                                                      | [`templates/PRODUCT-DESIGN.md`](./templates/PRODUCT-DESIGN.md)                   |
+## 特長
 
-技術スタックと選んだ理由は [ADR-0008](./docs/decisions/0008-stack-2026-10.md) にあります。
+- ♿ **アクセシビリティが前提** — [デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/)の基準を土台に、WCAG 2.2 AA と JIS X 8341-3 を最低ラインにしています。文字は 4.5:1、境界は 3:1 で、トークンの全組み合わせをライトとダークの両方で CI が検証します。タップ領域は 44px、フォーカスは明暗の二重線です。
+- 🎨 **藍のキーカラーと共通明度カーブ** — OKLCH で 8 系統 × 13 段階のパレットを生成します。どの色相でも同じ段階番号ならコントラストがそろうので、色を替えても検証が崩れません。
+- 🧩 **コードを持てる配布** — shadcn のレジストリで、部品をプロジェクトにコピーして使います。トークン入りのテーマも同梱しているので、npm のパッケージは要りません。版を固定した取り込みもできます。
+- 🪄 **デザイントークンが正本** — W3C DTCG 2025.10 → Style Dictionary v5 で、CSS 変数・Tailwind v4 の `@theme`・Figma Variables を一度に生成します。
+- 🤖 **AI エージェント向けの仕様とスキル** — `DESIGN.md` と画面設計のルール（[design-principles](./docs/design-principles/README.md)）を、Claude Code・Cursor・Codex が同じスキルとして読みます。
+- 🔁 **自己改善の仕組み** — 週次の健康診断、改善のバックログとログ、再発防止のチェックの追加までを、[改善ループ](./docs/rulebook/06-improvement-loop.md)として回します。
 
-## はじめる
+<!-- factory:start -->
+## デザインシステムファクトリー
 
-使う道具の版は [`.tool-versions`](./.tool-versions)（Node.js・pnpm・GitHub CLI）にあります。コマンドはすべて `make` で実行します（`make` だけで一覧が出ます）。詳しい導入手順は [CONTRIBUTING.md](./CONTRIBUTING.md#導入手順) を読んでください。
+8341-ui はそのまま使えるデザインシステムであり、**新しいデザインシステムを作るひな形**でもあります。
+`/ds-factory` を呼ぶと、エージェントが design-principles に沿ってヒアリングします。そのうえで名前・接頭辞・キーカラー・リポジトリを置き換えた新しいリポジトリを生成し、トークンの再生成と検査まで仕上げます。
 
-```bash
-make setup       # .tool-versions の Node.js・pnpm・gh（mise / asdf）と依存を入れる
-make dev         # Storybook（http://localhost:6006）
-make check       # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ
-make test        # 単体テスト（happy-dom）＋ 全ストーリーの a11y テスト
-make test-vrt    # VRT（手動）
-make test-e2e    # e2e（手動）
-make             # コマンドの一覧
+```text
+docs/design-principles ─┬─▶ 8341-ui（このリポジトリ）
+ヒアリング ─▶ ds-factory ┴─▶ あなたのデザインシステム（別リポジトリ）
 ```
 
-## 使う
+詳しくは [docs/factory.md](./docs/factory.md) を読んでください。
 
-### shadcn 方式（推奨: コードを持つ）
+<!-- factory:end -->
+## クイックスタート
 
-利用側の `components.json` にレジストリを登録します。
+**1. レジストリを登録する** — 利用側の `components.json` に追加します。
 
 ```json
 {
@@ -79,11 +66,15 @@ make             # コマンドの一覧
 }
 ```
 
-版を固定するときは、URL を `https://tkc310.github.io/8341ui/r/v<版>/{name}.json` にします（[リリース](./docs/releasing.md)）。
+版を固定するときは、URL を `https://tkc310.github.io/8341ui/r/v0.1.0/{name}.json` のようにします。
+
+**2. 部品を取り込む**
 
 ```bash
 npx shadcn@latest add @8341/8341-base @8341/button @8341/form-field @8341/text-field
 ```
+
+**3. テーマを読み込む**
 
 ```css
 /* globals.css */
@@ -91,18 +82,13 @@ npx shadcn@latest add @8341/8341-base @8341/button @8341/form-field @8341/text-f
 @import './styles/8341-ui.css';
 ```
 
-テーマ（`styles/8341-ui.css`）はトークンの CSS を同梱しているので、npm のパッケージは要りません。
-トークンを更新したら `npx shadcn@latest add @8341/theme --overwrite` で取り込み直します。
-トークンをデータ（`tokens.json` や Figma 用 JSON）として使いたい場合は、このリポジトリの `packages/tokens/dist/` から取得します（npm には公開していません）。
-
-### npm パッケージ（公開した場合）
-
-npm への公開は既定で無効です（[リリース](#リリース)）。公開すると、次のように import して使えます。
+あとは使うだけです。テーマは `<html class="dark">` か `<html data-theme="dark">` でダークに切り替わり、どちらも無ければ OS の設定に従います。
+テーマ（`styles/8341-ui.css`）はトークンを同梱しています。トークンが更新されたら `npx shadcn@latest add @8341/theme --overwrite` で取り込み直します。
 
 ```tsx
-import { Button } from '8341-ui/button';
-import { FormField } from '8341-ui/form-field';
-import { TextField } from '8341-ui/text-field';
+import { Button } from '@/components/ui/button';
+import { FormField } from '@/components/ui/form-field';
+import { TextField } from '@/components/ui/text-field';
 
 export function SignUp() {
   return (
@@ -116,43 +102,91 @@ export function SignUp() {
 }
 ```
 
+<details>
+<summary>npm パッケージとして使う（公開した場合）</summary>
+
+npm への公開は既定で無効です（[リリース](./docs/releasing.md)）。公開した版は、次のように使えます。
+
+```tsx
+import { Button } from '8341-ui/button';
+```
+
 ```css
-/* Tailwind を使う場合 */
+/* Tailwind を使う場合。@source はこの CSS から見た node_modules/8341-ui/dist への相対パス */
 @import 'tailwindcss';
 @import '8341-ui/theme.css';
 @source "../node_modules/8341-ui/dist";
 ```
 
-`@source` のパスは、この CSS ファイルから見た `node_modules/8341-ui/dist` への相対パスにします（例: `src/app.css` なら `../node_modules/...`）。
-shadcn 方式で部品をコピーした場合は、部品がプロジェクト内にあるので `@source` は不要です。
-
 Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.css'` を読み込みます。
 
-テーマは `<html class="dark">` または `<html data-theme="dark">` で切り替えます。どちらも無ければ OS の設定に従います。
+</details>
 
-## トークンを変える
+## コンポーネント
+
+ヘッドレス UI の [Base UI](https://base-ui.com/) に、トークンの見た目を載せた 18 種類です。使い分けの規約は [04 コンポーネント](./docs/rulebook/04-components.md)、動く見本は [Storybook](https://tkc310.github.io/8341ui/) にあります。
+
+| 種類 | コンポーネント |
+| --- | --- |
+| 操作 | `Button` · `Link` |
+| フォーム | `FormField` · `TextField` · `Textarea` · `Select` · `Checkbox` · `RadioGroup` |
+| 表示 | `Heading` · `Text` · `Tag` · `Icon` · `Card` · `Divider` · `Stack` |
+| ナビゲーション | `Breadcrumb` · `Accordion` |
+| フィードバック | `NotificationBanner` |
+
+## 技術スタック
+
+| 領域 | 採用 |
+| --- | --- |
+| UI | React 19 · [Base UI](https://base-ui.com/) v1 · [Tailwind CSS](https://tailwindcss.com/) v4 · [tailwind-variants](https://www.tailwind-variants.org/) v3 |
+| トークン | [W3C DTCG](https://www.designtokens.org/) 2025.10 · [Style Dictionary](https://styledictionary.com/) v5 · Figma Variables / Code Connect |
+| 配布 | [shadcn](https://ui.shadcn.com/) レジストリ（`registry:base` で Base UI を固定）· npm（任意） |
+| ツールチェーン | [Vite+](https://github.com/voidzero-dev/vite-plus)（oxlint · oxfmt · Vitest 5 · tsdown）· TypeScript 7 · Node.js 24 LTS · pnpm 12 |
+| 品質 | Storybook 10 · addon-a11y（axe）· Playwright · dependency-cruiser · Changesets |
+
+選んだ理由は [ADR-0008](./docs/decisions/0008-stack-2026-10.md) と [ADR-0015](./docs/decisions/0015-dependency-update-2026-10.md) にあります。
+
+## 開発
+
+道具の版は [`.tool-versions`](./.tool-versions) にあり、コマンドはすべて `make` で実行します（`make` だけで一覧が出ます）。
 
 ```bash
-# 例: キーカラーの色相を変える（packages/tokens/src/palette.config.json の families.indigo.hue）
-make palette     # primitive を再生成
-make tokens       # CSS 変数・Tailwind テーマ・Figma JSON
-make design-md   # DESIGN.md の表
-make tw-merge    # クラス統合の設定
-make check
+make setup    # 道具（mise / asdf）と依存を入れる
+make dev      # Storybook を起動する（http://localhost:6006）
+make verify   # fmt・lint・型・コントラスト・生成物の鮮度・テスト
 ```
 
-## 開発に参加する
+トークンを変えたら `make generate` で生成物を更新します。見た目が変わる PR には、`make storybook-preview` で公開したプレビューを添えます。
+詳しい手順は [CONTRIBUTING.md](./CONTRIBUTING.md) を読んでください。
 
-セットアップ・コマンド・変更の流れは [CONTRIBUTING.md](./CONTRIBUTING.md) にあります。見た目が変わる PR には、`make storybook-preview` で公開した Storybook のプレビューを添えます。
+<details>
+<summary>リポジトリの構成</summary>
 
-## 運用
+```text
+packages/tokens/          トークン（8341-ui-tokens）: DTCG → CSS 変数・Tailwind テーマ・Figma JSON
+packages/ui/              コンポーネント（8341-ui）・shadcn レジストリ
+apps/storybook/           Storybook 10・e2e・レジストリの配信元
+docs/design-principles/   画面設計のルール（UI の方向性 → 特化ルール → 原則 → WCAG）
+docs/rulebook/            ルールブック（原則・アクセシビリティ・トークン・コンポーネント・文言・改善ループ）
+docs/decisions/           設計判断の記録（ADR）
+.claude/skills/           AI エージェントのスキル（.agents/skills から共有）
+templates/                プロダクト用 DESIGN.md の雛形
+```
 
-CI・GitHub Pages の構成・リポジトリの設定（main の保護、ブランチの片付けなど）は [docs/operations.md](./docs/operations.md) にあります。
+</details>
 
-## リリース
+## ドキュメント
 
-権限のあるアカウント保有者が手元で `make release-version`（版を上げる PR を作る）と `make release-publish`（タグ・GitHub Releases・その版のレジストリ `r/v<版>/`）を実行します。リポジトリにトークンは置きません。npm への公開は任意です（`--npm`）。手順と版の決め方は [docs/releasing.md](./docs/releasing.md) にあります。
+| 読みたいこと | 文書 |
+| --- | --- |
+| AI エージェント向けの仕様（トークン・コンポーネント・Do / Don't） | [DESIGN.md](./DESIGN.md) · [AGENTS.md](./AGENTS.md) |
+| 画面設計のルール | [docs/design-principles](./docs/design-principles/README.md) |
+| ルールブック | [docs/rulebook](./docs/rulebook/) |
+| 開発・運用・リリース | [CONTRIBUTING.md](./CONTRIBUTING.md) · [docs/operations.md](./docs/operations.md) · [docs/releasing.md](./docs/releasing.md) |
+| AI エージェントへの対応 | [docs/ai-agents.md](./docs/ai-agents.md) |
+| 設計判断の記録 | [docs/decisions](./docs/decisions/) |
+| 脆弱性の報告 | [SECURITY.md](./SECURITY.md) |
 
 ## ライセンス
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) © Takashi Sato
