@@ -54,9 +54,10 @@
 
 ## はじめる
 
-Node 22.12 以上と pnpm 11 を使います。
+使う道具の版は [`.tool-versions`](./.tool-versions)（Node.js・pnpm・GitHub CLI）にあります。[mise](https://mise.jdx.dev/) か asdf で `mise install` すると、同じ版が入ります。詳しい導入手順は [CONTRIBUTING.md](./CONTRIBUTING.md#導入手順) を読んでください。
 
 ```bash
+mise install   # .tool-versions の版の Node.js・pnpm・gh を入れる
 pnpm install
 pnpm dev       # Storybook（http://localhost:6006）
 pnpm check     # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ

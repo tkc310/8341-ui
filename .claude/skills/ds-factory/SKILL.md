@@ -70,7 +70,7 @@ node scripts/factory/create.mjs --config <設定ファイル> --out <出力先>
 
 以降は生成先のディレクトリで行う。
 
-1. **依存とトークン**: `git init && pnpm install` → `pnpm --filter <name>-tokens palette` → `pnpm build:tokens` → `design-md` → `tw-merge` → `pnpm --filter <name> registry`
+1. **依存とトークン**: `git init && mise install && pnpm install`（道具の版は `.tool-versions`） → `pnpm --filter <name>-tokens palette` → `pnpm build:tokens` → `design-md` → `tw-merge` → `pnpm --filter <name> registry`
 2. **コントラスト**: `pnpm --filter <name>-tokens check`。不足があれば `semantic/light.tokens.json` / `dark.tokens.json` の段階番号を調整する。`contrast.rules.json` の基準は緩めない。AAA を選んだ場合は、文字の基準を 7:1 に上げる
 3. **見た目の性格**: 4 で表示された箇所を、新しいキーカラーと性格で書き換える（DESIGN.md の冒頭、`docs/rulebook/01-principles.md` の「見た目の性格」、README の冒頭）。ひな形の ADR（0002 など）は「引き継いだ判断」として残し、変えた判断は新しい ADR に書く
 4. **プロダクトの前提**:

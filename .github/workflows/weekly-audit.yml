@@ -15,12 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      # 道具の版は .tool-versions にそろえる
+      - id: versions
+        run: echo "pnpm=$(awk '$1=="pnpm"{print $2}' .tool-versions)" >> "$GITHUB_OUTPUT"
       - uses: pnpm/action-setup@v4
         with:
-          version: 11
+          version: ${{ steps.versions.outputs.pnpm }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
       - run: pnpm install --frozen-lockfile
       - run: pnpm audit:report
       - name: レポートを Issue に投稿（同じラベルの未解決 Issue があれば更新）
