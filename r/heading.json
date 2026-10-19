@@ -5,7 +5,7 @@
   "description": "見出し。",
   "dependencies": [],
   "registryDependencies": [
-    "@tkc/tv"
+    "@8341/tv"
   ],
   "files": [
     {

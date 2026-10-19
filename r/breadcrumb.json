@@ -5,9 +5,9 @@
   "description": "パンくずリスト。",
   "dependencies": [],
   "registryDependencies": [
-    "@tkc/icon",
-    "@tkc/link",
-    "@tkc/tv"
+    "@8341/icon",
+    "@8341/link",
+    "@8341/tv"
   ],
   "files": [
     {

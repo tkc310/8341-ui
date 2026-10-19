@@ -7,7 +7,7 @@
     "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
-    "@tkc/tv"
+    "@8341/tv"
   ],
   "files": [
     {

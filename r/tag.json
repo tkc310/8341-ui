@@ -5,7 +5,7 @@
   "description": "状態やカテゴリを示すラベル。",
   "dependencies": [],
   "registryDependencies": [
-    "@tkc/tv"
+    "@8341/tv"
   ],
   "files": [
     {

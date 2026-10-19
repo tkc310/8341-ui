@@ -5,7 +5,7 @@
   "description": "子要素の間隔だけを管理するレイアウト部品。",
   "dependencies": [],
   "registryDependencies": [
-    "@tkc/tv"
+    "@8341/tv"
   ],
   "files": [
     {

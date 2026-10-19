@@ -5,7 +5,7 @@
   "description": "本文の文字。",
   "dependencies": [],
   "registryDependencies": [
-    "@tkc/tv"
+    "@8341/tv"
   ],
   "files": [
     {

@@ -7,9 +7,9 @@
     "@base-ui/react@^1.9.0"
   ],
   "registryDependencies": [
-    "@tkc/checkbox",
-    "@tkc/form-field",
-    "@tkc/tv"
+    "@8341/checkbox",
+    "@8341/form-field",
+    "@8341/tv"
   ],
   "files": [
     {
