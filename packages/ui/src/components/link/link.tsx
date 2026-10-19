@@ -11,7 +11,7 @@ import { tv } from '@/lib/tv';
 export const linkVariants = tv({
   base: [
     'rounded-xs text-fg-link underline decoration-1 underline-offset-[0.2em]',
-    'visited:text-fg-link-visited hover:text-fg-link-hover hover:decoration-(length:--tkc-border-width-underline-hover) active:text-fg-link-active',
+    'visited:text-fg-link-visited hover:text-fg-link-hover hover:decoration-(length:--8341-border-width-underline-hover) active:text-fg-link-active',
     // Tailwind v4 の outline-none は線種を none にするため使わず、:focus-visible で線種から指定する
     'focus-visible:bg-focus-ring focus-visible:text-focus-text focus-visible:decoration-1 focus-visible:outline-solid',
     'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-outline',

@@ -25,7 +25,7 @@ const withTheme: Decorator = (Story, context) => {
     );
   }
   return (
-    <div data-tkc-root>
+    <div data-8341-root>
       <Story />
     </div>
   );

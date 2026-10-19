@@ -16,7 +16,7 @@ description: このデザインシステムを使って画面やフォームを�
 ## 作るときの決まり
 
 - 既存コンポーネントを組み合わせる。足りないときは独自に作る前にバックログを確認し、無ければ Issue を起票する
-- 部品は shadcn 方式で取り込む（`npx shadcn@latest add @tkc/{name}`）か、npm の `8341-ui` から import する
+- 部品は shadcn 方式で取り込む（`npx shadcn@latest add @8341/{name}`）か、npm の `8341-ui` から import する
 - 余白は `Stack`（gap は sm / md / lg の 3 段階）、色・寸法は semantic トークンの Tailwind クラス（`bg-*`・`text-fg-*`・`border-border-*`・`p-inset-*`）だけ
 - 独自のバリアントは `tv()`（`@/lib/tv`）で書く。クラス名を動的に組み立てない
 - フォームは Base UI の `Form` と `FormField` で組み、`type` / `inputMode` / `autoComplete` を指定する

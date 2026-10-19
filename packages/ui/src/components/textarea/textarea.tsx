@@ -38,7 +38,7 @@ export function Textarea({ className, countLimit, rows = 4, required, onChange, 
         {...(over ? { 'aria-invalid': true } : {})}
         className={cn(
           controlVariants(),
-          'min-h-[calc(var(--tkc-size-control-md)*2)] resize-y leading-(--tkc-text-body-md-line-height)',
+          'min-h-[calc(var(--8341-size-control-md)*2)] resize-y leading-(--8341-text-body-md-line-height)',
           className,
         )}
       />

@@ -4,7 +4,7 @@
   "homepage": "https://github.com/tkc310/design-system-myself",
   "items": [
     {
-      "name": "tkc-base",
+      "name": "8341-base",
       "type": "registry:base",
       "title": "8341-ui base",
       "description": "8341-ui 0.1.0 の土台。ヘッドレス UI は Base UI に固定し、トークンとテーマを入れる",
@@ -21,8 +21,8 @@
         "tailwind-variants@^3.3.0"
       ],
       "registryDependencies": [
-        "@tkc/tv",
-        "@tkc/theme"
+        "@8341/tv",
+        "@8341/theme"
       ]
     },
     {
@@ -70,9 +70,9 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/icon",
-        "@tkc/theme",
-        "@tkc/tv"
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -88,9 +88,9 @@
       "description": "パンくずリスト。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/icon",
-        "@tkc/link",
-        "@tkc/tv"
+        "@8341/icon",
+        "@8341/link",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -108,8 +108,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/theme",
-        "@tkc/tv"
+        "@8341/theme",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -125,9 +125,9 @@
       "description": "情報のまとまりを示すカード。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/icon",
-        "@tkc/theme",
-        "@tkc/tv"
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -145,9 +145,9 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/icon",
-        "@tkc/theme",
-        "@tkc/tv"
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -165,7 +165,7 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/tv"
+        "@8341/tv"
       ],
       "files": [
         {
@@ -183,8 +183,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/theme",
-        "@tkc/tv"
+        "@8341/theme",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -200,7 +200,7 @@
       "description": "見出し。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/tv"
+        "@8341/tv"
       ],
       "files": [
         {
@@ -216,7 +216,7 @@
       "description": "線で描くアイコン。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/tv"
+        "@8341/tv"
       ],
       "files": [
         {
@@ -232,8 +232,8 @@
       "description": "ページ遷移のリンク。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/icon",
-        "@tkc/tv"
+        "@8341/icon",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -249,9 +249,9 @@
       "description": "状態を伝えるバナー。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/icon",
-        "@tkc/theme",
-        "@tkc/tv"
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -269,9 +269,9 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/checkbox",
-        "@tkc/form-field",
-        "@tkc/tv"
+        "@8341/checkbox",
+        "@8341/form-field",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -289,10 +289,10 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/form-field",
-        "@tkc/icon",
-        "@tkc/theme",
-        "@tkc/tv"
+        "@8341/form-field",
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -308,7 +308,7 @@
       "description": "子要素の間隔だけを管理するレイアウト部品。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/tv"
+        "@8341/tv"
       ],
       "files": [
         {
@@ -324,7 +324,7 @@
       "description": "状態やカテゴリを示すラベル。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/tv"
+        "@8341/tv"
       ],
       "files": [
         {
@@ -340,7 +340,7 @@
       "description": "本文の文字。",
       "dependencies": [],
       "registryDependencies": [
-        "@tkc/tv"
+        "@8341/tv"
       ],
       "files": [
         {
@@ -358,8 +358,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/form-field",
-        "@tkc/tv"
+        "@8341/form-field",
+        "@8341/tv"
       ],
       "files": [
         {
@@ -377,8 +377,8 @@
         "@base-ui/react@^1.9.0"
       ],
       "registryDependencies": [
-        "@tkc/form-field",
-        "@tkc/tv"
+        "@8341/form-field",
+        "@8341/tv"
       ],
       "files": [
         {

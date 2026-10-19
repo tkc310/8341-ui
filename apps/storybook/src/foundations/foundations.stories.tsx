@@ -52,7 +52,7 @@ export const PrimitiveColors: Story = {
               {pick(`color.primitive.${family}.`).map((t) => (
                 <div
                   key={t.name}
-                  className="flex flex-col gap-gap-xs text-body-sm leading-(--tkc-text-dense-sm-line-height)"
+                  className="flex flex-col gap-gap-xs text-body-sm leading-(--8341-text-dense-sm-line-height)"
                 >
                   <div
                     className="h-12 rounded-md border border-border-subtle"
@@ -132,11 +132,11 @@ export const Typography: Story = {
             <p
               className="m-0"
               style={{
-                fontFamily: `var(--tkc-text-${s}-font-family)`,
-                fontSize: `var(--tkc-text-${s}-font-size)`,
-                fontWeight: `var(--tkc-text-${s}-font-weight)`,
-                lineHeight: `var(--tkc-text-${s}-line-height)`,
-                letterSpacing: `var(--tkc-text-${s}-letter-spacing)`,
+                fontFamily: `var(--8341-text-${s}-font-family)`,
+                fontSize: `var(--8341-text-${s}-font-size)`,
+                fontWeight: `var(--8341-text-${s}-font-weight)`,
+                lineHeight: `var(--8341-text-${s}-line-height)`,
+                letterSpacing: `var(--8341-text-${s}-letter-spacing)`,
               }}
             >
               すべての人に、やさしいデジタルを。Design System 0123
