@@ -10,7 +10,15 @@
 | `logo.svg` | OS のライト / ダークに SVG 内で追従する版 |
 | `../../apps/storybook/public/favicon.svg` | Storybook のファビコン（`logo.svg` と同じ） |
 | `../../apps/storybook/public/logo.svg` | Storybook のサイドバー（マーク＋文字。`.storybook/manager.ts` で指定） |
+| `logo-1024.png` | ロゴの PNG（1024px・背景なし）。SVG を使えない場所に |
+| `icon-1024.png` | アイコンの PNG（1024px・白地にロゴを 72% で配置）。アバター・アプリアイコン・SNS などの正方形の枠に |
+| `../../apps/storybook/public/favicon.ico` | SVG のファビコンを使えないブラウザ向け（16 / 32 / 48px） |
+| `../../apps/storybook/public/apple-touch-icon.png`・`icon-192.png`・`icon-512.png` | ホーム画面に追加したときのアイコン（白地。`manifest.webmanifest`・`.storybook/manager-head.html` で指定） |
 | `banner-light.svg` / `banner-dark.svg` | README と Storybook「はじめに」の冒頭。右側はロゴの輪を拡大して薄く敷いた飾り |
+
+## 画像の作り方
+
+PNG と ICO は `logo-light.svg` から書き出す（ブラウザで SVG を描画して PNG に、16 / 32 / 48px の PNG をまとめて ICO に）。白地のアイコンは 512 の正方形の中央にロゴを 72% で置いたもの。ロゴを変えたら、これらも書き出し直す。
 
 ## 使い方
 
@@ -20,4 +28,4 @@
 
 ## デザインシステムファクトリーで作ったシステムでは
 
-ロゴは 8341-ui 固有です。新しいシステムのロゴに差し替えるか、ファイルと `manager.ts` の `brandImage` を削除してください（`ds-factory` スキルの手順 3）。
+ロゴは 8341-ui 固有です。新しいシステムのロゴに差し替えるか、ファイル（PNG・ICO・`manifest.webmanifest` を含む）と `manager.ts` の `brandImage`、`manager-head.html` のリンクを削除してください（`ds-factory` スキルの手順 3）。
