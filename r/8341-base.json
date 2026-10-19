@@ -5,7 +5,7 @@
   "description": "8341-ui 0.1.0 の土台。ヘッドレス UI は Base UI に固定し、トークンとテーマを入れる",
   "dependencies": [
     "@base-ui/react@^1.9.0",
-    "tailwind-variants@^3.3.0"
+    "tailwind-variants@^3.3.1"
   ],
   "registryDependencies": [
     "@8341/tv",
