@@ -2,7 +2,8 @@
 <title id="t">8341-ui — アクセシブルな日本語 UI のためのデザインシステム</title>
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f7fe"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
 <rect x="1" y="1" width="1278" height="358" rx="24" fill="url(#g)" stroke="#cadbfe" stroke-width="2"/>
-<text x="72" y="168" font-family="Inter, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', system-ui, sans-serif" font-size="112" font-weight="800" letter-spacing="-3" fill="#2d4c9c">8341-ui</text>
+<g transform="translate(72 66) scale(0.21875)"><circle cx="256" cy="256" r="232" fill="none" stroke="#1a1b1d" stroke-width="24"/><circle cx="256" cy="256" r="196" fill="none" stroke="#e7c567" stroke-width="40"/><circle cx="256" cy="256" r="160" fill="#385db8"/></g>
+<text x="196" y="168" font-family="Inter, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', system-ui, sans-serif" font-size="112" font-weight="800" letter-spacing="-3" fill="#2d4c9c">8341-ui</text>
 <text x="76" y="226" font-family="Inter, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', system-ui, sans-serif" font-size="30" font-weight="700" fill="#252629">アクセシブルな日本語 UI のためのデザインシステム</text>
 <text x="76" y="276" font-family="Inter, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', system-ui, sans-serif" font-size="20" fill="#616369">WCAG 2.2 AA · JIS X 8341-3 · Light / Dark · DTCG Tokens</text>
 <rect x="862" y="74" width="22" height="22" rx="5" fill="#f3f7fe"/>

@@ -183,6 +183,7 @@ templates/                プロダクト用 DESIGN.md の雛形
 | 開発・運用・リリース | [CONTRIBUTING.md](./CONTRIBUTING.md) · [docs/operations.md](./docs/operations.md) · [docs/releasing.md](./docs/releasing.md) |
 | AI エージェントへの対応 | [docs/ai-agents.md](./docs/ai-agents.md) |
 | 設計判断の記録 | [docs/decisions](./docs/decisions/) |
+| ロゴとバナー | [docs/assets](./docs/assets/README.md) |
 | 脆弱性の報告 | [SECURITY.md](./SECURITY.md) |
 
 ## ライセンス
