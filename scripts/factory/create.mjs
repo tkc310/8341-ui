@@ -67,12 +67,14 @@ const out = resolve(values.out);
 const NAME = /^[a-z0-9]([a-z0-9-]*[a-z0-9])?$/;
 if (!NAME.test(config.name ?? '')) fail('name は英小文字・数字・ハイフンで指定してください（例: acme-ui）');
 if (!NAME.test(config.prefix ?? '')) fail('prefix は英小文字・数字・ハイフンで指定してください（例: acme）');
-if (!config.repository?.owner || !config.repository?.name) fail('repository.owner と repository.name を指定してください');
+if (!config.repository?.owner || !config.repository?.name)
+  fail('repository.owner と repository.name を指定してください');
 const family = config.keyColor?.family ?? 'brand';
 if (!/^[a-z][a-z0-9-]*$/.test(family)) fail('keyColor.family は英小文字で始めてください（例: wakatake）');
 if (OTHER_FAMILIES.includes(family)) fail(`keyColor.family に ${family} は使えません（他の色の系統名と重なります）`);
 const hue = config.keyColor?.hue ?? (config.keyColor?.hex ? hexToOklchHue(config.keyColor.hex) : undefined);
-if (typeof hue !== 'number' || Number.isNaN(hue)) fail('keyColor.hue（0〜360）か keyColor.hex（#rrggbb）を指定してください');
+if (typeof hue !== 'number' || Number.isNaN(hue))
+  fail('keyColor.hue（0〜360）か keyColor.hex（#rrggbb）を指定してください');
 if (existsSync(out) && readdirSync(out).length > 0 && !values.force) {
   fail(`${out} は空ではありません（上書きするなら --force）`);
 }
