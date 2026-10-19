@@ -42,7 +42,7 @@ export default defineConfig({
         rules: { 'typescript/no-floating-promises': 'off' },
       },
       {
-        files: ['packages/tokens/scripts/**', 'packages/ui/scripts/**', 'apps/storybook/scripts/**'],
+        files: ['packages/tokens/scripts/**', 'packages/ui/scripts/**', 'apps/storybook/scripts/**', 'scripts/**'],
         rules: { 'no-console': 'off' },
       },
     ],

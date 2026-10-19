@@ -3,7 +3,18 @@
 プロジェクトで使い回す、自分用のデザインシステムです。
 [デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) のアクセシビリティ基準を土台に、
 キーカラー「藍」・ダークテーマ・自己改善の仕組みを加えて再設計しています。
-画面設計のルールは [design-principles](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) を採用しています。
+画面設計のルールは [design-principles](./docs/design-principles/README.md)（このリポジトリの `docs/design-principles/`）を採用しています。
+
+<!-- factory:start -->
+## このリポジトリの位置づけ
+
+1. **デザインシステムとして使う** — 8341-ui のトークンとコンポーネントを、shadcn のレジストリでプロダクトに取り込みます（下の「使う」）。
+2. **デザインシステムファクトリーとして使う** — design-principles とヒアリングの結果から、8341-ui をひな形に新しいデザインシステムのリポジトリを作ります。AI エージェントのスキル `ds-factory` として動きます（`/ds-factory`）。
+3. **AI エージェント** — Claude Code を推奨とし、Cursor と Codex でも同じ指示とスキルを読めるよう、シンボリックリンクで入口をそろえています。
+
+詳しくは [`docs/factory.md`](./docs/factory.md)（位置づけとファクトリー）と [`docs/ai-agents.md`](./docs/ai-agents.md)（エージェントごとの対応）を読んでください。
+
+<!-- factory:end -->
 
 - **Storybook**: https://tkc310.github.io/design-system-myself/
 - **shadcn レジストリ**: `https://tkc310.github.io/design-system-myself/r/{name}.json`（例: [button](https://tkc310.github.io/design-system-myself/r/button.json)）
@@ -12,7 +23,9 @@
 
 | 含まれるもの                                                                       | 場所                                                                             |
 | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| 画面設計のルール（UI の方向性 → サービス別の特化ルール → 原則 → WCAG 2.2）        | [`docs/design-principles/`](./docs/design-principles/)                           |
 | ルールブック（原則・アクセシビリティ・トークン・コンポーネント・文言・改善ループ） | [`docs/rulebook/`](./docs/rulebook/)                                             |
+| AI エージェントのスキル（Claude Code 推奨。Cursor・Codex にも対応）                | [`.claude/skills/`](./.claude/skills/)（[対応表](./docs/ai-agents.md)）          |
 | トークン（W3C DTCG 2025.10、primitive / semantic、ライト / ダーク）                | [`packages/tokens`](./packages/tokens/)（`8341-ui-tokens`）                    |
 | コンポーネント 18 種（Base UI + Tailwind CSS v4 + tailwind-variants）              | [`packages/ui`](./packages/ui/)（`8341-ui`）                                   |
 | shadcn レジストリ（`registry:base` で Base UI を固定）                             | [`packages/ui/registry.json`](./packages/ui/registry.json)                       |
@@ -126,7 +139,7 @@ main への push のたびに候補を一覧にし、承認されてから削除
 
 ```bash
 gh api -X PUT repos/tkc310/design-system-myself/environments/branch-cleanup \
-  -F "reviewers[][type]=User" -F "reviewers[][id]=$(gh api users/tkc310 --jq .id)"
+  -F "reviewers[][type]=User" -F "reviewers[][id]=$(gh api user --jq .id)"
 ```
 
 今後のマージで元ブランチを自動で消すなら、あわせて次も設定します（承認なしで消えます）。

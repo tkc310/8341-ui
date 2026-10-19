@@ -46,7 +46,7 @@ export interface CardProps
 }
 
 /**
- * 情報のまとまりを示すカード。表の行の代わりに並べない（上流ルール: 同じ角丸と影のカードを敷き詰めない）。
+ * 情報のまとまりを示すカード。表の行の代わりに並べない（design-principles: 同じ角丸と影のカードを敷き詰めない）。
  */
 export function Card({
   as: Tag = 'article',

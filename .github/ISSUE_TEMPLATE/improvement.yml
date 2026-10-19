@@ -19,7 +19,7 @@ body:
     id: principle
     attributes:
       label: 関係するルール
-      description: 上流の design-principles のどこに関係するか（docs/rulebook/01-principles.md の対応表）
+      description: design-principles（docs/design-principles/）のどこに関係するか（docs/rulebook/01-principles.md の対応表）
       options:
         - WCAG 2.2 の達成基準
         - 原則「読み順と優先度」「まとまり」「文字と図の判別」「配置の秩序」
@@ -32,9 +32,9 @@ body:
   - type: checkboxes
     id: upstream
     attributes:
-      label: 上流のルール
+      label: design-principles のルール
       options:
-        - label: 上流（design-principles）のルール自体にギャップや曖昧さがある（上流へも PR を出す）
+        - label: design-principles のルール自体にギャップや曖昧さがある（docs/design-principles/ も直す）
   - type: input
     id: where
     attributes:

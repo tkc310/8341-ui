@@ -7,7 +7,7 @@ description: このデザインシステムを使って画面やフォームを�
 
 ## 作る前に読む
 
-0. プロダクトの DESIGN.md。無ければ `templates/PRODUCT-DESIGN.md` から作り、UI の方向性とサービス種別を決める。design-principles スキル（上流）が使える環境では、その手順（ヒアリング → 方向性 → 特化ルール → 原則 → WCAG）に従う
+0. プロダクトの DESIGN.md。無ければ `templates/PRODUCT-DESIGN.md` から作り、UI の方向性とサービス種別を決める。`design-principles` スキル（このリポジトリの `.claude/skills/design-principles/`）の手順（ヒアリング → 方向性 → 特化ルール → 原則 → WCAG）に従う
 1. `DESIGN.md`（トークン・コンポーネントの早見表と Do / Don't）
 2. `docs/rulebook/02-accessibility.md`（必須ルール A1〜A15）
 3. `docs/rulebook/05-writing.md`（ボタン・エラー文の書き方）

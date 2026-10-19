@@ -10,12 +10,13 @@
 | [0004](./0004-palt-for-headings.md)           | 見出しのみ palt                                       | 採用           |
 | [0005](./0005-focus-double-ring.md)           | フォーカスの二重リング                                | 採用           |
 | [0006](./0006-control-height-44.md)           | 標準コントロール高さ 44px                             | 採用           |
-| [0007](./0007-adopt-design-principles.md)     | 画面設計のルールに design-principles を採用           | 採用           |
+| [0007](./0007-adopt-design-principles.md)     | 画面設計のルールに design-principles を採用           | 採用（置き場所は 0013） |
 | [0008](./0008-stack-2026-10.md)               | Base UI + Tailwind v4 + shadcn 方式などの技術スタック | 採用           |
 | [0009](./0009-dtcg-representation.md)         | DTCG 2025.10 でのトークンの表し方                     | 採用           |
 | [0010](./0010-tailwind-theme-mapping.md)      | Tailwind のテーマ名とトークンの対応                   | 採用           |
 | [0011](./0011-storybook-pr-preview.md) | PR ごとの Storybook をローカルでビルドし Pages（gh-pages ブランチ）に置く | 採用 |
 | [0012](./0012-self-contained-registry.md) | shadcn のレジストリだけで導入できるようにする（テーマにトークンを同梱） | 採用 |
+| [0013](./0013-design-principles-in-repo-and-factory.md) | design-principles を取り込み、デザインシステムファクトリーとして位置づける | 採用 |
 
 ## テンプレート
 

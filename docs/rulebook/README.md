@@ -2,11 +2,11 @@
 
 このデザインシステムで UI を作るとき、また、このデザインシステム自体を変更するときに守るルールです。
 人にも AI エージェントにも同じルールを適用します。
-画面設計の判断は上流の [design-principles](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) に従い、このルールブックはそれをトークンとコンポーネントに落とす方法を定めます。
+画面設計の判断は[design-principles](../design-principles/README.md) に従い、このルールブックはそれをトークンとコンポーネントに落とす方法を定めます。
 
 | 章                                           | 内容                                                                  |
 | -------------------------------------------- | --------------------------------------------------------------------- |
-| [01 デザイン原則](./01-principles.md)        | 上流のルール（design-principles）との対応表と、このシステムの設計方針 |
+| [01 デザイン原則](./01-principles.md)        | design-principlesとの対応表と、このシステムの設計方針 |
 | [02 アクセシビリティ](./02-accessibility.md) | WCAG 2.2 AA を最低ラインとした必須要件                                |
 | [03 トークン](./03-tokens.md)                | primitive / semantic の使い分けと追加手順                             |
 | [04 コンポーネント](./04-components.md)      | API・CSS・ファイル構成の規約と完了の定義                              |
@@ -26,4 +26,4 @@
 - [デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) — アクセシビリティ基準、フォーカス表示、リンクの 5 状態、単一ブレークポイント、角丸・余白の段階設計
 - [DADS の DESIGN.md（awesome-design-md-jp）](https://kzhrknt.github.io/awesome-design-md-jp/design-md/digital-go/DESIGN.md) — エージェント向け仕様書の構成
 - [DADS コードスニペット（HTML 版）](https://github.com/digital-go-jp/design-system-example-components-html) — BEM + data 属性による状態表現
-- [`tkc310/agents-playground` の `docs/design-principles`](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) — 画面設計のルールの正。UI の方向性、サービス別の特化ルール、15 の原則、WCAG 2.2（[ADR-0007](../decisions/0007-adopt-design-principles.md)）
+- [`docs/design-principles/`](../design-principles/README.md) — 画面設計のルールの正。UI の方向性、サービス別の特化ルール、15 の原則、WCAG 2.2（[ADR-0007](../decisions/0007-adopt-design-principles.md)）
