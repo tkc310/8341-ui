@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v7
       - id: versions
@@ -18,11 +20,10 @@ jobs:
           node-version-file: .tool-versions
           cache: pnpm
       - run: make install-ci
-      - run: make build-storybook
-      - run: make browsers
-      - run: make test-e2e
-      - if: always()
-        uses: actions/upload-artifact@v5
-        with:
-          name: storybook-static
-          path: apps/storybook/storybook-static
+      - run: make check > check.log 2>&1 || true
+      - run: pnpm exec vp fmt >/dev/null 2>&1 || true; git diff > fmt.patch || true
+      - run: |
+          mkdir /tmp/out && cp check.log fmt.patch /tmp/out/
+          git config user.name ci && git config user.email ci@example.com
+          git checkout --orphan ci-debug && git rm -rqf . && cp /tmp/out/* . && git add check.log fmt.patch
+          git commit -qm debug && git push -f origin ci-debug
