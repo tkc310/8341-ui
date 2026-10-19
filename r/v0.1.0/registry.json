@@ -1,0 +1,391 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "8341-ui",
+  "homepage": "https://github.com/tkc310/8341ui",
+  "items": [
+    {
+      "name": "8341-base",
+      "type": "registry:base",
+      "title": "8341-ui base",
+      "description": "8341-ui 0.1.0 の土台。ヘッドレス UI は Base UI に固定し、トークンとテーマを入れる",
+      "config": {
+        "style": "base-nova",
+        "iconLibrary": "none",
+        "rsc": true,
+        "tailwind": {
+          "cssVariables": true
+        }
+      },
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "tailwind-variants@^3.3.0"
+      ],
+      "registryDependencies": [
+        "@8341/tv",
+        "@8341/theme"
+      ]
+    },
+    {
+      "name": "tv",
+      "type": "registry:lib",
+      "title": "tv / cn",
+      "description": "8341-ui のテーマ名を登録した tailwind-variants と、フォーカス表示のクラス",
+      "dependencies": [
+        "tailwind-variants@^3.3.0"
+      ],
+      "files": [
+        {
+          "path": "src/lib/tv.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/tw-merge-config.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/focus.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "theme",
+      "type": "registry:file",
+      "title": "Theme",
+      "description": "Tailwind v4 のテーマ（トークン同梱）。globals.css で tailwindcss の後に @import する",
+      "files": [
+        {
+          "path": "registry-assets/8341-ui.css",
+          "type": "registry:file",
+          "target": "styles/8341-ui.css"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "折りたたみの一覧。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/accordion/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "パンくずリスト。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/icon",
+        "@8341/link",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/breadcrumb/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "操作を実行するボタン。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/button/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "情報のまとまりを示すカード。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/card/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "チェックボックス（Base UI の Checkbox）。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/checkbox/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "divider",
+      "type": "registry:ui",
+      "title": "Divider",
+      "description": "内容を区切る線（Base UI の Separator）。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/divider/divider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form-field",
+      "type": "registry:ui",
+      "title": "FormField",
+      "description": "ラベル・補足・エラーと入力部品を関連付けるラッパー（Base UI の Field）。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/form-field/form-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "heading",
+      "type": "registry:ui",
+      "title": "Heading",
+      "description": "見出し。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/heading/heading.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon",
+      "description": "線で描くアイコン。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/icon/icon.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "registry:ui",
+      "title": "Link",
+      "description": "ページ遷移のリンク。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/icon",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/link/link.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "notification-banner",
+      "type": "registry:ui",
+      "title": "NotificationBanner",
+      "description": "状態を伝えるバナー。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/notification-banner/notification-banner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "RadioGroup",
+      "description": "単一選択。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/checkbox",
+        "@8341/form-field",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/radio-group/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "1 つを選ぶ。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/form-field",
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/select/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stack",
+      "type": "registry:ui",
+      "title": "Stack",
+      "description": "子要素の間隔だけを管理するレイアウト部品。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/stack/stack.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "type": "registry:ui",
+      "title": "Tag",
+      "description": "状態やカテゴリを示すラベル。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/tag/tag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "text",
+      "type": "registry:ui",
+      "title": "Text",
+      "description": "本文の文字。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/text/text.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "text-field",
+      "type": "registry:ui",
+      "title": "TextField",
+      "description": "1 行のテキスト入力。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/form-field",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/text-field/text-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "複数行のテキスト入力。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/form-field",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/textarea/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "情報のまとまりを示すカード。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@8341/icon",
+    "@8341/theme",
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/card/card.tsx",
+      "content": "import type { HTMLAttributes, ReactNode } from 'react';\nimport { Icon } from '@/components/ui/icon';\nimport { focusRingWithin } from '@/lib/focus';\nimport { type VariantProps, tv } from '@/lib/tv';\n\nexport const cardVariants = tv({\n  slots: {\n    root: 'group/card relative flex list-none flex-col overflow-hidden rounded-xl border text-fg',\n    media:\n      '[&>img,&>picture,&>video]:block [&>img,&>picture,&>video]:aspect-video [&>img,&>picture,&>video]:w-full [&>img,&>picture,&>video]:object-cover',\n    body: 'flex flex-1 flex-col gap-stack-sm p-inset-xl',\n    eyebrow: 'm-0 text-body-sm text-fg-subtle',\n    title: 'm-0 text-heading-xs',\n    link: 'text-fg-link underline decoration-1 underline-offset-[0.2em] outline-none after:absolute after:inset-0 after:content-[\"\"] group-hover/card:decoration-(length:--8341-border-width-underline-hover)', // allow-outline-none: フォーカスはカード全体に focus-ring-within で描く\n    content: '[&>p]:m-0',\n    footer: 'flex items-center justify-between gap-gap-sm px-inset-xl pb-inset-xl text-fg-subtle',\n    arrow: 'ms-auto text-icon-key transition-transform group-hover/card:translate-x-gap-xs',\n  },\n  variants: {\n    variant: {\n      outlined: { root: 'border-border bg-surface' },\n      filled: { root: 'border-transparent bg-subtle' },\n    },\n    interactive: {\n      true: { root: [focusRingWithin, 'hover:border-border-key hover:shadow-1'] },\n    },\n  },\n  defaultVariants: { variant: 'outlined' },\n});\n\nexport interface CardProps\n  extends Omit<HTMLAttributes<HTMLElement>, 'title'>, Pick<VariantProps<typeof cardVariants>, 'variant'> {\n  as?: 'article' | 'section' | 'div' | 'li';\n  title?: ReactNode;\n  headingLevel?: 2 | 3 | 4;\n  /** タイトル上の小さな補足（カテゴリ・日付など） */\n  eyebrow?: ReactNode;\n  /** 画像などのメディア。装飾なら alt=\"\" にする */\n  media?: ReactNode;\n  footer?: ReactNode;\n  /**\n   * カード全体をリンクにする場合の遷移先。\n   * a 要素はタイトルにだけ置き、::after でカード全体に広げる（読み上げが冗長にならない）。\n   */\n  href?: string;\n}\n\n/**\n * 情報のまとまりを示すカード。表の行の代わりに並べない（design-principles: 同じ角丸と影のカードを敷き詰めない）。\n */\nexport function Card({\n  as: Tag = 'article',\n  title,\n  headingLevel = 3,\n  eyebrow,\n  media,\n  footer,\n  href,\n  variant,\n  className,\n  children,\n  ...rest\n}: CardProps) {\n  const H = `h${headingLevel}` as const;\n  const s = cardVariants({ variant, interactive: Boolean(href) });\n  return (\n    <Tag className={s.root({ className })} {...rest}>\n      {media && <div className={s.media()}>{media}</div>}\n      <div className={s.body()}>\n        {eyebrow && <p className={s.eyebrow()}>{eyebrow}</p>}\n        {title && (\n          <H className={s.title()}>\n            {href ? (\n              <a href={href} className={s.link()}>\n                {title}\n              </a>\n            ) : (\n              title\n            )}\n          </H>\n        )}\n        {children && <div className={s.content()}>{children}</div>}\n      </div>\n      {(footer || href) && (\n        <div className={s.footer()}>\n          {footer}\n          {href && <Icon name=\"arrow-right\" className={s.arrow()} />}\n        </div>\n      )}\n    </Tag>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

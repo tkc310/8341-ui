@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "heading",
+  "title": "Heading",
+  "description": "見出し。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/heading/heading.tsx",
+      "content": "import type { HTMLAttributes, ReactNode } from 'react';\nimport { type VariantProps, tv } from '@/lib/tv';\n\ntype Level = 1 | 2 | 3 | 4 | 5 | 6;\n\nexport const headingVariants = tv({\n  slots: {\n    root: 'm-0 text-fg [font-feature-settings:\"palt\"] text-balance',\n    shoulder: 'mb-gap-xs block text-body-md font-bold text-fg-subtle [font-feature-settings:normal]',\n    text: 'block',\n  },\n  variants: {\n    size: {\n      'display-lg': { root: 'text-display-lg' },\n      'display-md': { root: 'text-display-md' },\n      xl: { root: 'text-heading-xl' },\n      lg: { root: 'text-heading-lg' },\n      md: { root: 'text-heading-md' },\n      sm: { root: 'text-heading-sm' },\n      xs: { root: 'text-heading-xs' },\n      xxs: { root: 'text-heading-xxs' },\n    },\n    /**\n     * - bar: 左にキーカラーの縦線\n     * - rule: 下線で区切る\n     */\n    decoration: {\n      none: {},\n      bar: { root: 'border-s-4 border-border-key ps-inset-md forced-colors:border-[CanvasText]' },\n      rule: { root: 'border-b-2 border-border-key pb-inset-sm forced-colors:border-[CanvasText]' },\n    },\n  },\n  defaultVariants: { decoration: 'none' },\n});\n\n/** 見た目の既定サイズ。文書構造（level）と見た目（size）は分けて指定できる */\nconst defaultSize: Record<Level, NonNullable<VariantProps<typeof headingVariants>['size']>> = {\n  1: 'xl',\n  2: 'lg',\n  3: 'md',\n  4: 'sm',\n  5: 'xs',\n  6: 'xxs',\n};\n\nexport interface HeadingProps extends HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof headingVariants> {\n  /** 文書構造上のレベル。見出しレベルを飛ばさないこと */\n  level: Level;\n  /** 見出しの前置き（セクション番号など）。見出しの一部として読み上げられる */\n  shoulder?: ReactNode;\n}\n\n/** 見出し。文書構造（level）と見た目（size）を分けて指定でき、レベルは飛ばさない。 */\nexport function Heading({ level, size, decoration, shoulder, className, children, ...rest }: HeadingProps) {\n  const Tag = `h${level}` as const;\n  const s = headingVariants({ size: size ?? defaultSize[level], decoration });\n  return (\n    <Tag className={s.root({ className })} {...rest}>\n      {shoulder && <span className={s.shoulder()}>{shoulder}</span>}\n      <span className={s.text()}>{children}</span>\n    </Tag>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
