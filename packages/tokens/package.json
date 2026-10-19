@@ -41,20 +41,19 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsx scripts/build.ts && tsx scripts/export-figma.ts",
-    "palette": "tsx scripts/generate-palette.ts",
-    "design-md": "tsx scripts/sync-design-md.ts",
-    "figma": "tsx scripts/export-figma.ts",
-    "check": "tsx scripts/check-contrast.ts && tsx scripts/sync-design-md.ts --check && tsx scripts/generate-tw-merge.ts --check",
-    "check:contrast": "tsx scripts/check-contrast.ts",
+    "build": "node scripts/build.ts && node scripts/export-figma.ts",
+    "palette": "node scripts/generate-palette.ts",
+    "design-md": "node scripts/sync-design-md.ts",
+    "figma": "node scripts/export-figma.ts",
+    "check": "node scripts/check-contrast.ts && node scripts/sync-design-md.ts --check && node scripts/generate-tw-merge.ts --check",
+    "check:contrast": "node scripts/check-contrast.ts",
     "test": "vp test",
-    "audit": "tsx scripts/audit-report.ts",
-    "tw-merge": "tsx scripts/generate-tw-merge.ts"
+    "audit": "node scripts/audit-report.ts",
+    "tw-merge": "node scripts/generate-tw-merge.ts"
   },
   "devDependencies": {
     "@types/node": "catalog:",
     "style-dictionary": "catalog:",
-    "tsx": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   }

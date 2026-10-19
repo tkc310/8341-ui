@@ -9,11 +9,12 @@
 [![Changesets](https://img.shields.io/badge/maintained%20with-changesets-176de3)](https://github.com/changesets/changesets)
 
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js 24 LTS](https://img.shields.io/badge/Node.js-24%20LTS-5FA04E?logo=nodedotjs&logoColor=white)](./.tool-versions)
+[![TypeScript 7](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Base UI](https://img.shields.io/badge/Base%20UI-v1-111111)](https://base-ui.com/)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![DTCG 2025.10](https://img.shields.io/badge/Design%20Tokens-DTCG%202025.10-6E56CF)](https://www.designtokens.org/)
-[![pnpm 11](https://img.shields.io/badge/pnpm-11-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![pnpm 12](https://img.shields.io/badge/pnpm-12-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Claude%20Code%20%7C%20Cursor%20%7C%20Codex-D97757?logo=claude&logoColor=white)](./docs/ai-agents.md)
 
 プロジェクトで使い回す、自分用のデザインシステムです。

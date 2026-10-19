@@ -26,7 +26,7 @@ jobs:
     outputs:
       branches: ${{ steps.list.outputs.branches }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: 削除候補を一覧にする

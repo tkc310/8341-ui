@@ -9,9 +9,9 @@ AI エージェントで開発するときも、この手順と [AGENTS.md](./AG
 
 | 道具 | 版（`.tool-versions`） | 用途 |
 | --- | --- | --- |
-| Node.js | 22.23.3 | ビルド・テスト・スクリプトの実行 |
-| pnpm | 11.28.6 | 依存の管理（workspaces / catalog） |
-| GitHub CLI（`gh`） | 2.89.0 | Storybook のプレビューの公開、リリース、PR の操作 |
+| Node.js | 24.22.0（LTS） | ビルド・テスト・スクリプトの実行 |
+| pnpm | 12.14.0 | 依存の管理（workspaces / catalog） |
+| GitHub CLI（`gh`） | 2.102.0 | Storybook のプレビューの公開、リリース、PR の操作 |
 | Git | 指定なし | シンボリックリンクを扱える設定にする（Windows は下の注意） |
 
 Playwright のブラウザ、Storybook、Vite+ などは pnpm の依存として入るので、個別に入れる必要はない。
@@ -45,12 +45,12 @@ asdf plugin add github-cli
 git clone https://github.com/tkc310/8341ui.git
 cd 8341ui
 mise install        # asdf の場合は asdf install。.tool-versions の版が入る
-node -v             # v22.23.3
-pnpm -v             # 11.28.6
-gh --version        # 2.89.0
+node -v             # v24.22.0
+pnpm -v             # 12.14.0
+gh --version        # 2.102.0
 ```
 
-版管理ツールを使わない場合は、上の表の版を手で入れる（pnpm は `corepack enable && corepack prepare pnpm@11.28.6 --activate` でも入る）。
+版管理ツールを使わない場合は、上の表の版を手で入れる（pnpm は `corepack enable && corepack prepare pnpm@12.14.0 --activate` でも入る）。
 
 ### 3. 依存を入れて動かす
 
@@ -72,7 +72,7 @@ gh auth login
 
 ### 道具の版を上げる
 
-`.tool-versions` を書き換えて PR を出す。CI もその版で動くので、`check` と `test` が通れば上げてよい。Node のメジャー版を上げるときは、`package.json` の `devEngines` も合わせる。
+`.tool-versions` を書き換えて PR を出す。CI もその版で動くので、`check` と `test` が通れば上げてよい。依存のパッケージは `pnpm outdated -r` で古いものを確かめ、`pnpm-workspace.yaml` の catalog の版を上げる（方針は [ADR-0015](./docs/decisions/0015-dependency-update-2026-10.md)）。Node のメジャー版を上げるときは、`package.json` の `devEngines` も合わせる。
 
 ## よく使うコマンド
 

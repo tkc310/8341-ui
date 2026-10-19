@@ -18,6 +18,7 @@
 | [0012](./0012-self-contained-registry.md) | shadcn のレジストリだけで導入できるようにする（テーマにトークンを同梱） | 採用 |
 | [0013](./0013-design-principles-in-repo-and-factory.md) | design-principles を取り込み、デザインシステムファクトリーとして位置づける | 採用 |
 | [0014](./0014-release-and-oss-docs.md) | リリースの仕組み（タグ・Releases・版ごとのレジストリ）と OSS としての体裁 | 採用 |
+| [0015](./0015-dependency-update-2026-10.md) | 依存と道具を最新に更新する（Node.js 24 LTS・pnpm 12・TypeScript 7） | 採用 |
 
 ## テンプレート
 

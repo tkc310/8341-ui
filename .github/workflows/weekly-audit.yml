@@ -14,14 +14,14 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # 道具の版は .tool-versions にそろえる
       - id: versions
         run: echo "pnpm=$(awk '$1=="pnpm"{print $2}' .tool-versions)" >> "$GITHUB_OUTPUT"
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: ${{ steps.versions.outputs.pnpm }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .tool-versions
       - run: pnpm install --frozen-lockfile

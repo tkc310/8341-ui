@@ -8,7 +8,7 @@
     "build": "pnpm --filter 8341-ui registry:build && storybook build",
     "test": "vp test --project storybook",
     "test:e2e": "playwright test",
-    "preview:publish": "tsx scripts/publish-preview.ts"
+    "preview:publish": "node scripts/publish-preview.ts"
   },
   "dependencies": {
     "8341-ui": "workspace:*",
@@ -31,7 +31,6 @@
     "playwright": "catalog:",
     "storybook": "catalog:",
     "tailwindcss": "catalog:",
-    "tsx": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   }
