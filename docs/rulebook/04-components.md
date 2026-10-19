@@ -12,21 +12,22 @@
 ## ファイル構成
 
 ```
-packages/ui/src/components/button/
-├── button.tsx           # 実装（1 ディレクトリ 1 コンポーネントが基本）
-├── index.ts             # 公開 API（他のコンポーネントはここ経由で参照する）
-├── button.stories.tsx   # Storybook（状態ごとのストーリーと play 関数）
-└── button.figma.ts      # Figma Code Connect（テンプレート形式）
+packages/ui/src/components/ui/Button/
+├── index.tsx           # 本体＝公開 API（他のコンポーネントはここ経由で参照する）
+├── index.test.tsx      # 単体テスト（happy-dom）
+├── index.stories.tsx   # Storybook（状態ごとのストーリーと play 関数）
+└── index.figma.ts      # Figma Code Connect（テンプレート形式）
 ```
 
-単体テストは `src/components/components.test.tsx`、VRT は `src/components/gallery.vrt.test.tsx` に集約している。
+ディレクトリ名は PascalCase。専用のフック（`useXxx.ts`）と子コンポーネント（入れ子のディレクトリ）も同じ場所に置く。詳しくは [コンポーネント構造規則](../../packages/ui/src/components/COMPONENT_STRUCTURE.md)。VRT はコンポーネントを横断するため `src/components/gallery.vrt.test.tsx` に集約している。
 
 ## 実装の規約
 
 ### import
 
-- shadcn で配布したときと同じパスで書く: 他のコンポーネントは `@/components/ui/{name}`、共通処理は `@/lib/{name}`
-- 相対パスで他のコンポーネントの内部ファイルを参照しない（dependency-cruiser が error にする）
+- shadcn で配布したときと同じパスで書く: 他のコンポーネントは `@/components/ui/{Name}/index`、共通処理は `@/lib/{name}`
+- 同じコンポーネントのディレクトリの中（子・フック）は相対パス。他のコンポーネントを相対パスで参照しない（`make check` が error にする）
+- 他のコンポーネントの `index.tsx` 以外（子・フック）を参照しない（dependency-cruiser が error にする）
 
 ### React と Base UI
 
@@ -59,7 +60,8 @@ packages/ui/src/components/button/
 - [ ] [02 アクセシビリティ](./02-accessibility.md) の手動確認項目を実施した
 - [ ] 主たる関数の JSDoc の 1 文目に「何をする部品か」を書いた（レジストリの説明になる）
 - [ ] `src/index.ts` から export し、`make registry` でレジストリを更新した
-- [ ] Figma のコンポーネントがあれば `.figma.ts` を書いた
+- [ ] 振る舞いのテストを `index.test.tsx` に書いた
+- [ ] Figma のコンポーネントがあれば `index.figma.ts` を書いた
 - [ ] changeset を追加した（`make changeset`）
 
 ## 部品の選び方

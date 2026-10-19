@@ -155,30 +155,30 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 ### 一覧
 
 <!-- auto:components -->
-- `accordion` — `packages/ui/src/components/accordion/`
-- `breadcrumb` — `packages/ui/src/components/breadcrumb/`
-- `button` — `packages/ui/src/components/button/`
-- `card` — `packages/ui/src/components/card/`
-- `checkbox` — `packages/ui/src/components/checkbox/`
-- `divider` — `packages/ui/src/components/divider/`
-- `form-field` — `packages/ui/src/components/form-field/`
-- `heading` — `packages/ui/src/components/heading/`
-- `icon` — `packages/ui/src/components/icon/`
-- `link` — `packages/ui/src/components/link/`
-- `notification-banner` — `packages/ui/src/components/notification-banner/`
-- `radio-group` — `packages/ui/src/components/radio-group/`
-- `select` — `packages/ui/src/components/select/`
-- `stack` — `packages/ui/src/components/stack/`
-- `tag` — `packages/ui/src/components/tag/`
-- `text` — `packages/ui/src/components/text/`
-- `text-field` — `packages/ui/src/components/text-field/`
-- `textarea` — `packages/ui/src/components/textarea/`
+- `Accordion`（`@8341/accordion`）— `packages/ui/src/components/ui/Accordion/`
+- `Breadcrumb`（`@8341/breadcrumb`）— `packages/ui/src/components/ui/Breadcrumb/`
+- `Button`（`@8341/button`）— `packages/ui/src/components/ui/Button/`
+- `Card`（`@8341/card`）— `packages/ui/src/components/ui/Card/`
+- `Checkbox`（`@8341/checkbox`）— `packages/ui/src/components/ui/Checkbox/`
+- `Divider`（`@8341/divider`）— `packages/ui/src/components/ui/Divider/`
+- `FormField`（`@8341/form-field`）— `packages/ui/src/components/ui/FormField/`
+- `Heading`（`@8341/heading`）— `packages/ui/src/components/ui/Heading/`
+- `Icon`（`@8341/icon`）— `packages/ui/src/components/ui/Icon/`
+- `Link`（`@8341/link`）— `packages/ui/src/components/ui/Link/`
+- `NotificationBanner`（`@8341/notification-banner`）— `packages/ui/src/components/ui/NotificationBanner/`
+- `RadioGroup`（`@8341/radio-group`）— `packages/ui/src/components/ui/RadioGroup/`
+- `Select`（`@8341/select`）— `packages/ui/src/components/ui/Select/`
+- `Stack`（`@8341/stack`）— `packages/ui/src/components/ui/Stack/`
+- `Tag`（`@8341/tag`）— `packages/ui/src/components/ui/Tag/`
+- `Text`（`@8341/text`）— `packages/ui/src/components/ui/Text/`
+- `TextField`（`@8341/text-field`）— `packages/ui/src/components/ui/TextField/`
+- `Textarea`（`@8341/textarea`）— `packages/ui/src/components/ui/Textarea/`
 <!-- /auto:components -->
 
 ### 共通規約
 
 - コンポーネントは Base UI の部品を `tv()`（`@/lib/tv`）のスタイルで包む。`tailwind-variants` の `tv` を直接使わない（独自のテーマ名を登録した `tv` でないと `text-fg text-body-md` の文字色が消える）
-- import パスは shadcn 方式: `@/components/ui/{name}`、`@/lib/{name}`
+- import パスは shadcn 方式: `@/components/ui/{Name}/index`（ディレクトリ名は PascalCase）、`@/lib/{name}`
 - 状態は Base UI の data 属性で装飾する: `data-[checked]:`、`data-[invalid]:`、`data-[disabled]:`、`data-[highlighted]:`、`data-[panel-open]:`、`data-[starting-style]:`
 - **フォーカスは `focus-ring` クラス**（Base UI は `data-focus-visible` を付けないため `:focus-visible` で描く）。`outline-none` だけで消さない
 - 見た目が 44px 未満の操作対象には `tap-target` クラスでタップ領域を足す
@@ -359,8 +359,8 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 ### クイックリファレンス
 
 ```
-Import (npm):       import { Button } from '8341-ui/button';  +  @import "8341-ui/theme.css";
-Import (shadcn):    npx shadcn@latest add @8341/button          →  import { Button } from '@/components/ui/button';
+Import (npm):       import { Button } from '8341-ui/Button';  +  @import "8341-ui/theme.css";
+Import (shadcn):    npx shadcn@latest add @8341/button          →  import { Button } from '@/components/ui/Button/index';
 Theme:              <html class="dark"> / <html data-theme="dark">（未指定は OS 追従）
 Body:               text-body-md text-fg（16px / 1.7 / 0.02em）
 Sub text:           text-fg-subtle

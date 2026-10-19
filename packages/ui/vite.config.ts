@@ -9,7 +9,7 @@ export default defineConfig({
   resolve: { alias },
 
   pack: {
-    entry: ['src/index.ts', 'src/components/*/index.ts'],
+    entry: ['src/index.ts', 'src/components/ui/*/index.tsx'],
     format: ['esm'],
     dts: true,
     sourcemap: true,

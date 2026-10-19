@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@/components/ui/*": ["../../packages/ui/src/components/*"],
+      "@/components/ui/*": ["../../packages/ui/src/components/ui/*"],
       "@/lib/*": ["../../packages/ui/src/lib/*"]
     },
     "types": ["node"]

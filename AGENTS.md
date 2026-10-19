@@ -38,7 +38,7 @@ packages/tokens/          トークン（8341-ui-tokens）
   src/contrast.rules.json コントラストの検証規則
   scripts/                生成・検証（build.ts は Style Dictionary v5）
 packages/ui/              コンポーネント（8341-ui）
-  src/components/*/       *.tsx・index.ts・*.stories.tsx・*.figma.ts
+  src/components/ui/*/    index.tsx・index.test.tsx・index.stories.tsx・index.figma.ts（PascalCase。src/components/COMPONENT_STRUCTURE.md）
   src/lib/                tv / cn / focus（tw-merge-config.ts は生成物）
   src/styles/theme.css    Tailwind のテーマ（@utility focus-ring など）
   registry.json           shadcn レジストリ（生成物）
@@ -78,6 +78,7 @@ make release-version / release-publish   # リリース（アカウント保有�
 - 画面設計のルールは `docs/design-principles/` を正とする。ギャップを見つけたら例外を作らず、そこを直す PR を出す
 - 生成物を手で編集しない: `packages/tokens/dist/`、`packages/tokens/src/primitive/color.tokens.json`、`packages/ui/src/lib/tw-merge-config.ts`、`packages/ui/registry.json`、DESIGN.md の `<!-- auto:* -->` ブロック
 - コンポーネントは semantic トークンの Tailwind クラスだけを使い、`tv` / `cn` は `@/lib/tv` から import する
+- コンポーネントの構造は `packages/ui/src/components/COMPONENT_STRUCTURE.md` に従う（`ui/<PascalCase>/index.tsx` に本体、テスト・ストーリー・フック・子コンポーネントを同じディレクトリに。ほかのコンポーネントは `@/components/ui/<Name>/index` で import）
 - 任意値・手書き CSS では `var(--8341-*)` を参照する（`var(--color-*)` は未定義になりうる）
 - チェックを通すためにルールを緩めない（必要なら ADR を書いて人間に確認する）
 - 変更したら `make verify` を通し、`docs/improvement/log.md` に記録する

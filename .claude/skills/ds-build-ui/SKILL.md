@@ -11,7 +11,7 @@ description: このデザインシステムを使って画面やフォームを�
 1. `DESIGN.md`（トークン・コンポーネントの早見表と Do / Don't）
 2. `docs/rulebook/02-accessibility.md`（必須ルール A1〜A15）
 3. `docs/rulebook/05-writing.md`（ボタン・エラー文の書き方）
-4. 使うコンポーネントのストーリー（`src/components/**/*.stories.tsx`）
+4. 使うコンポーネントのストーリー（`packages/ui/src/components/ui/*/index.stories.tsx`）
 
 ## 作るときの決まり
 

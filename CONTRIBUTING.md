@@ -180,17 +180,18 @@ make check
 
 ### コンポーネントを足す・変える
 
-`packages/ui/src/components/<name>/` に次をそろえる。
+`packages/ui/src/components/ui/<Name>/`（ディレクトリ名は PascalCase）に次をそろえる。構造と import の規則は [コンポーネント構造規則](./packages/ui/src/components/COMPONENT_STRUCTURE.md)（`make check` が検査する）。
 
 | ファイル | 中身 |
 | --- | --- |
-| `<name>.tsx` | 本体。Base UI の部品と `tv`（`@/lib/tv`）で書く。フックを使うなら先頭に `'use client'` |
-| `index.ts` | 公開 API |
-| `<name>.stories.tsx` | ストーリー。操作があるなら play 関数で振る舞いを検査する |
-| `<name>.figma.ts` | Code Connect（Figma のコンポーネントがある場合） |
+| `index.tsx` | 本体（そのまま公開 API）。Base UI の部品と `tv`（`@/lib/tv`）で書く。フックを使うなら先頭に `'use client'` |
+| `index.test.tsx` | 振る舞いの単体テスト（happy-dom） |
+| `index.stories.tsx` | ストーリー。操作があるなら play 関数で振る舞いを検査する |
+| `index.figma.ts` | Code Connect（Figma のコンポーネントがある場合） |
+| `useXxx.ts`・`<Child>/` | そのコンポーネント専用のフック・子コンポーネント（必要なら） |
 
 - semantic トークンの Tailwind クラスだけを使う（任意値では `var(--8341-*)`）
-- 振る舞いのテストは `src/components/components.test.tsx` に足す
+- ほかのコンポーネントは `@/components/ui/<Name>/index` で import する（相対パスにしない）
 - 追加・削除したら `make registry` でレジストリを更新する
 - 使い方の規約は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)、アクセシビリティは [02-accessibility.md](./docs/rulebook/02-accessibility.md)
 
