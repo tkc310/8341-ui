@@ -36,9 +36,9 @@
     "registry:build": "tsx scripts/build-registry-css.ts && shadcn build ./registry.json -o ../../apps/storybook/public/r"
   },
   "dependencies": {
+    "8341-ui-tokens": "workspace:*",
     "@base-ui/react": "catalog:",
-    "tailwind-variants": "catalog:",
-    "8341-ui-tokens": "workspace:*"
+    "tailwind-variants": "catalog:"
   },
   "devDependencies": {
     "@figma/code-connect": "catalog:",

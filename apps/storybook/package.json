@@ -11,10 +11,10 @@
     "preview:publish": "tsx scripts/publish-preview.ts"
   },
   "dependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:",
     "8341-ui": "workspace:*",
-    "8341-ui-tokens": "workspace:*"
+    "8341-ui-tokens": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@playwright/test": "catalog:",
