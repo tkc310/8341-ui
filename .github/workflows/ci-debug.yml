@@ -1,0 +1,28 @@
+# 一時的な検証用（マージ前に削除する）
+name: ci-debug
+on:
+  push:
+    branches: [feat/logo]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - id: versions
+        run: echo "pnpm=$(awk '$1=="pnpm"{print $2}' .tool-versions)" >> "$GITHUB_OUTPUT"
+      - uses: pnpm/action-setup@v6
+        with:
+          version: ${{ steps.versions.outputs.pnpm }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .tool-versions
+          cache: pnpm
+      - run: make install-ci
+      - run: make build-storybook
+      - run: make browsers
+      - run: make test-e2e
+      - if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: storybook-static
+          path: apps/storybook/storybook-static

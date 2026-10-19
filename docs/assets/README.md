@@ -10,7 +10,7 @@
 | `logo.svg` | OS のライト / ダークに SVG 内で追従する版 |
 | `../../apps/storybook/public/favicon.svg` | Storybook のファビコン（`logo.svg` と同じ） |
 | `../../apps/storybook/public/logo.svg` | Storybook のサイドバー（マーク＋文字。`.storybook/manager.ts` で指定） |
-| `banner-light.svg` / `banner-dark.svg` | README の冒頭 |
+| `banner-light.svg` / `banner-dark.svg` | README と Storybook「はじめに」の冒頭。右側はロゴの輪を拡大して薄く敷いた飾り |
 
 ## 使い方
 
