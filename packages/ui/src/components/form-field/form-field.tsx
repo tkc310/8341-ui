@@ -86,7 +86,7 @@ export interface FormFieldProps {
   disabled?: boolean;
   /** フォーム送信時の名前（Base UI の Form と組み合わせると、サーバーのエラーをこの名前で表示できる） */
   name?: string;
-  /** いつ検証するか。上流ルールの推奨は「欄を離れた時点」（onBlur） */
+  /** いつ検証するか。design-principlesの推奨は「欄を離れた時点」（onBlur） */
   validationMode?: 'onSubmit' | 'onBlur' | 'onChange';
   className?: string;
   children: ReactNode;

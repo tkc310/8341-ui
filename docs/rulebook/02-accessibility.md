@@ -1,7 +1,7 @@
 # 02 アクセシビリティ
 
 **WCAG 2.2 レベル AA** と **JIS X 8341-3:2016** を最低ラインとします。
-達成基準ごとのデザイン上の要件は上流の [wcag-for-designers.md](https://github.com/tkc310/agents-playground/blob/main/docs/design-principles/wcag-for-designers.md) を正とします。
+達成基準ごとのデザイン上の要件はdesign-principles の [wcag-for-designers.md](../design-principles/wcag-for-designers.md) を正とします。
 以下は、このシステムでの具体的な実装ルールと、どこで担保しているかの対応表です。
 
 ## 必須ルール

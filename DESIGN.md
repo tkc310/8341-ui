@@ -18,10 +18,10 @@
 ## 0. 位置づけと採用したルール
 
 - **基盤のデザインシステム**: 特定のプロダクトに属さず、複数のプロダクトで使い回す
-- **画面設計のルール**: [design-principles](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) を採用する。適用順は UI の方向性 → サービス別の特化ルール → 原則 → WCAG 2.2
+- **画面設計のルール**: [design-principles](./docs/design-principles/README.md) を採用する。適用順は UI の方向性 → サービス別の特化ルール → 原則 → WCAG 2.2
 - **UI の方向性とサービス種別**: 基盤では決めない。各プロダクトの DESIGN.md で決める（雛形: `templates/PRODUCT-DESIGN.md`）
 - **原則とトークン・コンポーネントの対応**: `docs/rulebook/01-principles.md`
-- **必須ルールを外した項目**: なし。タップ領域 44px、文字のコントラストを一律 4.5:1、リンクの下線必須、二重のフォーカス線は、上流の必須より厳しくしている
+- **必須ルールを外した項目**: なし。タップ領域 44px、文字のコントラストを一律 4.5:1、リンクの下線必須、二重のフォーカス線は、design-principles の必須より厳しくしている
 
 ## 1. Visual Theme & Atmosphere
 
@@ -221,7 +221,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 - FormField は Base UI の `Field`。`aria-describedby`（補足とエラー）と `aria-invalid` は Base UI が付ける
 - `error` を渡すとその文を表示する。渡さなければ、ネイティブ検証（`required` など）の結果を Base UI が表示する
-- 送信時の検証は Base UI の `Form` に任せる（最初の誤りにフォーカスが移る）。検証の時点は `validationMode`（上流の推奨は `onBlur`）
+- 送信時の検証は Base UI の `Form` に任せる（最初の誤りにフォーカスが移る）。検証の時点は `validationMode`（design-principles の推奨は `onBlur`）
 - 必須は「必須」バッジ（文字）。`*` だけにしない
 - 入力欄: `border-border-input`、`rounded-md`、高さ 36/44/52、文字は `text-body-md` 固定（iOS の拡大防止）
 - エラー: `border-border-danger` を 2px 相当に＋エラーアイコン＋太字の文言（`text-fg-danger`）

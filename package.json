@@ -17,6 +17,7 @@
     "test:e2e": "pnpm build:tokens && pnpm --filter 8341-ui-storybook test:e2e",
     "audit:report": "pnpm --filter 8341-ui-tokens audit",
     "changeset": "changeset",
+    "factory:create": "node scripts/factory/create.mjs",
     "release": "pnpm build && changeset publish"
   },
   "devDependencies": {

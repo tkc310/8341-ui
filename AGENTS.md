@@ -1,6 +1,11 @@
 # AGENTS.md
 
-AI エージェント向けの作業ガイドです。
+AI エージェント向けの作業ガイドです。Claude Code（推奨）・Cursor・Codex のどれでも同じ内容を読みます（`CLAUDE.md` はこのファイルへのシンボリックリンク。詳しくは [`docs/ai-agents.md`](docs/ai-agents.md)）。
+
+<!-- factory:start -->
+このリポジトリは、**デザインシステム（8341-ui）** であり、同時に design-principles とヒアリングから新しいデザインシステムを作る **デザインシステムファクトリー** でもあります（[`docs/factory.md`](docs/factory.md)）。
+
+<!-- factory:end -->
 
 ## まず読むもの
 
@@ -10,7 +15,12 @@ AI エージェント向けの作業ガイドです。
 | このシステム自体を直す・改善する | `docs/rulebook/` → `.claude/skills/ds-improve/SKILL.md` |
 | 見た目が変わる変更を PR にする | `.claude/skills/ds-storybook-preview/SKILL.md`（ローカルでビルドして Pages に公開し、PR にリンクを添える） |
 | 判断の理由を知る                 | `docs/decisions/`                                       |
+| 画面を設計する・DESIGN.md を書く・デザインをレビューする | `docs/design-principles/` → `.claude/skills/design-principles/SKILL.md`（`/design-init`・`/design-adjust`・`/design-review`） |
 
+<!-- factory:start -->
+新しいデザインシステムを作るときは `.claude/skills/ds-factory/SKILL.md`（デザインシステムファクトリー）を使います。
+
+<!-- factory:end -->
 ## 技術スタック
 
 React 19 / TypeScript、Base UI v1、Tailwind CSS v4、tailwind-variants v3、shadcn 方式の配布、
@@ -32,11 +42,13 @@ packages/ui/              コンポーネント（8341-ui）
   src/styles/theme.css    Tailwind のテーマ（@utility focus-ring など）
   registry.json           shadcn レジストリ（生成物）
 apps/storybook/           Storybook 10・e2e（Playwright）・レジストリの配信元
-docs/rulebook/            ルールブック
+docs/design-principles/   画面設計のルール（UI の方向性 → 特化ルール → 原則 → WCAG）の正本
+docs/rulebook/            ルールブック（design-principles とトークン・コンポーネントの対応）
 docs/decisions/           ADR
 docs/improvement/         改善バックログとログ
 DESIGN.md                 エージェント向け仕様（auto ブロックは生成物）
 templates/                プロダクト用 DESIGN.md の雛形
+.claude/skills/           エージェントのスキル（正本。.agents/skills はここへのシンボリックリンク）
 ```
 
 ## コマンド
@@ -58,6 +70,7 @@ pnpm changeset                             # 変更内容を記録（公開さ�
 
 ## 守ること
 
+- 画面設計のルールは `docs/design-principles/` を正とする。ギャップを見つけたら例外を作らず、そこを直す PR を出す
 - 生成物を手で編集しない: `packages/tokens/dist/`、`packages/tokens/src/primitive/color.tokens.json`、`packages/ui/src/lib/tw-merge-config.ts`、`packages/ui/registry.json`、DESIGN.md の `<!-- auto:* -->` ブロック
 - コンポーネントは semantic トークンの Tailwind クラスだけを使い、`tv` / `cn` は `@/lib/tv` から import する
 - 任意値・手書き CSS では `var(--8341-*)` を参照する（`var(--color-*)` は未定義になりうる）
