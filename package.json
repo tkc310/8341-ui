@@ -3,6 +3,10 @@
   "private": true,
   "description": "8341-ui のモノレポ（トークン / コンポーネント / Storybook / レジストリ）",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkc310/8341ui.git"
+  },
   "type": "module",
   "scripts": {
     "prepare": "pnpm build:tokens",
@@ -18,7 +22,8 @@
     "audit:report": "pnpm --filter 8341-ui-tokens audit",
     "changeset": "changeset",
     "factory:create": "node scripts/factory/create.mjs",
-    "release": "pnpm build && changeset publish"
+    "release:version": "node scripts/release.mjs version",
+    "release:publish": "node scripts/release.mjs publish"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",

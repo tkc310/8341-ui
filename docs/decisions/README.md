@@ -17,6 +17,7 @@
 | [0011](./0011-storybook-pr-preview.md) | PR ごとの Storybook をローカルでビルドし Pages（gh-pages ブランチ）に置く | 採用 |
 | [0012](./0012-self-contained-registry.md) | shadcn のレジストリだけで導入できるようにする（テーマにトークンを同梱） | 採用 |
 | [0013](./0013-design-principles-in-repo-and-factory.md) | design-principles を取り込み、デザインシステムファクトリーとして位置づける | 採用 |
+| [0014](./0014-release-and-oss-docs.md) | リリースの仕組み（タグ・Releases・版ごとのレジストリ）と OSS としての体裁 | 採用 |
 
 ## テンプレート
 
