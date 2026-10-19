@@ -2,7 +2,7 @@ import { cnMerge, createTV } from 'tailwind-variants';
 import { twMergeConfig } from '@/lib/tw-merge-config';
 
 /**
- * tkc310-ui のテーマ名を登録した tv。コンポーネントは必ずこちらを使う。
+ * 8341-ui のテーマ名を登録した tv。コンポーネントは必ずこちらを使う。
  * （tailwind-variants の tv をそのまま使うと `text-fg text-body-md` の文字色が消える）
  */
 export const tv = createTV({ twMerge: true, twMergeConfig });

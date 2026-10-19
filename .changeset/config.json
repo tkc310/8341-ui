@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [["tkc310-ui", "tkc310-ui-tokens"]],
+  "fixed": [["8341-ui", "8341-ui-tokens"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
@@ -13,5 +13,5 @@
     "tag": false
   },
   "updateInternalDependencies": "patch",
-  "ignore": ["tkc310-ui-storybook"]
+  "ignore": ["8341-ui-storybook"]
 }

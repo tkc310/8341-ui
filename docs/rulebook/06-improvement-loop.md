@@ -49,7 +49,7 @@
 - 修正は PR で行い、PR テンプレートのチェックリスト（完了の定義）を満たす
 - 見た目を変えたら、ローカルで `pnpm storybook:preview` を実行して PR ごとの Storybook を GitHub Pages に公開し、変わったストーリーへのリンクを PR に添える（`.claude/skills/ds-storybook-preview/SKILL.md`）
 - 値や方針を変えたら ADR を追加する（`docs/decisions/NNNN-*.md`）
-- トークンを変えたら `pnpm --filter tkc310-ui-tokens build` と `design-md` で CSS と DESIGN.md を更新する（CI がずれを検出する）
+- トークンを変えたら `pnpm --filter 8341-ui-tokens build` と `design-md` で CSS と DESIGN.md を更新する（CI がずれを検出する）
 
 ## 4. 再発を防ぐ（いちばん大事）
 

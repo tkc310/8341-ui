@@ -5,8 +5,8 @@
  *
  * 使い方（リポジトリのルートで）
  *   pnpm storybook:preview              # ビルドして、今のブランチの PR に公開する
- *   pnpm --filter tkc310-ui-storybook preview:publish -- --pr 12     # ビルド済みのものを PR #12 に公開する
- *   pnpm --filter tkc310-ui-storybook preview:publish -- --pr 12 --remove   # PR #12 のプレビューを消す
+ *   pnpm --filter 8341-ui-storybook preview:publish -- --pr 12     # ビルド済みのものを PR #12 に公開する
+ *   pnpm --filter 8341-ui-storybook preview:publish -- --pr 12 --remove   # PR #12 のプレビューを消す
  *
  * - PR 番号を省くと、今のブランチから開いている PR を探す（gh の REST API を使う）
  * - gh-pages ブランチは一時的な git worktree で扱い、作業ツリーには触らない。強制 push はしない

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import data from 'tkc310-ui-tokens/tokens.json';
+import data from '8341-ui-tokens/tokens.json';
 
 interface TokenEntry {
   name: string;

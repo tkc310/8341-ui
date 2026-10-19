@@ -1,6 +1,6 @@
 /* このファイルは packages/tokens/scripts/generate-tw-merge.ts が生成します。直接編集しないでください。 */
 /**
- * tailwind-variants のクラス統合に登録する tkc310-ui 独自のテーマ名。
+ * tailwind-variants のクラス統合に登録する 8341-ui 独自のテーマ名。
  * これが無いと `text-fg text-body-md` の文字色が消えるなど、クラスの競合判定を誤る。
  */
 export const twMergeConfig = {

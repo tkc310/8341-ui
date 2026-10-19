@@ -40,7 +40,7 @@ description: コンポーネントやトークンの見た目が変わる変更�
    ```
 
    - トークンの生成 → レジストリのビルド → Storybook のビルド → `gh-pages` の `pr-preview/pr-<番号>/` へ push、の順に動く
-   - PR 番号は今のブランチから自動で探す。見つからないときは `pnpm build:storybook && pnpm --filter tkc310-ui-storybook preview:publish -- --pr <番号>`
+   - PR 番号は今のブランチから自動で探す。見つからないときは `pnpm build:storybook && pnpm --filter 8341-ui-storybook preview:publish -- --pr <番号>`
    - 最後に URL が出る。Pages への反映に 1〜2 分かかる
    - ビルドが失敗したら、原因を直してから公開する。ビルドの通らない PR はレビューに出さない
 

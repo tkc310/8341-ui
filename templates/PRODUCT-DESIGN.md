@@ -1,15 +1,15 @@
 # DESIGN.md — （プロダクト名）
 
-> tkc310-ui を使うプロダクトの DESIGN.md の雛形。プロダクトのリポジトリ直下にコピーして埋める。
-> tkc310-ui 側の仕様（トークン・コンポーネント・Do / Don't）は tkc310-ui リポジトリの DESIGN.md を参照し、ここには写さない。
-> 部品は shadcn 方式（`npx shadcn@latest add @tkc/{name}`）か npm の `tkc310-ui` で取り込む。
+> 8341-ui を使うプロダクトの DESIGN.md の雛形。プロダクトのリポジトリ直下にコピーして埋める。
+> 8341-ui 側の仕様（トークン・コンポーネント・Do / Don't）は 8341-ui リポジトリの DESIGN.md を参照し、ここには写さない。
+> 部品は shadcn 方式（`npx shadcn@latest add @tkc/{name}`）か npm の `8341-ui` で取り込む。
 > 判断の順序は [design-principles](https://github.com/tkc310/agents-playground/tree/main/docs/design-principles) に従う: UI の方向性 → サービス別の特化ルール → 原則 → WCAG。
 
 ## プロダクト概要
 
 - 対象ユーザー: （職種、習熟度、利用頻度）
 - ドメイン: （業務領域。専門的か日常的か）
-- アクセシビリティ目標: WCAG 2.2 Level AA（tkc310-ui の基準。これより緩めない）
+- アクセシビリティ目標: WCAG 2.2 Level AA（8341-ui の基準。これより緩めない）
 
 ## 対象デバイス
 
@@ -28,8 +28,8 @@
 
 1. UI の方向性: 上の表のとおり
 2. 特化ルール: （services/ のどれを採るか）
-3. 原則: design-principles の適用ルール（tkc310-ui の対応表: `docs/rulebook/01-principles.md`）
-4. WCAG 2.2 AA: tkc310-ui のトークンとコンポーネントで担保。画面ごとの確認項目は `docs/rulebook/02-accessibility.md`
+3. 原則: design-principles の適用ルール（8341-ui の対応表: `docs/rulebook/01-principles.md`）
+4. WCAG 2.2 AA: 8341-ui のトークンとコンポーネントで担保。画面ごとの確認項目は `docs/rulebook/02-accessibility.md`
 
 ## 必須ルールを外した項目
 
@@ -37,9 +37,9 @@
 | -------------------- | ---------- |
 | （なければ「なし」） |            |
 
-## tkc310-ui からの拡張
+## 8341-ui からの拡張
 
-プロダクト固有に足したトークンやコンポーネント。他のプロダクトでも使えそうなら tkc310-ui への追加を Issue で提案する。
+プロダクト固有に足したトークンやコンポーネント。他のプロダクトでも使えそうなら 8341-ui への追加を Issue で提案する。
 
 | 名前 | 種類 | 理由 |
 | ---- | ---- | ---- |

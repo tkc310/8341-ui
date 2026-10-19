@@ -1,5 +1,5 @@
 {
-  "name": "tkc310-ui",
+  "name": "8341-ui",
   "version": "0.1.0",
   "description": "プロジェクトで使い回す自分用のデザインシステム（React + Base UI + Tailwind CSS v4 / アクセシビリティ優先）",
   "license": "MIT",
@@ -33,12 +33,12 @@
     "test:vrt": "vp test --project vrt",
     "figma:publish": "figma connect publish",
     "registry": "tsx scripts/generate-registry.ts",
-    "registry:build": "shadcn build ./registry.json -o ../../apps/storybook/public/r"
+    "registry:build": "tsx scripts/build-registry-css.ts && shadcn build ./registry.json -o ../../apps/storybook/public/r"
   },
   "dependencies": {
+    "8341-ui-tokens": "workspace:*",
     "@base-ui/react": "catalog:",
-    "tailwind-variants": "catalog:",
-    "tkc310-ui-tokens": "workspace:*"
+    "tailwind-variants": "catalog:"
   },
   "devDependencies": {
     "@figma/code-connect": "catalog:",

@@ -2,7 +2,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="はじめに" />
 
-# tkc310-ui
+# 8341-ui
 
 プロジェクトをまたいで使い回す、自分用のデザインシステムです。
 [デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) のアクセシビリティ基準を土台に、
@@ -35,25 +35,31 @@ npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
 
 ```css
 @import 'tailwindcss';
-@import './styles/tkc310-ui.css';
+@import './styles/8341-ui.css';
 ```
 
-## 使い方 2: npm パッケージ
+テーマ（`styles/8341-ui.css`）はトークンの CSS を同梱しているので、npm のパッケージは要りません。
+トークンを更新したら `npx shadcn@latest add @tkc/theme --overwrite` で取り込み直します。
+トークンをデータ（`tokens.json` や Figma 用 JSON）として使いたい場合は、このリポジトリの `packages/tokens/dist/` から取得します（npm には公開していません）。
+
+## 使い方 2: npm パッケージ（公開した場合）
+
+npm への公開は既定で無効です。公開すると、次のように使えます。
 
 ```tsx
-import { Button } from 'tkc310-ui/button';
-import 'tkc310-ui/styles.css'; // Tailwind を使わない場合（ビルド済み）
+import { Button } from '8341-ui/button';
+import '8341-ui/styles.css'; // Tailwind を使わない場合（ビルド済み）
 ```
 
 Tailwind を使うプロジェクトでは `styles.css` の代わりに次を書きます。
 
 ```css
 @import 'tailwindcss';
-@import 'tkc310-ui/theme.css';
-@source "../node_modules/tkc310-ui/dist";
+@import '8341-ui/theme.css';
+@source "../node_modules/8341-ui/dist";
 ```
 
-`@source` のパスは、この CSS ファイルから見た `node_modules/tkc310-ui/dist` への相対パスにします（例: `src/app.css` なら `../node_modules/...`）。
+`@source` のパスは、この CSS ファイルから見た `node_modules/8341-ui/dist` への相対パスにします（例: `src/app.css` なら `../node_modules/...`）。
 shadcn 方式で部品をコピーした場合は、部品がプロジェクト内にあるので `@source` は不要です。
 
 ## テーマ

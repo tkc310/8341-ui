@@ -1,7 +1,7 @@
 /**
  * リポジトリ直下の DESIGN.md の自動生成ブロック（<!-- auto:NAME --> 〜 <!-- /auto:NAME -->）を
  * トークンとコンポーネント一覧から再生成する。手書き部分には触れない。
- * 実行: pnpm --filter tkc310-ui-tokens design-md（--check で差分検出のみ）
+ * 実行: pnpm --filter 8341-ui-tokens design-md（--check で差分検出のみ）
  */
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -105,7 +105,7 @@ for (const [name, gen] of Object.entries(blocks)) {
 if (CHECK) {
   if (md !== original) {
     console.error(
-      '✖ DESIGN.md がトークンと一致していません。pnpm --filter tkc310-ui-tokens design-md を実行してください',
+      '✖ DESIGN.md がトークンと一致していません。pnpm --filter 8341-ui-tokens design-md を実行してください',
     );
     process.exit(1);
   }

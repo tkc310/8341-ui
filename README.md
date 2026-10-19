@@ -1,4 +1,4 @@
-# tkc310-ui
+# 8341-ui
 
 プロジェクトで使い回す、自分用のデザインシステムです。
 [デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) のアクセシビリティ基準を土台に、
@@ -13,8 +13,8 @@
 | 含まれるもの                                                                       | 場所                                                                             |
 | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | ルールブック（原則・アクセシビリティ・トークン・コンポーネント・文言・改善ループ） | [`docs/rulebook/`](./docs/rulebook/)                                             |
-| トークン（W3C DTCG 2025.10、primitive / semantic、ライト / ダーク）                | [`packages/tokens`](./packages/tokens/)（`tkc310-ui-tokens`）                    |
-| コンポーネント 18 種（Base UI + Tailwind CSS v4 + tailwind-variants）              | [`packages/ui`](./packages/ui/)（`tkc310-ui`）                                   |
+| トークン（W3C DTCG 2025.10、primitive / semantic、ライト / ダーク）                | [`packages/tokens`](./packages/tokens/)（`8341-ui-tokens`）                    |
+| コンポーネント 18 種（Base UI + Tailwind CSS v4 + tailwind-variants）              | [`packages/ui`](./packages/ui/)（`8341-ui`）                                   |
 | shadcn レジストリ（`registry:base` で Base UI を固定）                             | [`packages/ui/registry.json`](./packages/ui/registry.json)                       |
 | Storybook 10・e2e                                                                  | [`apps/storybook`](./apps/storybook/)                                            |
 | AI エージェント向け仕様                                                            | [`DESIGN.md`](./DESIGN.md)、[`AGENTS.md`](./AGENTS.md)                           |
@@ -55,15 +55,21 @@ npx shadcn@latest add @tkc/tkc-base @tkc/button @tkc/form-field @tkc/text-field
 ```css
 /* globals.css */
 @import 'tailwindcss';
-@import './styles/tkc310-ui.css';
+@import './styles/8341-ui.css';
 ```
 
-### npm パッケージ
+テーマ（`styles/8341-ui.css`）はトークンの CSS を同梱しているので、npm のパッケージは要りません。
+トークンを更新したら `npx shadcn@latest add @tkc/theme --overwrite` で取り込み直します。
+トークンをデータ（`tokens.json` や Figma 用 JSON）として使いたい場合は、このリポジトリの `packages/tokens/dist/` から取得します（npm には公開していません）。
+
+### npm パッケージ（公開した場合）
+
+npm への公開は既定で無効です（[リリース](#リリース)）。公開すると、次のように import して使えます。
 
 ```tsx
-import { Button } from 'tkc310-ui/button';
-import { FormField } from 'tkc310-ui/form-field';
-import { TextField } from 'tkc310-ui/text-field';
+import { Button } from '8341-ui/button';
+import { FormField } from '8341-ui/form-field';
+import { TextField } from '8341-ui/text-field';
 
 export function SignUp() {
   return (
@@ -80,14 +86,14 @@ export function SignUp() {
 ```css
 /* Tailwind を使う場合 */
 @import 'tailwindcss';
-@import 'tkc310-ui/theme.css';
-@source "../node_modules/tkc310-ui/dist";
+@import '8341-ui/theme.css';
+@source "../node_modules/8341-ui/dist";
 ```
 
-`@source` のパスは、この CSS ファイルから見た `node_modules/tkc310-ui/dist` への相対パスにします（例: `src/app.css` なら `../node_modules/...`）。
+`@source` のパスは、この CSS ファイルから見た `node_modules/8341-ui/dist` への相対パスにします（例: `src/app.css` なら `../node_modules/...`）。
 shadcn 方式で部品をコピーした場合は、部品がプロジェクト内にあるので `@source` は不要です。
 
-Tailwind を使わない場合は、ビルド済みの `import 'tkc310-ui/styles.css'` を読み込みます。
+Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.css'` を読み込みます。
 
 テーマは `<html class="dark">` または `<html data-theme="dark">` で切り替えます。どちらも無ければ OS の設定に従います。
 
@@ -95,10 +101,10 @@ Tailwind を使わない場合は、ビルド済みの `import 'tkc310-ui/styles
 
 ```bash
 # 例: キーカラーの色相を変える（packages/tokens/src/palette.config.json の families.indigo.hue）
-pnpm --filter tkc310-ui-tokens palette     # primitive を再生成
-pnpm --filter tkc310-ui-tokens build       # CSS 変数・Tailwind テーマ・Figma JSON
-pnpm --filter tkc310-ui-tokens design-md   # DESIGN.md の表
-pnpm --filter tkc310-ui-tokens tw-merge    # クラス統合の設定
+pnpm --filter 8341-ui-tokens palette     # primitive を再生成
+pnpm --filter 8341-ui-tokens build       # CSS 変数・Tailwind テーマ・Figma JSON
+pnpm --filter 8341-ui-tokens design-md   # DESIGN.md の表
+pnpm --filter 8341-ui-tokens tw-merge    # クラス統合の設定
 pnpm check
 ```
 
@@ -113,7 +119,7 @@ PR を閉じるとプレビューは自動で消えます。初回は、リポ�
 
 ## リリース
 
-公開パッケージ（`tkc310-ui`・`tkc310-ui-tokens`）を変えたら `pnpm changeset` で変更内容を記録します。
+公開パッケージ（`8341-ui`・`8341-ui-tokens`）を変えたら `pnpm changeset` で変更内容を記録します。
 main にマージされると Changesets がバージョン更新の PR を作ります。
 npm への公開は、リポジトリの Settings > Secrets and variables > Actions で変数 `ENABLE_NPM_PUBLISH` を `true` にし、シークレット `NPM_TOKEN` を登録したときだけ行われます（意図しない公開を防ぐため、既定では公開しません）。
 

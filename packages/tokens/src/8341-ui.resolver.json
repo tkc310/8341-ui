@@ -1,8 +1,8 @@
 {
   "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
   "version": "2025.10",
-  "name": "tkc310-ui",
-  "description": "tkc310-ui のトークン構成。primitive と theme 非依存の semantic を土台に、theme（light / dark）で semantic カラーと影を差し替える。",
+  "name": "8341-ui",
+  "description": "8341-ui のトークン構成。primitive と theme 非依存の semantic を土台に、theme（light / dark）で semantic カラーと影を差し替える。",
   "sets": {
     "primitive": {
       "description": "値の素材。コンポーネントから直接参照しない",
