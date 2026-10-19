@@ -2,7 +2,25 @@
   "name": "8341-ui-tokens",
   "version": "0.1.0",
   "description": "8341-ui のデザイントークン（DTCG 2025.10）と、そこから生成した CSS 変数・Tailwind v4 テーマ・Figma Variables",
+  "keywords": [
+    "accessibility",
+    "design-tokens",
+    "dtcg",
+    "figma-variables",
+    "style-dictionary",
+    "tailwindcss"
+  ],
+  "homepage": "https://tkc310.github.io/8341ui/",
+  "bugs": {
+    "url": "https://github.com/tkc310/8341ui/issues"
+  },
   "license": "MIT",
+  "author": "Takashi Sato",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkc310/8341ui.git",
+    "directory": "packages/tokens"
+  },
   "files": [
     "dist",
     "src"
@@ -40,23 +58,5 @@
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
-  },
-  "author": "Takashi Sato",
-  "homepage": "https://tkc310.github.io/8341ui/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tkc310/8341ui.git",
-    "directory": "packages/tokens"
-  },
-  "bugs": {
-    "url": "https://github.com/tkc310/8341ui/issues"
-  },
-  "keywords": [
-    "design-tokens",
-    "dtcg",
-    "style-dictionary",
-    "tailwindcss",
-    "figma-variables",
-    "accessibility"
-  ]
+  }
 }

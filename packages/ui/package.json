@@ -2,7 +2,26 @@
   "name": "8341-ui",
   "version": "0.1.0",
   "description": "プロジェクトで使い回す自分用のデザインシステム（React + Base UI + Tailwind CSS v4 / アクセシビリティ優先）",
+  "keywords": [
+    "accessibility",
+    "base-ui",
+    "design-system",
+    "react",
+    "shadcn",
+    "tailwindcss",
+    "wcag"
+  ],
+  "homepage": "https://tkc310.github.io/8341ui/",
+  "bugs": {
+    "url": "https://github.com/tkc310/8341ui/issues"
+  },
   "license": "MIT",
+  "author": "Takashi Sato",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkc310/8341ui.git",
+    "directory": "packages/ui"
+  },
   "files": [
     "dist"
   ],
@@ -74,24 +93,5 @@
     "tailwindcss": {
       "optional": true
     }
-  },
-  "author": "Takashi Sato",
-  "homepage": "https://tkc310.github.io/8341ui/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tkc310/8341ui.git",
-    "directory": "packages/ui"
-  },
-  "bugs": {
-    "url": "https://github.com/tkc310/8341ui/issues"
-  },
-  "keywords": [
-    "design-system",
-    "react",
-    "base-ui",
-    "tailwindcss",
-    "shadcn",
-    "accessibility",
-    "wcag"
-  ]
+  }
 }

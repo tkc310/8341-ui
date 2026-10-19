@@ -3,6 +3,10 @@
   "private": true,
   "description": "8341-ui のモノレポ（トークン / コンポーネント / Storybook / レジストリ）",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkc310/8341ui.git"
+  },
   "type": "module",
   "scripts": {
     "prepare": "pnpm build:tokens",
@@ -37,9 +41,5 @@
       "name": "node",
       "version": ">=22.12.0"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tkc310/8341ui.git"
   }
 }
