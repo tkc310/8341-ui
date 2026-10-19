@@ -10,7 +10,9 @@ import { resolve } from 'node:path';
 const ROOT = resolve(import.meta.dirname, '..');
 const errors: string[] = [];
 
-const components = readdirSync(resolve(ROOT, 'src/components/ui'), { withFileTypes: true }).filter((d) => d.isDirectory());
+const components = readdirSync(resolve(ROOT, 'src/components/ui'), { withFileTypes: true }).filter((d) =>
+  d.isDirectory(),
+);
 for (const { name } of components) {
   const src = resolve(ROOT, `src/components/ui/${name}/index.tsx`);
   if (!existsSync(src)) continue;

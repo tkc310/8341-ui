@@ -21,7 +21,13 @@ const rel = (p: string) => relative(ROOT, p);
 
 // src/components 直下: ui/、コンポーネントを横断するテスト（*.vrt.test.tsx）とその基準画像、この規則の文書だけ
 for (const name of readdirSync(COMPONENTS)) {
-  if (name === 'ui' || name === '__screenshots__' || name === 'COMPONENT_STRUCTURE.md' || name.endsWith('.vrt.test.tsx')) continue;
+  if (
+    name === 'ui' ||
+    name === '__screenshots__' ||
+    name === 'COMPONENT_STRUCTURE.md' ||
+    name.endsWith('.vrt.test.tsx')
+  )
+    continue;
   errors.push(`src/components/${name}: コンポーネントは src/components/ui/<PascalCase>/ に置く`);
 }
 
@@ -38,7 +44,9 @@ function checkDir(dir: string, top: string) {
       continue;
     }
     if (!FILE.test(entry))
-      errors.push(`${rel(p)}: ファイル名は index.tsx / index.test.tsx / index.stories.tsx / index.figma.ts / useXxx.ts のどれかにする`);
+      errors.push(
+        `${rel(p)}: ファイル名は index.tsx / index.test.tsx / index.stories.tsx / index.figma.ts / useXxx.ts のどれかにする`,
+      );
     if (/\.tsx?$/.test(entry)) checkImports(p, top);
   }
 }
@@ -53,7 +61,9 @@ function checkImports(file: string, top: string) {
     }
     const target = resolve(dirname(file), spec);
     if (target !== top && !target.startsWith(`${top}/`))
-      errors.push(`${rel(file)}: ほかのコンポーネントは相対パス（${spec}）ではなく @/components/ui/<Name>/index で import する`);
+      errors.push(
+        `${rel(file)}: ほかのコンポーネントは相対パス（${spec}）ではなく @/components/ui/<Name>/index で import する`,
+      );
   }
 }
 

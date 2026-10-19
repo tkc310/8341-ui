@@ -31,7 +31,10 @@ module.exports = {
       name: 'components-not-to-stories-or-tests',
       comment: '本体からストーリー・テスト・Code Connect・テスト用の道具（src/test）を参照しない（配布物に混ざるため）',
       severity: 'error',
-      from: { path: '^packages/ui/src', pathNot: ['[.](stories|test|vrt[.]test|figma)[.]tsx?$', '^packages/ui/src/test/'] },
+      from: {
+        path: '^packages/ui/src',
+        pathNot: ['[.](stories|test|vrt[.]test|figma)[.]tsx?$', '^packages/ui/src/test/'],
+      },
       to: { path: ['[.](stories|test|vrt[.]test|figma)[.]tsx?$', '^packages/ui/src/test/'] },
     },
     {
