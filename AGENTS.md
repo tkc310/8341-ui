@@ -81,4 +81,5 @@ make release-version / release-publish   # リリース（アカウント保有�
 - 任意値・手書き CSS では `var(--8341-*)` を参照する（`var(--color-*)` は未定義になりうる）
 - チェックを通すためにルールを緩めない（必要なら ADR を書いて人間に確認する）
 - 変更したら `make verify` を通し、`docs/improvement/log.md` に記録する
+- コミットメッセージと PR のタイトルは Conventional Commits（`feat(button): …`・`fix: …`・`docs: …`。要約と本文は日本語）。種類・範囲・破壊的変更の書き方は [CONTRIBUTING.md](CONTRIBUTING.md#コミットメッセージと-pr-タイトル)
 - 公開パッケージを変えたら `make changeset` を添える（版の決め方は `docs/releasing.md`）
