@@ -76,10 +76,11 @@ node scripts/factory/create.mjs --config <設定ファイル> --out <出力先>
 4. **プロダクトの前提**:
    - 共有の基盤 → DESIGN.md の「UI の方向性とサービス種別は各プロダクトで決める」をそのまま使う
    - 専用 → `templates/PRODUCT-DESIGN.md` を元に、ヒアリング結果（プロダクト概要・画面領域ごとの方向性とサービス種別・採用したルール・外した必須とその理由）を DESIGN.md の冒頭に書く。特化ルールの「トークン」節に挙がる値（表の行高、主操作のサイズなど）をトークンとコンポーネントに反映する
-5. **フォント**: 指定があれば `packages/tokens/src/primitive/typography.tokens.json` の font-family を変える
-6. **ライトのみ**を選んだ場合: ひな形はライト＋ダーク前提。ダークを外す変更は影響が大きいので、範囲（resolver の theme、dark.tokens.json、Storybook の切り替え）をユーザーに示して確認してから行い、ADR に残す
-7. **npm にも公開**を選んだ場合: README の「リリース」に従い、`ENABLE_NPM_PUBLISH` と `NPM_TOKEN` の設定をユーザーに案内する
-8. **確認**: `pnpm check && pnpm test && pnpm build:storybook`。Storybook をライト・ダークで開き、キーカラー・フォーカス表示・状態色を目で確かめる
+5. **作者とライセンス**: `package.json` の `author`、`LICENSE` の著作権者を、新しいデザインシステムの持ち主に書き換える。`packages/*/CHANGELOG.md` の初回リリースの説明も新しいシステムに合わせる
+6. **フォント**: 指定があれば `packages/tokens/src/primitive/typography.tokens.json` の font-family を変える
+7. **ライトのみ**を選んだ場合: ひな形はライト＋ダーク前提。ダークを外す変更は影響が大きいので、範囲（resolver の theme、dark.tokens.json、Storybook の切り替え）をユーザーに示して確認してから行い、ADR に残す
+8. **npm にも公開**を選んだ場合: README の「リリース」に従い、`ENABLE_NPM_PUBLISH` と `NPM_TOKEN` の設定をユーザーに案内する
+9. **確認**: `pnpm check && pnpm test && pnpm build:storybook`。Storybook をライト・ダークで開き、キーカラー・フォーカス表示・状態色を目で確かめる
 
 ### 6. 公開する（ユーザーの承認を得てから）
 

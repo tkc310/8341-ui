@@ -15,6 +15,7 @@ AI エージェント向けの作業ガイドです。Claude Code（推奨）・
 | このシステム自体を直す・改善する | `docs/rulebook/` → `.claude/skills/ds-improve/SKILL.md` |
 | 見た目が変わる変更を PR にする | `.claude/skills/ds-storybook-preview/SKILL.md`（ローカルでビルドして Pages に公開し、PR にリンクを添える） |
 | 判断の理由を知る                 | `docs/decisions/`                                       |
+| 開発の手順・運用・リリースを知る | `CONTRIBUTING.md`・`docs/operations.md`・`docs/releasing.md` |
 | 画面を設計する・DESIGN.md を書く・デザインをレビューする | `docs/design-principles/` → `.claude/skills/design-principles/SKILL.md`（`/design-init`・`/design-adjust`・`/design-review`） |
 
 <!-- factory:start -->
@@ -76,3 +77,4 @@ pnpm changeset                             # 変更内容を記録（公開さ�
 - 任意値・手書き CSS では `var(--8341-*)` を参照する（`var(--color-*)` は未定義になりうる）
 - チェックを通すためにルールを緩めない（必要なら ADR を書いて人間に確認する）
 - 変更したら `pnpm check && pnpm test` を通し、`docs/improvement/log.md` に記録する
+- 公開パッケージを変えたら `pnpm changeset` を添える（版の決め方は `docs/releasing.md`）

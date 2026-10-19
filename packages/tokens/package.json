@@ -20,7 +20,8 @@
     "./package.json": "./package.json"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build": "tsx scripts/build.ts && tsx scripts/export-figma.ts",
@@ -39,5 +40,23 @@
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
-  }
+  },
+  "author": "Takashi Sato",
+  "homepage": "https://tkc310.github.io/8341ui/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkc310/8341ui.git",
+    "directory": "packages/tokens"
+  },
+  "bugs": {
+    "url": "https://github.com/tkc310/8341ui/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "dtcg",
+    "style-dictionary",
+    "tailwindcss",
+    "figma-variables",
+    "accessibility"
+  ]
 }

@@ -80,7 +80,7 @@ const uiItems: Item[] = components.map((name) => {
 const registry = {
   $schema: 'https://ui.shadcn.com/schema/registry.json',
   name: '8341-ui',
-  homepage: 'https://github.com/tkc310/design-system-myself',
+  homepage: 'https://github.com/tkc310/8341ui',
   items: [
     {
       name: '8341-base',

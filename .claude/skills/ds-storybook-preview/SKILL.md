@@ -10,8 +10,8 @@ description: コンポーネントやトークンの見た目が変わる変更�
 
 | 何が | どこに | 誰が置くか |
 | --- | --- | --- |
-| PR ごとのプレビュー | `https://tkc310.github.io/design-system-myself/pr-preview/pr-<番号>/` | このスキル（`pnpm storybook:preview`） |
-| main の Storybook とレジストリ | `https://tkc310.github.io/design-system-myself/` | CI（main への push 時） |
+| PR ごとのプレビュー | `https://tkc310.github.io/8341ui/pr-preview/pr-<番号>/` | このスキル（`pnpm storybook:preview`） |
+| main の Storybook とレジストリ | `https://tkc310.github.io/8341ui/` | CI（main への push 時） |
 
 どちらも `gh-pages` ブランチに置かれる（ADR-0011）。PR を閉じると、プレビューは CI（`storybook-preview-cleanup.yml`）が消す。
 
@@ -63,16 +63,16 @@ description: コンポーネントやトークンの見た目が変わる変更�
    - 本文は REST API で更新する（`gh pr edit` は GraphQL を使うので、環境によっては通らない）
 
      ```bash
-     gh api repos/tkc310/design-system-myself/pulls/<番号> --jq .body > /tmp/pr-body.md
+     gh api repos/tkc310/8341ui/pulls/<番号> --jq .body > /tmp/pr-body.md
      # <!-- storybook-preview:start --> と <!-- storybook-preview:end --> の間を書き換える
-     gh api -X PATCH repos/tkc310/design-system-myself/pulls/<番号> -F body=@/tmp/pr-body.md
+     gh api -X PATCH repos/tkc310/8341ui/pulls/<番号> -F body=@/tmp/pr-body.md
      ```
 
    - 書く内容の例
 
      ```markdown
      <!-- storybook-preview:start -->
-     プレビュー: https://tkc310.github.io/design-system-myself/pr-preview/pr-12/ （abc1234 時点）
+     プレビュー: https://tkc310.github.io/8341ui/pr-preview/pr-12/ （abc1234 時点）
 
      | ストーリー | ライト | ダーク | 見てほしい点 |
      | --- | --- | --- | --- |

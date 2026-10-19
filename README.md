@@ -1,5 +1,21 @@
 # 8341-ui
 
+[![CI](https://github.com/tkc310/8341ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tkc310/8341ui/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/tkc310/8341ui?sort=semver&display_name=tag)](https://github.com/tkc310/8341ui/releases)
+[![License: MIT](https://img.shields.io/github/license/tkc310/8341ui)](./LICENSE)
+[![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://tkc310.github.io/8341ui/)
+[![shadcn registry](https://img.shields.io/badge/shadcn-registry%20%408341-000000?logo=shadcnui&logoColor=white)](https://tkc310.github.io/8341ui/r/registry.json)
+[![WCAG 2.2 AA](https://img.shields.io/badge/WCAG%202.2-AA-005A9C?logo=w3c&logoColor=white)](./docs/rulebook/02-accessibility.md)
+[![Changesets](https://img.shields.io/badge/maintained%20with-changesets-176de3)](https://github.com/changesets/changesets)
+
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Base UI](https://img.shields.io/badge/Base%20UI-v1-111111)](https://base-ui.com/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![DTCG 2025.10](https://img.shields.io/badge/Design%20Tokens-DTCG%202025.10-6E56CF)](https://www.designtokens.org/)
+[![pnpm 11](https://img.shields.io/badge/pnpm-11-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Claude%20Code%20%7C%20Cursor%20%7C%20Codex-D97757?logo=claude&logoColor=white)](./docs/ai-agents.md)
+
 プロジェクトで使い回す、自分用のデザインシステムです。
 [デジタル庁デザインシステム（DADS）](https://design.digital.go.jp/dads/) のアクセシビリティ基準を土台に、
 キーカラー「藍」・ダークテーマ・自己改善の仕組みを加えて再設計しています。
@@ -16,8 +32,8 @@
 
 <!-- factory:end -->
 
-- **Storybook**: https://tkc310.github.io/design-system-myself/
-- **shadcn レジストリ**: `https://tkc310.github.io/design-system-myself/r/{name}.json`（例: [button](https://tkc310.github.io/design-system-myself/r/button.json)）
+- **Storybook**: https://tkc310.github.io/8341ui/
+- **shadcn レジストリ**: `https://tkc310.github.io/8341ui/r/{name}.json`（例: [button](https://tkc310.github.io/8341ui/r/button.json)）
 
 ![ライト / ダークのプレビュー](./docs/assets/preview.png)
 
@@ -57,9 +73,11 @@ pnpm test:e2e  # e2e（手動）
 
 ```json
 {
-  "registries": { "@8341": "https://tkc310.github.io/design-system-myself/r/{name}.json" }
+  "registries": { "@8341": "https://tkc310.github.io/8341ui/r/{name}.json" }
 }
 ```
+
+版を固定するときは、URL を `https://tkc310.github.io/8341ui/r/v<版>/{name}.json` にします（[リリース](./docs/releasing.md)）。
 
 ```bash
 npx shadcn@latest add @8341/8341-base @8341/button @8341/form-field @8341/text-field
@@ -121,39 +139,18 @@ pnpm --filter 8341-ui-tokens tw-merge    # クラス統合の設定
 pnpm check
 ```
 
-## 見た目の変わる PR にプレビューを添える
+## 開発に参加する
 
-```bash
-pnpm storybook:preview   # ビルドして https://tkc310.github.io/design-system-myself/pr-preview/pr-<番号>/ に公開
-```
+セットアップ・コマンド・変更の流れは [CONTRIBUTING.md](./CONTRIBUTING.md) にあります。見た目が変わる PR には、`pnpm storybook:preview` で公開した Storybook のプレビューを添えます。
 
-PR を作って push した後に実行します。変わったストーリーへのリンクを PR 本文の「Storybook プレビュー」節に書きます（手順: `.claude/skills/ds-storybook-preview/SKILL.md`、ADR-0011）。
-PR を閉じるとプレビューは自動で消えます。初回は、リポジトリの Settings > Pages で配信元を `gh-pages` ブランチにしてください。
+## 運用
 
-## ブランチの片付け
-
-マージ済み・閉じた PR の元ブランチと、一時ブランチ（`ci-debug*`）は、ワークフロー `Branch cleanup` が削除します。
-main への push のたびに候補を一覧にし、承認されてから削除します（Actions の画面か、通知の「Review deployments」から承認）。
-
-承認者の設定（一度だけ）:
-
-```bash
-gh api -X PUT repos/tkc310/design-system-myself/environments/branch-cleanup \
-  -F "reviewers[][type]=User" -F "reviewers[][id]=$(gh api user --jq .id)"
-```
-
-今後のマージで元ブランチを自動で消すなら、あわせて次も設定します（承認なしで消えます）。
-
-```bash
-gh api -X PATCH repos/tkc310/design-system-myself -F delete_branch_on_merge=true
-```
+CI・GitHub Pages の構成・リポジトリの設定（main の保護、ブランチの片付けなど）は [docs/operations.md](./docs/operations.md) にあります。
 
 ## リリース
 
-公開パッケージ（`8341-ui`・`8341-ui-tokens`）を変えたら `pnpm changeset` で変更内容を記録します。
-main にマージされると Changesets がバージョン更新の PR を作ります。
-npm への公開は、リポジトリの Settings > Secrets and variables > Actions で変数 `ENABLE_NPM_PUBLISH` を `true` にし、シークレット `NPM_TOKEN` を登録したときだけ行われます（意図しない公開を防ぐため、既定では公開しません）。
+Changesets で版を管理し、版を上げる PR をマージすると、タグ・GitHub Releases・その版のレジストリ（`r/v<版>/`）ができます。npm への公開は任意です。手順と版の決め方は [docs/releasing.md](./docs/releasing.md) にあります。
 
 ## ライセンス
 
-MIT
+[MIT](./LICENSE)

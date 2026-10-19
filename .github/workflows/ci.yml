@@ -42,6 +42,10 @@ jobs:
       # VRT と e2e は手動・都度実行のため CI では回さない
       - run: pnpm test
 
+  # リリース（手順と方針は docs/releasing.md）
+  #   - changeset があれば「版を上げる PR」（Version Packages）を作る / 更新する
+  #   - その PR がマージされると、タグ（8341-ui@x.y.z）と GitHub Releases を作り、その版のレジストリを r/v<版>/ に残す
+  #   - npm への公開は、リポジトリ変数 ENABLE_NPM_PUBLISH が true のときだけ行う
   release:
     if: github.ref == 'refs/heads/main'
     needs: [check, test]
@@ -50,6 +54,9 @@ jobs:
       contents: write
       pull-requests: write
       id-token: write
+    concurrency:
+      group: gh-pages
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -61,19 +68,38 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
       - run: pnpm install --frozen-lockfile
-      # changeset があればバージョン更新 PR を作る。
-      # npm への公開は、リポジトリ変数 ENABLE_NPM_PUBLISH を true にしたときだけ行う
-      # （changeset が無いと changeset publish は現在の版をそのまま公開するため、意図しない初回公開を防ぐ）
       - uses: changesets/action@v2
+        id: changesets
         with:
-          publish: ${{ vars.ENABLE_NPM_PUBLISH == 'true' && 'pnpm release' || '' }}
+          title: 'chore: リリース（Version Packages）'
+          commit: 'chore: リリース（Version Packages）'
+          # npm に公開しないときは、タグだけ作る（GitHub Releases は「New tag」の出力から作られる）
+          publish: ${{ vars.ENABLE_NPM_PUBLISH == 'true' && 'pnpm release' || 'pnpm release:tag' }}
+          createGithubReleases: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # CHANGESETS_TOKEN（任意）を登録すると、版を上げる PR でも CI が動く（GITHUB_TOKEN で作った PR では動かない）
+          GITHUB_TOKEN: ${{ secrets.CHANGESETS_TOKEN || secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # shadcn の利用者が版を固定できるよう、リリースした版のレジストリを r/v<版>/ に残す
+      - name: リリースした版のレジストリを作る
+        id: snapshot
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          pnpm build:tokens
+          pnpm --filter 8341-ui registry:build
+          echo "version=$(node -p "require('./packages/ui/package.json').version")" >> "$GITHUB_OUTPUT"
+      - uses: JamesIves/github-pages-deploy-action@v4
+        if: steps.changesets.outputs.published == 'true'
+        with:
+          folder: apps/storybook/public/r
+          branch: gh-pages
+          target-folder: r/v${{ steps.snapshot.outputs.version }}
+          clean: false
+          force: false
 
-  # main の Storybook とレジストリ（/r/*.json）を gh-pages ブランチの直下に置く。
-  # PR のプレビュー（pr-preview/）は storybook-preview.yml が同じブランチに置くので、消さない・強制 push しない
+  # main の Storybook と最新のレジストリ（/r/*.json）を gh-pages ブランチの直下に置く。
+  # PR のプレビュー（pr-preview/）と、リリースした版のレジストリ（r/v<版>/）は消さない。強制 push もしない
   storybook:
     if: github.ref == 'refs/heads/main'
     needs: [check, test]
@@ -98,5 +124,7 @@ jobs:
         with:
           folder: apps/storybook/storybook-static
           branch: gh-pages
-          clean-exclude: pr-preview
+          clean-exclude: |
+            pr-preview
+            r/v*
           force: false

@@ -24,7 +24,8 @@
     "./package.json": "./package.json"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build": "vp pack && tailwindcss -i src/styles/build.css -o dist/styles.css --minify && tsx scripts/check-dist.ts",
@@ -73,5 +74,24 @@
     "tailwindcss": {
       "optional": true
     }
-  }
+  },
+  "author": "Takashi Sato",
+  "homepage": "https://tkc310.github.io/8341ui/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkc310/8341ui.git",
+    "directory": "packages/ui"
+  },
+  "bugs": {
+    "url": "https://github.com/tkc310/8341ui/issues"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "base-ui",
+    "tailwindcss",
+    "shadcn",
+    "accessibility",
+    "wcag"
+  ]
 }
