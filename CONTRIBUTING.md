@@ -113,9 +113,53 @@ pnpm のスクリプト（`pnpm check` など）を直接実行しても同じ�
    - 改善なら `docs/improvement/log.md` に 1 行
    - 値や方針を変えたら `docs/decisions/` に ADR
 5. **PR を出す**: PR テンプレートのチェックリストを埋める。見た目が変わるなら、`make storybook-preview` で公開したプレビューのリンクを添える（`ds-storybook-preview` スキル）
-6. **マージ**: `check` と `test` が通ったらマージする。マージ後のブランチは `Branch cleanup` が消す
+6. **マージ**: `check` と `test` が通ったら squash マージする。マージ後のブランチは `Branch cleanup` が消す
 
-コミットメッセージは `種類: 変更の要約`（例: `feat: Tooltip を追加`、`fix(select): …`）。本文は日本語で、何をなぜ変えたかを書く。
+## コミットメッセージと PR タイトル
+
+コミットメッセージは [Conventional Commits 1.0.0](https://www.conventionalcommits.org/ja/v1.0.0/) に従う。人間も AI エージェントも同じです。
+
+```
+<種類>[(<範囲>)][!]: <変更の要約>
+
+[本文: 何をなぜ変えたか]
+
+[フッター: BREAKING CHANGE: … / Refs: #12 など]
+```
+
+- **種類**（英小文字）:
+
+  | 種類 | 使うとき |
+  | --- | --- |
+  | `feat` | 機能・コンポーネント・トークンの追加、利用者から見える振る舞いの変更 |
+  | `fix` | 不具合・アクセシビリティ違反の修正 |
+  | `docs` | 文書だけの変更（README・ADR・ルールブック・design-principles など） |
+  | `style` | 整形だけの変更（動作も見た目も変わらない） |
+  | `refactor` | 振る舞いを変えないコードの整理 |
+  | `perf` | 性能の改善 |
+  | `test` | テストの追加・修正 |
+  | `build` | ビルド・依存・パッケージ設定の変更 |
+  | `ci` | GitHub Actions の変更 |
+  | `chore` | 上のどれにも当たらない雑務（道具の版上げ、生成物の更新など） |
+  | `revert` | 取り消し（本文に取り消したコミットのハッシュを書く） |
+
+- **範囲**（任意）: 変えた場所を英小文字で。例: `button`・`select` などコンポーネント名、`tokens`・`storybook`・`registry`・`factory`・`release`
+- **破壊的変更**: 種類の後ろに `!` を付け（例: `feat(tokens)!: …`）、フッターに `BREAKING CHANGE: 何が変わり、利用者は何をすればよいか` を書く。changeset も major（0.x の間は minor）にする
+- **要約**: 日本語で、何をしたかを 1 行（目安 50 字以内）。文末に句点を付けない
+- **本文**: 日本語で、何をなぜ変えたかを書く（どう変えたかはコードを見ればわかる）
+
+例:
+
+```
+feat(tooltip): Tooltip を追加
+fix(select): 選択肢の名前が先頭の項目で読み上げられる不具合を直す
+docs: コミットメッセージの規約を書く
+feat(tokens)!: color.bg.subtle を color.surface.subtle に改名
+
+BREAKING CHANGE: クラス bg-bg-subtle は bg-surface-subtle に置き換える
+```
+
+main へは squash マージするため、**PR のタイトルが main のコミットメッセージになります**。PR のタイトルも同じ形式で書いてください。changeset の説明（CHANGELOG に載る文）はこれとは別に、利用者向けに書きます（[docs/releasing.md](./docs/releasing.md)）。
 
 ## 変更の種類ごとの手順
 

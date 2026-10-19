@@ -12,6 +12,7 @@
 
 ## 完了の定義
 
+- [ ] PR のタイトルが Conventional Commits の形式（`feat(button): …` など。squash マージでそのまま main のコミットになる）
 - [ ] `make check` と `make test` が通る
 - [ ] changeset を追加した（`make changeset`。利用者に影響が無い変更なら不要）
 - [ ] ライト / ダークの両方で見た目を確認した（見た目が変わる場合は上の Storybook プレビューを添えた）
