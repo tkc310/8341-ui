@@ -84,12 +84,13 @@ const blocks: Record<string, () => string> = {
     return [head, ...rows].join('\n');
   },
   components: () => {
-    const dir = resolve(REPO_ROOT, 'packages/ui/src/components');
+    const dir = resolve(REPO_ROOT, 'packages/ui/src/components/ui');
+    const kebab = (n: string) => n.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
     return readdirSync(dir, { withFileTypes: true })
       .filter((d) => d.isDirectory() && !d.name.startsWith('_'))
       .map((d) => d.name)
       .sort()
-      .map((n) => `- \`${n}\` — \`packages/ui/src/components/${n}/\``)
+      .map((n) => `- \`${n}\`（\`@8341/${kebab(n)}\`）— \`packages/ui/src/components/ui/${n}/\``)
       .join('\n');
   },
 };

@@ -76,7 +76,7 @@
       ],
       "files": [
         {
-          "path": "src/components/accordion/accordion.tsx",
+          "path": "src/components/ui/Accordion/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -94,7 +94,7 @@
       ],
       "files": [
         {
-          "path": "src/components/breadcrumb/breadcrumb.tsx",
+          "path": "src/components/ui/Breadcrumb/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -113,7 +113,7 @@
       ],
       "files": [
         {
-          "path": "src/components/button/button.tsx",
+          "path": "src/components/ui/Button/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -131,7 +131,7 @@
       ],
       "files": [
         {
-          "path": "src/components/card/card.tsx",
+          "path": "src/components/ui/Card/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -151,7 +151,7 @@
       ],
       "files": [
         {
-          "path": "src/components/checkbox/checkbox.tsx",
+          "path": "src/components/ui/Checkbox/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -169,7 +169,7 @@
       ],
       "files": [
         {
-          "path": "src/components/divider/divider.tsx",
+          "path": "src/components/ui/Divider/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -188,7 +188,11 @@
       ],
       "files": [
         {
-          "path": "src/components/form-field/form-field.tsx",
+          "path": "src/components/ui/FormField/index.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/FormField/useFormField.ts",
           "type": "registry:ui"
         }
       ]
@@ -204,7 +208,7 @@
       ],
       "files": [
         {
-          "path": "src/components/heading/heading.tsx",
+          "path": "src/components/ui/Heading/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -220,7 +224,7 @@
       ],
       "files": [
         {
-          "path": "src/components/icon/icon.tsx",
+          "path": "src/components/ui/Icon/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -237,7 +241,7 @@
       ],
       "files": [
         {
-          "path": "src/components/link/link.tsx",
+          "path": "src/components/ui/Link/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -255,7 +259,7 @@
       ],
       "files": [
         {
-          "path": "src/components/notification-banner/notification-banner.tsx",
+          "path": "src/components/ui/NotificationBanner/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -275,7 +279,7 @@
       ],
       "files": [
         {
-          "path": "src/components/radio-group/radio-group.tsx",
+          "path": "src/components/ui/RadioGroup/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -296,7 +300,7 @@
       ],
       "files": [
         {
-          "path": "src/components/select/select.tsx",
+          "path": "src/components/ui/Select/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -312,7 +316,7 @@
       ],
       "files": [
         {
-          "path": "src/components/stack/stack.tsx",
+          "path": "src/components/ui/Stack/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -328,7 +332,7 @@
       ],
       "files": [
         {
-          "path": "src/components/tag/tag.tsx",
+          "path": "src/components/ui/Tag/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -344,7 +348,7 @@
       ],
       "files": [
         {
-          "path": "src/components/text/text.tsx",
+          "path": "src/components/ui/Text/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -363,7 +367,7 @@
       ],
       "files": [
         {
-          "path": "src/components/text-field/text-field.tsx",
+          "path": "src/components/ui/TextField/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -382,7 +386,7 @@
       ],
       "files": [
         {
-          "path": "src/components/textarea/textarea.tsx",
+          "path": "src/components/ui/Textarea/index.tsx",
           "type": "registry:ui"
         }
       ]

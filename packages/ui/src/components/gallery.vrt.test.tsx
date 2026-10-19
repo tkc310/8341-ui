@@ -5,15 +5,15 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vite-plus/test';
 import { page, userEvent } from 'vite-plus/test/browser/context';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { FormField } from '@/components/ui/form-field';
-import { Link } from '@/components/ui/link';
-import { NotificationBanner } from '@/components/ui/notification-banner';
-import { Radio, RadioGroup } from '@/components/ui/radio-group';
-import { Stack } from '@/components/ui/stack';
-import { Tag } from '@/components/ui/tag';
-import { TextField } from '@/components/ui/text-field';
+import { Button } from '@/components/ui/Button/index';
+import { Checkbox } from '@/components/ui/Checkbox/index';
+import { FormField } from '@/components/ui/FormField/index';
+import { Link } from '@/components/ui/Link/index';
+import { NotificationBanner } from '@/components/ui/NotificationBanner/index';
+import { Radio, RadioGroup } from '@/components/ui/RadioGroup/index';
+import { Stack } from '@/components/ui/Stack/index';
+import { Tag } from '@/components/ui/Tag/index';
+import { TextField } from '@/components/ui/TextField/index';
 
 function Gallery() {
   return (

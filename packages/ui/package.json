@@ -37,8 +37,8 @@
     "./theme.css": "./dist/theme.css",
     "./styles.css": "./dist/styles.css",
     "./*": {
-      "types": "./dist/components/*/index.d.ts",
-      "import": "./dist/components/*/index.js"
+      "types": "./dist/components/ui/*/index.d.ts",
+      "import": "./dist/components/ui/*/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -47,7 +47,7 @@
   },
   "scripts": {
     "build": "vp pack && tailwindcss -i src/styles/build.css -o dist/styles.css --minify && node scripts/check-dist.ts",
-    "check": "node scripts/audit-classes.ts && node scripts/generate-registry.ts --check",
+    "check": "node scripts/check-structure.ts && node scripts/audit-classes.ts && node scripts/generate-registry.ts --check",
     "test": "vp test --project unit",
     "test:vrt": "vp test --project vrt",
     "figma:publish": "figma connect publish",

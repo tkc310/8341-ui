@@ -29,19 +29,20 @@ module.exports = {
     },
     {
       name: 'components-not-to-stories-or-tests',
-      comment: '本体からストーリー・テスト・Code Connect を参照しない（配布物に混ざるため）',
+      comment: '本体からストーリー・テスト・Code Connect・テスト用の道具（src/test）を参照しない（配布物に混ざるため）',
       severity: 'error',
-      from: { path: '^packages/ui/src', pathNot: '[.](stories|test|vrt[.]test|figma)[.]tsx?$' },
-      to: { path: '[.](stories|test|vrt[.]test|figma)[.]tsx?$' },
+      from: { path: '^packages/ui/src', pathNot: ['[.](stories|test|vrt[.]test|figma)[.]tsx?$', '^packages/ui/src/test/'] },
+      to: { path: ['[.](stories|test|vrt[.]test|figma)[.]tsx?$', '^packages/ui/src/test/'] },
     },
     {
       name: 'components-via-public-api',
-      comment: 'コンポーネント同士は各ディレクトリの index.ts（公開 API）経由で参照する',
+      comment:
+        'コンポーネント同士は各ディレクトリの index.tsx（公開 API）経由で参照する。子コンポーネント（Button/Child/）やフック（useXxx.ts）は親の配下からだけ使う（packages/ui/src/components/COMPONENT_STRUCTURE.md）',
       severity: 'error',
-      from: { path: '^packages/ui/src/components/([^/]+)/' },
+      from: { path: '^packages/ui/src/components/ui/([^/]+)/' },
       to: {
-        path: '^packages/ui/src/components/([^/]+)/(?!index[.]ts$)',
-        pathNot: '^packages/ui/src/components/$1/',
+        path: '^packages/ui/src/components/ui/([^/]+)/(?!index[.]tsx$)',
+        pathNot: '^packages/ui/src/components/ui/$1/',
       },
     },
     {
@@ -61,7 +62,7 @@ module.exports = {
           '(^|/)[.][^/]+[.](?:js|cjs|mjs|ts|json)$',
           'vite[.]config[.]ts$',
           '(^|/)[.]storybook/',
-          '[.](stories|figma)[.]tsx?$',
+          '[.](stories|figma|test|vrt[.]test)[.]tsx?$',
           '(^|/)scripts/',
         ],
       },

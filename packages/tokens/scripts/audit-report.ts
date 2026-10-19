@@ -48,16 +48,15 @@ const unused = loadTokens('light')
   .map((t) => t.name);
 
 // 4. 揃っていない付帯ファイル
-const components = readdirSync(resolve(UI, 'components'), { withFileTypes: true })
+const components = readdirSync(resolve(UI, 'components/ui'), { withFileTypes: true })
   .filter((d) => d.isDirectory())
   .map((d) => d.name);
-const has = (c: string, suffix: string) => readdirSync(resolve(UI, 'components', c)).some((f) => f.endsWith(suffix));
+const has = (c: string, suffix: string) => readdirSync(resolve(UI, 'components/ui', c)).some((f) => f.endsWith(suffix));
 const storyText = walk(resolve(UI, 'components'))
   .filter((f) => f.endsWith('.stories.tsx'))
   .map((f) => readFileSync(f, 'utf8'))
   .join('\n');
-const pascal = (c: string) => c.replace(/(^|-)(\w)/g, (_, __, x: string) => x.toUpperCase());
-const noStory = components.filter((c) => !has(c, '.stories.tsx') && !new RegExp(`<${pascal(c)}\\b`).test(storyText));
+const noStory = components.filter((c) => !has(c, '.stories.tsx') && !new RegExp(`<${c}\\b`).test(storyText));
 const noFigma = components.filter((c) => !has(c, '.figma.ts'));
 
 // 5. バックログ

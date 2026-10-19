@@ -3,8 +3,9 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@/components/ui/*": ["./packages/ui/src/components/*"],
-      "@/lib/*": ["./packages/ui/src/lib/*"]
+      "@/components/ui/*": ["./packages/ui/src/components/ui/*"],
+      "@/lib/*": ["./packages/ui/src/lib/*"],
+      "@/test/*": ["./packages/ui/src/test/*"]
     }
   },
   "files": []

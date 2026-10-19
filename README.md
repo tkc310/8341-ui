@@ -84,9 +84,9 @@ npx shadcn@latest add @8341/8341-base @8341/button @8341/form-field @8341/text-f
 テーマ（`styles/8341-ui.css`）はトークンを同梱しています。トークンが更新されたら `npx shadcn@latest add @8341/theme --overwrite` で取り込み直します。
 
 ```tsx
-import { Button } from '@/components/ui/button';
-import { FormField } from '@/components/ui/form-field';
-import { TextField } from '@/components/ui/text-field';
+import { Button } from '@/components/ui/Button/index';
+import { FormField } from '@/components/ui/FormField/index';
+import { TextField } from '@/components/ui/TextField/index';
 
 export function SignUp() {
   return (
@@ -106,7 +106,7 @@ export function SignUp() {
 npm への公開は既定で無効です（[リリース](./docs/releasing.md)）。公開した版は、次のように使えます。
 
 ```tsx
-import { Button } from '8341-ui/button';
+import { Button } from '8341-ui/Button';
 ```
 
 ```css
