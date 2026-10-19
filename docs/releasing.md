@@ -1,15 +1,16 @@
 # リリース
 
-8341-ui のリリースは Changesets で管理する。版を決めるのは人間（PR に添える changeset）で、タグ・GitHub Releases・版ごとのレジストリは CI が作る。
+8341-ui のリリースは、**権限のあるアカウント保有者が手元で実行する**。リポジトリにトークンやシークレットは置かない（ADR-0014）。
+版の記録には Changesets を使い、タグ・GitHub Releases・版ごとのレジストリ・npm への公開（任意）は `scripts/release.mjs` が、実行者の `gh` と `npm` のログインで行う。
 
 ## 配布するもの
 
 | チャネル | 中身 | 版の固定 |
 | --- | --- | --- |
-| shadcn レジストリ（最新） | `https://tkc310.github.io/8341ui/r/{name}.json` | できない（常に main の最新） |
+| shadcn レジストリ（最新） | `https://tkc310.github.io/8341ui/r/{name}.json`（main への push で CI が更新） | できない（常に main の最新） |
 | shadcn レジストリ（版ごと） | `https://tkc310.github.io/8341ui/r/v<版>/{name}.json` | できる（リリースした版のまま残る） |
 | GitHub Releases | 各版の変更内容（CHANGELOG の該当節） | タグ `8341-ui@<版>`・`8341-ui-tokens@<版>` |
-| npm（任意） | `8341-ui`・`8341-ui-tokens` | できる。既定では公開しない（下の「npm に公開する」） |
+| npm（任意） | `8341-ui`・`8341-ui-tokens` | できる。`--npm` を付けたときだけ公開する |
 
 利用側で版を固定するときは、`components.json` のレジストリの URL に版を入れる。
 
@@ -35,55 +36,71 @@
 ## 流れ
 
 ```
-変更の PR（changeset を添える）
-   │ マージ
-   ▼
-main ──▶ CI の release ジョブ ──▶「chore: リリース（Version Packages）」PR を作る / 更新する
-                                    （版の更新と CHANGELOG.md の追記。changeset が溜まるほど内容が増える）
-   │ その PR をマージ
-   ▼
-main ──▶ CI の release ジョブ ──▶ タグ 8341-ui@x.y.z / 8341-ui-tokens@x.y.z
-                               ├─▶ GitHub Releases（本文は CHANGELOG の該当節）
-                               ├─▶ Pages の r/vx.y.z/（その版のレジストリ）
-                               └─▶ npm に公開（ENABLE_NPM_PUBLISH が true のときだけ）
+変更の PR（changeset を添える） ──マージ──▶ main（.changeset/*.md が溜まる）
+
+【手元】pnpm release:version
+   └─▶「chore: リリース v<版>」PR（版の更新と CHANGELOG の追記）。人が作る PR なので CI がそのまま動く
+          │ レビューしてマージ
+          ▼
+【手元】main で pnpm release:publish [--npm]
+   ├─▶ ビルド（トークン・コンポーネント・レジストリ）
+   ├─▶ タグ 8341-ui@<版> / 8341-ui-tokens@<版> を作って push
+   ├─▶ GitHub Releases（本文は CHANGELOG の該当節）
+   ├─▶ gh-pages の r/v<版>/（その版のレジストリ）
+   └─▶ npm に公開（--npm のときだけ）
 ```
+
+## 前提（実行する人）
+
+| 道具 | 状態 |
+| --- | --- |
+| リポジトリの権限 | main・gh-pages への push とリリースの作成ができる（Maintain 以上） |
+| GitHub CLI（`gh`） | `gh auth login` 済み |
+| npm（`--npm` のときだけ） | `npm login` 済みで、パッケージの公開権限がある。2 段階認証の OTP を手元で入力する |
+| 依存 | `pnpm install` 済み |
 
 ## 手順
 
-### 1. 変更の PR に changeset を添える
+### 1. 変更の PR に changeset を添える（開発者）
 
 ```bash
 pnpm changeset
 ```
 
-- 対象のパッケージと版の上げ幅（patch / minor / major）を選び、利用者向けの説明を書く
-- `.changeset/*.md` ができるので、PR に含める
+対象のパッケージと版の上げ幅（patch / minor / major）を選び、利用者向けの説明を書く。`.changeset/*.md` を PR に含める。
 
-### 2. 版を上げる PR を確認してマージする
+### 2. 版を上げる PR を作る（アカウント保有者）
 
-- main にマージされると、CI が「chore: リリース（Version Packages）」PR を作る（次の変更が入るたびに更新される）
-- 版と CHANGELOG を確認し、リリースしてよいときにマージする
+```bash
+git switch main && git pull
+pnpm release:version
+```
 
-`GITHUB_TOKEN` で作られた PR では CI が動かない（GitHub の仕様）。main の保護で `check`・`test` を必須にしている場合は、次のどちらかで CI を動かす。
+- `changeset version` で版と CHANGELOG を更新し、`release/v<版>` ブランチから PR を作る
+- PR の CI が通り、版と CHANGELOG を確認できたらマージする
 
-- リポジトリのシークレット `CHANGESETS_TOKEN` に、このリポジトリの Contents と Pull requests に書き込める fine-grained token を登録する（以後、自動で CI が動く）
-- PR をいったん閉じて開き直す
+### 3. リリースする（アカウント保有者）
 
-### 3. リリースを確認する
+```bash
+git switch main && git pull
+pnpm release:publish --dry-run   # 何をするか確認する
+pnpm release:publish             # npm に公開しないとき
+pnpm release:publish --npm       # npm にも公開するとき
+```
+
+- main が origin/main と一致し、未コミットの変更がないことを確かめてから動く
+- 同じ版のタグがすでにあれば止まる（二重リリースを防ぐ）
+
+### 4. 確かめる
 
 - GitHub の Releases に新しい版が出ている
-- `https://tkc310.github.io/8341ui/r/v<版>/button.json` が開ける
+- `https://tkc310.github.io/8341ui/r/v<版>/button.json` が開ける（Pages の反映に数分かかる）
+- npm に公開したときは `npm view 8341-ui version`
 
-## npm に公開する
+## npm について
 
-既定では npm に公開しない（タグと GitHub Releases、版ごとのレジストリだけを作る）。公開するときは、リポジトリの Settings > Secrets and variables > Actions で次を設定する。
-
-| 種類 | 名前 | 値 |
-| --- | --- | --- |
-| 変数 | `ENABLE_NPM_PUBLISH` | `true` |
-| シークレット | `NPM_TOKEN` | npm の Automation token（または Granular token） |
-
-公開は provenance（来歴の証明）つきで行う（`publishConfig.provenance`）。設定後に版を上げる PR をマージすると、`pnpm release`（ビルド → `changeset publish`）が動く。
+- 手元から公開するため、npm の provenance（どの CI でビルドしたかの証明）は付かない
+- CI から公開して provenance を付けたくなったら、npm の Trusted Publishing（GitHub Actions の OIDC を使い、npm のトークンを発行しない方式）を検討する。その場合は ADR を書く
 
 ## やり直す
 

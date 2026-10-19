@@ -149,7 +149,7 @@ CI・GitHub Pages の構成・リポジトリの設定（main の保護、ブラ
 
 ## リリース
 
-Changesets で版を管理し、版を上げる PR をマージすると、タグ・GitHub Releases・その版のレジストリ（`r/v<版>/`）ができます。npm への公開は任意です。手順と版の決め方は [docs/releasing.md](./docs/releasing.md) にあります。
+権限のあるアカウント保有者が手元で `pnpm release:version`（版を上げる PR を作る）と `pnpm release:publish`（タグ・GitHub Releases・その版のレジストリ `r/v<版>/`）を実行します。リポジトリにトークンは置きません。npm への公開は任意です（`--npm`）。手順と版の決め方は [docs/releasing.md](./docs/releasing.md) にあります。
 
 ## ライセンス
 

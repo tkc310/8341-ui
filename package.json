@@ -22,8 +22,8 @@
     "audit:report": "pnpm --filter 8341-ui-tokens audit",
     "changeset": "changeset",
     "factory:create": "node scripts/factory/create.mjs",
-    "release": "pnpm build && changeset publish",
-    "release:tag": "changeset tag"
+    "release:version": "node scripts/release.mjs version",
+    "release:publish": "node scripts/release.mjs publish"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",

@@ -6,7 +6,7 @@
 
 | ワークフロー | きっかけ | やること |
 | --- | --- | --- |
-| `CI`（`ci.yml`） | PR、main への push | `check`（fmt・lint・型・生成物の鮮度・コントラスト・クラス監査・依存の向き）、`test`（単体テスト、全ストーリーの実ブラウザ描画と axe）。main では `release`（[releasing.md](./releasing.md)）と `storybook`（Pages への公開）も動く |
+| `CI`（`ci.yml`） | PR、main への push | `check`（fmt・lint・型・生成物の鮮度・コントラスト・クラス監査・依存の向き）、`test`（単体テスト、全ストーリーの実ブラウザ描画と axe）。main では `storybook`（Pages への公開）も動く。リリースは CI では行わない（[releasing.md](./releasing.md)） |
 | `Storybook preview cleanup` | PR を閉じたとき | その PR のプレビュー（`pr-preview/pr-<番号>/`）を消す |
 | `Branch cleanup` | main への push、手動 | マージ済み・閉じた PR の元ブランチと `ci-debug*` を、環境 `branch-cleanup` の承認後に消す |
 | `Weekly audit` | 毎週月曜、手動 | 健康診断レポート（warning の蓄積、コントラストの余裕、未使用トークン、ストーリーの欠け）を Issue に起票する |
@@ -19,11 +19,16 @@
 https://tkc310.github.io/8341ui/
 ├── index.html …            main の Storybook（CI の storybook ジョブ）
 ├── r/{name}.json           最新のレジストリ（同上）
-├── r/v<版>/{name}.json     リリースした版のレジストリ（CI の release ジョブ。残し続ける）
+├── r/v<版>/{name}.json     リリースした版のレジストリ（手元の pnpm release:publish。残し続ける）
 └── pr-preview/pr-<番号>/   PR ごとの Storybook（ローカルの pnpm storybook:preview。PR を閉じると消える）
 ```
 
 `gh-pages` ブランチは手で編集しない・強制 push しない（ほかの置き場所が消える）。
+
+## トークンとシークレット
+
+リポジトリにはトークンもシークレットも登録しない。権限が要る操作（リリース、npm への公開、リポジトリの設定）は、権限のあるアカウント保有者が手元の `gh`・`npm` のログインで行う。
+ワークフローが使うのは、GitHub が実行ごとに自動で発行して破棄する `GITHUB_TOKEN` だけで、権限は各ワークフローの `permissions` で必要な範囲に絞っている。
 
 ## リポジトリの設定（一度だけ）
 
@@ -34,8 +39,6 @@ https://tkc310.github.io/8341ui/
 | 環境 `branch-cleanup` の承認者 | 下の「ブランチの片付け」 | ブランチ削除を承認制にする |
 | マージ後に元ブランチを自動で消す（任意） | `gh api -X PATCH repos/tkc310/8341ui -F delete_branch_on_merge=true` | 片付けの手間を減らす |
 | 脆弱性の非公開報告を有効に | Settings > Code security > Private vulnerability reporting | [SECURITY.md](../SECURITY.md) の報告窓口 |
-| `CHANGESETS_TOKEN`（任意） | Settings > Secrets and variables > Actions | 版を上げる PR でも CI を動かす |
-| `ENABLE_NPM_PUBLISH`・`NPM_TOKEN`（任意） | 同上 | npm への公開（[releasing.md](./releasing.md)） |
 
 ### main の保護
 
@@ -85,7 +88,6 @@ gh api -X PUT repos/tkc310/8341ui/environments/branch-cleanup \
 | 症状 | 原因と対処 |
 | --- | --- |
 | Pages が古い内容のまま | 配信のキャッシュ。`gh-pages` ブランチが新しければ数分で反映される |
-| 版を上げる PR で CI が動かない | `GITHUB_TOKEN` で作った PR の仕様。`CHANGESETS_TOKEN` を登録するか、PR を閉じて開き直す |
 | `pnpm install --frozen-lockfile` が失敗する | 依存を変えたのにロックファイルを更新していない。手元で `pnpm install` してコミットする |
 | `check` が生成物のずれで失敗する | トークンやコンポーネントを変えたら、`design-md`・`tw-merge`・`registry` を実行して生成物を更新する |
 | Windows で `CLAUDE.md` やスキルが読めない | シンボリックリンクが取り出せていない（[ai-agents.md](./ai-agents.md) の「Windows で使う場合」） |
