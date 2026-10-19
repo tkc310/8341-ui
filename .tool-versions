@@ -1,4 +1,4 @@
 # 開発に使う道具の版（mise / asdf が読む）。CI もこのファイルの版を使う。導入手順は CONTRIBUTING.md
-nodejs 22.23.3
-pnpm 11.28.6
-github-cli 2.89.0
+nodejs 24.22.0
+pnpm 12.14.0
+github-cli 2.102.0

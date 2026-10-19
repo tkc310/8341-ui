@@ -46,13 +46,13 @@
     "access": "public"
   },
   "scripts": {
-    "build": "vp pack && tailwindcss -i src/styles/build.css -o dist/styles.css --minify && tsx scripts/check-dist.ts",
-    "check": "tsx scripts/audit-classes.ts && tsx scripts/generate-registry.ts --check",
+    "build": "vp pack && tailwindcss -i src/styles/build.css -o dist/styles.css --minify && node scripts/check-dist.ts",
+    "check": "node scripts/audit-classes.ts && node scripts/generate-registry.ts --check",
     "test": "vp test --project unit",
     "test:vrt": "vp test --project vrt",
     "figma:publish": "figma connect publish",
-    "registry": "tsx scripts/generate-registry.ts",
-    "registry:build": "tsx scripts/build-registry-css.ts && shadcn build ./registry.json -o ../../apps/storybook/public/r"
+    "registry": "node scripts/generate-registry.ts",
+    "registry:build": "node scripts/build-registry-css.ts && shadcn build ./registry.json -o ../../apps/storybook/public/r"
   },
   "dependencies": {
     "8341-ui-tokens": "workspace:*",
@@ -79,7 +79,6 @@
     "shadcn": "catalog:",
     "storybook": "catalog:",
     "tailwindcss": "catalog:",
-    "tsx": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   },

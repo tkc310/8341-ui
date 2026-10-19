@@ -25,7 +25,7 @@ AI エージェント向けの作業ガイドです。Claude Code（推奨）・
 ## 技術スタック
 
 React 19 / TypeScript、Base UI v1、Tailwind CSS v4、tailwind-variants v3、shadcn 方式の配布、
-W3C DTCG 2025.10 + Style Dictionary v5、Vite+（oxlint / oxfmt / Vitest 5 / tsdown / Vite Task）、pnpm 11、Changesets v3、dependency-cruiser、Storybook 10。
+W3C DTCG 2025.10 + Style Dictionary v5、Vite+（oxlint / oxfmt / Vitest 5 / tsdown / Vite Task）、pnpm 12、Changesets v3、dependency-cruiser、Storybook 10。
 詳しくは [ADR-0008](docs/decisions/0008-stack-2026-10.md)。
 
 ## リポジトリの地図
