@@ -37,8 +37,8 @@ const TEMPLATE = resolve(import.meta.dirname, '../..');
 const TEMPLATE_NAME = '8341-ui';
 const TEMPLATE_PREFIX = '8341';
 const TEMPLATE_FAMILY = 'indigo';
-const TEMPLATE_REPO = 'tkc310/8341ui';
-const TEMPLATE_PAGES = 'tkc310.github.io/8341ui';
+const TEMPLATE_REPO = 'tkc310/8341-ui';
+const TEMPLATE_PAGES = 'tkc310.github.io/8341-ui';
 const OTHER_FAMILIES = ['teal', 'purple', 'red', 'orange', 'yellow', 'green', 'gray'];
 
 /** 生成先に持ち込まないもの（ファクトリー自身と、生成し直すもの） */

@@ -16,7 +16,7 @@
 配信元は `gh-pages` ブランチ（Settings > Pages > Deploy from a branch）。
 
 ```
-https://tkc310.github.io/8341ui/
+https://tkc310.github.io/8341-ui/
 ├── index.html …            main の Storybook（CI の storybook ジョブ）
 ├── r/{name}.json           最新のレジストリ（同上）
 ├── r/v<版>/{name}.json     リリースした版のレジストリ（手元の make release-publish。残し続ける）
@@ -37,13 +37,13 @@ https://tkc310.github.io/8341ui/
 | Pages の配信元を `gh-pages` / `(root)` に | Settings > Pages | Storybook・レジストリ・プレビューの公開 |
 | main の保護（PR 必須、`check`・`test` の通過必須） | 下の「main の保護」 | CI が落ちたままのマージを防ぐ |
 | 環境 `branch-cleanup` の承認者 | 下の「ブランチの片付け」 | ブランチ削除を承認制にする |
-| マージ後に元ブランチを自動で消す（任意） | `gh api -X PATCH repos/tkc310/8341ui -F delete_branch_on_merge=true` | 片付けの手間を減らす |
+| マージ後に元ブランチを自動で消す（任意） | `gh api -X PATCH repos/tkc310/8341-ui -F delete_branch_on_merge=true` | 片付けの手間を減らす |
 | 脆弱性の非公開報告を有効に | Settings > Code security > Private vulnerability reporting | [SECURITY.md](../SECURITY.md) の報告窓口 |
 
 ### main の保護
 
 ```bash
-gh api -X POST repos/tkc310/8341ui/rulesets --input - <<'EOF'
+gh api -X POST repos/tkc310/8341-ui/rulesets --input - <<'EOF'
 {
   "name": "main",
   "target": "branch",
@@ -71,7 +71,7 @@ EOF
 `Branch cleanup` は main への push のたびに削除候補を一覧にし、承認されてから消す（Actions の画面か、通知の「Review deployments」から承認）。候補が無いときは承認の依頼も出ない。承認者を設定しないと、承認なしで消える。
 
 ```bash
-gh api -X PUT repos/tkc310/8341ui/environments/branch-cleanup \
+gh api -X PUT repos/tkc310/8341-ui/environments/branch-cleanup \
   -F "reviewers[][type]=User" -F "reviewers[][id]=$(gh api user --jq .id)"
 ```
 

@@ -7,8 +7,8 @@
 
 | チャネル | 中身 | 版の固定 |
 | --- | --- | --- |
-| shadcn レジストリ（最新） | `https://tkc310.github.io/8341ui/r/{name}.json`（main への push で CI が更新） | できない（常に main の最新） |
-| shadcn レジストリ（版ごと） | `https://tkc310.github.io/8341ui/r/v<版>/{name}.json` | できる（リリースした版のまま残る） |
+| shadcn レジストリ（最新） | `https://tkc310.github.io/8341-ui/r/{name}.json`（main への push で CI が更新） | できない（常に main の最新） |
+| shadcn レジストリ（版ごと） | `https://tkc310.github.io/8341-ui/r/v<版>/{name}.json` | できる（リリースした版のまま残る） |
 | GitHub Releases | 各版の変更内容（CHANGELOG の該当節） | タグ `8341-ui@<版>`・`8341-ui-tokens@<版>` |
 | npm（任意） | `8341-ui`・`8341-ui-tokens` | できる。`--npm` を付けたときだけ公開する |
 
@@ -16,7 +16,7 @@
 
 ```json
 {
-  "registries": { "@8341": "https://tkc310.github.io/8341ui/r/v0.1.0/{name}.json" }
+  "registries": { "@8341": "https://tkc310.github.io/8341-ui/r/v0.1.0/{name}.json" }
 }
 ```
 
@@ -95,7 +95,7 @@ make release-publish NPM=1       # npm にも公開するとき
 ### 4. 確かめる
 
 - GitHub の Releases に新しい版が出ている
-- `https://tkc310.github.io/8341ui/r/v<版>/button.json` が開ける（Pages の反映に数分かかる）
+- `https://tkc310.github.io/8341-ui/r/v<版>/button.json` が開ける（Pages の反映に数分かかる）
 - npm に公開したときは `npm view 8341-ui version`
 
 ## npm について

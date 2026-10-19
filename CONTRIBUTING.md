@@ -43,8 +43,8 @@ asdf plugin add github-cli
 ### 2. リポジトリを取得して道具を入れる
 
 ```bash
-git clone https://github.com/tkc310/8341ui.git
-cd 8341ui
+git clone https://github.com/tkc310/8341-ui.git
+cd 8341-ui
 make tools          # mise（なければ asdf）で .tool-versions の版を入れる
 node -v             # v24.22.0
 pnpm -v             # 12.14.0

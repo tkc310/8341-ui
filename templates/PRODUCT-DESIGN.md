@@ -3,7 +3,7 @@
 > 8341-ui を使うプロダクトの DESIGN.md の雛形。プロダクトのリポジトリ直下にコピーして埋める。
 > 8341-ui 側の仕様（トークン・コンポーネント・Do / Don't）は 8341-ui リポジトリの DESIGN.md を参照し、ここには写さない。
 > 部品は shadcn 方式（`npx shadcn@latest add @8341/{name}`）か npm の `8341-ui` で取り込む。
-> 判断の順序は [design-principles](https://github.com/tkc310/8341ui/tree/main/docs/design-principles) に従う: UI の方向性 → サービス別の特化ルール → 原則 → WCAG。
+> 判断の順序は [design-principles](https://github.com/tkc310/8341-ui/tree/main/docs/design-principles) に従う: UI の方向性 → サービス別の特化ルール → 原則 → WCAG。
 
 ## プロダクト概要
 
