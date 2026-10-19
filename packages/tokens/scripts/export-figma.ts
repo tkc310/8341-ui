@@ -14,7 +14,7 @@
  *   dark.tokens.json         … 「Semantic」コレクションの Dark モード
  * 取り込み方: Figma の Variables 画面に light と dark を同時にドラッグ＆ドロップ → 2 モードのコレクションになる
  *
- * 実行: pnpm --filter tkc310-ui-tokens figma
+ * 実行: pnpm --filter 8341-ui-tokens figma
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';

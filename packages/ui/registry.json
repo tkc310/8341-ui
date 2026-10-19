@@ -1,13 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "tkc310-ui",
+  "name": "8341-ui",
   "homepage": "https://github.com/tkc310/design-system-myself",
   "items": [
     {
       "name": "tkc-base",
       "type": "registry:base",
-      "title": "tkc310-ui base",
-      "description": "tkc310-ui 0.1.0 の土台。ヘッドレス UI は Base UI に固定し、トークンとテーマを入れる",
+      "title": "8341-ui base",
+      "description": "8341-ui 0.1.0 の土台。ヘッドレス UI は Base UI に固定し、トークンとテーマを入れる",
       "config": {
         "style": "base-nova",
         "iconLibrary": "none",
@@ -18,8 +18,7 @@
       },
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "tailwind-variants@^3.3.0",
-        "tkc310-ui-tokens@^0.1.0"
+        "tailwind-variants@^3.3.0"
       ],
       "registryDependencies": [
         "@tkc/tv",
@@ -30,7 +29,7 @@
       "name": "tv",
       "type": "registry:lib",
       "title": "tv / cn",
-      "description": "tkc310-ui のテーマ名を登録した tailwind-variants と、フォーカス表示のクラス",
+      "description": "8341-ui のテーマ名を登録した tailwind-variants と、フォーカス表示のクラス",
       "dependencies": [
         "tailwind-variants@^3.3.0"
       ],
@@ -53,15 +52,12 @@
       "name": "theme",
       "type": "registry:file",
       "title": "Theme",
-      "description": "Tailwind v4 のテーマ。globals.css で tailwindcss の後に @import する",
-      "dependencies": [
-        "tkc310-ui-tokens@^0.1.0"
-      ],
+      "description": "Tailwind v4 のテーマ（トークン同梱）。globals.css で tailwindcss の後に @import する",
       "files": [
         {
-          "path": "src/styles/theme.css",
+          "path": "registry-assets/8341-ui.css",
           "type": "registry:file",
-          "target": "styles/tkc310-ui.css"
+          "target": "styles/8341-ui.css"
         }
       ]
     },

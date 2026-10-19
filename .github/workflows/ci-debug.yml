@@ -1,0 +1,55 @@
+name: CI debug (temporary)
+
+# 一時的なワークフロー。ロックファイルを生成し、各コマンドの全ログを ci-debug ブランチに置く。
+# エージェントの環境から npm レジストリと Actions のログに届かないため。CI が通ったら削除する。
+
+on:
+  push:
+    branches: [feat/rename-8341-self-contained-registry]
+
+permissions:
+  contents: write
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: run all
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/out/logs"
+          L="$RUNNER_TEMP/out/logs"
+          step() { name=$1; shift; echo "\$ $*" > "$L/$name.log"; ( "$@" ) >> "$L/$name.log" 2>&1; echo "exit=$?" >> "$L/$name.log"; tail -1 "$L/$name.log"; }
+          { node -v; pnpm -v; } > "$L/00-env.log" 2>&1
+          step 01-install pnpm install --no-frozen-lockfile
+          cp pnpm-lock.yaml "$RUNNER_TEMP/out/" || true
+          step 02-tokens pnpm build:tokens
+          step 03a-fmt pnpm exec vp fmt
+          git diff > "$RUNNER_TEMP/out/fmt.patch"
+          step 03-vp-check pnpm exec vp check
+          step 04-check-r pnpm exec vp run -r check
+          step 05-depcruise pnpm exec depcruise packages apps
+          step 06-playwright pnpm --filter tkc310-ui-storybook exec playwright install --with-deps chromium
+          step 07-test pnpm exec vp run -r test
+          step 07b-test-storybook pnpm --filter tkc310-ui-storybook test
+          step 08-build pnpm --filter tkc310-ui build
+          step 09-storybook pnpm build:storybook
+          step 10-registry-theme sh -c "ls apps/storybook/public/r && node -e \"const t=require('./apps/storybook/public/r/theme.json');const c=t.files[0].content;console.log(t.files[0].target, c.length, (c.match(/--tkc-color-[a-z-]+:/g)||[]).length, 'vars', /@import '8341-ui-tokens/.test(c)?'NG: import left':'OK: no npm import')\""
+          git rev-parse HEAD > "$RUNNER_TEMP/out/SHA"
+      - name: push logs
+        if: always()
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          cd "$RUNNER_TEMP/out"
+          git init -q && git checkout -q -b ci-debug && git add -A
+          git -c user.name=ci -c user.email=ci@example.com commit -qm "ci-debug ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/ci-debug

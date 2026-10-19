@@ -1,11 +1,11 @@
 {
-  "name": "tkc310-ui-storybook",
+  "name": "8341-ui-storybook",
   "private": true,
-  "description": "tkc310-ui のドキュメント（Storybook 10）と shadcn レジストリの配信元",
+  "description": "8341-ui のドキュメント（Storybook 10）と shadcn レジストリの配信元",
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "pnpm --filter tkc310-ui registry:build && storybook build",
+    "build": "pnpm --filter 8341-ui registry:build && storybook build",
     "test": "vp test --project storybook",
     "test:e2e": "playwright test",
     "preview:publish": "tsx scripts/publish-preview.ts"
@@ -13,8 +13,8 @@
   "dependencies": {
     "react": "catalog:",
     "react-dom": "catalog:",
-    "tkc310-ui": "workspace:*",
-    "tkc310-ui-tokens": "workspace:*"
+    "8341-ui": "workspace:*",
+    "8341-ui-tokens": "workspace:*"
   },
   "devDependencies": {
     "@playwright/test": "catalog:",

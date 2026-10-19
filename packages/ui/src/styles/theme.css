@@ -1,15 +1,15 @@
 /*
- * tkc310-ui のテーマ。Tailwind v4 を使うプロジェクトは、tailwindcss の後にこのファイルを読み込む。
+ * 8341-ui のテーマ。Tailwind v4 を使うプロジェクトは、tailwindcss の後にこのファイルを読み込む。
  *
  *   @import "tailwindcss";
- *   @import "tkc310-ui/theme.css";
- *   @source "../node_modules/tkc310-ui/dist";   // npm パッケージとして使う場合のみ
+ *   @import "8341-ui/theme.css";
+ *   @source "../node_modules/8341-ui/dist";   // npm パッケージとして使う場合のみ
  *
- * Tailwind を使わないプロジェクトは、ビルド済みの tkc310-ui/styles.css を読み込む。
+ * Tailwind を使わないプロジェクトは、ビルド済みの 8341-ui/styles.css を読み込む。
  * ダークモードは <html class="dark"> または <html data-theme="dark">。指定が無ければ OS の設定に従う。
  */
-@import 'tkc310-ui-tokens/tokens.css';
-@import 'tkc310-ui-tokens/tailwind.css';
+@import '8341-ui-tokens/tokens.css';
+@import '8341-ui-tokens/tailwind.css';
 
 /* フォーカス表示: どの背景でも内側（黄）か外側（濃色）のどちらかが 3:1 以上になる二重リング */
 @utility focus-ring {

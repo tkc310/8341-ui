@@ -321,10 +321,10 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      tkc310-ui:
+      8341-ui:
         specifier: workspace:*
         version: link:../../packages/ui
-      tkc310-ui-tokens:
+      8341-ui-tokens:
         specifier: workspace:*
         version: link:../../packages/tokens
     devDependencies:
@@ -406,7 +406,7 @@ importers:
       tailwind-variants:
         specifier: 'catalog:'
         version: 3.3.1(tailwindcss@4.3.3)
-      tkc310-ui-tokens:
+      8341-ui-tokens:
         specifier: workspace:*
         version: link:../tokens
     devDependencies:

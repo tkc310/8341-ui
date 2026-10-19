@@ -1,11 +1,11 @@
 /**
- * Tailwind のクラス統合（tailwind-variants 内蔵の tailwind-merge）に、tkc310-ui 独自のテーマ名を登録する設定を生成する。
+ * Tailwind のクラス統合（tailwind-variants 内蔵の tailwind-merge）に、8341-ui 独自のテーマ名を登録する設定を生成する。
  *
  * 登録しないと、たとえば `text-fg text-body-md` の `text-body-md` が色クラスと誤認され、
  * 後から書いた方だけが残って文字色が消える。
  *
  * 出力: packages/ui/src/lib/tw-merge-config.ts（コミットする。--check で差分検出）
- * 実行: pnpm --filter tkc310-ui-tokens tw-merge
+ * 実行: pnpm --filter 8341-ui-tokens tw-merge
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -36,7 +36,7 @@ const body = Object.entries(theme)
 
 const content = `/* このファイルは packages/tokens/scripts/generate-tw-merge.ts が生成します。直接編集しないでください。 */
 /**
- * tailwind-variants のクラス統合に登録する tkc310-ui 独自のテーマ名。
+ * tailwind-variants のクラス統合に登録する 8341-ui 独自のテーマ名。
  * これが無いと \`text-fg text-body-md\` の文字色が消えるなど、クラスの競合判定を誤る。
  */
 export const twMergeConfig = {
@@ -55,7 +55,7 @@ if (CHECK) {
   } catch {}
   if (current !== content) {
     console.error(
-      '✖ packages/ui/src/lib/tw-merge-config.ts が古くなっています。pnpm --filter tkc310-ui-tokens tw-merge を実行してください',
+      '✖ packages/ui/src/lib/tw-merge-config.ts が古くなっています。pnpm --filter 8341-ui-tokens tw-merge を実行してください',
     );
     process.exit(1);
   }

@@ -17,7 +17,7 @@ description: このデザインシステム自体を改善するときに使う�
    - 1 PR 1 改善。大きいものは分割してバックログに戻す
 3. **直す**
    - 関連するルールブックの章、DESIGN.md、該当コンポーネントのソースとストーリーを先に読む
-   - トークンを変えるなら `packages/tokens/src/*.tokens.json` を編集し、`pnpm --filter tkc310-ui-tokens build` と `design-md`・`tw-merge` を実行する（生成物を手で編集しない）
+   - トークンを変えるなら `packages/tokens/src/*.tokens.json` を編集し、`pnpm --filter 8341-ui-tokens build` と `design-md`・`tw-merge` を実行する（生成物を手で編集しない）
    - 値や方針を変えるなら `docs/decisions/` に ADR を追加する
 4. **再発を防ぐ（省略しない）**
    - コントラスト → `tokens/contrast.rules.json` に組み合わせを追加

@@ -12,7 +12,7 @@ DTCG 2025.10 は dimension の単位を px と rem に限り、typography 複合
 - 色は `colorSpace: "oklch"` の色オブジェクトで持ち、sRGB の色域に収めた値と `hex` の代替値を添える（`oklch()` と hex が同じ色になる）
 - 字間は `number`（文字サイズに対する比率）で持ち、CSS には em を付けて出す
 - テキストスタイルは typography 複合型にせず、`text.{スタイル}.font-size` などの個別のトークンで持つ
-- テーマは Resolver 文書（`tkc310-ui.resolver.json`）で表し、Style Dictionary へ渡すファイルの順番は自前のスクリプトが Resolver から決める
+- テーマは Resolver 文書（`8341-ui.resolver.json`）で表し、Style Dictionary へ渡すファイルの順番は自前のスクリプトが Resolver から決める
 - Figma 向けには srgb・px に変換し、semantic は解決済みの値で書き出す
 
 ## 理由

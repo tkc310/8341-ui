@@ -1,5 +1,5 @@
 /**
- * DTCG 2025.10 のトークンを Resolver 文書（src/tkc310-ui.resolver.json）に従って読み込み、
+ * DTCG 2025.10 のトークンを Resolver 文書（src/8341-ui.resolver.json）に従って読み込み、
  * テーマ（modifier の context）ごとに参照を解決する。依存ゼロ。
  *
  * CSS / Tailwind への変換は Style Dictionary v5（scripts/build.ts）が行う。
@@ -14,7 +14,7 @@ export const ROOT = resolve(import.meta.dirname, '../..');
 export const SRC = resolve(ROOT, 'src');
 export const REPO_ROOT = resolve(ROOT, '../..');
 export const PREFIX = 'tkc';
-export const RESOLVER = resolve(SRC, 'tkc310-ui.resolver.json');
+export const RESOLVER = resolve(SRC, '8341-ui.resolver.json');
 
 type Json = Record<string, unknown>;
 

@@ -1,6 +1,6 @@
 /**
- * tkc310-ui のエントリ。コンポーネントごとのエントリ（tkc310-ui/button など）もある。
- * スタイルは別エントリ: Tailwind を使うなら tkc310-ui/theme.css、使わないなら tkc310-ui/styles.css。
+ * 8341-ui のエントリ。コンポーネントごとのエントリ（8341-ui/button など）もある。
+ * スタイルは別エントリ: Tailwind を使うなら 8341-ui/theme.css、使わないなら 8341-ui/styles.css。
  */
 export * from './components/accordion';
 export * from './components/breadcrumb';

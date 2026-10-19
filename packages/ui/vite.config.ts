@@ -25,7 +25,7 @@ export default defineConfig({
         'react/jsx-runtime',
         /^@base-ui\/react/,
         'tailwind-variants',
-        /^tkc310-ui-tokens/,
+        /^8341-ui-tokens/,
       ],
     },
   },

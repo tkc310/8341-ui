@@ -1,12 +1,12 @@
-# DESIGN.md — tkc310-ui
+# DESIGN.md — 8341-ui
 
 > AI エージェントがこのデザインシステムに沿った日本語 UI を生成・修正するための仕様書です。
-> `<!-- auto:* -->` で囲まれた表は `pnpm --filter tkc310-ui-tokens design-md` がトークンとコンポーネントから自動生成します（手で編集しない）。
+> `<!-- auto:* -->` で囲まれた表は `pnpm --filter 8341-ui-tokens design-md` がトークンとコンポーネントから自動生成します（手で編集しない）。
 > 詳しいルールと理由は `docs/rulebook/`、設計判断は `docs/decisions/` を参照してください。
 
 | 項目 | 内容 |
 | --- | --- |
-| パッケージ | `tkc310-ui`（コンポーネント）、`tkc310-ui-tokens`（トークン） |
+| パッケージ | `8341-ui`（コンポーネント）、`8341-ui-tokens`（トークン） |
 | ヘッドレス UI | Base UI v1（`@base-ui/react`） |
 | スタイリング | Tailwind CSS v4 + CSS 変数（`--tkc-*`）。バリアントは tailwind-variants v3 |
 | 配布 | shadcn 方式（レジストリ `@tkc`、`registry:base` で Base UI を固定）と npm パッケージ |
@@ -359,7 +359,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 ### クイックリファレンス
 
 ```
-Import (npm):       import { Button } from 'tkc310-ui/button';  +  @import "tkc310-ui/theme.css";
+Import (npm):       import { Button } from '8341-ui/button';  +  @import "8341-ui/theme.css";
 Import (shadcn):    npx shadcn@latest add @tkc/button          →  import { Button } from '@/components/ui/button';
 Theme:              <html class="dark"> / <html data-theme="dark">（未指定は OS 追従）
 Body:               text-body-md text-fg（16px / 1.7 / 0.02em）
@@ -392,7 +392,7 @@ pnpm test    # 単体テスト + 全ストーリーの a11y テスト
 ### プロンプト例
 
 ```
-tkc310-ui の DESIGN.md に従って、住所変更の申請フォームを作ってください。
+8341-ui の DESIGN.md に従って、住所変更の申請フォームを作ってください。
 - 部品は FormField / TextField / Select / RadioGroup / Button を使い、Base UI の Form で包む
 - 郵便番号は inputMode="numeric"、autoComplete を必ず指定
 - 必須項目には required。エラー文は「何が誤りで、どう直すか」を書く

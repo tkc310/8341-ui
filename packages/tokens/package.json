@@ -1,7 +1,7 @@
 {
-  "name": "tkc310-ui-tokens",
+  "name": "8341-ui-tokens",
   "version": "0.1.0",
-  "description": "tkc310-ui のデザイントークン（DTCG 2025.10）と、そこから生成した CSS 変数・Tailwind v4 テーマ・Figma Variables",
+  "description": "8341-ui のデザイントークン（DTCG 2025.10）と、そこから生成した CSS 変数・Tailwind v4 テーマ・Figma Variables",
   "license": "MIT",
   "files": [
     "dist",

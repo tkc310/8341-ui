@@ -3,8 +3,8 @@
 ## 流れ
 
 ```
-packages/tokens/src/palette.config.json ─(pnpm --filter tkc310-ui-tokens palette)─▶ src/primitive/color.tokens.json
-packages/tokens/src/tkc310-ui.resolver.json（DTCG Resolver: primitive → semantic → theme）
+packages/tokens/src/palette.config.json ─(pnpm --filter 8341-ui-tokens palette)─▶ src/primitive/color.tokens.json
+packages/tokens/src/8341-ui.resolver.json（DTCG Resolver: primitive → semantic → theme）
         │
         ├─(build: Style Dictionary v5)─▶ dist/css/tokens.css     … --tkc-* の CSS 変数（light / dark / OS 追従）
         │                              ▶ dist/css/tailwind.css   … Tailwind v4 の @theme inline（bg-key・text-fg など）
@@ -20,7 +20,7 @@ packages/tokens/src/tkc310-ui.resolver.json（DTCG Resolver: primitive → seman
 | Semantic  | `color.text.subtle`、`space.stack-md`、`text.body-md.*`、`radius.md` | コンポーネント、アプリ（Tailwind のクラス経由） |
 | Component | Tailwind のクラスと `tv()` のバリアント                              | そのコンポーネントだけ                          |
 
-**必須**: コンポーネントとアプリは semantic トークンの Tailwind クラスだけを使う。任意値での色・3px を超える px の直書き、Tailwind 既定のパレット、primitive カラーの参照は `pnpm --filter tkc310-ui check`（クラス監査）が error にする。
+**必須**: コンポーネントとアプリは semantic トークンの Tailwind クラスだけを使う。任意値での色・3px を超える px の直書き、Tailwind 既定のパレット、primitive カラーの参照は `pnpm --filter 8341-ui check`（クラス監査）が error にする。
 
 ## 形式（W3C DTCG 2025.10）
 
@@ -28,7 +28,7 @@ packages/tokens/src/tkc310-ui.resolver.json（DTCG Resolver: primitive → seman
 - 色は色オブジェクト: `{ "colorSpace": "oklch", "components": [L, C, H], "hex": "#..." }`。`hex` は sRGB の代替値で、コントラスト検査と Figma 書き出しに使う
 - dimension は `{ "value": 16, "unit": "px" }`、duration は `{ "value": 120, "unit": "ms" }`
 - 参照は `"{color.primitive.indigo.700}"`
-- テーマは Resolver 文書（`tkc310-ui.resolver.json`）の modifier `theme` で表す。light と dark で semantic カラーのキーを完全に一致させる（CI で検証）
+- テーマは Resolver 文書（`8341-ui.resolver.json`）の modifier `theme` で表す。light と dark で semantic カラーのキーを完全に一致させる（CI で検証）
 
 DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-dtcg-representation.md) にまとめている。
 
@@ -77,7 +77,7 @@ DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-
 1. `semantic/light.tokens.json` と `semantic/dark.tokens.json` の **両方** に同じキーで追加する
 2. `src/contrast.rules.json` に、そのトークンが置かれうる組み合わせを追加する
 3. 用途を `$description` に書く（DESIGN.md・Storybook・Figma に反映される）
-4. `pnpm --filter tkc310-ui-tokens build && pnpm check`
+4. `pnpm --filter 8341-ui-tokens build && pnpm check`
 
 ## タイポグラフィ・余白・サイズ・角丸
 
@@ -92,7 +92,7 @@ DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-
 
 ## Figma
 
-`pnpm --filter tkc310-ui-tokens figma` で `dist/figma/` に書き出し、Figma の Variables 画面に取り込む。
+`pnpm --filter 8341-ui-tokens figma` で `dist/figma/` に書き出し、Figma の Variables 画面に取り込む。
 
 - `primitives.tokens.json` → 「Primitives」コレクション（モード 1 つ）
 - `light.tokens.json` と `dark.tokens.json` を同時にドラッグ＆ドロップ → 「Semantic」コレクション（Light / Dark の 2 モード）

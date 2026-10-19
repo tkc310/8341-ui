@@ -14,7 +14,7 @@ export default defineConfig({
     alias: [
       ...alias,
       // 開発中はビルドせずにソースのテーマを読む
-      { find: 'tkc310-ui/theme.css', replacement: resolve(dirname, '../../packages/ui/src/styles/theme.css') },
+      { find: '8341-ui/theme.css', replacement: resolve(dirname, '../../packages/ui/src/styles/theme.css') },
     ],
   },
   test: {

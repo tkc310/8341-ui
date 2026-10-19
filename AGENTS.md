@@ -20,13 +20,13 @@ W3C DTCG 2025.10 + Style Dictionary v5、Vite+（oxlint / oxfmt / Vitest 5 / tsd
 ## リポジトリの地図
 
 ```
-packages/tokens/          トークン（tkc310-ui-tokens）
+packages/tokens/          トークン（8341-ui-tokens）
   src/{primitive,semantic}/*.tokens.json  DTCG 2025.10 のトークン ← 値を変えるならここ
-  src/tkc310-ui.resolver.json  テーマ（light / dark）の構成
+  src/8341-ui.resolver.json  テーマ（light / dark）の構成
   src/palette.config.json プリミティブカラーの生成パラメータ
   src/contrast.rules.json コントラストの検証規則
   scripts/                生成・検証（build.ts は Style Dictionary v5）
-packages/ui/              コンポーネント（tkc310-ui）
+packages/ui/              コンポーネント（8341-ui）
   src/components/*/       *.tsx・index.ts・*.stories.tsx・*.figma.ts
   src/lib/                tv / cn / focus（tw-merge-config.ts は生成物）
   src/styles/theme.css    Tailwind のテーマ（@utility focus-ring など）
@@ -48,10 +48,10 @@ pnpm build                                 # トークン → UI（vp pack + sty
 pnpm check                                 # vp check（fmt・lint・型）＋ 各パッケージの検査 ＋ dependency-cruiser
 pnpm test                                  # 単体テスト（happy-dom）＋ ストーリーテスト（a11y）
 pnpm test:vrt / pnpm test:e2e              # 手動・都度実行
-pnpm --filter tkc310-ui-tokens build       # トークンの CSS・Tailwind テーマ・Figma JSON を生成
-pnpm --filter tkc310-ui-tokens design-md   # DESIGN.md の表を更新
-pnpm --filter tkc310-ui-tokens tw-merge    # クラス統合の設定を更新
-pnpm --filter tkc310-ui registry           # registry.json を更新
+pnpm --filter 8341-ui-tokens build         # トークンの CSS・Tailwind テーマ・Figma JSON を生成
+pnpm --filter 8341-ui-tokens design-md     # DESIGN.md の表を更新
+pnpm --filter 8341-ui-tokens tw-merge      # クラス統合の設定を更新
+pnpm --filter 8341-ui registry             # registry.json を更新
 pnpm audit:report                          # 健康診断レポート（reports/audit.md）
 pnpm changeset                             # 変更内容を記録（公開されるパッケージを変えたとき）
 ```

@@ -37,7 +37,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter tkc310-ui-storybook exec playwright install --with-deps chromium
+      - run: pnpm --filter 8341-ui-storybook exec playwright install --with-deps chromium
       # unit（happy-dom）+ storybook（全ストーリーを実ブラウザで描画し a11y 検査）
       # VRT と e2e は手動・都度実行のため CI では回さない
       - run: pnpm test
