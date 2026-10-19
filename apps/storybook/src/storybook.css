@@ -2,3 +2,18 @@
 @import '8341-ui/theme.css';
 @source "../../../packages/ui/src";
 @source "./";
+
+/* 「はじめに」のバナー（README と同じ画像）。ツールバーのテーマで出し分ける */
+.sb-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block-end: 1.5rem;
+}
+.sb-banner-dark,
+:root.dark .sb-banner-light {
+  display: none;
+}
+:root.dark .sb-banner-dark {
+  display: block;
+}

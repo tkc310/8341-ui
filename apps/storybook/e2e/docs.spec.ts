@@ -15,5 +15,8 @@ test.describe('ドキュメント（MDX）', () => {
     await expect(page.getByRole('table').first()).toBeVisible();
     // 表として解釈されないと、区切り行がそのまま文字として出る
     await expect(page.getByText('| --- |')).toHaveCount(0);
+    // 冒頭のバナー（ライトのテーマではライトの画像だけが見える）
+    await expect(page.getByRole('img', { name: /^8341-ui/ })).toHaveCount(1);
+    await expect(page.getByRole('heading', { level: 1, name: '8341-ui' })).toBeAttached();
   });
 });

@@ -72,7 +72,7 @@ make factory CONFIG=<設定ファイル> OUT=<出力先>
 
 1. **依存とトークン**: `git init && make setup`（道具の版は `.tool-versions`） → `make palette` → `make tokens` → `design-md` → `tw-merge` → `make registry`
 2. **コントラスト**: `make check`。不足があれば `semantic/light.tokens.json` / `dark.tokens.json` の段階番号を調整する。`contrast.rules.json` の基準は緩めない。AAA を選んだ場合は、文字の基準を 7:1 に上げる
-3. **見た目の性格**: 4 で表示された箇所を、新しいキーカラーと性格で書き換える（DESIGN.md の冒頭、`docs/rulebook/01-principles.md` の「見た目の性格」、README の冒頭と特長、README のバナー `docs/assets/banner-*.svg` の色）。ひな形の ADR（0002 など）は「引き継いだ判断」として残し、変えた判断は新しい ADR に書く
+3. **見た目の性格**: 4 で表示された箇所を、新しいキーカラーと性格で書き換える（DESIGN.md の冒頭、`docs/rulebook/01-principles.md` の「見た目の性格」、README の冒頭と特長、README のバナー `docs/assets/banner-*.svg` の色）。ロゴ（`docs/assets/logo*.svg`、`apps/storybook/public/favicon.svg`・`logo.svg`）は 8341-ui 固有なので、新しいシステムのロゴに差し替えるか、削除して `.storybook/manager.ts` の `brandImage` を外す（`docs/assets/README.md`）。ひな形の ADR（0002 など）は「引き継いだ判断」として残し、変えた判断は新しい ADR に書く
 4. **プロダクトの前提**:
    - 共有の基盤 → DESIGN.md の「UI の方向性とサービス種別は各プロダクトで決める」をそのまま使う
    - 専用 → `templates/PRODUCT-DESIGN.md` を元に、ヒアリング結果（プロダクト概要・画面領域ごとの方向性とサービス種別・採用したルール・外した必須とその理由）を DESIGN.md の冒頭に書く。特化ルールの「トークン」節に挙がる値（表の行高、主操作のサイズなど）をトークンとコンポーネントに反映する
