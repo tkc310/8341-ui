@@ -1,0 +1,139 @@
+<!doctype html>
+<!--
+  スライドのソースの見本。すべてのレイアウトを 1 回ずつ使っている。
+  ビルド: make slides SRC=scripts/slides/examples/sample.html
+  ルール: docs/rulebook/07-slides.md
+-->
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>8341-ui で画面づくりを速く、誰にでも使えるものに</title>
+<meta name="description" content="8341-ui の導入を提案する社内向けの説明資料（見本）">
+</head>
+<body>
+
+<section class="slide" data-layout="title">
+  <h1>8341-ui で画面づくりを速く、誰にでも使えるものに</h1>
+  <p class="subtitle">共通デザインシステムの導入のご提案</p>
+  <p class="meta">2026年10月20日　プロダクトデザイン室</p>
+  <aside class="notes">最初に結論を言い、そのあと根拠を 3 つ示す構成で話します。所要時間は 10分。</aside>
+</section>
+
+<section class="slide" data-layout="statement">
+  <h2>部品とルールを共通にすれば、画面の品質がそろい、作る時間は半分になります</h2>
+  <p>今日お願いしたいのは、次の四半期の 2 つのプロダクトで試験導入することです。</p>
+</section>
+
+<section class="slide" data-layout="section">
+  <p class="eyebrow">第 1 章</p>
+  <h2>いま起きていること</h2>
+</section>
+
+<section class="slide" data-layout="content">
+  <h2>プロダクトごとに部品を作り直し、同じ不具合を繰り返しています</h2>
+  <ul>
+    <li>ボタンだけで 7 種類の実装があり、見た目と挙動が少しずつ違う</li>
+    <li>アクセシビリティの指摘の 6 割は、ほかのプロダクトで直した問題の再発</li>
+    <li>新しい画面のレビューで、毎回同じ観点を口頭で伝えている</li>
+  </ul>
+  <div class="callout callout-warning">
+    <h3>来年度から公共案件で WCAG 2.2 AA が必須になります</h3>
+  </div>
+  <p class="source">出典: 2025年度の画面改修 48 件の振り返り</p>
+</section>
+
+<section class="slide" data-layout="stats">
+  <h2>共通の部品に置き換えた試行では、実装とレビューの時間が大きく減りました</h2>
+  <div class="stat">
+    <p class="stat-value">−52%</p>
+    <p class="stat-label">画面 1 つあたりの実装時間</p>
+  </div>
+  <div class="stat">
+    <p class="stat-value">−70%</p>
+    <p class="stat-label">レビューでの指摘の数</p>
+  </div>
+  <div class="stat">
+    <p class="stat-value">0 件</p>
+    <p class="stat-label">自動検査でのアクセシビリティ違反</p>
+  </div>
+  <p class="source">注: 社内ツール 1 つ（12 画面）で 2026年8〜9月に試行した結果</p>
+</section>
+
+<section class="slide" data-layout="figure">
+  <h2>指摘の数は、共通の部品に置き換えた 9 月から下がっています</h2>
+  <figure>
+    <svg role="img" aria-label="月ごとのレビュー指摘の数。6 月 42 件、7 月 38 件、8 月 30 件、9 月 13 件。9 月から共通の部品を使用" viewBox="0 0 832 260">
+      <line class="chart-axis" x1="48" y1="220" x2="816" y2="220"/>
+      <rect class="chart-base" x="96" y="94" width="96" height="126"/>
+      <rect class="chart-base" x="288" y="106" width="96" height="114"/>
+      <rect class="chart-base" x="480" y="130" width="96" height="90"/>
+      <rect class="chart-key" x="672" y="181" width="96" height="39"/>
+      <text class="chart-label" x="144" y="84" text-anchor="middle">42 件</text>
+      <text class="chart-label" x="336" y="96" text-anchor="middle">38 件</text>
+      <text class="chart-label" x="528" y="120" text-anchor="middle">30 件</text>
+      <text class="chart-label" x="720" y="171" text-anchor="middle">13 件（共通部品）</text>
+      <text class="chart-label-subtle" x="144" y="246" text-anchor="middle">6月</text>
+      <text class="chart-label-subtle" x="336" y="246" text-anchor="middle">7月</text>
+      <text class="chart-label-subtle" x="528" y="246" text-anchor="middle">8月</text>
+      <text class="chart-label-subtle" x="720" y="246" text-anchor="middle">9月</text>
+    </svg>
+    <figcaption>月ごとのレビュー指摘の数（社内ツール、12 画面）</figcaption>
+  </figure>
+</section>
+
+<section class="slide" data-layout="columns">
+  <h2>部品だけでなく、判断のルールも一緒に配ります</h2>
+  <div class="col card">
+    <h3>トークンと部品</h3>
+    <p>色・文字・余白をトークンで決め、18 の部品にまとめています。</p>
+  </div>
+  <div class="col card">
+    <h3>画面設計のルール</h3>
+    <p>デザイン原則と WCAG 2.2 を、レビューで使えるチェックにしています。</p>
+  </div>
+  <div class="col card">
+    <h3>自動の検査</h3>
+    <p>コントラストと書き方の違反を、変更のたびに検査します。</p>
+  </div>
+</section>
+
+<section class="slide" data-layout="table">
+  <h2>試験導入の費用は、監査を外部に頼むより小さく済みます</h2>
+  <table>
+    <thead>
+      <tr><th scope="col">項目</th><th scope="col" class="num">外部監査</th><th scope="col" class="num">試験導入</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">初期費用</th><td class="num">320万円</td><td class="num">80万円</td></tr>
+      <tr><th scope="row">画面 1 つの追加費用</th><td class="num">12万円</td><td class="num">3万円</td></tr>
+      <tr><th scope="row">再発の防止</th><td>報告書のみ</td><td>自動の検査で継続</td></tr>
+    </tbody>
+  </table>
+  <p class="source">注: 外部監査は 2026年9月に 2 社から取った見積もりの平均</p>
+</section>
+
+<section class="slide" data-layout="steps">
+  <h2>次の四半期に、3 段階で試験導入します</h2>
+  <ol class="steps">
+    <li><h3>選ぶ</h3><p>対象のプロダクトを 2 つ決め、画面の一覧を作る</p></li>
+    <li><h3>置き換える</h3><p>よく使う部品から順に共通の部品へ置き換える</p></li>
+    <li><h3>測る</h3><p>実装時間と指摘の数を、導入前と比べる</p></li>
+  </ol>
+  <aside class="notes">
+    <p>各段階は 1 か月を目安にします。</p>
+    <p>測る段階の結果は、次の部長会で報告します。</p>
+  </aside>
+</section>
+
+<section class="slide" data-layout="summary">
+  <h2>今日お願いしたいこと</h2>
+  <ol>
+    <li>次の四半期に 2 つのプロダクトで試験導入する</li>
+    <li>各プロダクトから担当者を 1 人ずつ出していただく</li>
+    <li>結果は 2027年1月の部長会で報告する</li>
+  </ol>
+  <p class="meta">資料と部品の一覧: <a href="https://tkc310.github.io/8341-ui/" target="_blank">8341-ui の Storybook を開く</a></p>
+</section>
+
+</body>
+</html>
