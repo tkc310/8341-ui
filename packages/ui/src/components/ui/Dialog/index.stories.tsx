@@ -56,7 +56,9 @@ export const Default: Story = {
     const trigger = canvas.getByRole('button', { name: '経歴を追加する' });
     await userEvent.click(trigger);
     const dialog = await body.findByRole('dialog', { name: '経歴を追加' });
-    await expect(dialog).toBeVisible();
+    // 開くときは不透明度 0 から遷移するので、見えるまで待つ
+    await waitFor(() => expect(dialog).toBeVisible());
+    await expect(within(dialog).getByRole('textbox', { name: /会社名/ })).toBeInTheDocument();
     // Esc で閉じ、フォーカスは開いたボタンに戻る
     await userEvent.keyboard('{Escape}');
     await waitFor(() => expect(body.queryByRole('dialog')).toBeNull());
