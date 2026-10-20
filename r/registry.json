@@ -157,6 +157,25 @@
       ]
     },
     {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "画面の上に重ねて表示するダイアログ（Base UI の Dialog）。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/button",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/Dialog/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "divider",
       "type": "registry:ui",
       "title": "Divider",
@@ -306,6 +325,38 @@
       ]
     },
     {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "読み込み中に、中身の形だけを先に見せる箱。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/Skeleton/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "読み込みや保存の最中であることを示すスピナー。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/Spinner/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "stack",
       "type": "registry:ui",
       "title": "Stack",
@@ -317,6 +368,26 @@
       "files": [
         {
           "path": "src/components/ui/Stack/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "オン / オフを切り替えるスイッチ（Base UI の Switch）。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/Switch/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -387,6 +458,25 @@
       "files": [
         {
           "path": "src/components/ui/Textarea/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "truncate",
+      "type": "registry:ui",
+      "title": "Truncate",
+      "description": "1 行に収まらない文字を … で省略し、マウスを乗せるかフォーカスすると全文をツールチップで出す。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/Truncate/index.tsx",
           "type": "registry:ui"
         }
       ]
