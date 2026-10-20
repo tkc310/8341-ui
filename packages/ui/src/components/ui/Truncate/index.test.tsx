@@ -42,6 +42,6 @@ describe('Truncate', () => {
     await user.tab();
     expect(el).toHaveFocus();
     // ツールチップは見た目の補助なので読み上げには出さない（全文は元の文字で読まれる）
-    expect(await screen.findByText(text, { ignore: '[tabindex]' })).toBeInTheDocument();
+    expect(await screen.findByText(text, { ignore: '[data-base-ui-tooltip-trigger]' })).toBeInTheDocument();
   });
 });
