@@ -16,11 +16,11 @@
 ## コンポーネント
 
 - [ ] Table（ソート・横スクロール時の見出し固定、識別子の等幅）— 特化ルール「管理画面」
-- [ ] Dialog / AlertDialog（Base UI）— 原則「誤りと撤回」の確認の段
+- [ ] AlertDialog（Base UI。取り消せない操作の確認）— 原則「誤りと撤回」の確認の段。入力用の Dialog は提供済み
 - [ ] EmptyState（「データが無い」「条件に一致しない」「権限がない」の書き分け）— 特化ルール「管理画面」
-- [ ] Progress / Toast（Base UI）/ Skeleton — 原則「状態と応答」
-- [ ] Tooltip（Base UI。1.4.13 の解除・ホバー・持続を満たすか確認）・Combobox — 原則「再認」
-- [ ] Tabs・Switch・Menu（Base UI）
+- [ ] Progress / Toast（Base UI）— 原則「状態と応答」
+- [ ] 汎用の Tooltip（Base UI。1.4.13 の解除・ホバー・持続を満たすか確認）・Combobox — 原則「再認」。Truncate は省略した全文の表示だけに使う
+- [ ] Tabs・Menu（Base UI）
 - [ ] SkipLink（本文へ移動）— WCAG 2.4.1
 - [ ] ErrorSummary（送信時のエラー一覧と最初の誤りへのフォーカス移動。現在は NotificationBanner の組み合わせで代用）— WCAG 3.3.1
 - [ ] Pagination

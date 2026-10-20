@@ -118,6 +118,18 @@
       "wcag": "1.4.11"
     },
     {
+      "id": "switch-thumb",
+      "$description": "Switch のつまみとトラック。オフのつまみは枠線の色、オンのつまみは面の色を key の上に置く（ホバー時を含む）",
+      "pairs": [
+        ["color.border.input", "color.bg.muted"],
+        ["color.border.strong", "color.bg.muted"],
+        ["color.bg.surface", "color.bg.key"],
+        ["color.bg.surface", "color.bg.key-hover"]
+      ],
+      "min": 3,
+      "wcag": "1.4.11"
+    },
+    {
       "id": "key-bg-as-boundary",
       "fg": ["color.bg.key", "color.bg.danger"],
       "bg": ["color.bg.canvas"],

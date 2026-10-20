@@ -32,9 +32,12 @@
 | Button     | Tab で移動、Enter / Space で実行                                            |
 | Link       | Tab で移動、Enter で遷移                                                    |
 | Checkbox   | Space で切り替え                                                            |
+| Switch     | Space で切り替え（Base UI。`role="switch"`）                                 |
 | RadioGroup | Tab でグループに入り、矢印キーで選択（Base UI）                             |
 | Accordion  | Enter / Space で開閉（Base UI。見出しの中のボタン）                         |
 | Select     | Enter / Space で開き、矢印キーで移動、Enter で決定、Esc で閉じる（Base UI） |
+| Dialog     | 開くとフォーカスが中に移り、Tab は中で循環。Esc か「閉じる」で閉じ、開いたボタンに戻る（Base UI） |
+| Truncate   | 省略されたときだけ Tab で止まり、フォーカス中は全文のツールチップを出す         |
 
 独自のキーボード操作（ロービングタブインデックスなど）が必要な部品を作る場合は、
 [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/) のパターンに従い、ADR を書きます。
