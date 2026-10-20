@@ -18,7 +18,7 @@ describe('Switch', () => {
     const control = screen.getByRole('switch', { name: '自動保存' });
     await user.click(screen.getByText('自動保存'));
     expect(control).toHaveAttribute('aria-checked', 'true');
-    // キーボード（Space）での切り替えは、実ブラウザで動くストーリーの play 関数で検査する（happy-dom は非ネイティブのボタンの Space を再現しない）
+    // キーボード（Space）での切り替えは、実ブラウザで動くストーリー（Components/Form の Switches）の play 関数で検査する（happy-dom は非ネイティブのボタンの Space を再現しない）
     await user.click(control);
     expect(control).toHaveAttribute('aria-checked', 'false');
     expect(onCheckedChange).toHaveBeenCalledTimes(2);
