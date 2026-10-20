@@ -53,8 +53,12 @@ export function Checkbox({ label, description, size, className, ...rest }: Check
         })}
         {...rest}
       >
-        <BaseCheckbox.Indicator className="text-fg-on-key group-data-[disabled]/control:text-fg-disabled forced-colors:text-[CanvasText]">
-          <Icon name="check" size="sm" className="stroke-3 group-data-[indeterminate]/control:hidden" />
+        {/*
+          flex にして行ボックスを作らない。インライン要素のままだと本文の行の高さ（16px × 1.7）を引き継ぎ、
+          align-middle のアイコンがベースライン基準で置かれて枠の中心から下にずれる
+        */}
+        <BaseCheckbox.Indicator className="flex items-center justify-center text-fg-on-key group-data-[disabled]/control:text-fg-disabled forced-colors:text-[CanvasText]">
+          <Icon name="check" size="sm" className="block stroke-3 group-data-[indeterminate]/control:hidden" />
           <Icon name="minus" size="sm" className="hidden stroke-3 group-data-[indeterminate]/control:block" />
         </BaseCheckbox.Indicator>
       </BaseCheckbox.Root>

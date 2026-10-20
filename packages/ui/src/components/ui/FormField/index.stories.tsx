@@ -8,6 +8,7 @@ import { NotificationBanner } from '@/components/ui/NotificationBanner/index';
 import { Radio, RadioGroup } from '@/components/ui/RadioGroup/index';
 import { Select } from '@/components/ui/Select/index';
 import { Stack } from '@/components/ui/Stack/index';
+import { Switch } from '@/components/ui/Switch/index';
 import { TextField } from '@/components/ui/TextField/index';
 import { Textarea } from '@/components/ui/Textarea/index';
 import { FormField } from './index';
@@ -140,6 +141,34 @@ export const Radios: Story = {
       </RadioGroup>
     </Stack>
   ),
+};
+
+/**
+ * スイッチ（Base UI の Switch）。押した瞬間に反映する設定に使い、送信して反映する選択（同意など）は Checkbox を使う。
+ * オンでは色に加えてつまみにチェックを出す。size は md / sm
+ */
+export const Switches: Story = {
+  args: { label: '', children: null },
+  render: () => (
+    <Stack gap="sm">
+      <Switch label="新着の通知を受け取る" />
+      <Switch label="自動保存" description="入力内容を 30 秒ごとに下書きとして保存します" defaultChecked />
+      <Switch label="小（sm）。項目名の横に並べる" size="sm" defaultChecked />
+      <Switch label="オフ（無効）" disabled />
+      <Switch label="オン（無効）" defaultChecked disabled />
+    </Stack>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const control = canvas.getByRole('switch', { name: '新着の通知を受け取る' });
+    await expect(control).toHaveAttribute('aria-checked', 'false');
+    await userEvent.click(canvas.getByText('新着の通知を受け取る'));
+    await expect(control).toHaveAttribute('aria-checked', 'true');
+    // キーボードでも切り替えられる
+    control.focus();
+    await userEvent.keyboard(' ');
+    await expect(control).toHaveAttribute('aria-checked', 'false');
+  },
 };
 
 function ValidationForm() {

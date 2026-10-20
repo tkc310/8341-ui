@@ -72,9 +72,14 @@ packages/ui/src/components/ui/Button/
 | ページを移動する           | Link（カード全体なら Card の `href`） | Button                   |
 | 2〜6 個から 1 つ選ぶ       | RadioGroup                            | Select                   |
 | 7 個以上から 1 つ選ぶ      | Select                                | RadioGroup               |
-| オン / オフ、複数選択      | Checkbox                              | トグルスイッチ（未提供） |
+| 送信して反映するオン / オフ、複数選択 | Checkbox                   | Switch                   |
+| 押した瞬間に反映する設定   | Switch                                | Checkbox                 |
 | ページ上部の重要なお知らせ | NotificationBanner                    | Tag                      |
 | 一覧の項目の状態           | Tag（アイコン付き）                   | 色だけの点               |
 | よくある質問など折りたたみ | Accordion + AccordionItem             | 独自のディスクロージャ   |
 | 要素の縦横の間隔           | Stack                                 | 個別の margin            |
+| 画面に重ねて入力・確認させる | Dialog（`title` 必須）               | 独自のモーダル           |
+| 読み込み・保存の最中       | Spinner（ボタンの中は Button の `loading`） | 文言の無い回転アイコン |
+| 中身の形が分かる読み込み   | Skeleton ＋ 領域の `aria-busy`        | 空白のまま待たせる       |
+| 幅が限られた 1 行の文字    | Truncate（表の列・一覧の項目名）      | 本文の省略               |
 | フォームの送信と検証       | Base UI の Form + FormField           | 独自の検証の仕組み       |

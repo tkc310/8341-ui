@@ -160,6 +160,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - `Button`（`@8341/button`）— `packages/ui/src/components/ui/Button/`
 - `Card`（`@8341/card`）— `packages/ui/src/components/ui/Card/`
 - `Checkbox`（`@8341/checkbox`）— `packages/ui/src/components/ui/Checkbox/`
+- `Dialog`（`@8341/dialog`）— `packages/ui/src/components/ui/Dialog/`
 - `Divider`（`@8341/divider`）— `packages/ui/src/components/ui/Divider/`
 - `FormField`（`@8341/form-field`）— `packages/ui/src/components/ui/FormField/`
 - `Heading`（`@8341/heading`）— `packages/ui/src/components/ui/Heading/`
@@ -168,11 +169,15 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - `NotificationBanner`（`@8341/notification-banner`）— `packages/ui/src/components/ui/NotificationBanner/`
 - `RadioGroup`（`@8341/radio-group`）— `packages/ui/src/components/ui/RadioGroup/`
 - `Select`（`@8341/select`）— `packages/ui/src/components/ui/Select/`
+- `Skeleton`（`@8341/skeleton`）— `packages/ui/src/components/ui/Skeleton/`
+- `Spinner`（`@8341/spinner`）— `packages/ui/src/components/ui/Spinner/`
 - `Stack`（`@8341/stack`）— `packages/ui/src/components/ui/Stack/`
+- `Switch`（`@8341/switch`）— `packages/ui/src/components/ui/Switch/`
 - `Tag`（`@8341/tag`）— `packages/ui/src/components/ui/Tag/`
 - `Text`（`@8341/text`）— `packages/ui/src/components/ui/Text/`
 - `TextField`（`@8341/text-field`）— `packages/ui/src/components/ui/TextField/`
 - `Textarea`（`@8341/textarea`）— `packages/ui/src/components/ui/Textarea/`
+- `Truncate`（`@8341/truncate`）— `packages/ui/src/components/ui/Truncate/`
 <!-- /auto:components -->
 
 ### 共通規約
@@ -184,7 +189,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - 見た目が 44px 未満の操作対象には `tap-target` クラスでタップ領域を足す
 - `hover:` は Tailwind v4 では自動で `@media (hover: hover)` に入る。無効状態に効かせないよう `enabled:hover:` を使う
 - 強制カラーモードは `forced-colors:` で補う
-- `'use client'` はフック・コンテキスト・イベントハンドラを作るエントリだけに付ける（button / form-field / text-field / textarea / select）
+- `'use client'` はフック・コンテキスト・イベントハンドラを作るエントリだけに付ける（button / form-field / text-field / textarea / select / truncate）
 
 ### Button
 
@@ -244,6 +249,36 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - `tone`: `info` / `success` / `warning` / `danger`。左に 4px の色帯、背景 `bg-{tone}-subtle`、`rounded-lg`
 - 見出しの先頭に種別（「エラー: 」など）を視覚的に隠して読ませる
 - 動的に挿入するときだけ `live`（danger は `role="alert"`、他は `role="status"`）
+
+### Switch
+
+- Base UI の Switch（`role="switch"`）。`label` 必須、`description` で補足。`size`: `md`（トラック 60×36px）/ `sm`（40×24px）。ラベル全体がタップ領域で行の高さ 44px を確保
+- 押した瞬間に反映する設定に使う。送信して反映する選択（同意など）は Checkbox
+- オフ: `border-border-input` の枠と同色のつまみ / オン: `bg-key` のトラックに `bg-surface` のつまみとチェック（色だけで伝えない）
+
+### Dialog
+
+```tsx
+<Dialog title="経歴を追加" description="保存するまで反映されません" trigger={<Button>経歴を追加する</Button>}
+  footer={<><Button variant="tertiary">下書きに保存する</Button><Button>追加する</Button></>}>
+  …
+</Dialog>
+```
+
+- Base UI の Dialog。`title` 必須（名前）、`description`（説明）。開くとフォーカスが中に移り、Esc か「閉じる」（`closeLabel`）で閉じて開いたボタンに戻る
+- `open` / `onOpenChange` で開閉を管理するときは `trigger` を省く
+- `placement`: `center`（既定。`bg-overlay` の背面、`rounded-xl`、最大幅 `max-w-prose`、本文だけスクロール）/ `side`（先頭側からせり出す。裏の画面も操作でき、フォーカスだけ閉じ込める）
+- 取り消せない操作の確認には使わない（AlertDialog はバックログ）
+
+### Spinner / Skeleton
+
+- **Spinner**: `role="status"` の中に `label`（必須）を文字で持つ。既定は視覚的に隠し、`showLabel` で表示。`size`: `sm` / `md` / `lg`（アイコンの寸法）。`delay` で 300ms 遅れて表示。ボタンの中は Button の `loading`
+- **Skeleton**: `aria-hidden` の `bg-muted` の箱（`animate-pulse`、動きを減らす設定では止まる）。`width` / `height`（既定 100% / 1em）、`radius`: `none` / `xs`（既定）/ `md` / `xl` / `full`。待っている領域に `aria-busy` を立て、状態は Spinner で伝える
+
+### Truncate
+
+- 1 行に収まらない文字を … で省略する（`children` は文字列）。省略されたときだけ Tab で止まり、ホバーかフォーカスで全文を Base UI の Tooltip（`bg-inverse`）で出す
+- 読み上げは常に全文。本文には使わず、表の列や一覧の項目名など幅が限られる場所に使う
 
 ### Card
 
