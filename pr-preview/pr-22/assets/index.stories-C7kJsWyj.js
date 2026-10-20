@@ -1,0 +1,13 @@
+import{a as e,n as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,p as r}from"./iframe-V6L0IpLp.js";import{n as i,r as a}from"./tv-DhvZ5eiV.js";import{n as o,t as s}from"./Text-DjbTHUbB.js";import{n as c,t as l}from"./useRenderElement-Bb9bOGW7.js";import{n as u,t as d}from"./Stack-SwTLwGwj.js";var f,p;function m(){return(m=t((()=>{f=e(r(),1),l(),p=f.forwardRef(function(e,t){let{className:n,render:r,orientation:i=`horizontal`,style:a,...o}=e;return c(`div`,e,{state:{orientation:i},ref:t,props:[{role:`separator`,"aria-orientation":i},o]})})})))()}function h({tone:e,orientation:t=`horizontal`,className:n,...r}){return(0,g.jsx)(p,{orientation:t,className:_({tone:e,orientation:t,className:n}),...r})}var g,_;function v(){return(v=t((()=>{m(),i(),g=n(),_=a({base:`m-0 shrink-0 border-0`,variants:{tone:{subtle:`bg-border-subtle`,default:`bg-border`},orientation:{horizontal:`h-px w-full`,vertical:`w-px self-stretch`}},defaultVariants:{tone:`subtle`,orientation:`horizontal`}}),h.__docgenInfo={description:`内容を区切る線（Base UI の Separator）。装飾なら subtle、意味のある区切りなら default。`,methods:[],displayName:`Divider`,props:{className:{required:!1,tsType:{name:`string`},description:``},orientation:{defaultValue:{value:`'horizontal'`,computed:!1},required:!1}},composes:[`Omit`,`VariantProps`]}})))()}var y,b,x,S;function C(){return(C=t((()=>{v(),u(),o(),y=n(),b={title:`Components/Text`,component:s,args:{children:`すべての人に、やさしいデジタルを。`}},x={render:()=>(0,y.jsxs)(d,{gap:`sm`,children:[(0,y.jsx)(s,{children:`default（本文）`}),(0,y.jsx)(s,{tone:`subtle`,children:`subtle（補足）`}),(0,y.jsx)(s,{tone:`key`,children:`key`}),(0,y.jsx)(s,{tone:`danger`,children:`danger`}),(0,y.jsx)(s,{tone:`success`,children:`success`}),(0,y.jsx)(s,{tone:`warning`,children:`warning`}),(0,y.jsx)(h,{}),(0,y.jsx)(s,{variant:`body-sm`,children:`body-sm（最小 14px）`}),(0,y.jsx)(s,{variant:`mono-md`,children:`mono-md 0123456789`})]})},S=[`Tones`],x.parameters={...x.parameters,docs:{...x.parameters?.docs,source:{originalSource:`{
+  render: () => <Stack gap="sm">
+      <Text>default（本文）</Text>
+      <Text tone="subtle">subtle（補足）</Text>
+      <Text tone="key">key</Text>
+      <Text tone="danger">danger</Text>
+      <Text tone="success">success</Text>
+      <Text tone="warning">warning</Text>
+      <Divider />
+      <Text variant="body-sm">body-sm（最小 14px）</Text>
+      <Text variant="mono-md">mono-md 0123456789</Text>
+    </Stack>
+}`,...x.parameters?.docs?.source}}}})))()}C();export{x as Tones,S as __namedExportsOrder,b as default};

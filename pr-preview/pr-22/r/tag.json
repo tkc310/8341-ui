@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tag",
+  "title": "Tag",
+  "description": "状態やカテゴリを示すラベル。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/Tag/index.tsx",
+      "content": "import type { HTMLAttributes, ReactNode } from 'react';\nimport { type VariantProps, tv } from '@/lib/tv';\n\nexport const tagVariants = tv({\n  base: 'inline-flex items-center gap-gap-xs whitespace-nowrap rounded-xs border px-inset-sm py-inset-xs text-label-sm [&_svg]:size-icon-sm',\n  variants: {\n    tone: {\n      neutral: 'border-border bg-subtle text-fg',\n      key: 'border-border-key bg-info-subtle text-fg-key',\n      success: 'border-border-success bg-success-subtle text-fg-success',\n      warning: 'border-border-warning bg-warning-subtle text-fg-warning',\n      danger: 'border-border-danger bg-danger-subtle text-fg-danger',\n    },\n  },\n  defaultVariants: { tone: 'neutral' },\n});\n\nexport interface TagProps extends HTMLAttributes<HTMLSpanElement>, VariantProps<typeof tagVariants> {\n  /** 先頭アイコン。状態を表すタグには、色だけで意味を伝えないよう付けることを推奨 */\n  icon?: ReactNode;\n}\n\n/** 状態やカテゴリを示すラベル。操作はできない（操作できるなら Button を使う） */\nexport function Tag({ tone, icon, className, children, ...rest }: TagProps) {\n  return (\n    <span className={tagVariants({ tone, className })} {...rest}>\n      {icon}\n      {children}\n    </span>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "読み込み中に、中身の形だけを先に見せる箱。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/Skeleton/index.tsx",
+      "content": "import type { CSSProperties, HTMLAttributes } from 'react';\nimport { type VariantProps, tv } from '@/lib/tv';\n\nexport const skeletonVariants = tv({\n  base: [\n    'block max-w-full animate-pulse bg-muted motion-reduce:animate-none',\n    // 強制カラーでは背景が消えるので、枠線で形を残す\n    'forced-colors:border forced-colors:border-[GrayText]',\n  ],\n  variants: {\n    /** 置き換える中身の角丸に合わせる（文字は xs、ボタン・入力欄は md、カードは xl、アイコン・顔写真は full） */\n    radius: {\n      none: 'rounded-none',\n      xs: 'rounded-xs',\n      md: 'rounded-md',\n      xl: 'rounded-xl',\n      full: 'rounded-full',\n    },\n  },\n  defaultVariants: { radius: 'xs' },\n});\n\nexport interface SkeletonProps\n  extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'>, VariantProps<typeof skeletonVariants> {\n  /** 幅。既定は親の幅いっぱい */\n  width?: CSSProperties['width'];\n  /** 高さ。既定は 1 文字分（1em） */\n  height?: CSSProperties['height'];\n}\n\n/**\n * 読み込み中に、中身の形だけを先に見せる箱。読み上げには出さない（aria-hidden）ので、\n * 読み込み中であることは Spinner や、待っている領域の aria-busy で別に伝える。\n */\nexport function Skeleton({ width = '100%', height = '1em', radius, className, style, ...rest }: SkeletonProps) {\n  return (\n    <span\n      aria-hidden=\"true\"\n      className={skeletonVariants({ radius, className })}\n      style={{ width, height, ...style }}\n      {...rest}\n    />\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
