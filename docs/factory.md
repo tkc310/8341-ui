@@ -35,7 +35,7 @@ docs/design-principles/ ──（ルール）──┬──▶ 8341-ui（この
 
 ### 流れ
 
-1. **ルールを読む**: `design-principles` スキルの「新規作成」モードに従う
+1. **ルールを読む**: `design-principles` スキルの「新規作成」モード（`mode-1-init.md`）に従う
 2. **ヒアリング**: [hearing.md](./design-principles/hearing.md) の項目に、ファクトリー固有の項目（共有の基盤か専用か、名前、接頭辞、キーカラー、フォント、アクセシビリティ目標、テーマ、リポジトリ、配布方法）を足して、一度にまとめて聞く
 3. **設定ファイル**: 回答を JSON にまとめる
 4. **生成**: `node scripts/factory/create.mjs --config <設定> --out <出力先>`

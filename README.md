@@ -37,7 +37,7 @@
 - **藍のキーカラーと共通明度カーブ** — OKLCH で 8 系統 × 13 段階のパレットを生成します。どの色相でも同じ段階番号ならコントラストがそろうので、色を替えても検証が崩れません。
 - **コードを持てる配布** — shadcn のレジストリで、部品をプロジェクトにコピーして使います。トークン入りのテーマも同梱しているので、npm のパッケージは要りません。版を固定した取り込みもできます。
 - **デザイントークンが正本** — W3C DTCG 2025.10 → Style Dictionary v5 で、CSS 変数・Tailwind v4 の `@theme`・Figma Variables を一度に生成します。
-- **AI エージェント向けの仕様とスキル** — `DESIGN.md` と画面設計のルール（[design-principles](./docs/design-principles/README.md)）を、Claude Code・Cursor・Codex が同じスキルとして読みます。
+- **AI エージェント向けの仕様とスキル** — `DESIGN.md` と画面設計のルール（[design-principles](./docs/design-principles/README.md)）を、Claude Code・Cursor・Codex が同じスキルとして読みます。画面づくり・レビュー・スライド作成・改善などのスキルは[スキルの一覧](./docs/skills.md)にあり、文書は必要になった段階でだけ読み込みます。
 - **自己改善の仕組み** — 週次の健康診断、改善のバックログとログ、再発防止のチェックの追加までを、[改善ループ](./docs/rulebook/06-improvement-loop.md)として回します。
 
 <!-- factory:start -->
@@ -168,7 +168,7 @@ apps/storybook/           Storybook 10・e2e・レジストリの配信元
 docs/design-principles/   画面設計のルール（UI の方向性 → 特化ルール → 原則 → WCAG）
 docs/rulebook/            ルールブック（原則・アクセシビリティ・トークン・コンポーネント・文言・改善ループ）
 docs/decisions/           設計判断の記録（ADR）
-.claude/skills/           AI エージェントのスキル（.agents/skills から共有）
+.claude/skills/           AI エージェントのスキル（.agents/skills から共有。一覧は docs/skills.md）
 templates/                プロダクト用 DESIGN.md の雛形
 ```
 
@@ -182,6 +182,7 @@ templates/                プロダクト用 DESIGN.md の雛形
 | 画面設計のルール | [docs/design-principles](./docs/design-principles/README.md) |
 | ルールブック | [docs/rulebook](./docs/rulebook/) |
 | 開発・運用・リリース | [CONTRIBUTING.md](./CONTRIBUTING.md) · [docs/operations.md](./docs/operations.md) · [docs/releasing.md](./docs/releasing.md) |
+| AI エージェントのスキル（一覧と読み込みの仕組み） | [docs/skills.md](./docs/skills.md) |
 | AI エージェントへの対応 | [docs/ai-agents.md](./docs/ai-agents.md) |
 | 設計判断の記録 | [docs/decisions](./docs/decisions/) |
 | ロゴとバナー | [docs/assets](./docs/assets/README.md) |

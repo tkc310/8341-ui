@@ -68,7 +68,7 @@ design-principles のルールとは別に、このシステム自体を作る�
 1. **少ない選択肢で組む**: トークンとバリエーションを意図的に絞る。新しい値やバリアントを足す前に、既存の組み合わせで解決できないか検討し、足すときは ADR を書く。
 2. **ネイティブ要素を優先する**: `button`、`a`、`details`、`select`、`fieldset` の振る舞いを使い、独自の操作体系を作らない。
 3. **測って、直す**: 品質は検証できる基準で守り、見つけた問題はチェックかテストを足して再発を防ぐ（[06 改善ループ](./06-improvement-loop.md)）。
-4. **ルールへ返す**: design-principles にギャップや曖昧さを見つけたら、8341-ui の中で例外を作らず、`docs/design-principles/` を直す PR を出す（`design-principles` スキルの「ルールへのフィードバック」）。プロダクト固有の例外は、そのプロダクトの DESIGN.md に書く。
+4. **ルールへ返す**: design-principles にギャップや曖昧さを見つけたら、8341-ui の中で例外を作らず、`docs/design-principles/` を直す PR を出す（`design-principles` スキルの `feedback.md`）。プロダクト固有の例外は、そのプロダクトの DESIGN.md に書く。
 
 ### 見た目の性格
 

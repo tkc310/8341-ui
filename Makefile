@@ -52,7 +52,7 @@ build-storybook: ## Storybook とレジストリをビルドする
 
 ##@ 検査・テスト
 
-check: ## fmt・lint・型・生成物の鮮度・コントラスト・クラス監査・依存の向き
+check: ## fmt・lint・型・生成物の鮮度・コントラスト・クラス監査・依存の向き・スライドとスキルの検査
 	pnpm check
 
 test: ## 単体テストと、全ストーリーの描画・axe

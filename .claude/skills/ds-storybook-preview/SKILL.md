@@ -7,20 +7,13 @@ description: コンポーネントやトークンの見た目が変わる変更�
 
 レビューする人が、手元でビルドしなくても変更後の見た目をブラウザで確かめられるようにする。
 **ビルドと公開は、開発しているエージェントがローカルで行う**（CI ではビルドしない）。
-
-| 何が | どこに | 誰が置くか |
-| --- | --- | --- |
-| PR ごとのプレビュー | `https://tkc310.github.io/8341-ui/pr-preview/pr-<番号>/` | このスキル（`make storybook-preview`） |
-| main の Storybook とレジストリ | `https://tkc310.github.io/8341-ui/` | CI（main への push 時） |
-
-どちらも `gh-pages` ブランチに置かれる（ADR-0011）。PR を閉じると、プレビューは CI（`storybook-preview-cleanup.yml`）が消す。
+プレビューは `https://tkc310.github.io/8341-ui/pr-preview/pr-<番号>/`（`gh-pages` ブランチ。ADR-0011）に置かれ、PR を閉じると CI が消す。
 
 ## いつ使うか
 
 次のどれかを変えて、PR を作るとき、または PR に追加で push したとき。
 
-- `packages/ui/src/`（コンポーネント・スタイル）
-- `packages/tokens/src/`（トークンの値）
+- `packages/ui/src/`（コンポーネント・スタイル）、`packages/tokens/src/`（トークンの値）
 - `apps/storybook/src/`、`apps/storybook/.storybook/`（ストーリー・テーマ切り替え）
 - 上のどれでもないが見た目に影響するもの（Tailwind・Base UI など依存の更新、ビルド設定）
 
@@ -28,73 +21,13 @@ description: コンポーネントやトークンの見た目が変わる変更�
 
 ## 手順
 
-1. **コミットして push し、PR を作る**
-   - プレビューは PR の番号ごとに置くので、先に PR が要る
-   - PR 本文は `.github/pull_request_template.md` を使う。「Storybook プレビュー」節の印（`<!-- storybook-preview:start -->` 〜 `<!-- storybook-preview:end -->`）は消さない
-   - push してから公開する。未コミット・未 push のままだと、PR の差分とプレビューが食い違う（スクリプトが警告を出す）
+1. **コミットして push し、PR を作る**（プレビューは PR の番号ごとに置くので、先に PR が要る）。本文は `.github/pull_request_template.md` を使い、`<!-- storybook-preview:start -->` 〜 `<!-- storybook-preview:end -->` の印は消さない
+2. **ビルドして公開する**: リポジトリのルートで `make storybook-preview`（PR 番号が見つからないときは `PR=<番号>`）。最後に URL が出る。Pages への反映に 1〜2 分かかる。ビルドが失敗したら直してから公開する
+3. **変わったストーリーを特定し、PR 本文の「Storybook プレビュー」節を書き換える**: [pr-body.md](./pr-body.md) を読む（ストーリー ID の引き方、リンクの形、本文の更新方法、書く内容の例）
+4. **自分でも開いて確かめる**: ブラウザを使える環境なら、リンクを開いてライト・ダーク・フォーカス表示（Tab キー）と a11y パネルを見る。開けない環境なら、PR 本文に「エージェントは描画を確認していない」と書き、人間に確認を頼む
+5. **push するたびに 2〜3 をやり直す**（URL は変わらない。本文の「〜時点」のコミットを更新する）
 
-2. **ビルドして公開する**（リポジトリのルートで）
-
-   ```bash
-   make storybook-preview
-   ```
-
-   - トークンの生成 → レジストリのビルド → Storybook のビルド → `gh-pages` の `pr-preview/pr-<番号>/` へ push、の順に動く
-   - PR 番号は今のブランチから自動で探す。見つからないときは `make storybook-preview PR=<番号>`
-   - 最後に URL が出る。Pages への反映に 1〜2 分かかる
-   - ビルドが失敗したら、原因を直してから公開する。ビルドの通らない PR はレビューに出さない
-
-3. **変わったストーリーを特定する**
-   - 変えたファイルから、関係するストーリーを選ぶ
-     - コンポーネントを変えた → そのコンポーネントの全ストーリー
-     - トークンを変えた → `Foundations` のストーリーと、そのトークンを使うコンポーネント（`grep -rn "<Tailwind のクラス名>" packages/ui/src/components`）
-   - ストーリー ID は、ビルド結果の `index.json` から引くのが確実
-
-     ```bash
-     jq -r '.entries[] | select(.importPath | contains("/button/")) | "\(.id)\t\(.title) / \(.name)"' apps/storybook/storybook-static/index.json
-     ```
-
-4. **PR 本文の「Storybook プレビュー」節を書き換える**
-   - ストーリーごとにライトとダークのリンクを付け、見比べてほしい点を 1 行で書く
-   - リンクの形（`<P>` はプレビューの URL）
-     - ライト: `<P>?path=/story/<id>&globals=theme:light`
-     - ダーク: `<P>?path=/story/<id>&globals=theme:dark`
-     - 並べて表示: `<P>?path=/story/<id>&globals=theme:side-by-side`
-   - 本文は REST API で更新する（`gh pr edit` は GraphQL を使うので、環境によっては通らない）
-
-     ```bash
-     gh api repos/tkc310/8341-ui/pulls/<番号> --jq .body > /tmp/pr-body.md
-     # <!-- storybook-preview:start --> と <!-- storybook-preview:end --> の間を書き換える
-     gh api -X PATCH repos/tkc310/8341-ui/pulls/<番号> -F body=@/tmp/pr-body.md
-     ```
-
-   - 書く内容の例
-
-     ```markdown
-     <!-- storybook-preview:start -->
-     プレビュー: https://tkc310.github.io/8341-ui/pr-preview/pr-12/ （abc1234 時点）
-
-     | ストーリー | ライト | ダーク | 見てほしい点 |
-     | --- | --- | --- | --- |
-     | Button / Variants | [開く](…&globals=theme:light) | [開く](…&globals=theme:dark) | danger の背景色を濃くした |
-     | Foundations / Colors | [開く](…) | [開く](…) | `bg.danger` の値 |
-     <!-- storybook-preview:end -->
-     ```
-
-5. **自分でも開いて確かめる**
-   - ブラウザを使える環境なら、上のリンクを開き、ライト・ダーク・フォーカス表示（Tab キー）を目で確かめる。a11y パネルに違反が出ていないかも見る
-   - 開けない環境なら、PR 本文に「エージェントは描画を確認していない」と書き、人間に確認を頼む
-
-6. **push するたびに 2〜4 をやり直す**
-   - URL は変わらない。本文の「〜時点」のコミットを更新し、変わったストーリーが増えたら表に足す
-
-## 前提（リポジトリの設定。一度だけ、人間が行う）
-
-- Settings > Pages > Build and deployment > Source を「Deploy from a branch」、Branch を `gh-pages` / `(root)` にする
-  - 「GitHub Actions」のままだと `gh-pages` ブランチの内容は配信されない
-  - `gh-pages` ブランチは、最初の `make storybook-preview` か main への最初の push で作られる
-- Settings > Actions > General > Workflow permissions を「Read and write permissions」にする（main の配信と PR を閉じたときの削除に使う）
-- ローカルに `gh`（GitHub CLI、ログイン済み）と、`gh-pages` へ push できる権限があること
+公開に失敗する・Pages に出ないときは、リポジトリの設定を [setup.md](./setup.md) で確かめる。
 
 ## やってはいけないこと
 

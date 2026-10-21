@@ -25,19 +25,7 @@
 
 ## スキルの一覧
 
-| スキル | 使う場面 |
-| --- | --- |
-| `design-principles` | 画面設計のルールを適用する（新規作成・調整・レビューの 3 モード） |
-| `design-init` / `design-adjust` / `design-review` | 上の各モードを直接呼ぶ |
-| `ds-build-ui` | このデザインシステムで画面やフォームを作る・レビューする |
-| `ds-improve` | このデザインシステム自体を改善する |
-| `ds-storybook-preview` | 見た目が変わる PR に Storybook のプレビューを添える |
-| `ds-slides` | このデザインシステムのトークンとデザイン原則で、発表用のスライドを作る |
-
-<!-- factory:start -->
-新しいデザインシステムを作るときは `ds-factory` を使う（[デザインシステムファクトリー](./factory.md)）。
-
-<!-- factory:end -->
+スキルごとの使う場面・成果物・段階ごとに読む文書と、文書を必要なときだけ読み込む仕組みは [skills.md](./skills.md) にまとめている。
 
 ## Windows で使う場合
 
