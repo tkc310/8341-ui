@@ -16,6 +16,7 @@ AI エージェント向けの作業ガイドです。Claude Code（推奨）・
 | 見た目が変わる変更を PR にする | `.claude/skills/ds-storybook-preview/SKILL.md`（ローカルでビルドして Pages に公開し、PR にリンクを添える） |
 | 判断の理由を知る                 | `docs/decisions/`                                       |
 | 開発の手順・運用・リリースを知る | `CONTRIBUTING.md`・`docs/operations.md`・`docs/releasing.md` |
+| 発表用のスライドを作る | `docs/rulebook/07-slides.md` → `.claude/skills/ds-slides/SKILL.md`（`make slides SRC=…`） |
 | 画面を設計する・DESIGN.md を書く・デザインをレビューする | `docs/design-principles/` → `.claude/skills/design-principles/SKILL.md`（`/design-init`・`/design-adjust`・`/design-review`） |
 
 <!-- factory:start -->
@@ -43,6 +44,7 @@ packages/ui/              コンポーネント（8341-ui）
   src/styles/theme.css    Tailwind のテーマ（@utility focus-ring など）
   registry.json           shadcn レジストリ（生成物）
 apps/storybook/           Storybook 10・e2e（Playwright）・レジストリの配信元
+scripts/slides/            スライドのビルドと検査（deck.css はトークンだけで書く）
 docs/design-principles/   画面設計のルール（UI の方向性 → 特化ルール → 原則 → WCAG）の正本
 docs/rulebook/            ルールブック（design-principles とトークン・コンポーネントの対応）
 docs/decisions/           ADR
@@ -68,6 +70,7 @@ make test-vrt / test-e2e    # 手動・都度実行
 make generate               # 生成物をまとめて更新（tokens・design-md・tw-merge・registry）
 make tokens / palette / design-md / tw-merge / figma / registry   # 生成物を個別に更新
 make audit                  # 健康診断レポート（reports/audit.md）
+make slides SRC=… / slides-check SRC=…   # スライドのデッキを作る・検査する
 make changeset              # 変更内容を記録（公開されるパッケージを変えたとき）
 make storybook-preview      # PR 用の Storybook を Pages に公開
 make release-version / release-publish   # リリース（アカウント保有者が手元で）

@@ -13,7 +13,7 @@ DRY_RUN ?=
 PR ?=
 
 .PHONY: help setup tools install install-ci browsers dev build build-storybook check test verify test-vrt test-e2e \
-	tokens palette design-md tw-merge figma registry registry-build generate audit \
+	tokens palette design-md tw-merge figma registry registry-build generate audit slides slides-check \
 	changeset storybook-preview storybook-preview-remove release-version release-publish clean
 
 ##@ はじめる
@@ -93,6 +93,18 @@ generate: tokens design-md tw-merge registry ## 生成物をまとめて更新�
 
 audit: ## 健康診断レポートを作る（reports/audit.md）
 	pnpm audit:report
+
+##@ スライド
+
+SRC ?=
+THEME ?=
+
+slides: ## スライドのデッキを作る（SRC=ソース.html、任意で OUT=出力先 THEME=light|dark|auto）
+	@test -n "$(SRC)" || { echo "SRC=スライドのソース（.html）を指定してください"; exit 1; }
+	node scripts/slides/build.ts $(SRC) $(if $(OUT),--out $(OUT)) $(if $(THEME),--theme $(THEME))
+
+slides-check: ## スライドのソースを検査する（SRC=ソース.html。無指定なら deck.css と見本）
+	node scripts/slides/check.ts $(SRC)
 
 ##@ PR・リリース
 

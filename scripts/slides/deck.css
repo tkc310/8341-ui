@@ -1,0 +1,830 @@
+/*
+ * 8341-ui のスライド（HTML のデッキ）の見た目。ルールは docs/rulebook/07-slides.md。
+ * 値はすべて semantic トークン（var(--8341-*)）と、デッキの寸法（--deck-*）だけで書く。
+ * make slides-check がこのファイルを監査する（色・px・太さ・中央揃え・動き・グラデーションの直書きを禁止）。
+ *
+ * モード（html[data-mode]）
+ *   present … 960×540（16:9）のキャンバスを画面に合わせて拡大・縮小し、1 枚ずつ見せる（deck.js が付ける）
+ *   list    … 1 枚ずつ縦に並べる。JavaScript が無いとき・幅 768px 未満・印刷はこちら（S17）
+ */
+
+:root {
+  /* 論理サイズ 960×540。rem なので、利用者の文字サイズ設定ごと全体が拡大・縮小する */
+  --deck-width: 60rem;
+  --deck-height: 33.75rem;
+  --deck-scale: 1;
+  --deck-bar-height: calc(var(--8341-size-control-md) + var(--8341-space-inset-sm) * 2);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--8341-color-bg-subtle);
+  color: var(--8341-color-text-default);
+  font-family: var(--8341-text-body-md-font-family);
+  font-size: var(--8341-text-body-md-font-size);
+  font-weight: var(--8341-text-body-md-font-weight);
+  line-height: var(--8341-text-body-md-line-height);
+  letter-spacing: var(--8341-text-body-md-letter-spacing);
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+
+/* ---------------------------------------------------------------------------
+ * 操作バー（S16・S20）
+ * ------------------------------------------------------------------------- */
+
+.deck-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--8341-space-gap-sm);
+  min-height: var(--deck-bar-height);
+  padding: var(--8341-space-inset-sm) var(--8341-space-page-inline);
+  border-bottom: var(--8341-border-width-default) solid var(--8341-color-border-subtle);
+  background-color: var(--8341-color-bg-surface);
+}
+
+.deck-bar-title {
+  margin: 0 auto 0 0;
+  min-width: 0;
+  font-size: var(--8341-text-label-md-font-size);
+  font-weight: var(--8341-text-label-md-font-weight);
+  line-height: var(--8341-text-dense-md-line-height);
+  letter-spacing: var(--8341-text-label-md-letter-spacing);
+}
+
+.deck-counter {
+  min-width: 4em;
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-body-sm-font-size);
+  font-variant-numeric: tabular-nums;
+}
+
+.deck-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--8341-space-gap-xs);
+  min-height: var(--8341-size-target-min);
+  min-width: var(--8341-size-target-min);
+  padding: 0 var(--8341-space-inset-md);
+  border: var(--8341-border-width-default) solid var(--8341-color-border-input);
+  border-radius: var(--8341-radius-md);
+  background-color: var(--8341-color-bg-surface);
+  color: var(--8341-color-text-default);
+  font: inherit;
+  font-size: var(--8341-text-label-sm-font-size);
+  font-weight: var(--8341-text-label-sm-font-weight);
+  line-height: var(--8341-text-label-sm-line-height);
+  letter-spacing: var(--8341-text-label-sm-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.deck-button svg {
+  width: var(--8341-size-icon-md);
+  height: var(--8341-size-icon-md);
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .deck-button:not([aria-disabled='true']):hover {
+    background-color: var(--8341-color-bg-muted);
+    border-color: var(--8341-color-border-strong);
+  }
+}
+
+.deck-button[aria-disabled='true'] {
+  border-color: var(--8341-color-border-disabled);
+  background-color: var(--8341-color-bg-disabled);
+  color: var(--8341-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.deck-button[hidden] {
+  display: none;
+}
+
+/* フォーカスは focus-ring と同じ二重リング（A5） */
+:where(.deck-button, .slide a):focus-visible {
+  outline: var(--8341-focus-outline-width) solid var(--8341-color-focus-outline);
+  outline-offset: var(--8341-focus-offset);
+  box-shadow: 0 0 0 var(--8341-focus-ring-width) var(--8341-color-focus-ring);
+}
+
+/* ---------------------------------------------------------------------------
+ * 一覧モード（既定。S17）
+ * ------------------------------------------------------------------------- */
+
+.deck {
+  display: flex;
+  flex-direction: column;
+  gap: var(--8341-space-stack-md);
+  max-width: calc(var(--deck-width) + var(--8341-space-page-inline) * 2);
+  margin: 0 auto;
+  padding: var(--8341-space-stack-md) var(--8341-space-page-inline) var(--8341-space-stack-lg);
+}
+
+.slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--8341-space-stack-md);
+  width: 100%;
+  padding: var(--8341-space-stack-md) var(--8341-space-page-inline);
+  border: var(--8341-border-width-default) solid var(--8341-color-border-default);
+  border-radius: var(--8341-radius-lg);
+  background-color: var(--8341-color-bg-canvas);
+  color: var(--8341-color-text-default);
+  font-size: var(--8341-text-body-lg-font-size);
+  line-height: var(--8341-text-body-lg-line-height);
+  letter-spacing: var(--8341-text-body-lg-letter-spacing);
+}
+
+/* 発表者メモ（一覧モードでだけ見せる） */
+.deck-notes {
+  margin-top: calc(var(--8341-space-stack-sm) - var(--8341-space-stack-md));
+  padding: var(--8341-space-inset-lg);
+  border-radius: var(--8341-radius-lg);
+  background-color: var(--8341-color-bg-muted);
+  font-size: var(--8341-text-body-md-font-size);
+}
+
+.deck-notes-label {
+  margin: 0 0 var(--8341-space-stack-sm);
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-label-sm-font-size);
+  font-weight: var(--8341-text-label-sm-font-weight);
+  line-height: var(--8341-text-label-sm-line-height);
+}
+
+.deck-notes > :last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .deck-bar {
+    padding-inline: var(--8341-space-gutter);
+  }
+
+  .slide {
+    min-height: var(--deck-height);
+    padding: var(--8341-space-gutter) var(--8341-space-stack-lg);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * 発表モード
+ * ------------------------------------------------------------------------- */
+
+html[data-mode='present'] body {
+  overflow: hidden;
+}
+
+html[data-mode='present'] .deck-bar {
+  position: fixed;
+  inset: auto 0 0;
+  border-top: var(--8341-border-width-default) solid var(--8341-color-border-subtle);
+  border-bottom: 0;
+}
+
+html[data-mode='present'] .deck {
+  position: fixed;
+  inset: 0 0 var(--deck-bar-height);
+  display: grid;
+  place-items: center;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+html[data-mode='present'] .slide {
+  grid-area: 1 / 1;
+  flex-shrink: 0;
+  width: var(--deck-width);
+  height: var(--deck-height);
+  min-height: 0;
+  padding: var(--8341-space-gutter) var(--8341-space-stack-lg);
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  transform: scale(var(--deck-scale));
+}
+
+html[data-mode='present'] .slide[hidden],
+html[data-mode='present'] .deck-notes {
+  display: none;
+}
+
+/* 全画面では操作バーを隠し、キーボードで触れたとき・マウスを載せたときだけ出す */
+html[data-mode='present']:fullscreen .deck {
+  inset: 0;
+}
+
+html[data-mode='present']:fullscreen .deck-bar:not(:focus-within, :hover) {
+  opacity: 0;
+}
+
+/* ---------------------------------------------------------------------------
+ * スライドの中身（共通）
+ * ------------------------------------------------------------------------- */
+
+.slide :where(h1, h2, h3, p, ul, ol, figure, table, blockquote) {
+  margin: 0;
+}
+
+.slide :where(h1, h2, h3) {
+  font-feature-settings: 'palt';
+}
+
+.slide h2 {
+  font-size: var(--8341-text-heading-lg-font-size);
+  font-weight: var(--8341-text-heading-lg-font-weight);
+  line-height: var(--8341-text-heading-lg-line-height);
+  letter-spacing: var(--8341-text-heading-lg-letter-spacing);
+}
+
+.slide h3 {
+  font-size: var(--8341-text-heading-xs-font-size);
+  font-weight: var(--8341-text-heading-xs-font-weight);
+  line-height: var(--8341-text-heading-xs-line-height);
+  letter-spacing: var(--8341-text-heading-xs-letter-spacing);
+}
+
+.slide strong {
+  font-weight: var(--8341-text-label-md-font-weight);
+}
+
+.slide :where(ul, ol):not(.steps) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--8341-space-stack-sm);
+  padding-inline-start: 1.5em;
+}
+
+.slide :where(ul, ol):not(.steps) :where(ul, ol) {
+  margin-top: var(--8341-space-stack-sm);
+  font-size: var(--8341-text-body-md-font-size);
+  line-height: var(--8341-text-body-md-line-height);
+}
+
+.slide li::marker {
+  color: var(--8341-color-icon-subtle);
+}
+
+.slide ol > li::marker {
+  color: var(--8341-color-text-subtle);
+  font-weight: var(--8341-text-label-md-font-weight);
+}
+
+.slide :where(code, kbd, samp) {
+  font-family: var(--8341-text-mono-md-font-family);
+  font-size: 0.9em;
+}
+
+.slide .lead {
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-heading-xxs-font-size);
+  line-height: var(--8341-text-heading-xxs-line-height);
+}
+
+.slide .source {
+  margin-top: auto;
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-body-sm-font-size);
+  line-height: var(--8341-text-body-sm-line-height);
+}
+
+.slide .meta {
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-body-md-font-size);
+  line-height: var(--8341-text-body-md-line-height);
+}
+
+.slide .eyebrow {
+  color: var(--8341-color-text-key);
+  font-size: var(--8341-text-label-md-font-size);
+  font-weight: var(--8341-text-label-md-font-weight);
+  line-height: var(--8341-text-label-md-line-height);
+  letter-spacing: var(--8341-text-label-md-letter-spacing);
+}
+
+/* リンク（Link と同じ 5 状態。下線は常に表示） */
+.slide a {
+  border-radius: var(--8341-radius-xs);
+  color: var(--8341-color-text-link);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--8341-border-width-underline);
+  text-underline-offset: 0.2em;
+}
+
+.slide a:visited {
+  color: var(--8341-color-text-link-visited);
+}
+
+@media (hover: hover) {
+  .slide a:hover {
+    color: var(--8341-color-text-link-hover);
+    text-decoration-thickness: var(--8341-border-width-underline-hover);
+  }
+}
+
+.slide a:active {
+  color: var(--8341-color-text-link-active);
+}
+
+.slide a:focus-visible {
+  background-color: var(--8341-color-focus-ring);
+  color: var(--8341-color-focus-text);
+  box-shadow: none;
+}
+
+.slide a svg {
+  width: 1em;
+  height: 1em;
+  margin-inline-start: 0.2em;
+  vertical-align: -0.125em;
+}
+
+/* ページ番号（ビルドが付ける） */
+.deck-footer {
+  display: flex;
+  gap: var(--8341-space-gap-md);
+  justify-content: space-between;
+  margin-top: auto;
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-body-sm-font-size);
+  line-height: var(--8341-text-dense-sm-line-height);
+}
+
+.slide .source + .deck-footer {
+  margin-top: calc(var(--8341-space-stack-sm) - var(--8341-space-stack-md));
+}
+
+.deck-footer-page {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------------
+ * レイアウト
+ * ------------------------------------------------------------------------- */
+
+/* 表紙 */
+.slide[data-layout='title'] {
+  gap: var(--8341-space-stack-sm);
+}
+
+.slide[data-layout='title'] h1 {
+  margin-bottom: var(--8341-space-stack-sm);
+  font-size: var(--8341-text-display-md-font-size);
+  font-weight: var(--8341-text-display-md-font-weight);
+  line-height: var(--8341-text-display-md-line-height);
+  letter-spacing: var(--8341-text-display-md-letter-spacing);
+}
+
+/* 見出しのバー（border-width.accent × border.key） */
+.slide[data-layout='title'] h1::before,
+.slide[data-layout='section'] h2::before {
+  content: '';
+  display: block;
+  width: var(--8341-space-stack-lg);
+  height: var(--8341-border-width-accent);
+  margin-bottom: var(--8341-space-stack-md);
+  background-color: var(--8341-color-border-key);
+}
+
+.slide[data-layout='title'] .subtitle {
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-heading-xs-font-size);
+  font-weight: var(--8341-text-body-lg-font-weight);
+  line-height: var(--8341-text-heading-xs-line-height);
+}
+
+.slide[data-layout='title'] .meta {
+  margin-top: var(--8341-space-stack-md);
+}
+
+/* 表紙・章扉・1 文で言い切る: 中身を上下の中央に置く（ページ番号は下端のまま） */
+.slide:where([data-layout='title'], [data-layout='section'], [data-layout='statement']) > :first-child {
+  margin-top: auto;
+}
+
+.slide[data-layout='title'] > :last-child {
+  margin-bottom: auto;
+}
+
+.slide[data-layout='section'] {
+  gap: var(--8341-space-stack-sm);
+}
+
+.slide:where([data-layout='section'], [data-layout='statement']) h2 {
+  font-size: var(--8341-text-display-md-font-size);
+  font-weight: var(--8341-text-display-md-font-weight);
+  line-height: var(--8341-text-display-md-line-height);
+  letter-spacing: var(--8341-text-display-md-letter-spacing);
+}
+
+.slide[data-layout='statement'] > p {
+  max-width: var(--8341-size-prose-max);
+  color: var(--8341-color-text-subtle);
+}
+
+/* 列（ビルドが .col を .deck-cols で包む） */
+.deck-cols {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--8341-space-gutter);
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--8341-space-stack-sm);
+}
+
+.slide .card {
+  padding: var(--8341-space-inset-xl);
+  border: var(--8341-border-width-default) solid var(--8341-color-border-default);
+  border-radius: var(--8341-radius-xl);
+  background-color: var(--8341-color-bg-surface);
+}
+
+/* 数字（ビルドが .stat を .deck-stats で包む） */
+.deck-stats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--8341-space-gutter);
+  margin-block: auto;
+}
+
+.slide .stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--8341-space-stack-sm);
+  padding-top: var(--8341-space-stack-sm);
+  border-top: var(--8341-border-width-accent) solid var(--8341-color-border-key);
+}
+
+.slide .stat-value {
+  color: var(--8341-color-text-key);
+  font-size: var(--8341-text-display-lg-font-size);
+  font-weight: var(--8341-text-display-lg-font-weight);
+  line-height: var(--8341-text-display-lg-line-height);
+  letter-spacing: var(--8341-text-display-lg-letter-spacing);
+  font-variant-numeric: tabular-nums;
+}
+
+.slide .stat-label {
+  font-size: var(--8341-text-body-md-font-size);
+  line-height: var(--8341-text-body-md-line-height);
+}
+
+/* 手順 */
+.slide ol.steps {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--8341-space-gutter);
+  margin-block: auto;
+  padding: 0;
+  list-style: none;
+  counter-reset: deck-step;
+}
+
+.slide ol.steps > li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--8341-space-stack-sm);
+  padding-top: var(--8341-space-stack-sm);
+  border-top: var(--8341-border-width-accent) solid var(--8341-color-border-key);
+  counter-increment: deck-step;
+  font-size: var(--8341-text-body-md-font-size);
+  line-height: var(--8341-text-body-md-line-height);
+}
+
+/* 番号は ol が読み上げるので、見た目だけ（代替テキストは空） */
+.slide ol.steps > li::before {
+  content: counter(deck-step) / '';
+  color: var(--8341-color-text-key);
+  font-size: var(--8341-text-heading-md-font-size);
+  font-weight: var(--8341-text-heading-md-font-weight);
+  line-height: var(--8341-text-label-md-line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 図 */
+.slide[data-layout='figure'] figure {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--8341-space-stack-sm);
+  min-height: 0;
+}
+
+.slide figure :where(img, svg) {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.slide figcaption {
+  color: var(--8341-color-text-subtle);
+  font-size: var(--8341-text-body-sm-font-size);
+  line-height: var(--8341-text-body-sm-line-height);
+}
+
+/* グラフの色（S11・S12）。注目する系列だけキーカラー、ほかは 3:1 の灰色。色だけに頼らずラベルを添える */
+.slide svg .chart-key {
+  fill: var(--8341-color-icon-key);
+}
+
+.slide svg .chart-base {
+  fill: var(--8341-color-border-default);
+}
+
+.slide svg :where(line, polyline, path).chart-key {
+  fill: none;
+  stroke: var(--8341-color-icon-key);
+  stroke-width: var(--8341-border-width-accent);
+}
+
+.slide svg :where(line, polyline, path).chart-base {
+  fill: none;
+  stroke: var(--8341-color-border-default);
+  stroke-width: var(--8341-border-width-strong);
+}
+
+.slide svg .chart-axis {
+  fill: none;
+  stroke: var(--8341-color-border-default);
+  stroke-width: var(--8341-border-width-default);
+}
+
+.slide svg :where(.chart-label, .chart-label-subtle) {
+  font-family: var(--8341-text-body-sm-font-family);
+  font-size: var(--8341-text-body-sm-font-size);
+}
+
+.slide svg .chart-label {
+  fill: var(--8341-color-text-default);
+}
+
+.slide svg .chart-label-subtle {
+  fill: var(--8341-color-text-subtle);
+}
+
+/* 表 */
+.slide table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--8341-text-body-md-font-size);
+  line-height: var(--8341-text-body-md-line-height);
+}
+
+.slide :where(th, td) {
+  padding: var(--8341-space-inset-sm) var(--8341-space-inset-md);
+  border-bottom: var(--8341-border-width-default) solid var(--8341-color-border-default);
+  text-align: start;
+  vertical-align: top;
+}
+
+.slide th {
+  font-weight: var(--8341-text-label-md-font-weight);
+}
+
+.slide thead th {
+  background-color: var(--8341-color-bg-muted);
+}
+
+.slide :where(th, td).num {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 注記（NotificationBanner と同じ見た目。ビルドがアイコンと種別名を足す） */
+.slide .callout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--8341-space-gap-md);
+  padding: var(--8341-space-inset-lg);
+  padding-inline-start: calc(var(--8341-space-inset-lg) + var(--8341-border-width-accent));
+  border: var(--8341-border-width-default) solid var(--deck-callout-accent);
+  border-radius: var(--8341-radius-lg);
+  box-shadow: inset var(--8341-border-width-accent) 0 0 0 var(--deck-callout-accent);
+  background-color: var(--deck-callout-bg);
+  font-size: var(--8341-text-body-md-font-size);
+  line-height: var(--8341-text-body-md-line-height);
+}
+
+.slide .callout > .deck-callout-icon {
+  flex-shrink: 0;
+  width: var(--8341-size-icon-lg);
+  height: var(--8341-size-icon-lg);
+  color: var(--deck-callout-icon);
+}
+
+.slide .callout > .deck-callout-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--8341-space-stack-sm);
+  min-width: 0;
+}
+
+.slide .callout h3 {
+  font-size: var(--8341-text-heading-xxs-font-size);
+  line-height: var(--8341-text-heading-xxs-line-height);
+}
+
+.slide .callout,
+.slide .callout-info {
+  --deck-callout-accent: var(--8341-color-border-key);
+  --deck-callout-bg: var(--8341-color-bg-info-subtle);
+  --deck-callout-icon: var(--8341-color-icon-info);
+}
+
+.slide .callout-success {
+  --deck-callout-accent: var(--8341-color-border-success);
+  --deck-callout-bg: var(--8341-color-bg-success-subtle);
+  --deck-callout-icon: var(--8341-color-icon-success);
+}
+
+.slide .callout-warning {
+  --deck-callout-accent: var(--8341-color-border-warning);
+  --deck-callout-bg: var(--8341-color-bg-warning-subtle);
+  --deck-callout-icon: var(--8341-color-icon-warning);
+}
+
+.slide .callout-danger {
+  --deck-callout-accent: var(--8341-color-border-danger);
+  --deck-callout-bg: var(--8341-color-bg-danger-subtle);
+  --deck-callout-icon: var(--8341-color-icon-danger);
+}
+
+/* タグ（Tag と同じ） */
+.slide .tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--8341-space-inset-xs) var(--8341-space-inset-sm);
+  border: var(--8341-border-width-default) solid var(--8341-color-border-default);
+  border-radius: var(--8341-radius-xs);
+  background-color: var(--8341-color-bg-subtle);
+  color: var(--8341-color-text-default);
+  font-size: var(--8341-text-label-sm-font-size);
+  font-weight: var(--8341-text-label-sm-font-weight);
+  line-height: var(--8341-text-label-sm-line-height);
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+
+.slide .tag-key {
+  border-color: var(--8341-color-border-key);
+  background-color: var(--8341-color-bg-info-subtle);
+  color: var(--8341-color-text-key);
+}
+
+.slide .tag-success {
+  border-color: var(--8341-color-border-success);
+  background-color: var(--8341-color-bg-success-subtle);
+  color: var(--8341-color-text-success);
+}
+
+.slide .tag-warning {
+  border-color: var(--8341-color-border-warning);
+  background-color: var(--8341-color-bg-warning-subtle);
+  color: var(--8341-color-text-warning);
+}
+
+.slide .tag-danger {
+  border-color: var(--8341-color-border-danger);
+  background-color: var(--8341-color-bg-danger-subtle);
+  color: var(--8341-color-text-danger);
+}
+
+/* ---------------------------------------------------------------------------
+ * 幅 768px 未満（一覧モードだけ。見出しは 1 段小さく、列は縦に並べる）
+ * ------------------------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+  .slide[data-layout='title'] h1,
+  .slide:where([data-layout='section'], [data-layout='statement']) h2 {
+    font-size: var(--8341-text-heading-xl-font-size);
+    line-height: var(--8341-text-heading-xl-line-height);
+    letter-spacing: var(--8341-text-heading-xl-letter-spacing);
+  }
+
+  .slide h2 {
+    font-size: var(--8341-text-heading-md-font-size);
+    line-height: var(--8341-text-heading-md-line-height);
+  }
+
+  .slide .stat-value {
+    font-size: var(--8341-text-display-md-font-size);
+    line-height: var(--8341-text-display-md-line-height);
+  }
+
+  .deck-cols,
+  .deck-stats,
+  .slide ol.steps {
+    grid-auto-flow: row;
+    gap: var(--8341-space-stack-md);
+  }
+
+  .slide table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * 強制カラー・動き・印刷
+ * ------------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  :where(.deck-button, .slide a):focus-visible {
+    outline-color: Highlight;
+    box-shadow: none;
+  }
+
+  .slide .callout {
+    border-inline-start-width: var(--8341-border-width-accent);
+  }
+
+  .slide[data-layout='title'] h1::before,
+  .slide[data-layout='section'] h2::before {
+    background-color: CanvasText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+@page {
+  size: 10in 5.625in;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background-color: var(--8341-color-bg-canvas);
+  }
+
+  .deck-bar,
+  .deck-notes {
+    display: none !important;
+  }
+
+  html .deck {
+    position: static;
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+
+  html .slide,
+  html .slide[hidden] {
+    display: flex !important;
+    width: var(--deck-width);
+    height: var(--deck-height);
+    min-height: 0;
+    padding: var(--8341-space-gutter) var(--8341-space-stack-lg);
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    transform: none;
+    break-after: page;
+    print-color-adjust: exact;
+  }
+}

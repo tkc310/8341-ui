@@ -32,6 +32,7 @@
 | `ds-build-ui` | このデザインシステムで画面やフォームを作る・レビューする |
 | `ds-improve` | このデザインシステム自体を改善する |
 | `ds-storybook-preview` | 見た目が変わる PR に Storybook のプレビューを添える |
+| `ds-slides` | このデザインシステムのトークンとデザイン原則で、発表用のスライドを作る |
 
 <!-- factory:start -->
 新しいデザインシステムを作るときは `ds-factory` を使う（[デザインシステムファクトリー](./factory.md)）。
