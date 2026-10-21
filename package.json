@@ -15,7 +15,7 @@
     "build": "pnpm build:tokens && pnpm --filter 8341-ui build",
     "build:storybook": "pnpm build:tokens && pnpm --filter 8341-ui-storybook build",
     "storybook:preview": "pnpm build:storybook && pnpm --filter 8341-ui-storybook preview:publish",
-    "check": "pnpm build:tokens && vp check && vp run -r check && depcruise packages apps && node scripts/slides/check.ts",
+    "check": "pnpm build:tokens && vp check && vp run -r check && depcruise packages apps && node scripts/slides/check.ts && node scripts/check-skills.ts",
     "test": "pnpm build:tokens && vp run -r test",
     "test:vrt": "pnpm build:tokens && pnpm --filter 8341-ui test:vrt",
     "test:e2e": "pnpm build:tokens && pnpm --filter 8341-ui-storybook test:e2e",

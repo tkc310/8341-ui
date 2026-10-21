@@ -202,14 +202,7 @@ make check
 ## AI エージェントで開発する
 
 Claude Code を推奨とし、Cursor と Codex でも同じスキルを使える（[docs/ai-agents.md](./docs/ai-agents.md)）。
-
-| やりたいこと | スキル |
-| --- | --- |
-| このシステムで画面を作る | `ds-build-ui` |
-| このシステムを改善する | `ds-improve` |
-| 見た目が変わる PR にプレビューを添える | `ds-storybook-preview` |
-| 画面を設計する・レビューする | `design-principles`（`/design-init`・`/design-adjust`・`/design-review`） |
-| 新しいデザインシステムを作る | `ds-factory`（[docs/factory.md](./docs/factory.md)） |
+どのスキルをいつ使うかは [docs/skills.md](./docs/skills.md) を読む。スキルを足す・直すときも、同じ文書の「必要なときだけ読み込む仕組み」に従う。
 
 ## 質問・提案・不具合
 
