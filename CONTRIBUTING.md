@@ -9,7 +9,7 @@ AI エージェントで開発するときも、この手順と [AGENTS.md](./AG
 
 | 道具 | 版（`.tool-versions`） | 用途 |
 | --- | --- | --- |
-| Node.js | 24.22.0（LTS） | ビルド・テスト・スクリプトの実行 |
+| Node.js | 24.22.1（LTS） | ビルド・テスト・スクリプトの実行 |
 | pnpm | 12.14.0 | 依存の管理（workspaces / catalog） |
 | GitHub CLI（`gh`） | 2.102.0 | Storybook のプレビューの公開、リリース、PR の操作 |
 | Git | 指定なし | シンボリックリンクを扱える設定にする（Windows は下の注意） |
@@ -46,7 +46,7 @@ asdf plugin add github-cli
 git clone https://github.com/tkc310/8341-ui.git
 cd 8341-ui
 make tools          # mise（なければ asdf）で .tool-versions の版を入れる
-node -v             # v24.22.0
+node -v             # v24.22.1
 pnpm -v             # 12.14.0
 gh --version        # 2.102.0
 ```
