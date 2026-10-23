@@ -100,6 +100,14 @@ export function SignUp() {
 }
 ```
 
+**4. DESIGN.md を置く** — 画面を作る人とエージェントが、コードから読み取れない設計の考え方（プロダクトの前提と、[デザイン原則](./docs/design-principles/README.md)の必須）を共有するためのファイルです。
+
+```bash
+npx shadcn@latest add @8341/design-md   # リポジトリ直下に DESIGN.md、docs/design-principles/ に原則の全文
+```
+
+DESIGN.md の「プロダクトの前提」「画面領域ごとの方向性」を埋めてから画面を作ります（エージェントに頼むと、足りない項目を聞きながら埋めます）。トークンや部品の一覧は書きません。それはコードが正です。
+
 <details>
 <summary>npm パッケージとして使う（公開した場合）</summary>
 

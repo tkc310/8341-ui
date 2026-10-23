@@ -22,6 +22,7 @@
 | [0016](./0016-component-structure.md) | コンポーネントのディレクトリ構造を PascalCase とコロケーションにする | 採用 |
 | [0017](./0017-slides.md) | スライドを HTML のデッキとしてトークンから組む（ds-slides） | 採用 |
 | [0018](./0018-progressive-disclosure.md) | エージェント向けの文書を必要なときだけ読み込む構成にする | 採用 |
+| [0019](./0019-product-design-md.md) | 8341-ui を使うプロダクトに DESIGN.md と design-principles をレジストリで配る | 採用 |
 
 ## テンプレート
 

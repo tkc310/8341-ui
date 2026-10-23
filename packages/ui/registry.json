@@ -62,6 +62,94 @@
       ]
     },
     {
+      "name": "design-md",
+      "type": "registry:file",
+      "title": "DESIGN.md",
+      "description": "プロダクト用の DESIGN.md（コードから読み取れない設計の考え方）と design-principles。リポジトリ直下に DESIGN.md、docs/design-principles/ に原則の全文を置く",
+      "files": [
+        {
+          "path": "registry-assets/DESIGN.md",
+          "type": "registry:file",
+          "target": "~/DESIGN.md"
+        },
+        {
+          "path": "registry-assets/design-principles/README.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/README.md"
+        },
+        {
+          "path": "registry-assets/design-principles/hearing.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/hearing.md"
+        },
+        {
+          "path": "registry-assets/design-principles/principles.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/principles.md"
+        },
+        {
+          "path": "registry-assets/design-principles/services/README.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/services/README.md"
+        },
+        {
+          "path": "registry-assets/design-principles/services/admin.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/services/admin.md"
+        },
+        {
+          "path": "registry-assets/design-principles/services/consumer.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/services/consumer.md"
+        },
+        {
+          "path": "registry-assets/design-principles/services/internal.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/services/internal.md"
+        },
+        {
+          "path": "registry-assets/design-principles/services/saas.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/services/saas.md"
+        },
+        {
+          "path": "registry-assets/design-principles/sources/README.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/sources/README.md"
+        },
+        {
+          "path": "registry-assets/design-principles/sources/digital-agency-service-design.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/sources/digital-agency-service-design.md"
+        },
+        {
+          "path": "registry-assets/design-principles/sources/jakobs-law.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/sources/jakobs-law.md"
+        },
+        {
+          "path": "registry-assets/design-principles/sources/nngroup-f-shaped-pattern.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/sources/nngroup-f-shaped-pattern.md"
+        },
+        {
+          "path": "registry-assets/design-principles/sources/nngroup-ten-usability-heuristics.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/sources/nngroup-ten-usability-heuristics.md"
+        },
+        {
+          "path": "registry-assets/design-principles/ui-orientation.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/ui-orientation.md"
+        },
+        {
+          "path": "registry-assets/design-principles/wcag-for-designers.md",
+          "type": "registry:file",
+          "target": "~/docs/design-principles/wcag-for-designers.md"
+        }
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",

@@ -14,7 +14,7 @@ design-principles のルールは、次の順で適用する。後のルール�
 4. **WCAG 2.2 の達成基準**（必須はどの段階からも緩めない）
 
 8341-ui は複数のプロダクトで共有する基盤なので、1 と 2 は決めない。
-UI の方向性とサービス種別は、8341-ui を使う各プロダクトの DESIGN.md で決める（雛形: [`templates/PRODUCT-DESIGN.md`](../../templates/PRODUCT-DESIGN.md)）。
+UI の方向性とサービス種別は、8341-ui を使う各プロダクトの DESIGN.md で決める。プロダクトには `npx shadcn@latest add @8341/design-md` で、DESIGN.md（雛形: [`templates/PRODUCT-DESIGN.md`](../../templates/PRODUCT-DESIGN.md)。コードから読み取れない考え方と原則の必須）と `docs/design-principles/` を配る（ADR-0019）。
 8341-ui が受け持つのは 3 と 4 であり、どのサービス種別でも組み立てられる部品とトークンを用意する。
 
 ## ウェブデザインの原則との対応
