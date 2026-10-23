@@ -235,7 +235,7 @@ async function build() {
   // 3. テーマごとの semantic
   for (const theme of THEMES) {
     const themed = rel(sourceFiles({ theme }).filter((f) => f.kind === 'modifier'));
-    const variants =
+    const variants: { destination: string; selector: string; media?: string }[] =
       theme === 'dark'
         ? [
             { destination: '4-dark.css', selector: THEME_SELECTOR.dark },
