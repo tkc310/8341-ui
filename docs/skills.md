@@ -49,7 +49,7 @@ AI エージェント（Claude Code・Cursor・Codex）がこのリポジトリ�
 - `AGENTS.md` から文書を自動で読み込む書き方（`@path/to/file.md` の取り込み）は使わない。表で場所を示し、必要になったら読む
 - 大きい文書（DESIGN.md・`principles.md`・`wcag-for-designers.md` など）は、全文ではなく見出しで探して該当する節だけを読む
 
-`make check` が、スキルの `name` とディレクトリ名の一致、`description` の有無、この一覧にすべてのスキルが載っていること、本体の字数、スキルの中の相対リンクの切れを検査します（`scripts/check-skills.ts`）。
+`make check` が、スキルの `name` とディレクトリ名の一致、`description` の有無、この一覧にすべてのスキルが載っていること、本体の字数、スキルの中の相対リンクの切れ、どこからも参照されない段階ごとの文書を検査します（`scripts/check-skills.ts`）。
 
 ## スキルを足す・直すとき
 

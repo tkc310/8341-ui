@@ -8,13 +8,13 @@
  * コントラスト検査・DESIGN.md 同期・Figma 書き出しもこのモジュールの解決結果を使う。
  */
 import { readFileSync } from 'node:fs';
-import { dirname, relative, resolve } from 'node:path';
+import { relative, resolve } from 'node:path';
 
 export const ROOT = resolve(import.meta.dirname, '../..');
 export const SRC = resolve(ROOT, 'src');
 export const REPO_ROOT = resolve(ROOT, '../..');
 export const PREFIX = '8341';
-export const RESOLVER = resolve(SRC, '8341-ui.resolver.json');
+const RESOLVER = resolve(SRC, '8341-ui.resolver.json');
 
 type Json = Record<string, unknown>;
 
@@ -29,7 +29,7 @@ export interface DtcgDimension {
   unit: 'px' | 'rem';
 }
 
-export interface FlatToken {
+interface FlatToken {
   path: string[];
   /** ドット区切りの名前（例: color.text.default） */
   name: string;
@@ -55,7 +55,7 @@ interface ResolverDoc {
 
 const readJson = (p: string): Json => JSON.parse(readFileSync(p, 'utf8')) as Json;
 
-export const resolverDoc = readJson(RESOLVER) as unknown as ResolverDoc;
+const resolverDoc = readJson(RESOLVER) as unknown as ResolverDoc;
 
 /** modifier `theme` の context 名（light / dark） */
 export const THEMES = Object.keys(resolverDoc.modifiers.theme?.contexts ?? {});
@@ -123,11 +123,11 @@ export function loadTokens(theme: Theme = resolverDoc.modifiers.theme?.default ?
 }
 
 const REF = /^\{([^}]+)\}$/;
-export const isRef = (v: unknown): v is string => typeof v === 'string' && REF.test(v);
-export const refName = (v: string) => (v.match(REF) as RegExpMatchArray)[1] as string;
+const isRef = (v: unknown): v is string => typeof v === 'string' && REF.test(v);
+const refName = (v: string) => (v.match(REF) as RegExpMatchArray)[1] as string;
 
 /** 参照を最終値まで解決する（循環・未定義はエラー） */
-export function createResolver(all: FlatToken[]) {
+function createResolver(all: FlatToken[]) {
   const map = new Map(all.map((t) => [t.name, t]));
   const resolveValue = (v: unknown, seen: string[] = []): unknown => {
     if (isRef(v)) {
@@ -155,7 +155,7 @@ export function resolvedTokens(theme: Theme) {
 export const cssVarName = (name: string) => `--${PREFIX}-${name.replace(/\./g, '-')}`;
 
 /** DTCG 色オブジェクトを #rrggbb / rgba() へ（コントラスト計算・Figma 用） */
-export function colorToHex(c: DtcgColor): string {
+function colorToHex(c: DtcgColor): string {
   if (!c.hex) throw new Error(`hex の無い色はこのツールでは扱えません: ${JSON.stringify(c)}`);
   return c.hex;
 }
@@ -166,10 +166,3 @@ export function colorToCssRgba(c: DtcgColor): string {
   const [r, g, b] = [1, 3, 5].map((i) => Number.parseInt(hex.slice(i, i + 2), 16));
   return `rgba(${r}, ${g}, ${b}, ${c.alpha})`;
 }
-
-export function dimensionToString(d: DtcgDimension): string {
-  return `${d.value}${d.unit}`;
-}
-
-export const relFromRepo = (p: string) => relative(REPO_ROOT, p);
-export const srcDir = (p: string) => dirname(p);

@@ -2,7 +2,7 @@
 
 以降は生成先のディレクトリで行う。
 
-1. **依存とトークン**: `git init && make setup`（道具の版は `.tool-versions`） → `make palette` → `make tokens` → `design-md` → `tw-merge` → `make registry`
+1. **依存とトークン**: `git init && make setup`（道具の版は `.tool-versions`） → `make palette` → `make generate`
 2. **コントラスト**: `make check`。不足があれば `semantic/light.tokens.json` / `dark.tokens.json` の段階番号を調整する。`contrast.rules.json` の基準は緩めない。AAA を選んだ場合は、文字の基準を 7:1 に上げる
 3. **見た目の性格**: 生成時に表示された箇所を、新しいキーカラーと性格で書き換える（DESIGN.md の冒頭、`docs/rulebook/01-principles.md` の「見た目の性格」、README の冒頭と特長、README のバナー `docs/assets/banner-*.svg` の色）。ロゴとアイコン（`docs/assets/logo*`・`icon-*`、`apps/storybook/public/` の favicon・アイコン・`logo.svg`）は 8341-ui 固有なので、新しいシステムのロゴに差し替えるか、削除して `.storybook/manager.ts` の `brandImage` と `manager-head.html` のリンクを外す（`docs/assets/README.md`）。ひな形の ADR（0002 など）は「引き継いだ判断」として残し、変えた判断は新しい ADR に書く
 4. **プロダクトの前提**:

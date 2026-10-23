@@ -18,17 +18,13 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import StyleDictionary, { type Config, type TransformedToken } from 'style-dictionary';
 import { fileHeader, formattedVariables } from 'style-dictionary/utils';
+import { THEME_SELECTOR, dimensionToCss, durationToCss, letterSpacingToCss, shadowToCss } from './lib/css.ts';
 import { tailwindName } from './lib/tailwind.ts';
-import { PREFIX, ROOT, THEMES, resolvedTokens, sourceFiles } from './lib/tokens.ts';
+import { type DtcgDimension, PREFIX, ROOT, THEMES, cssVarName, resolvedTokens, sourceFiles } from './lib/tokens.ts';
 
 const DIST = resolve(ROOT, 'dist');
 const CSS_DIR = resolve(DIST, 'css');
 const PARTS = resolve(DIST, '.parts');
-
-const LIGHT_SELECTOR = ':root, .light, [data-theme="light"]';
-const DARK_SELECTOR = '.dark, [data-theme="dark"]';
-const DARK_MEDIA = '(prefers-color-scheme: dark)';
-const DARK_MEDIA_SELECTOR = ':root:not(.light):not([data-theme="light"])';
 
 // ---------------------------------------------------------------------------
 // Transforms
@@ -44,11 +40,7 @@ StyleDictionary.registerTransform({
   filter: (t) => typeOf(t) === 'dimension',
   transform: (t) => {
     const v = valueOf(t);
-    if (typeof v === 'string') return v;
-    const { value, unit } = v as { value: number; unit: 'px' | 'rem' };
-    if (unit === 'rem') return `${value}rem`;
-    if (value <= 3 || value >= 9999 || t.path[0] === 'breakpoint') return `${value}px`;
-    return `${Number((value / 16).toFixed(4))}rem`;
+    return typeof v === 'string' ? v : dimensionToCss(v as DtcgDimension, t.path);
   },
 });
 
@@ -60,7 +52,7 @@ StyleDictionary.registerTransform({
   filter: (t) => t.path.includes('letter-spacing'),
   transform: (t) => {
     const v = valueOf(t);
-    return typeof v === 'string' ? v : `${v as number}em`;
+    return typeof v === 'string' ? v : letterSpacingToCss(v as number);
   },
 });
 
@@ -72,16 +64,11 @@ StyleDictionary.registerTransform({
   filter: (t) => typeOf(t) === 'duration',
   transform: (t) => {
     const v = valueOf(t);
-    if (typeof v === 'string') return v;
-    const { value, unit } = v as { value: number; unit: 'ms' | 's' };
-    return `${value}${unit}`;
+    return typeof v === 'string' ? v : durationToCss(v as { value: number; unit: 'ms' | 's' });
   },
 });
 
-/**
- * 影（DTCG の shadow: 1 つまたは配列。色はオブジェクト、寸法は { value, unit }）を CSS の box-shadow に。
- * 入れ子の値は他の transform が届かないため、ここでまとめて変換する。
- */
+/** 影（DTCG の shadow）を CSS の box-shadow に */
 StyleDictionary.registerTransform({
   name: '8341/shadow/css',
   type: 'value',
@@ -89,27 +76,7 @@ StyleDictionary.registerTransform({
   filter: (t) => typeOf(t) === 'shadow',
   transform: (t) => {
     const v = valueOf(t);
-    if (typeof v === 'string') return v;
-    const layers = (Array.isArray(v) ? v : [v]) as {
-      color: { hex: string; alpha?: number } | string;
-      offsetX: { value: number; unit: string };
-      offsetY: { value: number; unit: string };
-      blur: { value: number; unit: string };
-      spread: { value: number; unit: string };
-      inset?: boolean;
-    }[];
-    const len = (d: { value: number; unit: string }) => `${d.value}${d.unit}`;
-    const color = (c: { hex: string; alpha?: number } | string) => {
-      if (typeof c === 'string') return c;
-      const [r, g, b] = [1, 3, 5].map((i) => Number.parseInt(c.hex.slice(i, i + 2), 16));
-      return c.alpha === undefined || c.alpha === 1 ? c.hex : `rgb(${r} ${g} ${b} / ${c.alpha})`;
-    };
-    return layers
-      .map(
-        (l) =>
-          `${l.inset ? 'inset ' : ''}${len(l.offsetX)} ${len(l.offsetY)} ${len(l.blur)} ${len(l.spread)} ${color(l.color)}`,
-      )
-      .join(', ');
+    return typeof v === 'string' ? v : shadowToCss(v as Parameters<typeof shadowToCss>[0]);
   },
 });
 
@@ -271,10 +238,14 @@ async function build() {
     const variants =
       theme === 'dark'
         ? [
-            { destination: '4-dark.css', selector: DARK_SELECTOR },
-            { destination: '5-dark-media.css', selector: DARK_MEDIA_SELECTOR, media: DARK_MEDIA },
+            { destination: '4-dark.css', selector: THEME_SELECTOR.dark },
+            {
+              destination: '5-dark-media.css',
+              selector: THEME_SELECTOR.darkMediaSelector,
+              media: THEME_SELECTOR.darkMedia,
+            },
           ]
-        : [{ destination: '3-light.css', selector: LIGHT_SELECTOR }];
+        : [{ destination: '3-light.css', selector: THEME_SELECTOR.light }];
     for (const v of variants) {
       await new StyleDictionary(
         config({
@@ -317,7 +288,7 @@ async function build() {
         theme,
         resolvedTokens(theme).map(({ name, type, layer, themed, resolved, value, description }) => ({
           name,
-          cssVar: `--${PREFIX}-${name.replace(/\./g, '-')}`,
+          cssVar: cssVarName(name),
           tailwind: tailwindName(name.split('.')),
           type,
           layer,

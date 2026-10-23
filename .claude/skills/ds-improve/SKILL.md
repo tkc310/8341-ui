@@ -17,13 +17,9 @@ description: このデザインシステム自体を改善するときに使う�
    - 1 PR 1 改善。大きいものは分割してバックログに戻す
 3. **直す**
    - 関連するルールブックの章、DESIGN.md、該当コンポーネントのソースとストーリーを先に読む
-   - トークンを変えるなら `packages/tokens/src/*.tokens.json` を編集し、`make tokens` と `design-md`・`tw-merge` を実行する（生成物を手で編集しない）
+   - トークンを変えるなら `packages/tokens/src/{primitive,semantic}/*.tokens.json` を編集し、`make generate` で生成物を更新する（生成物を手で編集しない）
    - 値や方針を変えるなら `docs/decisions/` に ADR を追加する
-4. **再発を防ぐ（省略しない）**
-   - コントラスト → `tokens/contrast.rules.json` に組み合わせを追加
-   - クラスの書き方 → `packages/ui/scripts/audit-classes.ts`、依存の向き → `.dependency-cruiser.cjs`、lint → ルートの `vite.config.ts` の `lint` にルールを追加
-   - 振る舞い → テストかストーリーの play 関数を追加
-   - 判断基準 → ルールブックに追記
+4. **再発を防ぐ（省略しない）**: 問題の種類に合うものを `docs/rulebook/06-improvement-loop.md` の「4. 再発を防ぐ」の表から選んで追加する
 5. **確かめる**
    - `make verify` が通ること。見た目を変えたら `make test-vrt` も
    - 見た目を変えたら Storybook の「並べて表示」でライト / ダークを確認する

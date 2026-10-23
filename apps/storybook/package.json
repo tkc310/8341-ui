@@ -7,8 +7,7 @@
     "dev": "storybook dev -p 6006",
     "build": "pnpm --filter 8341-ui registry:build && storybook build",
     "test": "vp test --project storybook",
-    "test:e2e": "playwright test",
-    "preview:publish": "node scripts/publish-preview.ts"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "8341-ui": "workspace:*",

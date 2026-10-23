@@ -85,7 +85,7 @@ gh auth login
 | --- | --- |
 | `make setup` | 初回の準備（`make tools` と `make install`） |
 | `make dev` | Storybook を起動する |
-| `make check` | fmt・lint（型情報つき）・型、生成物の鮮度、コントラスト、クラス監査、依存の向き |
+| `make check` | fmt・lint・型・生成物の鮮度（DESIGN.md・プロダクト用 DESIGN.md の原則・tw-merge・registry.json）・コントラスト・クラス監査・依存の向き・スライドとスキルの検査 |
 | `make test` | 単体テスト（happy-dom）と、全ストーリーの実ブラウザ描画・axe |
 | `make verify` | `check` と `test` をまとめて実行する（PR を出す前に） |
 | `make test-vrt` | 見た目の回帰テスト（手動） |
@@ -168,10 +168,8 @@ main へは squash マージするため、**PR のタイトルが main のコ�
 ```bash
 # 値を変える: packages/tokens/src/{primitive,semantic}/*.tokens.json
 # キーカラーを変える: packages/tokens/src/palette.config.json → 次で primitive を再生成
-make palette
-make tokens       # CSS 変数・Tailwind テーマ・Figma JSON
-make design-md   # DESIGN.md の表
-make tw-merge    # クラス統合の設定
+make palette     # キーカラーを変えたときだけ
+make generate    # CSS 変数・Tailwind テーマ・DESIGN.md の表・クラス統合の設定・レジストリ
 make check
 ```
 
@@ -180,20 +178,7 @@ make check
 
 ### コンポーネントを足す・変える
 
-`packages/ui/src/components/ui/<Name>/`（ディレクトリ名は PascalCase）に次をそろえる。構造と import の規則は [コンポーネント構造規則](./packages/ui/src/components/COMPONENT_STRUCTURE.md)（`make check` が検査する）。
-
-| ファイル | 中身 |
-| --- | --- |
-| `index.tsx` | 本体（そのまま公開 API）。Base UI の部品と `tv`（`@/lib/tv`）で書く。フックを使うなら先頭に `'use client'` |
-| `index.test.tsx` | 振る舞いの単体テスト（happy-dom） |
-| `index.stories.tsx` | ストーリー。操作があるなら play 関数で振る舞いを検査する |
-| `index.figma.ts` | Code Connect（Figma のコンポーネントがある場合） |
-| `useXxx.ts`・`<Child>/` | そのコンポーネント専用のフック・子コンポーネント（必要なら） |
-
-- semantic トークンの Tailwind クラスだけを使う（任意値では `var(--8341-*)`）
-- ほかのコンポーネントは `@/components/ui/<Name>/index` で import する（相対パスにしない）
-- 追加・削除したら `make registry` でレジストリを更新する
-- 使い方の規約は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)、アクセシビリティは [02-accessibility.md](./docs/rulebook/02-accessibility.md)
+置き場所・ファイルの種類・import の規則は [コンポーネント構造規則](./packages/ui/src/components/COMPONENT_STRUCTURE.md)、実装の規約と完了の定義は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)、アクセシビリティは [02-accessibility.md](./docs/rulebook/02-accessibility.md) を読む。構造は `make check` が検査する。
 
 ### 画面設計のルールを変える
 

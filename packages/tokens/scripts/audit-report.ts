@@ -7,7 +7,7 @@
  *   1. コントラスト不足と、余裕が 5% 未満の組み合わせ
  *   2. クラス監査（packages/ui）の error / warning
  *   3. どこからも参照されていない semantic トークン
- *   4. ストーリー・テスト・Code Connect が無いコンポーネント
+ *   4. ストーリー・Code Connect が無いコンポーネント
  *   5. 改善バックログの未着手件数
  */
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';

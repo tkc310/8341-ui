@@ -27,6 +27,7 @@ import {
   readFileSync,
   readdirSync,
   readlinkSync,
+  rmSync,
   symlinkSync,
   writeFileSync,
 } from 'node:fs';
@@ -122,10 +123,12 @@ mkdirSync(out, { recursive: true });
 for (const file of files) {
   const src = join(TEMPLATE, file);
   // 作業ツリーで消したファイルは持ち込まない
-  if (!lstatSync(src, { throwIfNoEntry: false })) continue;
+  const stat = lstatSync(src, { throwIfNoEntry: false });
+  if (!stat) continue;
   const dest = join(out, transform(file));
   mkdirSync(dirname(dest), { recursive: true });
-  if (lstatSync(src).isSymbolicLink()) {
+  if (stat.isSymbolicLink()) {
+    rmSync(dest, { force: true }); // --force で上書きするとき、既にあるリンクで EEXIST にしない
     symlinkSync(readlinkSync(src), dest);
     continue;
   }
@@ -143,12 +146,6 @@ palette.families[family] = {
 };
 palette.families.gray = { ...palette.families.gray, hue, label: '中立色（わずかにキーカラーへ寄せる）' };
 writeFileSync(palettePath, `${JSON.stringify(palette, null, 2)}\n`);
-
-// ファクトリーを呼ぶスクリプトは生成先では使えないので消す
-const rootPkgPath = join(out, 'package.json');
-const rootPkg = JSON.parse(readFileSync(rootPkgPath, 'utf8'));
-delete rootPkg.scripts['factory:create'];
-writeFileSync(rootPkgPath, `${JSON.stringify(rootPkg, null, 2)}\n`);
 
 // 改善ログを空にする
 const today = new Date().toISOString().slice(0, 10);

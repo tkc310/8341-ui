@@ -182,14 +182,10 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 ### 共通規約
 
-- コンポーネントは Base UI の部品を `tv()`（`@/lib/tv`）のスタイルで包む。`tailwind-variants` の `tv` を直接使わない（独自のテーマ名を登録した `tv` でないと `text-fg text-body-md` の文字色が消える）
 - import パスは shadcn 方式: `@/components/ui/{Name}/index`（ディレクトリ名は PascalCase）、`@/lib/{name}`
-- 状態は Base UI の data 属性で装飾する: `data-[checked]:`、`data-[invalid]:`、`data-[disabled]:`、`data-[highlighted]:`、`data-[panel-open]:`、`data-[starting-style]:`
-- **フォーカスは `focus-ring` クラス**（Base UI は `data-focus-visible` を付けないため `:focus-visible` で描く）。`outline-none` だけで消さない
-- 見た目が 44px 未満の操作対象には `tap-target` クラスでタップ領域を足す
-- `hover:` は Tailwind v4 では自動で `@media (hover: hover)` に入る。無効状態に効かせないよう `enabled:hover:` を使う
-- 強制カラーモードは `forced-colors:` で補う
-- `'use client'` はフック・コンテキスト・イベントハンドラを作るエントリだけに付ける（button / form-field / text-field / textarea / select / truncate）
+- 独自のスタイルは `tv()` を `@/lib/tv` から import して書く。`tailwind-variants` の `tv` を直接使わない（独自のテーマ名を登録した `tv` でないと `text-fg text-body-md` の文字色が消える）
+- **フォーカスは `focus-ring` クラス**。見た目が 44px 未満の操作対象には `tap-target`
+- コンポーネント自体を作る・直すときの規約（data 属性、`enabled:hover:`、`forced-colors:`、`'use client'` など）は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)
 
 ### Button
 
@@ -411,19 +407,10 @@ Breakpoint:         md: のみ（768px）
 Variants:           tv() from '@/lib/tv'（tailwind-variants v3）
 ```
 
-### 作業前に必ず読むもの
+### 作業の前と後
 
-0. 画面を作る場合は、プロダクトの DESIGN.md（UI の方向性とサービス種別）
-1. このファイル
-2. `docs/rulebook/02-accessibility.md`（必須ルール）
-3. 該当コンポーネントのソースとストーリー（`packages/ui/src/components/*/`）
-
-### 作業後に必ず実行するもの
-
-```bash
-make check   # fmt・lint（型情報つき）・型・トークン・コントラスト・DESIGN.md・レジストリ・クラス監査・アーキテクチャ
-make test    # 単体テスト + 全ストーリーの a11y テスト
-```
+- 前: このファイルは全文ではなく、作業に要る節だけを読む。読む節と順序は `.claude/skills/ds-build-ui/SKILL.md` の「作る前に読む」
+- 後: `make verify`（中身は `make` で出る一覧）
 
 ### プロンプト例
 

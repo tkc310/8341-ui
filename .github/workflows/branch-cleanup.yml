@@ -4,7 +4,7 @@ name: Branch cleanup
 #   - 対象: main・gh-pages 以外で、開いている PR が無く、次のどれかに当たるブランチ
 #     マージ済み・閉じた PR の元ブランチ / main に取り込み済み / ci-debug で始まる一時ブランチ
 #   - plan ジョブが候補を一覧にし、delete ジョブは環境 branch-cleanup の承認を待ってから消す
-#     （承認者は Settings > Environments > branch-cleanup の Required reviewers で設定する。手順は README）
+#     （承認者は Settings > Environments > branch-cleanup の Required reviewers で設定する。手順は docs/operations.md の「ブランチの片付け」）
 #   - 候補が無ければ delete ジョブは動かず、承認の依頼も出ない
 
 on:
