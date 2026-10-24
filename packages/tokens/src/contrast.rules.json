@@ -1,5 +1,5 @@
 {
-  "$description": "semantic カラーの組み合わせごとに必要なコントラスト比。両テーマで検証される（pnpm --filter 8341-ui-tokens check:contrast）。新しい semantic カラーを足したら必ずここにも組み合わせを足す。",
+  "$description": "semantic カラーの組み合わせごとに必要なコントラスト比。両テーマで検証される（make check）。新しい semantic カラーを足したら必ずここにも組み合わせを足す。",
   "rules": [
     {
       "id": "text-on-surfaces",

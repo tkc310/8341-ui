@@ -9,6 +9,13 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import {
+  THEME_SELECTOR,
+  dimensionToCss,
+  durationToCss,
+  letterSpacingToCss,
+  shadowToCss,
+} from '../../packages/tokens/scripts/lib/css.ts';
+import {
   PREFIX,
   THEMES,
   colorToCssRgba,
@@ -24,7 +31,7 @@ export const REPO_ROOT = resolve(SLIDES_DIR, '../..');
 // ルールの定数（docs/rulebook/07-slides.md と合わせる）
 // ---------------------------------------------------------------------------
 
-export const LAYOUTS = [
+const LAYOUTS = [
   'title',
   'section',
   'statement',
@@ -36,10 +43,9 @@ export const LAYOUTS = [
   'table',
   'summary',
 ] as const;
-export type Layout = (typeof LAYOUTS)[number];
 
 /** ソースで使えるクラス（S9）。増やすときは deck.css と 07-slides.md も直す */
-export const ALLOWED_CLASSES = new Set([
+const ALLOWED_CLASSES = new Set([
   'slide',
   'subtitle',
   'meta',
@@ -72,7 +78,7 @@ export const ALLOWED_CLASSES = new Set([
   'visually-hidden',
 ]);
 
-export const LIMITS = {
+const LIMITS = {
   listItems: 5,
   listDepth: 2,
   slideChars: 150,
@@ -92,51 +98,24 @@ const FORBIDDEN_TAGS = new Set(['style', 'script', 'link', 'font', 'center', 'ma
 // トークン → CSS 変数
 // ---------------------------------------------------------------------------
 
-const LIGHT_SELECTOR = ':root, .light, [data-theme="light"]';
-const DARK_SELECTOR = '.dark, [data-theme="dark"]';
-const DARK_MEDIA_SELECTOR = ':root:not(.light):not([data-theme="light"])';
-
-interface ShadowLayer {
-  color: DtcgColor;
-  offsetX: DtcgDimension;
-  offsetY: DtcgDimension;
-  blur: DtcgDimension;
-  spread: DtcgDimension;
-  inset?: boolean;
-}
-
-/** build.ts（Style Dictionary）と同じ規則で値を CSS にする: 寸法は rem（3px 以下と 9999px は px）、字間は em */
-function cssValue(name: string, type: string, v: unknown): string {
+/** build.ts（tokens.css）と同じ規則（packages/tokens/scripts/lib/css.ts）で値を CSS にする */
+function cssValue(name: string, type: string, path: string[], v: unknown): string {
   if (typeof v === 'string') return v;
   switch (type) {
     case 'color':
       return colorToCssRgba(v as DtcgColor);
-    case 'dimension': {
-      const { value, unit } = v as DtcgDimension;
-      if (unit === 'rem') return `${value}rem`;
-      if (value <= 3 || value >= 9999) return `${value}px`;
-      return `${Number((value / 16).toFixed(4))}rem`;
-    }
+    case 'dimension':
+      return dimensionToCss(v as DtcgDimension, path);
     case 'fontFamily':
       return (Array.isArray(v) ? v : [v]).map((f) => (/[\s\d]/.test(String(f)) ? `"${f}"` : String(f))).join(', ');
-    case 'duration': {
-      const d = v as { value: number; unit: string };
-      return `${d.value}${d.unit}`;
-    }
+    case 'duration':
+      return durationToCss(v as Parameters<typeof durationToCss>[0]);
     case 'cubicBezier':
       return `cubic-bezier(${(v as number[]).join(', ')})`;
-    case 'shadow': {
-      const layers = (Array.isArray(v) ? v : [v]) as ShadowLayer[];
-      const len = (d: DtcgDimension) => `${d.value}${d.unit}`;
-      return layers
-        .map(
-          (l) =>
-            `${l.inset ? 'inset ' : ''}${len(l.offsetX)} ${len(l.offsetY)} ${len(l.blur)} ${len(l.spread)} ${colorToCssRgba(l.color)}`,
-        )
-        .join(', ');
-    }
+    case 'shadow':
+      return shadowToCss(v as Parameters<typeof shadowToCss>[0]);
     default:
-      if (typeof v === 'number' && name.endsWith('.letter-spacing')) return `${v}em`;
+      if (typeof v === 'number' && name.endsWith('.letter-spacing')) return letterSpacingToCss(v);
       return String(v);
   }
 }
@@ -158,7 +137,7 @@ export function tokenCss(): { css: string; names: Set<string> } {
     themed[theme] = [];
     for (const t of resolvedTokens(theme)) {
       if (t.layer !== 'semantic') continue;
-      const line = `${cssVarName(t.name)}: ${cssValue(t.name, t.type, t.resolved)};`;
+      const line = `${cssVarName(t.name)}: ${cssValue(t.name, t.type, t.path, t.resolved)};`;
       names.add(cssVarName(t.name));
       if (t.themed) themed[theme]?.push(line);
       else if (theme === THEMES[0]) base.push(line);
@@ -166,13 +145,13 @@ export function tokenCss(): { css: string; names: Set<string> } {
   }
   const light = themed.light ?? [];
   const dark = themed.dark ?? [];
-  const media = block(DARK_MEDIA_SELECTOR, dark, 'dark').replace(/^/gm, '  ').trimEnd();
+  const media = block(THEME_SELECTOR.darkMediaSelector, dark, 'dark').replace(/^/gm, '  ').trimEnd();
   const css = [
     `/* ${PREFIX}-ui のトークン（semantic のみ。scripts/slides/lib.ts が packages/tokens/src から生成） */`,
     block(':root', base),
-    block(LIGHT_SELECTOR, light, 'light'),
-    block(DARK_SELECTOR, dark, 'dark'),
-    `@media (prefers-color-scheme: dark) {\n${media}\n}\n`,
+    block(THEME_SELECTOR.light, light, 'light'),
+    block(THEME_SELECTOR.dark, dark, 'dark'),
+    `@media ${THEME_SELECTOR.darkMedia} {\n${media}\n}\n`,
   ].join('\n');
   return { css, names };
 }
@@ -189,11 +168,11 @@ export interface El {
   line: number;
   parent?: El;
 }
-export interface Text {
+interface Text {
   type: 'text';
   value: string;
 }
-export interface Comment {
+interface Comment {
   type: 'comment';
   value: string;
 }
@@ -216,7 +195,7 @@ const VOID = new Set([
 ]);
 const RAW_TEXT = new Set(['script', 'style']);
 
-export class ParseError extends Error {
+class ParseError extends Error {
   line: number;
   constructor(message: string, line: number) {
     super(message);
@@ -293,7 +272,7 @@ export function parseHtml(html: string): El {
 }
 
 export const attr = (el: El, name: string): string | null | undefined => el.attrs.find(([k]) => k === name)?.[1];
-export const hasAttr = (el: El, name: string) => el.attrs.some(([k]) => k === name);
+const hasAttr = (el: El, name: string) => el.attrs.some(([k]) => k === name);
 export function setAttr(el: El, name: string, value: string | null) {
   const found = el.attrs.find(([k]) => k === name);
   if (found) found[1] = value;
@@ -303,7 +282,7 @@ export const classes = (el: El) => (attr(el, 'class') ?? '').split(/\s+/).filter
 export const hasClass = (el: El, c: string) => classes(el).includes(c);
 export const elements = (n: El) => n.children.filter((c): c is El => c.type === 'el');
 
-export function walk(n: El, fn: (el: El) => void) {
+function walk(n: El, fn: (el: El) => void) {
   for (const c of elements(n)) {
     fn(c);
     walk(c, fn);
@@ -319,7 +298,7 @@ export function find(n: El, pred: (el: El) => boolean): El[] {
 export const findTag = (n: El, tag: string) => find(n, (el) => el.tag === tag);
 
 const ENTITIES: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
-export const decode = (s: string) =>
+const decode = (s: string) =>
   s.replace(/&(#x[\da-f]+|#\d+|\w+);/gi, (all, e: string) => {
     if (e[0] === '#')
       return String.fromCodePoint(e[1] === 'x' || e[1] === 'X' ? parseInt(e.slice(2), 16) : Number(e.slice(1)));
@@ -337,7 +316,7 @@ export function textOf(n: Node, skip: (el: El) => boolean = () => false): string
 }
 export const compact = (s: string) => s.replace(/\s+/g, ' ').trim();
 /** 空白を除いた字数（和文の分量の目安） */
-export const charCount = (s: string) => s.replace(/\s+/g, '').length;
+const charCount = (s: string) => s.replace(/\s+/g, '').length;
 
 export function serialize(n: Node): string {
   if (n.type === 'text') return n.value;
@@ -353,7 +332,7 @@ export function serialize(n: Node): string {
 // デッキの読み込み
 // ---------------------------------------------------------------------------
 
-export interface Deck {
+interface Deck {
   root: El;
   html?: El;
   body?: El;

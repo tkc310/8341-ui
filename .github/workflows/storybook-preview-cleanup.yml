@@ -1,7 +1,7 @@
 name: Storybook preview cleanup
 
 # PR を閉じたら、ローカルから公開した Storybook のプレビュー（gh-pages の pr-preview/pr-<番号>/）を消す。
-# 公開はローカルで行う（pnpm storybook:preview。手順は .claude/skills/ds-storybook-preview/SKILL.md）。
+# 公開はローカルで行う（make storybook-preview。手順は .claude/skills/ds-storybook-preview/SKILL.md）。
 # ここではビルドしない。
 
 on:

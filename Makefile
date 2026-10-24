@@ -1,5 +1,5 @@
 # 8341-ui の開発・運用コマンド。`make` で一覧を表示する。
-# 中身は pnpm のスクリプト（package.json）を呼ぶだけ。手順の説明は CONTRIBUTING.md・docs/releasing.md。
+# 中身は pnpm のスクリプト（package.json）か、リポジトリのスクリプト（node scripts/…）を呼ぶだけ。手順の説明は CONTRIBUTING.md・docs/releasing.md。
 
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
@@ -52,7 +52,7 @@ build-storybook: ## Storybook とレジストリをビルドする
 
 ##@ 検査・テスト
 
-check: ## fmt・lint・型・生成物の鮮度・コントラスト・クラス監査・依存の向き・スライドとスキルの検査
+check: ## fmt・lint・型・生成物の鮮度（DESIGN.md・プロダクト用 DESIGN.md の原則・tw-merge・registry.json）・コントラスト・クラス監査・依存の向き・スライドとスキルの検査
 	pnpm check
 
 test: ## 単体テストと、全ストーリーの描画・axe
@@ -90,7 +90,7 @@ registry: ## shadcn の registry.json を更新する
 registry-build: ## レジストリを配信用にビルドする（apps/storybook/public/r）
 	pnpm --filter $(UI) registry:build
 
-generate: tokens design-md tw-merge registry ## 生成物をまとめて更新する（トークンやコンポーネントを変えた後に）
+generate: tokens design-md tw-merge registry ## 生成物をまとめて更新する（トークン・コンポーネント・原則を変えた後に）
 
 audit: ## 健康診断レポートを作る（reports/audit.md）
 	pnpm audit:report
@@ -141,4 +141,4 @@ factory: ## 新しいデザインシステムを生成する（CONFIG=設定フ�
 ##@ 後片付け
 
 clean: ## ビルドの成果物を消す（依存は残す）
-	rm -rf packages/*/dist apps/storybook/storybook-static apps/storybook/public/r packages/ui/registry-assets reports
+	rm -rf dist packages/*/dist apps/storybook/storybook-static apps/storybook/public/r packages/ui/registry-assets reports

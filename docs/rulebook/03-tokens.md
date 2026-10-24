@@ -70,14 +70,14 @@ DTCG の仕様から外している点と理由は [ADR-0009](../decisions/0009-
 | 800        | 約 8                   | ライトの文字色（リンク・エラー） |
 | 1000〜1200 | 13〜17                 | 本文・ダークの面                 |
 
-色相を変えるときは `palette.config.json` の `hue` を変え、`palette` → `build` → `check:contrast` の順に実行する。
+色相を変えるときは `palette.config.json` の `hue` を変え、`make palette` → `make generate` → `make check` の順に実行する。
 
 ### 新しい semantic カラーを足すとき
 
 1. `semantic/light.tokens.json` と `semantic/dark.tokens.json` の **両方** に同じキーで追加する
 2. `src/contrast.rules.json` に、そのトークンが置かれうる組み合わせを追加する
 3. 用途を `$description` に書く（DESIGN.md・Storybook・Figma に反映される）
-4. `make tokens && make check`
+4. `make generate && make check`
 
 ## タイポグラフィ・余白・サイズ・角丸
 

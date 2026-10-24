@@ -5,7 +5,7 @@
  *
  * 使い方（リポジトリのルートで）
  *   make storybook-preview              # ビルドして、今のブランチの PR に公開する
- *   make storybook-preview PR=12     # ビルド済みのものを PR #12 に公開する
+ *   make storybook-preview PR=12     # ビルドして、PR #12 に公開する
  *   make storybook-preview-remove PR=12   # PR #12 のプレビューを消す
  *
  * - PR 番号を省くと、今のブランチから開いている PR を探す（gh の REST API を使う）

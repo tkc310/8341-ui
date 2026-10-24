@@ -48,7 +48,7 @@ jobs:
       # VRT と e2e は手動・都度実行のため CI では回さない
       - run: make test
 
-  # リリースは CI では行わない。権限のあるアカウント保有者が手元で pnpm release:version / release:publish を実行する
+  # リリースは CI では行わない。権限のあるアカウント保有者が手元で make release-version / release-publish を実行する
   # （リポジトリにトークンやシークレットを置かない。docs/releasing.md・ADR-0014）
 
   # main の Storybook と最新のレジストリ（/r/*.json）を gh-pages ブランチの直下に置く。

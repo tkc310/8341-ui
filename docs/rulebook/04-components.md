@@ -11,15 +11,7 @@
 
 ## ファイル構成
 
-```
-packages/ui/src/components/ui/Button/
-├── index.tsx           # 本体＝公開 API（他のコンポーネントはここ経由で参照する）
-├── index.test.tsx      # 単体テスト（happy-dom）
-├── index.stories.tsx   # Storybook（状態ごとのストーリーと play 関数）
-└── index.figma.ts      # Figma Code Connect（テンプレート形式）
-```
-
-ディレクトリ名は PascalCase。専用のフック（`useXxx.ts`）と子コンポーネント（入れ子のディレクトリ）も同じ場所に置く。詳しくは [コンポーネント構造規則](../../packages/ui/src/components/COMPONENT_STRUCTURE.md)。VRT はコンポーネントを横断するため `src/components/gallery.vrt.test.tsx` に集約している。
+`packages/ui/src/components/ui/<PascalCase>/index.tsx` に本体を置き、テスト・ストーリー・Code Connect・専用のフックと子コンポーネントを同じディレクトリに置く。置いてよいファイルと import の規則は [コンポーネント構造規則](../../packages/ui/src/components/COMPONENT_STRUCTURE.md)（`make check` が検査する）。VRT はコンポーネントを横断するため `src/components/gallery.vrt.test.tsx` に集約している。
 
 ## 実装の規約
 
@@ -42,7 +34,7 @@ packages/ui/src/components/ui/Button/
 ### スタイル
 
 - `tv()` の `slots` / `variants` / `compoundVariants` で書き、利用者の `className` は最後に渡して上書きできるようにする
-- 状態は Base UI の data 属性で装飾する（`data-[checked]:`、`data-[invalid]:`、`data-[disabled]:`、`data-[highlighted]:`、`data-[panel-open]:`）
+- 状態は Base UI の data 属性で装飾する（`data-[checked]:`、`data-[invalid]:`、`data-[disabled]:`、`data-[highlighted]:`、`data-[panel-open]:`、`data-[starting-style]:`）
 - **フォーカスは `focus-ring`**（`@/lib/focus` の `focusRing`）。Base UI は `data-focus-visible` を付けないため `:focus-visible` で描く
 - 見た目が 44px 未満の操作対象には `tap-target`
 - 無効状態に hover を効かせないよう `enabled:hover:` を使う（Tailwind v4 の `hover:` は自動で `@media (hover: hover)` に入る）
@@ -59,7 +51,7 @@ packages/ui/src/components/ui/Button/
 - [ ] キーボード操作を play 関数かテストで検証している
 - [ ] [02 アクセシビリティ](./02-accessibility.md) の手動確認項目を実施した
 - [ ] 主たる関数の JSDoc の 1 文目に「何をする部品か」を書いた（レジストリの説明になる）
-- [ ] `src/index.ts` から export し、`make registry` でレジストリを更新した
+- [ ] [コンポーネント構造規則](../../packages/ui/src/components/COMPONENT_STRUCTURE.md) のチェックリストを満たした（`src/index.ts` からの export と `make registry` を含む）
 - [ ] 振る舞いのテストを `index.test.tsx` に書いた
 - [ ] Figma のコンポーネントがあれば `index.figma.ts` を書いた
 - [ ] changeset を追加した（`make changeset`）

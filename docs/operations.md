@@ -6,7 +6,7 @@
 
 | ワークフロー | きっかけ | やること |
 | --- | --- | --- |
-| `CI`（`ci.yml`） | PR、main への push | `check`（fmt・lint・型・生成物の鮮度・コントラスト・クラス監査・依存の向き）、`test`（単体テスト、全ストーリーの実ブラウザ描画と axe）。main では `storybook`（Pages への公開）も動く。リリースは CI では行わない（[releasing.md](./releasing.md)） |
+| `CI`（`ci.yml`） | PR、main への push | `check`（中身は Makefile の `make check` の説明）、`test`（単体テスト、全ストーリーの実ブラウザ描画と axe）。main では `storybook`（Pages への公開）も動く。リリースは CI では行わない（[releasing.md](./releasing.md)） |
 | `Storybook preview cleanup` | PR を閉じたとき | その PR のプレビュー（`pr-preview/pr-<番号>/`）を消す |
 | `Branch cleanup` | main への push、手動 | マージ済み・閉じた PR の元ブランチと `ci-debug*` を、環境 `branch-cleanup` の承認後に消す |
 | `Weekly audit` | 毎週月曜、手動 | 健康診断レポート（warning の蓄積、コントラストの余裕、未使用トークン、ストーリーの欠け）を Issue に起票する |
@@ -89,5 +89,5 @@ gh api -X PUT repos/tkc310/8341-ui/environments/branch-cleanup \
 | --- | --- |
 | Pages が古い内容のまま | 配信のキャッシュ。`gh-pages` ブランチが新しければ数分で反映される |
 | `make install-ci`（`pnpm install --frozen-lockfile`）が失敗する | 依存を変えたのにロックファイルを更新していない。手元で `make install` してコミットする |
-| `check` が生成物のずれで失敗する | トークンやコンポーネントを変えたら、`design-md`・`tw-merge`・`registry` を実行して生成物を更新する |
+| `check` が生成物のずれで失敗する | トークン・コンポーネント・原則を変えたら、`make generate` で生成物を更新する |
 | Windows で `CLAUDE.md` やスキルが読めない | シンボリックリンクが取り出せていない（[ai-agents.md](./ai-agents.md) の「Windows で使う場合」） |

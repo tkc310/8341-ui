@@ -43,12 +43,7 @@ export function gamutMapOklch(L: number, C: number, h: number) {
   return { components: [round(L, 4), round(c, 4), c === 0 ? 0 : round(h, 2)] as [number, number, number], hex };
 }
 
-/** OKLCH を sRGB の hex に変換する（色域外は彩度を下げる） */
-export function oklchToHex(L: number, C: number, h: number): string {
-  return gamutMapOklch(L, C, h).hex;
-}
-
-export function parseColor(input: string): { rgb: RGB; alpha: number } {
+function parseColor(input: string): { rgb: RGB; alpha: number } {
   const hex = input.trim().toLowerCase();
   const m = hex.match(/^#([0-9a-f]{6})([0-9a-f]{2})?$/);
   if (m) {
@@ -74,7 +69,7 @@ export function parseColor(input: string): { rgb: RGB; alpha: number } {
 }
 
 /** 半透明色を背景に合成した不透明色を返す */
-export function composite(fg: string, bg: string): RGB {
+function composite(fg: string, bg: string): RGB {
   const f = parseColor(fg);
   const b = parseColor(bg);
   return f.rgb.map((v, i) => v * f.alpha + (b.rgb[i] ?? 0) * (1 - f.alpha)) as RGB;

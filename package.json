@@ -14,16 +14,12 @@
     "dev": "pnpm build:tokens && pnpm --filter 8341-ui-storybook dev",
     "build": "pnpm build:tokens && pnpm --filter 8341-ui build",
     "build:storybook": "pnpm build:tokens && pnpm --filter 8341-ui-storybook build",
-    "storybook:preview": "pnpm build:storybook && pnpm --filter 8341-ui-storybook preview:publish",
     "check": "pnpm build:tokens && vp check && vp run -r check && depcruise packages apps && node scripts/slides/check.ts && node scripts/check-skills.ts && node scripts/sync-product-design.ts --check",
     "test": "pnpm build:tokens && vp run -r test",
     "test:vrt": "pnpm build:tokens && pnpm --filter 8341-ui test:vrt",
     "test:e2e": "pnpm build:tokens && pnpm --filter 8341-ui-storybook test:e2e",
     "audit:report": "pnpm --filter 8341-ui-tokens audit",
-    "changeset": "changeset",
-    "factory:create": "node scripts/factory/create.mjs",
-    "release:version": "node scripts/release.mjs version",
-    "release:publish": "node scripts/release.mjs publish"
+    "changeset": "changeset"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",
