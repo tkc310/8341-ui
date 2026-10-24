@@ -74,8 +74,9 @@ tokens: ## トークンの CSS・Tailwind テーマ・Figma JSON を生成する
 palette: ## palette.config.json から primitive カラーを生成し直す
 	pnpm --filter $(TOKENS) palette
 
-design-md: ## DESIGN.md の表をトークンから更新する
+design-md: ## DESIGN.md の表をトークンから、プロダクト用の雛形の原則を docs/design-principles から更新する
 	pnpm --filter $(TOKENS) design-md
+	node scripts/sync-product-design.ts
 
 tw-merge: ## クラス統合の設定（tw-merge-config.ts）を更新する
 	pnpm --filter $(TOKENS) tw-merge

@@ -9,8 +9,8 @@ description: このデザインシステムを使って画面やフォームを�
 
 文書は大きいので、**全文ではなく必要な節だけ** を読む（見出しで探して、その節を読む）。
 
-0. プロダクトの DESIGN.md。無ければ `templates/PRODUCT-DESIGN.md` から作り、UI の方向性とサービス種別を決める。`design-principles` スキルの手順（ヒアリング → 方向性 → 特化ルール → 原則 → WCAG）に従う
-1. `DESIGN.md` は次の節だけ: 「9. Agent Prompt Guide」のクイックリファレンス、「7. Do's and Don'ts」、「4. Component Stylings」の一覧と、使うコンポーネントの節。色や余白を決めるときだけ「2. Color Palette & Roles」「5. Layout Principles」
+0. プロダクトの DESIGN.md の「プロダクトの前提」〜「採用したルールと外したもの」。無ければ `npx shadcn@latest add @8341/design-md` で置き（このリポジトリの中なら雛形は `templates/PRODUCT-DESIGN.md`）、（ ）のままの欄を `docs/design-principles/hearing.md` の項目で聞いて埋める
+1. 8341-ui の `DESIGN.md`（このリポジトリ直下）は次の節だけ: 「9. Agent Prompt Guide」のクイックリファレンス、「7. Do's and Don'ts」、「4. Component Stylings」の一覧と、使うコンポーネントの節。色や余白を決めるときだけ「2. Color Palette & Roles」「5. Layout Principles」
 2. `docs/rulebook/02-accessibility.md` の「必須ルール」の表（A1〜A16）
 3. フォームやボタンの文言を書くときだけ `docs/rulebook/05-writing.md`
 4. 使うコンポーネントのストーリー（`packages/ui/src/components/ui/<Name>/index.stories.tsx`）

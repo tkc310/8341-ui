@@ -52,7 +52,7 @@
     "test:vrt": "vp test --project vrt",
     "figma:publish": "figma connect publish",
     "registry": "node scripts/generate-registry.ts",
-    "registry:build": "node scripts/build-registry-css.ts && shadcn build ./registry.json -o ../../apps/storybook/public/r"
+    "registry:build": "node scripts/build-registry-assets.ts && shadcn build ./registry.json -o ../../apps/storybook/public/r"
   },
   "dependencies": {
     "8341-ui-tokens": "workspace:*",

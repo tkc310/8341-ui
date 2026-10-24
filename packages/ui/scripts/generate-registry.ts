@@ -4,7 +4,8 @@
  *
  * - registry:base  8341-base … Base UI を固定した土台。利用側の `shadcn init` で読み込む
  * - registry:lib   tv       … tv / cn / フォーカス表示のクラス
- * - registry:file  theme    … Tailwind のテーマ。トークンの CSS を同梱した 1 ファイル（scripts/build-registry-css.ts が作る）
+ * - registry:file  theme    … Tailwind のテーマ。トークンの CSS を同梱した 1 ファイル（scripts/build-registry-assets.ts が作る）
+ * - registry:file  design-md … プロダクト用の DESIGN.md と docs/design-principles/（同上。ADR-0019）
  * - registry:ui    各コンポーネント
  *
  * 実行: make registry（--check で差分検出）。公開は shadcn build（registry:build）
@@ -33,6 +34,13 @@ interface Item {
   files?: { path: string; type: string; target?: string }[];
   [k: string]: unknown;
 }
+
+/** docs/design-principles/ のファイル（design-md で利用側の docs/design-principles/ に置く） */
+const PRINCIPLES = resolve(ROOT, '../../docs/design-principles');
+const principleFiles = readdirSync(PRINCIPLES, { recursive: true, withFileTypes: true })
+  .filter((d) => d.isFile() && d.name.endsWith('.md'))
+  .map((d) => relative(PRINCIPLES, resolve(d.parentPath, d.name)))
+  .sort();
 
 /** コンポーネントのディレクトリ（PascalCase。src/components/ui/Button など） */
 const components = readdirSync(resolve(ROOT, 'src/components/ui'), { withFileTypes: true })
@@ -125,6 +133,22 @@ const registry = {
       description: 'Tailwind v4 のテーマ（トークン同梱）。globals.css で tailwindcss の後に @import する',
       // npm の 8341-ui-tokens に依存させず、レジストリだけで完結させる（ADR-0012）
       files: [{ path: 'registry-assets/8341-ui.css', type: 'registry:file', target: 'styles/8341-ui.css' }],
+    },
+    {
+      name: 'design-md',
+      type: 'registry:file',
+      title: 'DESIGN.md',
+      description:
+        'プロダクト用の DESIGN.md（コードから読み取れない設計の考え方）と design-principles。リポジトリ直下に DESIGN.md、docs/design-principles/ に原則の全文を置く',
+      // ~ は利用側のプロジェクトのルート
+      files: [
+        { path: 'registry-assets/DESIGN.md', type: 'registry:file', target: '~/DESIGN.md' },
+        ...principleFiles.map((f) => ({
+          path: `registry-assets/design-principles/${f}`,
+          type: 'registry:file',
+          target: `~/docs/design-principles/${f}`,
+        })),
+      ],
     },
     ...uiItems,
   ],

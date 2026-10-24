@@ -19,7 +19,7 @@
 
 - **基盤のデザインシステム**: 特定のプロダクトに属さず、複数のプロダクトで使い回す
 - **画面設計のルール**: [design-principles](./docs/design-principles/README.md) を採用する。適用順は UI の方向性 → サービス別の特化ルール → 原則 → WCAG 2.2
-- **UI の方向性とサービス種別**: 基盤では決めない。各プロダクトの DESIGN.md で決める（雛形: `templates/PRODUCT-DESIGN.md`）
+- **UI の方向性とサービス種別**: 基盤では決めない。各プロダクトの DESIGN.md で決める（`npx shadcn@latest add @8341/design-md` で置く。雛形は `templates/PRODUCT-DESIGN.md`）
 - **原則とトークン・コンポーネントの対応**: `docs/rulebook/01-principles.md`
 - **必須ルールを外した項目**: なし。タップ領域 44px、文字のコントラストを一律 4.5:1、リンクの下線必須、二重のフォーカス線は、design-principles の必須より厳しくしている
 
