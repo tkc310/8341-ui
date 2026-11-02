@@ -23,4 +23,4 @@
 ## 影響・トレードオフ
 - TypeScript 7.0 には安定した JavaScript API がまだなく、tsdown は「実験的」と警告する。型定義の出力は `check-dist` と CI のビルドで確かめる。問題が出たら 6.0 系（6.0.3）に戻すか、7.1 を待つ
 - Storybook で react-docgen-typescript に切り替える場合は、TypeScript 7.1 以上が要る
-- Node.js 26 が LTS に入ったら（2026-10 末の予定）、26 への更新を検討する
+- Node.js 26 が LTS に入ったら（2026-10 末の予定）、26 への更新を検討する（2026-11-02 に 26.13.0 へ更新。[0020](./0020-node-26-lts.md)）

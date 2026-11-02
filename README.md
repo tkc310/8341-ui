@@ -148,7 +148,7 @@ Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.c
 | UI | React 19 · [Base UI](https://base-ui.com/) v1 · [Tailwind CSS](https://tailwindcss.com/) v4 · [tailwind-variants](https://www.tailwind-variants.org/) v3 |
 | トークン | [W3C DTCG](https://www.designtokens.org/) 2025.10 · [Style Dictionary](https://styledictionary.com/) v5 · Figma Variables / Code Connect |
 | 配布 | [shadcn](https://ui.shadcn.com/) レジストリ（`registry:base` で Base UI を固定）· npm（任意） |
-| ツールチェーン | [Vite+](https://github.com/voidzero-dev/vite-plus)（oxlint · oxfmt · Vitest 5 · tsdown）· TypeScript 7 · Node.js 24 LTS · pnpm 12 |
+| ツールチェーン | [Vite+](https://github.com/voidzero-dev/vite-plus)（oxlint · oxfmt · Vitest 5 · tsdown）· TypeScript 7 · Node.js 26.13 LTS · pnpm 12 |
 | 品質 | Storybook 10 · addon-a11y（axe）· Playwright · dependency-cruiser · Changesets |
 
 選んだ理由は [ADR-0008](./docs/decisions/0008-stack-2026-10.md) と [ADR-0015](./docs/decisions/0015-dependency-update-2026-10.md) にあります。

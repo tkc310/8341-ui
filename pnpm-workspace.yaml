@@ -19,7 +19,7 @@ catalog:
   # ツールチェーン
   vite-plus: ^1.3.0
   typescript: ^7.0.2
-  '@types/node': ^24.19.2
+  '@types/node': ^26.6.6
   '@types/react': ^19.2.0
   '@types/react-dom': ^19.2.0
   '@vitejs/plugin-react': ^6.1.2

@@ -23,6 +23,7 @@
 | [0017](./0017-slides.md) | スライドを HTML のデッキとしてトークンから組む（ds-slides） | 採用 |
 | [0018](./0018-progressive-disclosure.md) | エージェント向けの文書を必要なときだけ読み込む構成にする | 採用 |
 | [0019](./0019-product-design-md.md) | 8341-ui を使うプロダクトに DESIGN.md と design-principles をレジストリで配る | 採用 |
+| [0020](./0020-node-26-lts.md) | Node.js を 26 LTS（26.13.0、Lithium）に更新する | 採用 |
 
 ## テンプレート
 
