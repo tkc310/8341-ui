@@ -185,7 +185,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - import パスは shadcn 方式: `@/components/ui/{Name}/index`（ディレクトリ名は PascalCase）、`@/lib/{name}`
 - 独自のスタイルは `tv()` を `@/lib/tv` から import して書く。`tailwind-variants` の `tv` を直接使わない（独自のテーマ名を登録した `tv` でないと `text-fg text-body-md` の文字色が消える）
 - **フォーカスは `focus-ring` クラス**。見た目が 44px 未満の操作対象には `tap-target`
-- コンポーネント自体を作る・直すときの規約（data 属性、`enabled:hover:`、`forced-colors:`、`'use client'` など）は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)
+- コンポーネント自体を作る・直すときの規約（data 属性、`not-disabled:hover:`、`forced-colors:`、`'use client'` など）は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)
 
 ### Button
 
