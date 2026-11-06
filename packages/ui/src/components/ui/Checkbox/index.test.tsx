@@ -17,4 +17,10 @@ describe('Checkbox', () => {
     expect(icon).toHaveClass('block');
     expect(icon?.parentElement).toHaveClass('flex', 'items-center', 'justify-center');
   });
+
+  it('隣のネイティブ入力は、style 属性が CSP で止まってもクラスで見えなくする', () => {
+    const { container } = render(<Checkbox label="利用規約に同意する" />);
+    const input = container.querySelector('input[aria-hidden="true"]');
+    expect(input?.parentElement).toHaveClass('hide-native-input');
+  });
 });

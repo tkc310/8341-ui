@@ -13,7 +13,7 @@ export const switchVariants = tv({
     label: [
       'grid w-fit cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-center gap-x-gap-sm text-fg',
       // ラベル全体がタップ領域になる。トラックの見た目は 44px 未満でも行の高さで 44px を確保する
-      'min-h-target-min',
+      'min-h-target-min hide-native-input',
       'has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:text-fg-disabled',
     ],
     track: [
