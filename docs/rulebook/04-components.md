@@ -37,10 +37,27 @@
 - 状態は Base UI の data 属性で装飾する（`data-[checked]:`、`data-[invalid]:`、`data-[disabled]:`、`data-[highlighted]:`、`data-[panel-open]:`、`data-[starting-style]:`）
 - **フォーカスは `focus-ring`**（`@/lib/focus` の `focusRing`）。Base UI は `data-focus-visible` を付けないため `:focus-visible` で描く
 - 見た目が 44px 未満の操作対象には `tap-target`
-- 無効状態に hover を効かせないよう `enabled:hover:` を使う（Tailwind v4 の `hover:` は自動で `@media (hover: hover)` に入る）
+- 無効状態に hover と押した見た目を効かせないよう `not-disabled:hover:`・`not-disabled:active:` を使う。`enabled:` は `<a>` に当たらず、ボタンの見た目（`buttonVariants`）をリンクに当てたときに何も出なくなる（クラス監査の `enabled-variant`）
+- `hover:` を付けたら、同じ見た目かそれより濃い見た目を `active:` にも付ける。Tailwind v4 の `hover:` は自動で `@media (hover: hover)` に入り、タッチでは出ないので、押したことは `active:` だけが伝える（クラス監査の `hover-without-active`）
+- ラベルの文字を押して操作する部品（Checkbox・Radio・Switch）は、ラベルに `group/*` を付け、`group-active/*:` で四角・丸・トラックにも押した見た目を出す
 - 強制カラーモードは `forced-colors:` で補う
 - 論理プロパティのクラスを使う（`ps-*`、`ms-*`、`border-s-*`）
 - クラス名を動的に組み立てない（`` `text-${size}` `` は Tailwind が検出できない）。variants に列挙する
+- 見た目に欠かせない値を `style` 属性に頼らない。既定の値はクラスで持ち、`style` は利用者が値を指定したときだけ出す（下の「CSP の下で使う」）。動かす値（ドラッグ中の位置など）はスクリプトから CSSOM（`element.style.transform = …`）で変える
+
+## CSP の下で使う
+
+利用側が `style-src` に `'unsafe-inline'` を入れない CSP を掛けると、サーバーで描画した HTML の `style` 属性は止まる（スクリプトから CSSOM で変えた値は止まらない）。部品はそれでも崩れないように作る。
+
+| 出どころ | 何が起きるか | 部品の側の対処 |
+| --- | --- | --- |
+| Base UI の Checkbox・Radio・Switch が隣に描くネイティブ入力（`aria-hidden`）の `style` | 見えないはずの入力が表示される | ラベルの `hide-native-input`（theme.css）でクラスからも隠す |
+| Base UI の Accordion の閉じたパネルの `--accordion-panel-height:auto;…` | 違反が報告される（開閉の動きの初期値だけで、表示は崩れない） | なし（利用側でハッシュを許すか、報告を受け入れる） |
+| Skeleton の `width` / `height` | 指定した大きさにならない | 既定の大きさはクラスで持つ。CSP を掛けるなら `className`（`w-*`・`h-*`）で指定する |
+
+利用側で違反の報告まで消したいときは、`'unsafe-inline'` ではなく `'unsafe-hashes'` と値ごとのハッシュで許す（`'sha256-…'` は style 属性の文字列そのものから作る。ルーターなど部品以外が出す style も同じ扱い）。ハッシュは依存の更新で変わりうるので、テストで文字列から計算して確かめる。
+
+フォームの検証にスキーマのライブラリを使うときは、`eval` / `new Function` を使わないものを選ぶ。Zod 4 は `z.object()` を作るときに JIT のため `new Function` を試し、`script-src` に `'unsafe-eval'` が無いと違反が報告される（動作は続く）。`z.config({ jitless: true })` はスキーマを作るどの import よりも先に要るので、Valibot など eval を使わないものの方が扱いやすい。
 
 ## 完了の定義（Definition of Done）
 

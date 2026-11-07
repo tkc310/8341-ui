@@ -11,4 +11,11 @@ describe('Skeleton', () => {
     expect(box.style.height).toBe('2em');
     expect(box).toHaveClass('rounded-full');
   });
+
+  it('大きさを指定しなければ style 属性を出さない（CSP の style-src で止まらない）', () => {
+    const { container } = render(<Skeleton />);
+    const box = container.firstElementChild as HTMLElement;
+    expect(box).not.toHaveAttribute('style');
+    expect(box).toHaveClass('w-full', 'h-[1em]');
+  });
 });
