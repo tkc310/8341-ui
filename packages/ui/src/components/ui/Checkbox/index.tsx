@@ -10,7 +10,7 @@ export const choiceVariants = tv({
     label: [
       'group/choice flex w-fit cursor-pointer items-start gap-gap-sm text-body-md text-fg',
       // 1 行の高さ（16px × 1.7）に上下の余白を足して 44px のタップ領域にする
-      'min-h-target-min py-[calc((var(--8341-size-target-min)-var(--8341-text-body-md-font-size)*var(--8341-text-body-md-line-height))/2)]',
+      'hide-native-input min-h-target-min py-[calc((var(--8341-size-target-min)-var(--8341-text-body-md-font-size)*var(--8341-text-body-md-line-height))/2)]',
       'has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:text-fg-disabled',
     ],
     control: [

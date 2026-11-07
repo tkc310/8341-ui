@@ -30,4 +30,10 @@ describe('Switch', () => {
     await user.click(screen.getByText('自動保存'));
     expect(screen.getByRole('switch', { name: '自動保存' })).toHaveAttribute('aria-checked', 'false');
   });
+
+  it('隣のネイティブ入力は、style 属性が CSP で止まってもクラスで見えなくする', () => {
+    const { container } = render(<Switch label="自動保存" />);
+    const input = container.querySelector('input[aria-hidden="true"]');
+    expect(input?.parentElement).toHaveClass('hide-native-input');
+  });
 });

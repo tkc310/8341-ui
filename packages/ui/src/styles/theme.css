@@ -40,6 +40,26 @@
   }
 }
 
+/*
+ * Base UI は Checkbox・Radio・Switch の隣に、同じ状態のネイティブ入力（aria-hidden）を描き、style 属性で見えなくする。
+ * サーバーで描画したページに style-src の CSP（'unsafe-inline' なし）を掛けると、その style 属性が止まり、入力が見えてしまう。
+ * display:none にはしない（フォームへ送る入力として残す）。見た目だけを部品の側で隠す。
+ */
+@utility hide-native-input {
+  & > input[aria-hidden='true'] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+  }
+}
+
 /* 見た目が小さい操作対象に、44px のタップ領域を擬似要素で足す */
 @utility tap-target {
   position: relative;
