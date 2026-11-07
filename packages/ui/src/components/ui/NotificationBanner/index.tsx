@@ -18,7 +18,7 @@ export const notificationBannerVariants = tv({
     content: '[&>p]:m-0',
     actions: 'flex flex-wrap gap-gap-sm',
     close: [
-      'tap-target -m-inset-md inline-grid size-target-min shrink-0 cursor-pointer place-items-center rounded-md border-0 bg-transparent p-0 text-icon hover:bg-muted',
+      'tap-target -m-inset-md inline-grid size-target-min shrink-0 cursor-pointer place-items-center rounded-md border-0 bg-transparent p-0 text-icon hover:bg-muted active:bg-muted',
       focusRing,
     ],
   },

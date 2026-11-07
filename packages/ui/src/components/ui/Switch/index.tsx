@@ -11,9 +11,9 @@ import { type VariantProps, tv } from '@/lib/tv';
 export const switchVariants = tv({
   slots: {
     label: [
-      'grid w-fit cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-center gap-x-gap-sm text-fg',
+      'group/switch-label grid w-fit cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-center gap-x-gap-sm text-fg',
       // ラベル全体がタップ領域になる。トラックの見た目は 44px 未満でも行の高さで 44px を確保する
-      'min-h-target-min',
+      'min-h-target-min hide-native-input',
       'has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:text-fg-disabled',
     ],
     track: [
@@ -23,6 +23,9 @@ export const switchVariants = tv({
       'hover:not-data-[disabled]:border-border-strong hover:not-data-[disabled]:bg-muted',
       'data-[checked]:border-key data-[checked]:bg-key',
       'data-[checked]:hover:not-data-[disabled]:border-key-hover data-[checked]:hover:not-data-[disabled]:bg-key-hover',
+      // ラベルの文字を押しても、トラックに押した見た目を出す。色は hover と同じ
+      'group-active/switch-label:not-data-[disabled]:border-border-strong group-active/switch-label:not-data-[disabled]:bg-muted',
+      'data-[checked]:group-active/switch-label:not-data-[disabled]:border-key-hover data-[checked]:group-active/switch-label:not-data-[disabled]:bg-key-hover',
       'data-[invalid]:border-border-danger',
       'data-[disabled]:border-border-disabled data-[disabled]:bg-disabled',
       'data-[disabled]:data-[checked]:border-border-disabled data-[disabled]:data-[checked]:bg-disabled',
@@ -31,10 +34,10 @@ export const switchVariants = tv({
     ],
     thumb: [
       'grid size-(--switch-thumb) place-items-center rounded-full transition-[translate,background-color]',
-      'bg-(--8341-color-border-input) group-hover/switch:not-data-[disabled]:bg-(--8341-color-border-strong)',
+      'bg-(--8341-color-border-input) group-hover/switch:not-data-[disabled]:bg-(--8341-color-border-strong) group-active/switch-label:not-data-[disabled]:bg-(--8341-color-border-strong)',
       // オンでは白抜きのつまみにチェックを出す（色だけで状態を伝えない）
       'data-[checked]:translate-x-(--switch-thumb) rtl:data-[checked]:-translate-x-(--switch-thumb)',
-      'data-[checked]:bg-surface group-hover/switch:data-[checked]:not-data-[disabled]:bg-surface',
+      'data-[checked]:bg-surface group-hover/switch:data-[checked]:not-data-[disabled]:bg-surface group-active/switch-label:data-[checked]:not-data-[disabled]:bg-surface',
       'data-[disabled]:bg-(--8341-color-text-disabled) data-[disabled]:data-[checked]:bg-(--8341-color-text-disabled)',
       'forced-colors:bg-[ButtonText] forced-colors:data-[checked]:bg-[Highlight] forced-colors:data-[disabled]:bg-[GrayText]',
     ],

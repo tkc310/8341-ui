@@ -83,6 +83,16 @@ npx shadcn@latest add @8341/8341-base @8341/button @8341/form-field @8341/text-f
 あとは使うだけです。テーマは `<html class="dark">` か `<html data-theme="dark">` でダークに切り替わり、どちらも無ければ OS の設定に従います。
 テーマ（`styles/8341-ui.css`）はトークンを同梱しています。トークンが更新されたら `npx shadcn@latest add @8341/theme --overwrite` で取り込み直します。
 
+部品は押している間の見た目（`:active`）でタッチでも押したことを伝えます。iOS Safari は `touchstart` の受け手が無いと `:active` を当てないので、アプリの全画面に共通する枠（レイアウトなど）で一度だけ受け手を置きます。インラインの `ontouchstart` 属性は CSP で止まることがあるので、スクリプトで付けます。
+
+```tsx
+useEffect(() => {
+  const enableActive = () => undefined;
+  document.addEventListener('touchstart', enableActive, { passive: true });
+  return () => document.removeEventListener('touchstart', enableActive);
+}, []);
+```
+
 ```tsx
 import { Button } from '@/components/ui/Button/index';
 import { FormField } from '@/components/ui/FormField/index';
@@ -130,7 +140,7 @@ Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.c
 
 ## コンポーネント
 
-ヘッドレス UI の [Base UI](https://base-ui.com/) に、トークンの見た目を載せた 24 種類です。使い分けの規約は [04 コンポーネント](./docs/rulebook/04-components.md)、動く見本は [Storybook](https://tkc310.github.io/8341-ui/) にあります。
+ヘッドレス UI の [Base UI](https://base-ui.com/) に、トークンの見た目を載せた 25 種類です。使い分けの規約は [04 コンポーネント](./docs/rulebook/04-components.md)、動く見本は [Storybook](https://tkc310.github.io/8341-ui/) にあります。
 
 | 種類 | コンポーネント |
 | --- | --- |
@@ -139,7 +149,7 @@ Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.c
 | 表示 | `Heading` · `Text` · `Truncate` · `Tag` · `Icon` · `Card` · `Divider` · `Stack` · `SortableList` |
 | ナビゲーション | `Breadcrumb` · `Accordion` |
 | フィードバック | `NotificationBanner` · `Spinner` · `Skeleton` |
-| オーバーレイ | `Dialog` |
+| オーバーレイ | `Dialog` · `AlertDialog` |
 
 ## 技術スタック
 

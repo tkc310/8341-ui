@@ -156,6 +156,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 <!-- auto:components -->
 - `Accordion`（`@8341/accordion`）— `packages/ui/src/components/ui/Accordion/`
+- `AlertDialog`（`@8341/alert-dialog`）— `packages/ui/src/components/ui/AlertDialog/`
 - `Breadcrumb`（`@8341/breadcrumb`）— `packages/ui/src/components/ui/Breadcrumb/`
 - `Button`（`@8341/button`）— `packages/ui/src/components/ui/Button/`
 - `Card`（`@8341/card`）— `packages/ui/src/components/ui/Card/`
@@ -186,7 +187,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - import パスは shadcn 方式: `@/components/ui/{Name}/index`（ディレクトリ名は PascalCase）、`@/lib/{name}`
 - 独自のスタイルは `tv()` を `@/lib/tv` から import して書く。`tailwind-variants` の `tv` を直接使わない（独自のテーマ名を登録した `tv` でないと `text-fg text-body-md` の文字色が消える）
 - **フォーカスは `focus-ring` クラス**。見た目が 44px 未満の操作対象には `tap-target`
-- コンポーネント自体を作る・直すときの規約（data 属性、`enabled:hover:`、`forced-colors:`、`'use client'` など）は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)
+- コンポーネント自体を作る・直すときの規約（data 属性、`not-disabled:hover:`、`forced-colors:`、`'use client'` など）は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)
 
 ### Button
 
@@ -265,7 +266,21 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - Base UI の Dialog。`title` 必須（名前）、`description`（説明）。開くとフォーカスが中に移り、Esc か「閉じる」（`closeLabel`）で閉じて開いたボタンに戻る
 - `open` / `onOpenChange` で開閉を管理するときは `trigger` を省く
 - `placement`: `center`（既定。`bg-overlay` の背面、`rounded-xl`、最大幅 `max-w-prose`、本文だけスクロール）/ `side`（先頭側からせり出す。裏の画面も操作でき、フォーカスだけ閉じ込める）
-- 取り消せない操作の確認には使わない（AlertDialog はバックログ）
+- 取り消せない操作の確認には使わない（AlertDialog を使う）
+
+### AlertDialog
+
+```tsx
+<AlertDialog title="「週次レポート」を削除しますか" description="元に戻せません。" confirmLabel="削除する"
+  trigger={<Button variant="tertiary">削除</Button>} onConfirm={() => remove(report.id)} />
+```
+
+- Base UI の AlertDialog（`role="alertdialog"`）。取り消せない操作の前の確認だけに使う
+- `title` は対象を入れた問いかけ、`description` は結果（「元に戻せません。」）、`confirmLabel` は動詞（「削除する」）。やめるボタンは「キャンセル」（`cancelLabel`）
+- 開くとフォーカスは「キャンセル」。外側を押しても閉じず、Esc とキャンセルで閉じる
+- `tone`: `danger`（既定。失う操作）/ `primary`（送信・公開など）
+- `onConfirm` が Promise を返すと、終わるまで実行ボタンを `loading` にして閉じない。例外を投げると開いたまま（失敗は `children` に NotificationBanner で出す）
+- 一覧の行の中など、その場で確かめられるなら、ダイアログを出さずに行の中で「削除しますか。元に戻せません。」と「削除する」「キャンセル」に置き換えてもよい
 
 ### Spinner / Skeleton
 

@@ -170,6 +170,25 @@
       ]
     },
     {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": "取り消せない操作の前に、実行してよいかを確かめるダイアログ（Base UI の AlertDialog。",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@8341/button",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/AlertDialog/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "breadcrumb",
       "type": "registry:ui",
       "title": "Breadcrumb",

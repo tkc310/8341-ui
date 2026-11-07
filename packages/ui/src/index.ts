@@ -3,6 +3,7 @@
  * スタイルは別エントリ: Tailwind を使うなら 8341-ui/theme.css、使わないなら 8341-ui/styles.css。
  */
 export * from './components/ui/Accordion/index';
+export * from './components/ui/AlertDialog/index';
 export * from './components/ui/Breadcrumb/index';
 export * from './components/ui/Button/index';
 export * from './components/ui/Card/index';
