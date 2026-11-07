@@ -156,6 +156,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 <!-- auto:components -->
 - `Accordion`（`@8341/accordion`）— `packages/ui/src/components/ui/Accordion/`
+- `AlertDialog`（`@8341/alert-dialog`）— `packages/ui/src/components/ui/AlertDialog/`
 - `Breadcrumb`（`@8341/breadcrumb`）— `packages/ui/src/components/ui/Breadcrumb/`
 - `Button`（`@8341/button`）— `packages/ui/src/components/ui/Button/`
 - `Card`（`@8341/card`）— `packages/ui/src/components/ui/Card/`
@@ -264,7 +265,21 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - Base UI の Dialog。`title` 必須（名前）、`description`（説明）。開くとフォーカスが中に移り、Esc か「閉じる」（`closeLabel`）で閉じて開いたボタンに戻る
 - `open` / `onOpenChange` で開閉を管理するときは `trigger` を省く
 - `placement`: `center`（既定。`bg-overlay` の背面、`rounded-xl`、最大幅 `max-w-prose`、本文だけスクロール）/ `side`（先頭側からせり出す。裏の画面も操作でき、フォーカスだけ閉じ込める）
-- 取り消せない操作の確認には使わない（AlertDialog はバックログ）
+- 取り消せない操作の確認には使わない（AlertDialog を使う）
+
+### AlertDialog
+
+```tsx
+<AlertDialog title="「週次レポート」を削除しますか" description="元に戻せません。" confirmLabel="削除する"
+  trigger={<Button variant="tertiary">削除</Button>} onConfirm={() => remove(report.id)} />
+```
+
+- Base UI の AlertDialog（`role="alertdialog"`）。取り消せない操作の前の確認だけに使う
+- `title` は対象を入れた問いかけ、`description` は結果（「元に戻せません。」）、`confirmLabel` は動詞（「削除する」）。やめるボタンは「キャンセル」（`cancelLabel`）
+- 開くとフォーカスは「キャンセル」。外側を押しても閉じず、Esc とキャンセルで閉じる
+- `tone`: `danger`（既定。失う操作）/ `primary`（送信・公開など）
+- `onConfirm` が Promise を返すと、終わるまで実行ボタンを `loading` にして閉じない。例外を投げると開いたまま（失敗は `children` に NotificationBanner で出す）
+- 一覧の行の中など、その場で確かめられるなら、ダイアログを出さずに行の中で「削除しますか。元に戻せません。」と「削除する」「キャンセル」に置き換えてもよい
 
 ### Spinner / Skeleton
 

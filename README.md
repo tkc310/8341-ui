@@ -130,7 +130,7 @@ Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.c
 
 ## コンポーネント
 
-ヘッドレス UI の [Base UI](https://base-ui.com/) に、トークンの見た目を載せた 23 種類です。使い分けの規約は [04 コンポーネント](./docs/rulebook/04-components.md)、動く見本は [Storybook](https://tkc310.github.io/8341-ui/) にあります。
+ヘッドレス UI の [Base UI](https://base-ui.com/) に、トークンの見た目を載せた 24 種類です。使い分けの規約は [04 コンポーネント](./docs/rulebook/04-components.md)、動く見本は [Storybook](https://tkc310.github.io/8341-ui/) にあります。
 
 | 種類 | コンポーネント |
 | --- | --- |
@@ -139,7 +139,7 @@ Tailwind を使わない場合は、ビルド済みの `import '8341-ui/styles.c
 | 表示 | `Heading` · `Text` · `Truncate` · `Tag` · `Icon` · `Card` · `Divider` · `Stack` |
 | ナビゲーション | `Breadcrumb` · `Accordion` |
 | フィードバック | `NotificationBanner` · `Spinner` · `Skeleton` |
-| オーバーレイ | `Dialog` |
+| オーバーレイ | `Dialog` · `AlertDialog` |
 
 ## 技術スタック
 

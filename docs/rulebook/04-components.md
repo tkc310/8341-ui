@@ -71,6 +71,7 @@
 | よくある質問など折りたたみ | Accordion + AccordionItem             | 独自のディスクロージャ   |
 | 要素の縦横の間隔           | Stack                                 | 個別の margin            |
 | 画面に重ねて入力・確認させる | Dialog（`title` 必須）               | 独自のモーダル           |
+| 取り消せない操作の前に確かめる | AlertDialog（`title`・`confirmLabel` 必須） | Dialog、`window.confirm` |
 | 読み込み・保存の最中       | Spinner（ボタンの中は Button の `loading`） | 文言の無い回転アイコン |
 | 中身の形が分かる読み込み   | Skeleton ＋ 領域の `aria-busy`        | 空白のまま待たせる       |
 | 幅が限られた 1 行の文字    | Truncate（表の列・一覧の項目名）      | 本文の省略               |
