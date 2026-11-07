@@ -37,7 +37,9 @@
 - 状態は Base UI の data 属性で装飾する（`data-[checked]:`、`data-[invalid]:`、`data-[disabled]:`、`data-[highlighted]:`、`data-[panel-open]:`、`data-[starting-style]:`）
 - **フォーカスは `focus-ring`**（`@/lib/focus` の `focusRing`）。Base UI は `data-focus-visible` を付けないため `:focus-visible` で描く
 - 見た目が 44px 未満の操作対象には `tap-target`
-- 無効状態に hover を効かせないよう `enabled:hover:` を使う（Tailwind v4 の `hover:` は自動で `@media (hover: hover)` に入る）
+- 無効状態に hover と押した見た目を効かせないよう `not-disabled:hover:`・`not-disabled:active:` を使う。`enabled:` は `<a>` に当たらず、ボタンの見た目（`buttonVariants`）をリンクに当てたときに何も出なくなる（クラス監査の `enabled-variant`）
+- `hover:` を付けたら、同じ見た目かそれより濃い見た目を `active:` にも付ける。Tailwind v4 の `hover:` は自動で `@media (hover: hover)` に入り、タッチでは出ないので、押したことは `active:` だけが伝える（クラス監査の `hover-without-active`）
+- ラベルの文字を押して操作する部品（Checkbox・Radio・Switch）は、ラベルに `group/*` を付け、`group-active/*:` で四角・丸・トラックにも押した見た目を出す
 - 強制カラーモードは `forced-colors:` で補う
 - 論理プロパティのクラスを使う（`ps-*`、`ms-*`、`border-s-*`）
 - クラス名を動的に組み立てない（`` `text-${size}` `` は Tailwind が検出できない）。variants に列挙する

@@ -6,12 +6,13 @@ import { tv } from '@/lib/tv';
  * リンクの 5 状態: default / visited / hover / active / focus
  * - 下線は常に表示する（色だけで判別させない）
  * - hover では下線を太くするだけで、文字の太さ・大きさは変えない（レイアウトがずれないように）
+ * - active（押している間）は橙にし、下線も hover と同じ太さにする。タッチでは hover が出ないので、押したことはこれで伝える
  * - focus では背景も黄色にして、文中のリンクでも見失わないようにする
  */
 export const linkVariants = tv({
   base: [
     'rounded-xs text-fg-link underline decoration-1 underline-offset-[0.2em]',
-    'visited:text-fg-link-visited hover:text-fg-link-hover hover:decoration-(length:--8341-border-width-underline-hover) active:text-fg-link-active',
+    'visited:text-fg-link-visited hover:text-fg-link-hover hover:decoration-(length:--8341-border-width-underline-hover) active:text-fg-link-active active:decoration-(length:--8341-border-width-underline-hover)',
     // Tailwind v4 の outline-none は線種を none にするため使わず、:focus-visible で線種から指定する
     'focus-visible:bg-focus-ring focus-visible:text-focus-text focus-visible:decoration-1 focus-visible:outline-solid',
     'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-outline',

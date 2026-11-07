@@ -12,4 +12,13 @@ describe('Link', () => {
     const link = screen.getByRole('link', { name: /外部サイト\s?（新しいタブで開きます）/ });
     expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'));
   });
+
+  it('押している間は、タッチでも見える色と下線の太さに変わる', () => {
+    render(<Link href="/words">単語帳</Link>);
+    const link = screen.getByRole('link', { name: '単語帳' });
+    expect(link).toHaveClass(
+      'active:text-fg-link-active',
+      'active:decoration-(length:--8341-border-width-underline-hover)',
+    );
+  });
 });

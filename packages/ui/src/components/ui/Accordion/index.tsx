@@ -10,7 +10,7 @@ export const accordionVariants = tv({
     item: 'border-b border-border',
     header: 'm-0 text-body-md font-bold',
     trigger: [
-      'group/trigger flex min-h-target-min w-full cursor-pointer items-center rounded-xs border-0 bg-transparent px-inset-sm py-inset-md text-start font-bold text-fg hover:bg-muted',
+      'group/trigger flex min-h-target-min w-full cursor-pointer items-center rounded-xs border-0 bg-transparent px-inset-sm py-inset-md text-start font-bold text-fg hover:bg-muted active:bg-muted',
       focusRing,
     ],
     icon: 'ms-gap-md shrink-0 text-icon-key transition-transform group-data-[panel-open]/trigger:rotate-180',

@@ -14,7 +14,7 @@ export const controlVariants = tv({
     'block w-full rounded-md border border-border-input bg-surface px-inset-md py-inset-sm',
     // 16px 未満だと iOS Safari がフォーカス時に拡大するため、文字サイズは固定
     'text-body-md leading-(--8341-text-dense-md-line-height) text-fg placeholder:text-fg-subtle',
-    'transition-colors hover:border-border-strong focus-visible:border-border-strong',
+    'transition-colors hover:border-border-strong active:border-border-strong focus-visible:border-border-strong',
     focusRing,
     // エラーは色に加えて線を太くし、形でも示す
     'data-[invalid]:border-border-danger data-[invalid]:shadow-[inset_0_0_0_1px_var(--8341-color-border-danger)] aria-invalid:border-border-danger aria-invalid:shadow-[inset_0_0_0_1px_var(--8341-color-border-danger)]',
