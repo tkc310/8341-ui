@@ -28,16 +28,16 @@ export const buttonVariants = tv({
      */
     variant: {
       primary: {
-        root: 'border-key bg-key text-fg-on-key enabled:hover:border-key-hover enabled:hover:bg-key-hover enabled:active:border-key-active enabled:active:bg-key-active',
+        root: 'border-key bg-key text-fg-on-key not-disabled:hover:border-key-hover not-disabled:hover:bg-key-hover not-disabled:active:border-key-active not-disabled:active:bg-key-active',
       },
       secondary: {
-        root: 'border-border-key bg-surface text-fg-key enabled:hover:bg-key-subtle enabled:active:bg-key-subtle-hover',
+        root: 'border-border-key bg-surface text-fg-key not-disabled:hover:bg-key-subtle not-disabled:active:bg-key-subtle-hover',
       },
       tertiary: {
-        root: 'border-transparent bg-transparent text-fg-key underline underline-offset-[0.2em] enabled:hover:bg-key-subtle enabled:active:bg-key-subtle-hover disabled:border-transparent disabled:bg-transparent',
+        root: 'border-transparent bg-transparent text-fg-key underline underline-offset-[0.2em] not-disabled:hover:bg-key-subtle not-disabled:active:bg-key-subtle-hover disabled:border-transparent disabled:bg-transparent',
       },
       danger: {
-        root: 'border-danger bg-danger text-fg-on-key enabled:hover:border-danger-hover enabled:hover:bg-danger-hover enabled:active:border-danger-active enabled:active:bg-danger-active',
+        root: 'border-danger bg-danger text-fg-on-key not-disabled:hover:border-danger-hover not-disabled:hover:bg-danger-hover not-disabled:active:border-danger-active not-disabled:active:bg-danger-active',
       },
     },
     /** sm は見た目 36px だが、タップ領域は 44px を確保する */

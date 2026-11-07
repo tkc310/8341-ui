@@ -82,6 +82,8 @@
     line-height: var(--8341-text-body-md-line-height);
     letter-spacing: var(--8341-text-body-md-letter-spacing);
     font-feature-settings: normal;
+    /* 押した見た目は各部品の active: で出す。端末の灰色や青のタップの塗りと重ねない */
+    -webkit-tap-highlight-color: transparent;
     /* 和文の禁則を厳格に、単語途中の改行を避ける */
     line-break: strict;
     overflow-wrap: anywhere;

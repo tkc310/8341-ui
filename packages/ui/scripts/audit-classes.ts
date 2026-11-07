@@ -14,6 +14,8 @@
  *   bare-read-only   … read-only: は button や無効の input にも当たる。[&:read-only:not(:disabled,button)]: を使う
  *   theme-var-ref    … 任意値・手書き CSS からの Tailwind テーマ変数（--color-* / --spacing-* / --text-* など）の参照。
  *                      @theme inline は使われた変数しか出力しないため未定義になりうる。常に存在する --8341-* を参照する
+ *   enabled-variant  … enabled: は <a> に当たらない。ボタンの見た目をリンクに当てると hover も押した見た目も出ない。not-disabled: を使う
+ *   hover-without-active … hover: を書いた部品に active: が無い。タッチでは hover が出ないので、押した見た目は active: で出す
  * warning
  *   numeric-spacing  … p-4 / gap-6 など数値の余白。semantic な余白（p-inset-md、gap-stack-md）を検討する
  */
@@ -57,6 +59,17 @@ export function auditClasses(): Finding[] {
         message: "フックを使っているのに 'use client' がありません",
       });
     }
+    const classText = text.replace(/\/\/.*$/gm, '');
+    if (/(?<![\w-])hover:/.test(classText) && !/active[:/]/.test(classText)) {
+      findings.push({
+        file: rel,
+        line: 1,
+        rule: 'hover-without-active',
+        severity: 'error',
+        message:
+          'hover: があるのに active: がありません。タッチでは hover が出ないので、押した見た目を active: で付けてください',
+      });
+    }
     lines.forEach((raw, i) => {
       const add = (rule: string, severity: Finding['severity'], message: string) =>
         findings.push({ file: rel, line: i + 1, rule, severity, message });
@@ -77,6 +90,8 @@ export function auditClasses(): Finding[] {
           'error',
           'read-only: は button や無効の input にも当たります。[&:read-only:not(:disabled,button)]: を使ってください',
         );
+      if (/(?<![\w-])enabled:/.test(line))
+        add('enabled-variant', 'error', 'enabled: は <a> に当たりません。not-disabled: を使ってください');
       const palette = line.match(PALETTE);
       if (palette)
         add('tailwind-palette', 'error', `Tailwind 既定のパレットは使えません: ${palette[0]}（semantic の色を使う）`);
