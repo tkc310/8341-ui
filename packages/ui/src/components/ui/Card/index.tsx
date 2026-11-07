@@ -11,10 +11,11 @@ export const cardVariants = tv({
     body: 'flex flex-1 flex-col gap-stack-sm p-inset-xl',
     eyebrow: 'm-0 text-body-sm text-fg-subtle',
     title: 'm-0 text-heading-xs',
-    link: 'text-fg-link underline decoration-1 underline-offset-[0.2em] outline-none after:absolute after:inset-0 after:content-[""] group-hover/card:decoration-(length:--8341-border-width-underline-hover)', // allow-outline-none: フォーカスはカード全体に focus-ring-within で描く
+    link: 'text-fg-link underline decoration-1 underline-offset-[0.2em] outline-none after:absolute after:inset-0 after:content-[""] group-hover/card:decoration-(length:--8341-border-width-underline-hover) group-active/card:decoration-(length:--8341-border-width-underline-hover)', // allow-outline-none: フォーカスはカード全体に focus-ring-within で描く
     content: '[&>p]:m-0',
     footer: 'flex items-center justify-between gap-gap-sm px-inset-xl pb-inset-xl text-fg-subtle',
-    arrow: 'ms-auto text-icon-key transition-transform group-hover/card:translate-x-gap-xs',
+    arrow:
+      'ms-auto text-icon-key transition-transform group-hover/card:translate-x-gap-xs group-active/card:translate-x-gap-xs',
   },
   variants: {
     variant: {
@@ -22,7 +23,12 @@ export const cardVariants = tv({
       filled: { root: 'border-transparent bg-subtle' },
     },
     interactive: {
-      true: { root: [focusRingWithin, 'hover:border-border-key hover:shadow-1'] },
+      true: {
+        root: [
+          focusRingWithin,
+          'hover:border-border-key hover:shadow-1 active:border-border-key active:bg-subtle active:shadow-1',
+        ],
+      },
     },
   },
   defaultVariants: { variant: 'outlined' },

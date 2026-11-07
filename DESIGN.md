@@ -156,6 +156,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 <!-- auto:components -->
 - `Accordion`（`@8341/accordion`）— `packages/ui/src/components/ui/Accordion/`
+- `AlertDialog`（`@8341/alert-dialog`）— `packages/ui/src/components/ui/AlertDialog/`
 - `Breadcrumb`（`@8341/breadcrumb`）— `packages/ui/src/components/ui/Breadcrumb/`
 - `Button`（`@8341/button`）— `packages/ui/src/components/ui/Button/`
 - `Card`（`@8341/card`）— `packages/ui/src/components/ui/Card/`
@@ -170,6 +171,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - `RadioGroup`（`@8341/radio-group`）— `packages/ui/src/components/ui/RadioGroup/`
 - `Select`（`@8341/select`）— `packages/ui/src/components/ui/Select/`
 - `Skeleton`（`@8341/skeleton`）— `packages/ui/src/components/ui/Skeleton/`
+- `SortableList`（`@8341/sortable-list`）— `packages/ui/src/components/ui/SortableList/`
 - `Spinner`（`@8341/spinner`）— `packages/ui/src/components/ui/Spinner/`
 - `Stack`（`@8341/stack`）— `packages/ui/src/components/ui/Stack/`
 - `Switch`（`@8341/switch`）— `packages/ui/src/components/ui/Switch/`
@@ -185,7 +187,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - import パスは shadcn 方式: `@/components/ui/{Name}/index`（ディレクトリ名は PascalCase）、`@/lib/{name}`
 - 独自のスタイルは `tv()` を `@/lib/tv` から import して書く。`tailwind-variants` の `tv` を直接使わない（独自のテーマ名を登録した `tv` でないと `text-fg text-body-md` の文字色が消える）
 - **フォーカスは `focus-ring` クラス**。見た目が 44px 未満の操作対象には `tap-target`
-- コンポーネント自体を作る・直すときの規約（data 属性、`enabled:hover:`、`forced-colors:`、`'use client'` など）は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)
+- コンポーネント自体を作る・直すときの規約（data 属性、`not-disabled:hover:`、`forced-colors:`、`'use client'` など）は [docs/rulebook/04-components.md](./docs/rulebook/04-components.md)
 
 ### Button
 
@@ -264,7 +266,21 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - Base UI の Dialog。`title` 必須（名前）、`description`（説明）。開くとフォーカスが中に移り、Esc か「閉じる」（`closeLabel`）で閉じて開いたボタンに戻る
 - `open` / `onOpenChange` で開閉を管理するときは `trigger` を省く
 - `placement`: `center`（既定。`bg-overlay` の背面、`rounded-xl`、最大幅 `max-w-prose`、本文だけスクロール）/ `side`（先頭側からせり出す。裏の画面も操作でき、フォーカスだけ閉じ込める）
-- 取り消せない操作の確認には使わない（AlertDialog はバックログ）
+- 取り消せない操作の確認には使わない（AlertDialog を使う）
+
+### AlertDialog
+
+```tsx
+<AlertDialog title="「週次レポート」を削除しますか" description="元に戻せません。" confirmLabel="削除する"
+  trigger={<Button variant="tertiary">削除</Button>} onConfirm={() => remove(report.id)} />
+```
+
+- Base UI の AlertDialog（`role="alertdialog"`）。取り消せない操作の前の確認だけに使う
+- `title` は対象を入れた問いかけ、`description` は結果（「元に戻せません。」）、`confirmLabel` は動詞（「削除する」）。やめるボタンは「キャンセル」（`cancelLabel`）
+- 開くとフォーカスは「キャンセル」。外側を押しても閉じず、Esc とキャンセルで閉じる
+- `tone`: `danger`（既定。失う操作）/ `primary`（送信・公開など）
+- `onConfirm` が Promise を返すと、終わるまで実行ボタンを `loading` にして閉じない。例外を投げると開いたまま（失敗は `children` に NotificationBanner で出す）
+- 一覧の行の中など、その場で確かめられるなら、ダイアログを出さずに行の中で「削除しますか。元に戻せません。」と「削除する」「キャンセル」に置き換えてもよい
 
 ### Spinner / Skeleton
 
@@ -275,6 +291,19 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 - 1 行に収まらない文字を … で省略する（`children` は文字列）。省略されたときだけ Tab で止まり、ホバーかフォーカスで全文を Base UI の Tooltip（`bg-inverse`）で出す
 - 読み上げは常に全文。本文には使わず、表の列や一覧の項目名など幅が限られる場所に使う
+
+### SortableList
+
+```tsx
+<SortableList label="承認の手順" items={steps} getKey={(s) => s.id} getLabel={(s) => s.name}
+  onChange={setSteps} onRemove={(s) => …} />
+```
+
+- 利用者が項目の順番を決める一覧（`<ol>`）。`label` 必須（一覧の名前）、`getLabel` は項目の名前（つまみ・操作のボタンの名前になる）
+- 行の左のつまみをドラッグすると、行は指に付いて動き、ほかの行は入る位置を空ける。離した位置へ一度で動く。つまみにフォーカスして上下の矢印キーでも動かせ、フォーカスはつまみに残る
+- 右の開閉ボタン（`aria-expanded`）で行の下に「上へ」「下へ」（`onRemove` を渡すと「外す」も）を出す。ドラッグできない人の代わりの操作（WCAG 2.5.7）。ボタンを行に並べないので、狭い幅でも項目名が折り返さない
+- 並びが変わると前の位置から新しい位置へ動き（FLIP。動きを減らす設定では止まる）、動かした位置を `role="status"` で読み上げる。位置は style 属性ではなく CSSOM で動かす（CSP で止まらない）
+- 文言は `messages` で上書きできる
 
 ### Card
 

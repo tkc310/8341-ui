@@ -3,6 +3,7 @@
  * スタイルは別エントリ: Tailwind を使うなら 8341-ui/theme.css、使わないなら 8341-ui/styles.css。
  */
 export * from './components/ui/Accordion/index';
+export * from './components/ui/AlertDialog/index';
 export * from './components/ui/Breadcrumb/index';
 export * from './components/ui/Button/index';
 export * from './components/ui/Card/index';
@@ -17,6 +18,7 @@ export * from './components/ui/NotificationBanner/index';
 export * from './components/ui/RadioGroup/index';
 export * from './components/ui/Select/index';
 export * from './components/ui/Skeleton/index';
+export * from './components/ui/SortableList/index';
 export * from './components/ui/Spinner/index';
 export * from './components/ui/Stack/index';
 export * from './components/ui/Switch/index';
