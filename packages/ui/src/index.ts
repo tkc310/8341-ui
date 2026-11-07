@@ -17,6 +17,7 @@ export * from './components/ui/NotificationBanner/index';
 export * from './components/ui/RadioGroup/index';
 export * from './components/ui/Select/index';
 export * from './components/ui/Skeleton/index';
+export * from './components/ui/SortableList/index';
 export * from './components/ui/Spinner/index';
 export * from './components/ui/Stack/index';
 export * from './components/ui/Switch/index';

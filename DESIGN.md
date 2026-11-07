@@ -170,6 +170,7 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 - `RadioGroup`（`@8341/radio-group`）— `packages/ui/src/components/ui/RadioGroup/`
 - `Select`（`@8341/select`）— `packages/ui/src/components/ui/Select/`
 - `Skeleton`（`@8341/skeleton`）— `packages/ui/src/components/ui/Skeleton/`
+- `SortableList`（`@8341/sortable-list`）— `packages/ui/src/components/ui/SortableList/`
 - `Spinner`（`@8341/spinner`）— `packages/ui/src/components/ui/Spinner/`
 - `Stack`（`@8341/stack`）— `packages/ui/src/components/ui/Stack/`
 - `Switch`（`@8341/switch`）— `packages/ui/src/components/ui/Switch/`
@@ -275,6 +276,19 @@ DTCG では `{"colorSpace": "oklch", "components": [L, C, H], "hex": "#..."}` �
 
 - 1 行に収まらない文字を … で省略する（`children` は文字列）。省略されたときだけ Tab で止まり、ホバーかフォーカスで全文を Base UI の Tooltip（`bg-inverse`）で出す
 - 読み上げは常に全文。本文には使わず、表の列や一覧の項目名など幅が限られる場所に使う
+
+### SortableList
+
+```tsx
+<SortableList label="承認の手順" items={steps} getKey={(s) => s.id} getLabel={(s) => s.name}
+  onChange={setSteps} onRemove={(s) => …} />
+```
+
+- 利用者が項目の順番を決める一覧（`<ol>`）。`label` 必須（一覧の名前）、`getLabel` は項目の名前（つまみ・操作のボタンの名前になる）
+- 行の左のつまみをドラッグすると、行は指に付いて動き、ほかの行は入る位置を空ける。離した位置へ一度で動く。つまみにフォーカスして上下の矢印キーでも動かせ、フォーカスはつまみに残る
+- 右の開閉ボタン（`aria-expanded`）で行の下に「上へ」「下へ」（`onRemove` を渡すと「外す」も）を出す。ドラッグできない人の代わりの操作（WCAG 2.5.7）。ボタンを行に並べないので、狭い幅でも項目名が折り返さない
+- 並びが変わると前の位置から新しい位置へ動き（FLIP。動きを減らす設定では止まる）、動かした位置を `role="status"` で読み上げる。位置は style 属性ではなく CSSOM で動かす（CSP で止まらない）
+- 文言は `messages` で上書きできる
 
 ### Card
 
