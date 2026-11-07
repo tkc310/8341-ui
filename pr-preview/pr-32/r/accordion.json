@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "title": "Accordion",
+  "description": "折りたたみの一覧。",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@8341/icon",
+    "@8341/theme",
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/Accordion/index.tsx",
+      "content": "import { Accordion as BaseAccordion } from '@base-ui/react/accordion';\nimport type { ComponentProps, ReactNode } from 'react';\nimport { Icon } from '@/components/ui/Icon/index';\nimport { focusRing } from '@/lib/focus';\nimport { tv } from '@/lib/tv';\n\nexport const accordionVariants = tv({\n  slots: {\n    root: 'border-t border-border',\n    item: 'border-b border-border',\n    header: 'm-0 text-body-md font-bold',\n    trigger: [\n      'group/trigger flex min-h-target-min w-full cursor-pointer items-center rounded-xs border-0 bg-transparent px-inset-sm py-inset-md text-start font-bold text-fg hover:bg-muted',\n      focusRing,\n    ],\n    icon: 'ms-gap-md shrink-0 text-icon-key transition-transform group-data-[panel-open]/trigger:rotate-180',\n    panel:\n      'h-(--accordion-panel-height) overflow-hidden transition-[height] ease-standard data-[ending-style]:h-0 data-[starting-style]:h-0',\n    content: 'px-inset-sm pb-inset-xl [&>p]:m-0',\n  },\n});\n\nexport interface AccordionProps extends Omit<ComponentProps<typeof BaseAccordion.Root>, 'className'> {\n  className?: string;\n}\n\n/**\n * 折りたたみの一覧。既定で 1 つだけ開く（multiple で複数）。\n * 閉じている中身もページ内検索で見つかるよう hiddenUntilFound を有効にしている。\n */\nexport function Accordion({ className, hiddenUntilFound = true, ...rest }: AccordionProps) {\n  return (\n    <BaseAccordion.Root\n      className={accordionVariants().root({ className })}\n      hiddenUntilFound={hiddenUntilFound}\n      {...rest}\n    />\n  );\n}\n\nexport interface AccordionItemProps extends Omit<ComponentProps<typeof BaseAccordion.Item>, 'className' | 'title'> {\n  /** 開閉ボタンに表示する見出し文 */\n  summary: ReactNode;\n  /** 見出しのレベル。ページの文書構造に合わせる */\n  headingLevel?: 2 | 3 | 4 | 5 | 6;\n  className?: string;\n  children: ReactNode;\n}\n\nexport function AccordionItem({ summary, headingLevel = 3, className, children, ...rest }: AccordionItemProps) {\n  const s = accordionVariants();\n  const H = `h${headingLevel}` as const;\n  return (\n    <BaseAccordion.Item className={s.item({ className })} {...rest}>\n      <BaseAccordion.Header render={<H />} className={s.header()}>\n        <BaseAccordion.Trigger className={s.trigger()}>\n          <span className=\"flex-1\">{summary}</span>\n          <Icon name=\"chevron-down\" className={s.icon()} />\n        </BaseAccordion.Trigger>\n      </BaseAccordion.Header>\n      <BaseAccordion.Panel className={s.panel()}>\n        <div className={s.content()}>{children}</div>\n      </BaseAccordion.Panel>\n    </BaseAccordion.Item>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

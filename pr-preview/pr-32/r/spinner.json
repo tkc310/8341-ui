@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "読み込みや保存の最中であることを示すスピナー。",
+  "dependencies": [],
+  "registryDependencies": [
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/Spinner/index.tsx",
+      "content": "import type { HTMLAttributes } from 'react';\nimport { type VariantProps, tv } from '@/lib/tv';\n\nexport const spinnerVariants = tv({\n  slots: {\n    root: 'inline-flex items-center gap-gap-sm text-body-sm text-fg-subtle',\n    // 強制カラーでは枠線の色が上書きされ、透明の欠けが消えてしまうので、色の調整を止める\n    ring: 'inline-block shrink-0 animate-spin rounded-full border-2 border-current border-r-transparent motion-reduce:animate-none forced-colors:forced-color-adjust-none',\n  },\n  variants: {\n    size: {\n      sm: { ring: 'size-icon-sm' },\n      md: { ring: 'size-icon-md' },\n      lg: { ring: 'size-icon-lg' },\n    },\n    /** 待ち時間が短いときにちらつかないよう、少し遅れて表示する */\n    delay: { true: { root: 'transition-opacity delay-300 starting:opacity-0' } },\n  },\n  defaultVariants: { size: 'md' },\n});\n\nexport interface SpinnerProps\n  extends Omit<HTMLAttributes<HTMLSpanElement>, 'children' | 'role'>, VariantProps<typeof spinnerVariants> {\n  /** 何を待っているか（必須）。「保存しています」のように書く */\n  label: string;\n  /** label を画面にも表示する。表示しない場合も読み上げには伝わる */\n  showLabel?: boolean;\n}\n\n/**\n * 読み込みや保存の最中であることを示すスピナー。role=\"status\" で読み上げにも伝える。\n * ボタンの処理中は Button の loading を使う。中身の形が分かる読み込みは Skeleton を検討する。\n */\nexport function Spinner({ label, showLabel = false, size, delay, className, ...rest }: SpinnerProps) {\n  const s = spinnerVariants({ size, delay });\n  return (\n    <span role=\"status\" className={s.root({ className })} {...rest}>\n      <span className={s.ring()} aria-hidden=\"true\" />\n      {/* ライブリージョンは中身の文字を読み上げるため、aria-label ではなく文字で持つ */}\n      <span className={showLabel ? undefined : 'sr-only'}>{label}</span>\n    </span>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

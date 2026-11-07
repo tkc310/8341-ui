@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "title": "Switch",
+  "description": "オン / オフを切り替えるスイッチ（Base UI の Switch）。",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@8341/icon",
+    "@8341/theme",
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/Switch/index.tsx",
+      "content": "import { Switch as BaseSwitch } from '@base-ui/react/switch';\nimport type { ComponentProps, ReactNode } from 'react';\nimport { Icon } from '@/components/ui/Icon/index';\nimport { focusRing } from '@/lib/focus';\nimport { type VariantProps, tv } from '@/lib/tv';\n\n/**\n * トラックの寸法はつまみの大きさ（--switch-thumb）と余白（--switch-pad）から決める。\n * 幅 = つまみ 2 個分 + 余白 + 枠線。オンでつまみ 1 個分だけ動く。\n */\nexport const switchVariants = tv({\n  slots: {\n    label: [\n      'grid w-fit cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-center gap-x-gap-sm text-fg',\n      // ラベル全体がタップ領域になる。トラックの見た目は 44px 未満でも行の高さで 44px を確保する\n      'min-h-target-min',\n      'has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:text-fg-disabled',\n    ],\n    track: [\n      'group/switch relative inline-flex shrink-0 items-center rounded-full border-2 p-(--switch-pad)',\n      'w-[calc(var(--switch-thumb)*2+var(--switch-pad)*2+var(--8341-border-width-strong)*2)]',\n      'border-border-input bg-surface transition-colors',\n      'hover:not-data-[disabled]:border-border-strong hover:not-data-[disabled]:bg-muted',\n      'data-[checked]:border-key data-[checked]:bg-key',\n      'data-[checked]:hover:not-data-[disabled]:border-key-hover data-[checked]:hover:not-data-[disabled]:bg-key-hover',\n      'data-[invalid]:border-border-danger',\n      'data-[disabled]:border-border-disabled data-[disabled]:bg-disabled',\n      'data-[disabled]:data-[checked]:border-border-disabled data-[disabled]:data-[checked]:bg-disabled',\n      focusRing,\n      'forced-colors:border-[ButtonText] forced-colors:data-[checked]:border-[Highlight] forced-colors:data-[disabled]:border-[GrayText]',\n    ],\n    thumb: [\n      'grid size-(--switch-thumb) place-items-center rounded-full transition-[translate,background-color]',\n      'bg-(--8341-color-border-input) group-hover/switch:not-data-[disabled]:bg-(--8341-color-border-strong)',\n      // オンでは白抜きのつまみにチェックを出す（色だけで状態を伝えない）\n      'data-[checked]:translate-x-(--switch-thumb) rtl:data-[checked]:-translate-x-(--switch-thumb)',\n      'data-[checked]:bg-surface group-hover/switch:data-[checked]:not-data-[disabled]:bg-surface',\n      'data-[disabled]:bg-(--8341-color-text-disabled) data-[disabled]:data-[checked]:bg-(--8341-color-text-disabled)',\n      'forced-colors:bg-[ButtonText] forced-colors:data-[checked]:bg-[Highlight] forced-colors:data-[disabled]:bg-[GrayText]',\n    ],\n    icon: [\n      'hidden size-[75%] stroke-3 text-icon-key group-data-[checked]/switch:block',\n      'group-data-[disabled]/switch:text-(--8341-color-bg-disabled) forced-colors:text-[Canvas]',\n    ],\n    text: 'col-start-2',\n    description: 'col-start-2 text-body-sm text-fg-subtle',\n  },\n  variants: {\n    size: {\n      md: {\n        label: 'text-body-md [--switch-pad:var(--8341-space-inset-xs)] [--switch-thumb:var(--8341-size-icon-lg)]',\n      },\n      sm: {\n        label: 'text-body-sm [--switch-pad:var(--8341-border-width-strong)] [--switch-thumb:var(--8341-size-icon-sm)]',\n      },\n    },\n  },\n  defaultVariants: { size: 'md' },\n});\n\nexport interface SwitchProps\n  extends\n    Omit<ComponentProps<typeof BaseSwitch.Root>, 'className' | 'children' | 'render'>,\n    VariantProps<typeof switchVariants> {\n  /** ラベルは必須。ラベル全体がクリック領域になる */\n  label: ReactNode;\n  /** ラベル下の補足 */\n  description?: ReactNode;\n  className?: string;\n}\n\n/**\n * オン / オフを切り替えるスイッチ（Base UI の Switch）。押した瞬間に設定が反映されるものに使う。\n * 送信して初めて反映される選択（同意など）は Checkbox を使う。\n */\nexport function Switch({ label, description, size, className, ...rest }: SwitchProps) {\n  const s = switchVariants({ size });\n  return (\n    <label className={s.label({ className })}>\n      <BaseSwitch.Root className={s.track()} {...rest}>\n        <BaseSwitch.Thumb className={s.thumb()}>\n          <Icon name=\"check\" size=\"inherit\" className={s.icon()} />\n        </BaseSwitch.Thumb>\n      </BaseSwitch.Root>\n      <span className={s.text()}>{label}</span>\n      {description && <span className={s.description()}>{description}</span>}\n    </label>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

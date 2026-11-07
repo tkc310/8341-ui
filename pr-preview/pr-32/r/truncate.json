@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "truncate",
+  "title": "Truncate",
+  "description": "1 行に収まらない文字を … で省略し、マウスを乗せるかフォーカスすると全文をツールチップで出す。",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@8341/theme",
+    "@8341/tv"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/Truncate/index.tsx",
+      "content": "'use client';\n\nimport { Tooltip as BaseTooltip } from '@base-ui/react/tooltip';\nimport { useEffect, useState } from 'react';\nimport { focusRing } from '@/lib/focus';\nimport { tv } from '@/lib/tv';\n\nexport const truncateVariants = tv({\n  slots: {\n    text: ['block min-w-0 truncate', focusRing],\n    positioner: 'z-(--8341-z-toast)',\n    popup: [\n      'max-w-[min(24rem,calc(100vw-var(--8341-space-page-inline)*2))] rounded-sm bg-inverse px-inset-sm py-inset-xs text-body-sm text-fg-inverse shadow-2',\n      'origin-(--transform-origin) transition-opacity data-[ending-style]:opacity-0 data-[starting-style]:opacity-0',\n      'forced-colors:border forced-colors:border-[CanvasText]',\n    ],\n  },\n});\n\nexport interface TruncateProps {\n  /** 表示する文字。省略されても読み上げでは全文が読まれる */\n  children: string;\n  className?: string;\n}\n\n/**\n * 1 行に収まらない文字を … で省略し、マウスを乗せるかフォーカスすると全文をツールチップで出す。\n * 省略されたときだけフォーカスできるようにし、キーボードでも全文を確かめられるようにする。\n * 本文や大事な情報には使わない（折り返して全文を見せる）。表の列や一覧の項目名など、幅が限られる場所に使う。\n */\nexport function Truncate({ children, className }: TruncateProps) {\n  const [element, setElement] = useState<Element | null>(null);\n  const [truncated, setTruncated] = useState(false);\n\n  useEffect(() => {\n    if (!element) return undefined;\n    const update = () => setTruncated(element.scrollWidth > element.clientWidth);\n    update();\n    if (typeof ResizeObserver === 'undefined') return undefined;\n    const observer = new ResizeObserver(update);\n    observer.observe(element);\n    return () => observer.disconnect();\n  }, [element, children]);\n\n  const s = truncateVariants();\n  return (\n    <BaseTooltip.Root disabled={!truncated}>\n      <BaseTooltip.Trigger\n        ref={setElement}\n        render={<span />}\n        delay={100}\n        closeDelay={0}\n        tabIndex={truncated ? 0 : undefined}\n        className={s.text({ className })}\n      >\n        {children}\n      </BaseTooltip.Trigger>\n      <BaseTooltip.Portal>\n        <BaseTooltip.Positioner side=\"top\" align=\"start\" sideOffset={4} className={s.positioner()}>\n          {/* 全文は省略された文字そのものが読み上げられるので、ツールチップは見た目だけの補助 */}\n          <BaseTooltip.Popup className={s.popup()} aria-hidden=\"true\">\n            {children}\n          </BaseTooltip.Popup>\n        </BaseTooltip.Positioner>\n      </BaseTooltip.Portal>\n    </BaseTooltip.Root>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
