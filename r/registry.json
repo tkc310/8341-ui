@@ -448,6 +448,29 @@
       ]
     },
     {
+      "name": "sortable-list",
+      "type": "registry:ui",
+      "title": "SortableList",
+      "description": "ドラッグとキーボードで並べ替えられる順番つきリスト。",
+      "dependencies": [],
+      "registryDependencies": [
+        "@8341/button",
+        "@8341/icon",
+        "@8341/theme",
+        "@8341/tv"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/SortableList/index.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/SortableList/useSortable.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
